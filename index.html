@@ -132,7 +132,7 @@
             document.getElementById('tulip-menu').classList.add('hidden');
             document.getElementById(hostel + '-menu').classList.remove('hidden');
             document.getElementById(hostel + '-menu').classList.add('slide-in');
-            history.pushState({ page: hostel }, "", #${hostel});
+            history.pushState({ page: hostel }, "", `#${hostel}`);
         }
 
         function submitFeedback(hostel, rating) {
@@ -163,10 +163,10 @@
             };
 
             ['himalaya', 'tulip'].forEach(hostel => {
-                document.getElementById(${hostel}-morning).innerText = menu[hostel][today].morning;
-                document.getElementById(${hostel}-lunch).innerText = menu[hostel][today].lunch;
-                document.getElementById(${hostel}-snacks).innerText = menu[hostel][today].snacks;
-                document.getElementById(${hostel}-dinner).innerText = menu[hostel][today].dinner;
+                document.getElementById(`${hostel}-morning`).innerText = menu[hostel][today].morning;
+                document.getElementById(`${hostel}-lunch`).innerText = menu[hostel][today].lunch;
+                document.getElementById(`${hostel}-snacks`).innerText = menu[hostel][today].snacks;
+                document.getElementById(`${hostel}-dinner`).innerText = menu[hostel][today].dinner;
             });
 
             const ratings = {
@@ -202,7 +202,7 @@
         }
 
         function rateMenu(hostel, rating) {
-            const stars = document.querySelectorAll(#${hostel}-menu .star);
+            const stars = document.querySelectorAll(`#${hostel}-menu .star`);
             stars.forEach((star, index) => {
                 if (index < rating) {
                     star.classList.add('selected');
@@ -214,10 +214,12 @@
         }
 
         function updateDate() {
-            const dateElement = document.getElementById('current-date');
+            const dateElements = document.querySelectorAll('.current-date');
             const now = new Date();
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            dateElement.innerText = now.toLocaleDateString(undefined, options);
+            dateElements.forEach(dateElement => {
+                dateElement.innerText = now.toLocaleDateString(undefined, options);
+            });
         }
 
         window.onload = function() {
@@ -301,7 +303,7 @@
             <div class="bg-white p-4 rounded shadow-lg mb-4">
                 <div class="flex justify-between items-center mb-2">
                     <h3 class="text-xl font-bold">Today's Menu</h3>
-                    <p id="current-date" class="text-lg"></p>
+                    <p class="text-lg current-date"></p>
                 </div>
                 <p><strong>Morning:</strong> <span id="himalaya-morning"></span></p>
                 <p><strong>Lunch:</strong> <span id="himalaya-lunch"></span></p>
@@ -311,11 +313,11 @@
             <div class="bg-white p-4 rounded shadow-lg mb-4">
                 <h3 class="text-xl font-bold mb-2">Ratings</h3>
                 <div id="himalaya-ratings" class="ratings flex space-x-2" data-hostel="himalaya">
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
+                    <span class="star" onclick="rateMenu('himalaya', 1)">★</span>
+                    <span class="star" onclick="rateMenu('himalaya', 2)">★</span>
+                    <span class="star" onclick="rateMenu('himalaya', 3)">★</span>
+                    <span class="star" onclick="rateMenu('himalaya', 4)">★</span>
+                    <span class="star" onclick="rateMenu('himalaya', 5)">★</span>
                 </div>
             </div>
         </section>
@@ -324,7 +326,7 @@
             <div class="bg-white p-4 rounded shadow-lg mb-4">
                 <div class="flex justify-between items-center mb-2">
                     <h3 class="text-xl font-bold">Today's Menu</h3>
-                    <p id="current-date" class="text-lg"></p>
+                    <p class="text-lg current-date"></p>
                 </div>
                 <p><strong>Morning:</strong> <span id="tulip-morning"></span></p>
                 <p><strong>Lunch:</strong> <span id="tulip-lunch"></span></p>
@@ -334,11 +336,11 @@
             <div class="bg-white p-4 rounded shadow-lg mb-4">
                 <h3 class="text-xl font-bold mb-2">Ratings</h3>
                 <div id="tulip-ratings" class="ratings flex space-x-2" data-hostel="tulip">
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
-                    <span class="star">★</span>
+                    <span class="star" onclick="rateMenu('tulip', 1)">★</span>
+                    <span class="star" onclick="rateMenu('tulip', 2)">★</span>
+                    <span class="star" onclick="rateMenu('tulip', 3)">★</span>
+                    <span class="star" onclick="rateMenu('tulip', 4)">★</span>
+                    <span class="star" onclick="rateMenu('tulip', 5)">★</span>
                 </div>
             </div>
         </section>
@@ -366,5 +368,4 @@
             </div>
         </section>
     </main>
-</body>
-</html>
+    <footer
