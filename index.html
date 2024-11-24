@@ -12,8 +12,9 @@
         }
 
         .hostel-image {
-            height: auto; /* Adjust height as needed */
-            object-fit: cover; /* Ensures the image covers the area without distortion */
+            height: auto; /* Adjust height to auto */
+            width: 100%; /* Ensure the image takes the full width */
+            object-fit: contain; /* Ensures the image is fully displayed without being cut */
             border: 5px solid transparent;
             border-image: linear-gradient(to right, #ff0000, #ff7e5f);
             border-image-slice: 1;
@@ -214,12 +215,10 @@
         }
 
         function updateDate() {
-            const dateElements = document.querySelectorAll('.current-date');
+            const dateElement = document.getElementById('current-date');
             const now = new Date();
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            dateElements.forEach(dateElement => {
-                dateElement.innerText = now.toLocaleDateString(undefined, options);
-            });
+            dateElement.innerText = now.toLocaleDateString(undefined, options);
         }
 
         window.onload = function() {
@@ -276,7 +275,7 @@
                         <a class="hover:underline" href="https://lms.kluniversity.in/login/index.php" target="_blank">LMS <span class="ml-2">📚</span></a>
                     </li>
                     <li>
-                        <a class="hover:underline" href="https://academics.klef.in/login" target="_blank">Academics <span class="ml-2">🛠</span></a>
+                        <a class="hover:underline" href="https://academics.klef.in/login" target="_blank">Academics <span class="ml-2">🛠️</span></a>
                     </li>
                 </ul>
             </nav>
@@ -288,12 +287,12 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
                     <img class="hostel-image w-full rounded mb-4" src="https://assets.onecompiler.app/42fq36qvd/42yrqetcx/Screenshot%202024-11-21%20105958.png" alt="Himalaya Girls Hostel building with a beautiful garden in front" />
-                    <h3 class="text-xl font-bold mb-2">Himalaya Girls Hostel</h3>
+                    <h3 class="text-xl font-bold mb-2" style="font-family: 'Roboto', sans-serif;">Himalaya Girls Hostel</h3>
                     <button class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition duration-300" onclick="showMenu('himalaya')">Select</button>
                 </div>
                 <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
                     <img class="hostel-image w-full rounded mb-4" src="https://assets.onecompiler.app/42fq36qvd/42yrzfg8u/tulip.jpg" alt="Tulip Boys Hostel building with a modern architectural design" />
-                    <h3 class="text-xl font-bold mb-2">Tulip Boys Hostel</h3>
+                    <h3 class="text-xl font-bold mb-2" style="font-family: 'Roboto', sans-serif;">Tulip Boys Hostel</h3>
                     <button class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition duration-300" onclick="showMenu('tulip')">Select</button>
                 </div>
             </div>
@@ -303,7 +302,7 @@
             <div class="bg-white p-4 rounded shadow-lg mb-4">
                 <div class="flex justify-between items-center mb-2">
                     <h3 class="text-xl font-bold">Today's Menu</h3>
-                    <p class="text-lg current-date"></p>
+                    <p id="current-date" class="text-lg"></p>
                 </div>
                 <p><strong>Morning:</strong> <span id="himalaya-morning"></span></p>
                 <p><strong>Lunch:</strong> <span id="himalaya-lunch"></span></p>
@@ -313,11 +312,11 @@
             <div class="bg-white p-4 rounded shadow-lg mb-4">
                 <h3 class="text-xl font-bold mb-2">Ratings</h3>
                 <div id="himalaya-ratings" class="ratings flex space-x-2" data-hostel="himalaya">
-                    <span class="star" onclick="rateMenu('himalaya', 1)">★</span>
-                    <span class="star" onclick="rateMenu('himalaya', 2)">★</span>
-                    <span class="star" onclick="rateMenu('himalaya', 3)">★</span>
-                    <span class="star" onclick="rateMenu('himalaya', 4)">★</span>
-                    <span class="star" onclick="rateMenu('himalaya', 5)">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
                 </div>
             </div>
         </section>
@@ -326,7 +325,7 @@
             <div class="bg-white p-4 rounded shadow-lg mb-4">
                 <div class="flex justify-between items-center mb-2">
                     <h3 class="text-xl font-bold">Today's Menu</h3>
-                    <p class="text-lg current-date"></p>
+                    <p id="current-date" class="text-lg"></p>
                 </div>
                 <p><strong>Morning:</strong> <span id="tulip-morning"></span></p>
                 <p><strong>Lunch:</strong> <span id="tulip-lunch"></span></p>
@@ -336,42 +335,43 @@
             <div class="bg-white p-4 rounded shadow-lg mb-4">
                 <h3 class="text-xl font-bold mb-2">Ratings</h3>
                 <div id="tulip-ratings" class="ratings flex space-x-2" data-hostel="tulip">
-                    <span class="star" onclick="rateMenu('tulip', 1)">★</span>
-                    <span class="star" onclick="rateMenu('tulip', 2)">★</span>
-                    <span class="star" onclick="rateMenu('tulip', 3)">★</span>
-                    <span class="star" onclick="rateMenu('tulip', 4)">★</span>
-                    <span class="star" onclick="rateMenu('tulip', 5)">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
                 </div>
             </div>
-    <section id="useful-links" class="fade-in mt-8">
-    <h2 class="text-2xl font-bold mb-4">Useful Links</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
-            <a href="https://newerp.kluniversity.in/" target="_blank" class="text-blue-600 hover:underline">
-                <i class="fas fa-link fa-2x mb-2"></i>
-                <h3 class="text-xl font-bold">ERP</h3>
-            </a>
+        </section>
+        <section id="useful-links" class="fade-in mt-8">
+            <h2 class="text-2xl font-bold mb-4">Useful Links</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
+                    <a href="https://newerp.kluniversity.in/" target="_blank" class="text-blue-600 hover:underline">
+                        <i class="fas fa-link fa-2x mb-2"></i>
+                        <h3 class="text-xl font-bold">ERP</h3>
+                    </a>
+                </div>
+                <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
+                    <a href="https://lms.kluniversity.in/login/index.php" target="_blank" class="text-blue-600 hover:underline">
+                        <i class="fas fa-link fa-2x mb-2"></i>
+                        <h3 class="text-xl font-bold">LMS</h3>
+                    </a>
+                </div>
+                <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
+                    <a href="https://academics.klef.in/login" target="_blank" class="text-blue-600 hover:underline">
+                        <i class="fas fa-link fa-2x mb-2"></i>
+                        <h3 class="text-xl font-bold">Academics</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-gray-800 text-white p-4 mt-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 KLU Hostel Mess. All rights reserved.</p>
+            <p>Idea, Design, and Development by Sumanth</p>
         </div>
-        <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
-            <a href="https://lms.kluniversity.in/login/index.php" target="_blank" class="text-blue-600 hover:underline">
-                <i class="fas fa-link fa-2x mb-2"></i>
-                <h3 class="text-xl font-bold">LMS</h3>
-            </a>
-        </div>
-        <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
-            <a href="https://academics.klef.in/login" target="_blank" class="text-blue-600 hover:underline">
-                <i class="fas fa-link fa-2x mb-2"></i>
-                <h3 class="text-xl font-bold">Academics</h3>
-            </a>
-        </div>
-    </div>
-</section>
-
-<footer class="bg-gray-900 text-white py-6 mt-8">
-    <div class="container mx-auto text-center">
-        <p class="text-sm">&copy; 2024 All Rights Reserved.</p>
-        <p class="text-sm">
-            <span class="text-red-500 font-bold">Idea, Design, and Development by Sumanth</span>
-        </p>
-    </div>
-</footer>
+    </footer>
+</body>
+</html>
