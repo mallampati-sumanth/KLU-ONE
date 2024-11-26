@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KLU ONE Attendance Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Header -->
+  <header class="bg-red-600 text-white py-6">
+    <h1 class="text-center text-4xl font-bold">KLU ONE ATTENDANCE</h1>
+    <p class="text-center text-sm mt-2">Advanced Academic Performance Analytics</p>
+    <p class="text-center text-xs mt-1 italic">This tool provides an approximate calculation and may not be 100% accurate.</p>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-lg mx-auto mt-10 bg-white shadow-lg rounded-lg p-6">
+    <!-- Input Section -->
+    <form id="attendanceForm" class="space-y-4">
+      <div>
+        <label for="subjectName" class="block text-lg font-medium">Subject Name (Optional)</label>
+        <input 
+          type="text" 
+          id="subjectName" 
+          class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" 
+          placeholder="Enter Subject Name">
+      </div>
+
+      <!-- Lecture Percentage -->
+      <div>
+        <label for="lecturePercentage" class="block text-lg font-medium">Lecture (%)</label>
+        <input 
+          type="number" 
+          id="lecturePercentage" 
+          class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" 
+          placeholder="Enter Lecture %" 
+          min="0" max="100">
+      </div>
+
+      <!-- Tutorial Percentage -->
+      <div>
+        <label for="tutorialPercentage" class="block text-lg font-medium">Tutorial (%)</label>
+        <input 
+          type="number" 
+          id="tutorialPercentage" 
+          class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" 
+          placeholder="Enter Tutorial %" 
+          min="0" max="100">
+      </div>
+
+      <!-- Practical Percentage -->
+      <div>
+        <label for="practicalPercentage" class="block text-lg font-medium">Practical (%)</label>
+        <input 
+          type="number" 
+          id="practicalPercentage" 
+          class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" 
+          placeholder="Enter Practical %" 
+          min="0" max="100">
+      </div>
+
+      <!-- Skilling Percentage -->
+      <div>
+        <label for="skillingPercentage" class="block text-lg font-medium">Skilling (%)</label>
+        <input 
+          type="number" 
+          id="skillingPercentage" 
+          class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" 
+          placeholder="Enter Skilling %" 
+          min="0" max="100">
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex justify-between mt-6">
+        <button 
+          type="button" 
+          id="calculateButton" 
+          class="px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:ring-2 focus:ring-red-500">
+          Calculate
+        </button>
+        <button 
+          type="button" 
+          id="resetButton" 
+          class="px-6 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 focus:ring-2 focus:ring-gray-400">
+          Reset
+        </button>
+      </div>
+    </form>
+
+    <!-- Results Section -->
+    <div id="results" class="mt-8 hidden">
+      <h3 class="text-xl font-bold">Results</h3>
+      <p id="subjectResult" class="mt-2 text-lg"></p>
+      <p id="overallAttendance" class="mt-2 text-lg font-semibold"></p>
+      <h4 class="text-lg font-semibold mt-4">Component Analysis</h4>
+      <ul id="componentAnalysis" class="list-disc pl-5 text-gray-700"></ul>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm text-gray-500 mt-10">
+    &copy; 2024, KLU ONE Attendance Calculator
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const calculateButton = document.getElementById('calculateButton');
+    const resetButton = document.getElementById('resetButton');
+    const resultsSection = document.getElementById('results');
+    const subjectResultEl = document.getElementById('subjectResult');
+    const overallAttendanceEl = document.getElementById('overallAttendance');
+    const componentAnalysisEl = document.getElementById('componentAnalysis');
+
+    const calculateAttendance = () => {
+      const subjectName = document.getElementById('subjectName').value || 'N/A';
+      const lecturePercentage = parseFloat(document.getElementById('lecturePercentage').value) || null;
+      const tutorialPercentage = parseFloat(document.getElementById('tutorialPercentage').value) || null;
+      const practicalPercentage = parseFloat(document.getElementById('practicalPercentage').value) || null;
+      const skillingPercentage = parseFloat(document.getElementById('skillingPercentage').value) || null;
+
+      const weights = { lecture: 1.0, tutorial: 0.25, practical: 0.5, skilling: 0.25 };
+      let totalWeight = 0;
+      let weightedSum = 0;
+
+      const components = [
+        { percentage: lecturePercentage, weight: weights.lecture, name: "Lecture" },
+        { percentage: tutorialPercentage, weight: weights.tutorial, name: "Tutorial" },
+        { percentage: practicalPercentage, weight: weights.practical, name: "Practical" },
+        { percentage: skillingPercentage, weight: weights.skilling, name: "Skilling" }
+      ];
+
+      const analysis = components.map(component => {
+        if (component.percentage !== null) {
+          totalWeight += component.weight;
+          weightedSum += component.percentage * component.weight;
+          return `<li>${component.name}: ${component.percentage}%</li>`;
+        }
+        return '';
+      }).filter(Boolean);
+
+      if (totalWeight === 0) {
+        alert('Please provide percentages for at least one component.');
+        return;
+      }
+
+      const overallAttendance = weightedSum / totalWeight;
+      subjectResultEl.textContent = `Subject: ${subjectName}`;
+      overallAttendanceEl.textContent = `Overall Attendance: ${overallAttendance.toFixed(2)}%`;
+      componentAnalysisEl.innerHTML = analysis.join('');
+      resultsSection.classList.remove('hidden');
+    };
+
+    const resetForm = () => {
+      document.getElementById('subjectName').value = '';
+      document.getElementById('lecturePercentage').value = '';
+      document.getElementById('tutorialPercentage').value = '';
+      document.getElementById('practicalPercentage').value = '';
+      document.getElementById('skillingPercentage').value = '';
+      resultsSection.classList.add('hidden');
+    };
+
+    calculateButton.addEventListener('click', calculateAttendance);
+    resetButton.addEventListener('click', resetForm);
+  </script>
+</body>
+</html>
