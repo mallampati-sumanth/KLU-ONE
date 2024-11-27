@@ -1,18 +1,40 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KLU ONE Attendance Calculator</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .logo-effect {
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .logo-effect:hover {
+      transform: scale(1.1) rotate(10deg);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .button-effect {
+      transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+    .button-effect:hover {
+      transform: translateY(-2px);
+    }
+    .input-effect:focus {
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    }
+  </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
 
   <!-- Header -->
   <header class="bg-red-600 text-white py-6">
-    <h1 class="text-center text-4xl font-bold">KLU ONE ATTENDANCE</h1>
-    <p class="text-center text-sm mt-2">Advanced Academic Performance Analytics</p>
-    <p class="text-center text-xs mt-1 italic">This tool provides an approximate calculation and may not be 100% accurate.</p>
+    <div class="flex items-center justify-center">
+      <img src="https://assets.onecompiler.app/42fq36qvd/42zbsafhz/Screenshot%202024-11-27%20111356.png" alt="K L University Logo" class="h-16 w-16 mr-4 logo-effect">
+      <div>
+        <h1 class="text-4xl font-bold">KLU ONE ATTENDANCE</h1>
+        <p class="text-sm mt-2">Advanced Academic Performance Analytics</p>
+        <p class="text-xs mt-1 italic">This tool provides an approximate calculation and may not be 100% accurate.</p>
+      </div>
+    </div>
   </header>
 
   <!-- Main Container -->
@@ -24,7 +46,7 @@
         <input 
           type="text" 
           id="subjectName" 
-          class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" 
+          class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" 
           placeholder="Enter Subject Name">
       </div>
 
@@ -34,7 +56,7 @@
         <input 
           type="number" 
           id="lecturePercentage" 
-          class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" 
+          class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" 
           placeholder="Enter Lecture %" 
           min="0" max="100">
       </div>
@@ -45,7 +67,7 @@
         <input 
           type="number" 
           id="tutorialPercentage" 
-          class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" 
+          class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" 
           placeholder="Enter Tutorial %" 
           min="0" max="100">
       </div>
@@ -56,7 +78,7 @@
         <input 
           type="number" 
           id="practicalPercentage" 
-          class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" 
+          class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" 
           placeholder="Enter Practical %" 
           min="0" max="100">
       </div>
@@ -67,7 +89,7 @@
         <input 
           type="number" 
           id="skillingPercentage" 
-          class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" 
+          class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" 
           placeholder="Enter Skilling %" 
           min="0" max="100">
       </div>
@@ -77,13 +99,13 @@
         <button 
           type="button" 
           id="calculateButton" 
-          class="px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:ring-2 focus:ring-red-500">
+          class="px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:ring-2 focus:ring-red-500 button-effect">
           Calculate
         </button>
         <button 
           type="button" 
           id="resetButton" 
-          class="px-6 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 focus:ring-2 focus:ring-gray-400">
+          class="px-6 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 focus:ring-2 focus:ring-gray-400 button-effect">
           Reset
         </button>
       </div>
