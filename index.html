@@ -1,0 +1,409 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KLU Hostel Mess</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .hostel-image {
+            height: auto; /* Adjust height to auto */
+            width: 100%; /* Ensure the image takes the full width */
+            object-fit: contain; /* Ensures the image is fully displayed without being cut */
+            border: 5px solid transparent;
+            border-image: linear-gradient(to right, #ff0000, #ff7e5f);
+            border-image-slice: 1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 2s;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .slide-in {
+            animation: slideIn 1s;
+        }
+
+        @keyframes bounceIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .bounce-in {
+            animation: bounceIn 1s;
+        }
+
+        .star {
+            cursor: pointer;
+            font-size: 2rem;
+            color: #ccc;
+        }
+
+        .star.selected {
+            color: #f5c518;
+        }
+
+        @keyframes welcomeAnimation {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .welcome-animation {
+            animation: welcomeAnimation 1s ease-in-out;
+        }
+
+        .logo-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        @keyframes logoMove {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+                box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        .logo-animation {
+            animation: logoMove 1s forwards;
+            border-radius: 90%;
+        }
+    </style>
+    <script>
+        function showMenu(hostel) {
+            document.getElementById('hostel-selection').classList.add('hidden');
+            document.getElementById('himalaya-menu').classList.add('hidden');
+            document.getElementById('tulip-menu').classList.add('hidden');
+            document.getElementById(hostel + '-menu').classList.remove('hidden');
+            document.getElementById(hostel + '-menu').classList.add('slide-in');
+            history.pushState({ page: hostel }, "", `#${hostel}`);
+        }
+
+        function submitFeedback(hostel, rating) {
+            alert('Rating: ' + rating + ' stars');
+        }
+
+        function updateMenu() {
+            const today = new Date().getDay();
+            const menu = {
+                himalaya: {
+                    0: { morning: "Pancakes", lunch: "Chicken Curry", snacks: "Samosa", dinner: "Biryani" },
+                    1: { morning: "Omelette", lunch: "pappu,sambar,cabbage fry ", snacks: "Pakora", dinner: "Paneer Butter Masala" },
+                    2: { morning: "Idli", lunch: "Fish Curry", snacks: "Sandwich", dinner: "Dal Tadka" },
+                    3: { morning: "Paratha", lunch: "Mutton Curry", snacks: "Chaat", dinner: "Chicken Biryani" },
+                    4: { morning: "GULAB JAM", lunch: "Veg Biryani", snacks: "GULAB JAM", dinner: "Butter Milk" },
+                    5: { morning: "Poha", lunch: "Egg Curry", snacks: "Biscuits", dinner: "Veg Korma" },
+                    6: { morning: "Upma", lunch: "Paneer Tikka", snacks: "Chips", dinner: "Fish Fry" }
+                },
+                tulip: {
+                    0: { morning: "Pancakes", lunch: "Chicken Curry", snacks: "Samosa", dinner: "Biryani" },
+                    1: { morning: "Omelette", lunch: "Veg Pulao", snacks: "Pakora", dinner: "Paneer Butter Masala" },
+                    2: { morning: "Idli", lunch: "Fish Curry", snacks: "Sandwich", dinner: "Dal Tadka" },
+                    3: { morning: "Paratha", lunch: "Mutton Curry", snacks: "Chaat", dinner: "Chicken Biryani" },
+                    4: { morning: "Dosa", lunch: "Veg Biryani", snacks: "GULAB JAM", dinner: "Butter Chicken" },
+                    5: { morning: "Poha", lunch: "Egg Curry", snacks: "Biscuits", dinner: "Veg Korma" },
+                    6: { morning: "Upma", lunch: "Paneer Tikka", snacks: "Chips", dinner: "Fish Fry" }
+                }
+            };
+
+            ['himalaya', 'tulip'].forEach(hostel => {
+                document.getElementById(`${hostel}-morning`).innerText = menu[hostel][today].morning;
+                document.getElementById(`${hostel}-lunch`).innerText = menu[hostel][today].lunch;
+                document.getElementById(`${hostel}-snacks`).innerText = menu[hostel][today].snacks;
+                document.getElementById(`${hostel}-dinner`).innerText = menu[hostel][today].dinner;
+            });
+
+            const ratings = {
+                0: 4,
+                1: 2.5,
+                2: 4,
+                3: 3,
+                4: 2.5,
+                5: 3,
+                6: 4
+            };
+
+            document.querySelectorAll('.ratings').forEach(ratingElement => {
+                const hostel = ratingElement.dataset.hostel;
+                const rating = ratings[today];
+                const stars = ratingElement.querySelectorAll('.star');
+                stars.forEach((star, index) => {
+                    if (index < rating) {
+                        star.classList.add('selected');
+                    } else {
+                        star.classList.remove('selected');
+                    }
+                });
+            });
+        }
+
+        function goHome() {
+            document.getElementById('hostel-selection').classList.remove('hidden');
+            document.getElementById('hostel-selection').classList.add('fade-in');
+            document.getElementById('himalaya-menu').classList.add('hidden');
+            document.getElementById('tulip-menu').classList.add('hidden');
+            history.pushState({ page: "home" }, "", "#home");
+        }
+
+        function rateMenu(hostel, rating) {
+            const stars = document.querySelectorAll(`#${hostel}-menu .star`);
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('selected');
+                } else {
+                    star.classList.remove('selected');
+                }
+            });
+            submitFeedback(hostel, rating);
+        }
+
+        function updateDate() {
+            const dateElement = document.getElementById('current-date');
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            dateElement.innerText = now.toLocaleDateString(undefined, options);
+        }
+
+        window.onload = function() {
+            updateMenu();
+            updateDate();
+            setTimeout(() => {
+                document.getElementById('logo-overlay').style.display = 'none';
+            }, 1000);
+
+            window.onpopstate = function(event) {
+                if (event.state && event.state.page) {
+                    if (event.state.page === "home") {
+                        goHome();
+                    } else {
+                        showMenu(event.state.page);
+                    }
+                } else {
+                    goHome();
+                }
+            };
+
+            if (location.hash) {
+                const page = location.hash.substring(1);
+                if (page === "home") {
+                    goHome();
+                } else {
+                    showMenu(page);
+                }
+            } else {
+                goHome();
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="logo-overlay" id="logo-overlay">
+        <img alt="KLU Logo with a stylized university emblem" class="logo-animation h-48 w-48" src="https://assets.onecompiler.app/42fq36qvd/42yt3xjfk/kluuu.jpg"/>
+    </div>
+    <header class="bg-red-700 text-white p-4 fade-in shadow-lg">
+        <div class="container mx-auto flex flex-wrap justify-between items-center">
+            <div class="flex items-center">
+                <img alt="KLU Logo with a stylized university emblem" class="h-16 mr-4 cursor-pointer" onclick="goHome()" src="https://assets.onecompiler.app/42fq36qvd/42yt2y2bp/Screenshot%202024-11-21%20221555.png"/>
+                <h1 class="text-3xl font-bold">KLU Hostel Mess</h1>
+            </div>
+            <nav class="w-full md:w-auto mt-4 md:mt-0">
+                <ul class="flex flex-col md:flex-row md:space-x-4">
+                    <li>
+                        <a class="hover:underline text-lg font-bold" href="#" onclick="goHome()">Home
+                            <span class="ml-2">🏠</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="hover:underline text-lg font-bold" href="https://newerp.kluniversity.in/" target="_blank">ERP
+                            <span class="ml-2">🎓</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="hover:underline text-lg font-bold" href="https://lms.kluniversity.in/my/" target="_blank">LMS
+                            <span class="ml-2">📚</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="hover:underline text-lg font-bold" href="https://academics.klef.in/login" target="_blank">Academics
+                            <span class="ml-2">🛠</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="hover:underline text-lg font-bold" href="https://mallampati-sumanth.github.io/KLU-ONE-ATTENDANCE/" target="_blank">Attendance
+                            <span class="ml-2">📊</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <marquee class="header bg-red-700 text-white p-2 font-bold">
+    <span class="text-black-255"><i>Updates:</i></span> 
+    <span class="text-white">Even Sem Registrations Going to start in 1 Week of December!!</span> 
+    <span class="text-red-500">|Testing is going-♥️Sumanth</span> 
+    <span class="text-white"></span> 
+    <span class="text-red-500">|</span> 
+    <span class="text-white"></span>
+</marquee>
+
+<style>
+    .header {
+        border: 3px solid red;
+        box-shadow: 0 0 10px 3px red;
+    }
+</style>
+
+    <main class="container mx-auto p-4">
+        <section id="hostel-selection" class="fade-in">
+            <h2 class="text-2xl font-bold mb-4">Select Hostel</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
+                    <img class="hostel-image w-full rounded mb-4" src="https://assets.onecompiler.app/42fq36qvd/42yrqetcx/Screenshot%202024-11-21%20105958.png" alt="Himalaya Girls Hostel building with a beautiful garden in front" />
+                    <h3 class="text-xl font-bold mb-2" style="font-family: 'Roboto', sans-serif;">Himalaya Girls Hostel</h3>
+                    <button class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition duration-300" onclick="showMenu('himalaya')">Select</button>
+                </div>
+                <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
+                    <img class="hostel-image w-full rounded mb-4" src="https://assets.onecompiler.app/42fq36qvd/42yrzfg8u/tulip.jpg" alt="Tulip Boys Hostel building with a modern architectural design" />
+                    <h3 class="text-xl font-bold mb-2" style="font-family: 'Roboto', sans-serif;">Tulip Boys Hostel</h3>
+                    <button class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition duration-300" onclick="showMenu('tulip')">Select</button>
+                </div>
+            </div>
+        </section>
+        <section id="himalaya-menu" class="hidden">
+            <h2 class="text-2xl font-bold mb-4">Himalaya Girls Hostel Menu</h2>
+            <div class="bg-white p-4 rounded shadow-lg mb-4">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="text-xl font-bold">Today's Menu</h3>
+                    <p id="current-date" class="text-lg"></p>
+                </div>
+                <p><strong>Morning:</strong> <span id="himalaya-morning"></span></p>
+                <p><strong>Lunch:</strong> <span id="himalaya-lunch"></span></p>
+                <p><strong>Snacks:</strong> <span id="himalaya-snacks"></span></p>
+                <p><strong>Dinner:</strong> <span id="himalaya-dinner"></span></p>
+            </div>
+            <div class="bg-white p-4 rounded shadow-lg mb-4">
+                <h3 class="text-xl font-bold mb-2">Ratings</h3>
+                <div id="himalaya-ratings" class="ratings flex space-x-2" data-hostel="himalaya">
+                    <span class="star" onclick="rateMenu('himalaya', 1)">★</span>
+                    <span class="star" onclick="rateMenu('himalaya', 2)">★</span>
+                    <span class="star" onclick="rateMenu('himalaya', 3)">★</span>
+                    <span class="star" onclick="rateMenu('himalaya', 4)">★</span>
+                    <span class="star" onclick="rateMenu('himalaya', 5)">★</span>
+                </div>
+            </div>
+        </section>
+        <section id="tulip-menu" class="hidden">
+            <h2 class="text-2xl font-bold mb-4">Tulip Boys Hostel Menu</h2>
+            <div class="bg-white p-4 rounded shadow-lg mb-4">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="text-xl font-bold">Today's Menu</h3>
+                    <p id="current-date" class="text-lg"></p>
+                </div>
+                <p><strong>Morning:</strong> <span id="tulip-morning"></span></p>
+                <p><strong>Lunch:</strong> <span id="tulip-lunch"></span></p>
+                <p><strong>Snacks:</strong> <span id="tulip-snacks"></span></p>
+                <p><strong>Dinner:</strong> <span id="tulip-dinner"></span></p>
+            </div>
+            <div class="bg-white p-4 rounded shadow-lg mb-4">
+                <h3 class="text-xl font-bold mb-2">Ratings</h3>
+                <div id="tulip-ratings" class="ratings flex space-x-2" data-hostel="tulip">
+                    <span class="star" onclick="rateMenu('tulip', 1)">★</span>
+                    <span class="star" onclick="rateMenu('tulip', 2)">★</span>
+                    <span class="star" onclick="rateMenu('tulip', 3)">★</span>
+                    <span class="star" onclick="rateMenu('tulip', 4)">★</span>
+                    <span class="star" onclick="rateMenu('tulip', 5)">★</span>
+                </div>
+            </div>
+        </section>
+        <section id="useful-links" class="fade-in mt-8">
+            <h2 class="text-2xl font-bold mb-4">Useful Links</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
+                    <a href="https://newerp.kluniversity.in/" target="_blank" class="text-blue-600 hover:underline">
+                        <i class="fas fa-link fa-2x mb-2"></i>
+                        <h3 class="text-xl font-bold">ERP</h3>
+                    </a>
+                </div>
+                <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
+                    <a href="https://lms.kluniversity.in/login/index.php" target="_blank" class="text-blue-600 hover:underline">
+                        <i class="fas fa-link fa-2x mb-2"></i>
+                        <h3 class="text-xl font-bold">LMS</h3>
+                    </a>
+            
+                </div>
+                <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
+                    <a href="https://academics.klef.in/login" target="_blank" class="text-blue-600 hover:underline">
+                        <i class="fas fa-link fa-2x mb-2"></i>
+                        <h3 class="text-xl font-bold">Academics</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-gray-800 text-white p-4 mt-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 KLU ONE. All rights reserved.</p>
+            <p>Idea, Design, and Development by <b>SUMANTH</b></p>
+        </div>
+    </footer>
+</body>
+</html>  
