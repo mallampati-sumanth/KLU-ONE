@@ -106,27 +106,37 @@
         }
 
         @keyframes logoMove {
-            0% {
-                opacity: 0;
-                transform: scale(0.5);
-                box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.1);
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-            }
-        }
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    }
+    30% {
+        opacity: 0.7;
+        transform: scale(0.8);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.2);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 0, 0, 0.6); /* Outer glow effect */
+    }
+    80% {
+        transform: scale(1.1);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 0, 0, 0.8); /* Pulsating effect */
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 50px rgba(255, 0, 0, 1); /* Strong final shadow */
+    }
+}
 
-        .logo-animation {
-            animation: logoMove 1s forwards;
-            border-radius: 90%;
-        }
+.logo-animation {
+    animation: logoMove 2s ease-in-out forwards;
+    border-radius: 50%; /* Smooth rounded edges */
+}
+
     </style>
     <script>
         function showMenu(hostel) {
