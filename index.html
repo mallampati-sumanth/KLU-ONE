@@ -50,7 +50,7 @@
 
         @keyframes bounceIn {
             from {
-                transform: scale(0.5);
+                transform: scale(0.3);
                 opacity: 0;
             }
             to {
@@ -176,10 +176,10 @@
                 0: 4,
                 1: 2.5,
                 2: 4,
-                3: 3,
+                3: 4,
                 4: 2.5,
-                5: 3,
-                6: 4
+                5: 4,
+                6: 3
             };
 
             document.querySelectorAll('.ratings').forEach(ratingElement => {
@@ -262,9 +262,12 @@
     <header class="bg-red-700 text-white p-4 fade-in shadow-lg">
         <div class="container mx-auto flex flex-wrap justify-between items-center">
             <div class="flex items-center">
-                <img alt="KLU Logo with a stylized university emblem" class="h-16 mr-4 cursor-pointer" onclick="goHome()" src="https://assets.onecompiler.app/42fq36qvd/42yt2y2bp/Screenshot%202024-11-21%20221555.png"/>
-                <h1 class="text-3xl font-bold">KLU ONE</h1>
-            </div>
+    <img alt="KLU Logo with a stylized university emblem" class="h-16 mr-4 cursor-pointer" onclick="goHome()" src="https://assets.onecompiler.app/42fq36qvd/42yt2y2bp/Screenshot%202024-11-21%20221555.png" />
+    <h1 class="text-3xl font-bold">
+        KLU <span class="shiny-text">ONE</span>
+    </h1>
+</div>
+
             <nav class="w-full md:w-auto mt-4 md:mt-0">
                 <ul class="flex flex-col md:flex-row md:space-x-4">
                     <li>
@@ -310,6 +313,25 @@
         border: 3px solid red;
         box-shadow: 0 0 10px 3px red;
     }
+    .shiny-text {
+    background: linear-gradient(90deg, red, white, red);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 2s linear infinite;
+    font-weight: bold;
+}
+
+/* Animation for shine effect */
+@keyframes shine {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 200%;
+    }
+}
+
 </style>
 
     <main class="container mx-auto p-4">
