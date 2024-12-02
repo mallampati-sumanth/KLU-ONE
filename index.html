@@ -156,24 +156,94 @@
             const today = new Date().getDay();
             const menu = {
                 himalaya: {
-                    0: { morning: "Pancakes", lunch: "Chicken Curry", snacks: "Samosa", dinner: "Biryani" },
-                    1: { morning: "Omelette", lunch: "pappu,sambar,cabbage fry ", snacks: "Pakora", dinner: "Paneer Butter Masala" },
-                    2: { morning: "Idli", lunch: "Fish Curry", snacks: "Sandwich", dinner: "Dal Tadka" },
-                    3: { morning: "Paratha", lunch: "Mutton Curry", snacks: "Chaat", dinner: "Chicken Biryani" },
-                    4: { morning: "GULAB JAM", lunch: "Veg Biryani", snacks: "GULAB JAM", dinner: "Butter Milk" },
-                    5: { morning: "Poha", lunch: "Egg Curry", snacks: "Biscuits", dinner: "Veg Korma" },
-                    6: { morning: "Upma", lunch: "Paneer Tikka", snacks: "Chips", dinner: "Fish Fry" }
-                },
+            0: { // Sunday
+                morning: "Idly, ATTUKULU, wheet rava upma, Tiffin Sambhar, Garlic Peanut Chutney, Onion & Tomato Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Tomato Sauce, Milk, Coffee, Mango Pickle, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chappati, Alu Pusa Fry, Panner Capsicum, Mysore Rasam, Veg Biryani, Dal Pancharatan, Mango Pickle, Curd, Butter Milk",
+                snacks: "BISCUTES, Tea & Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, ALU CHIPES, CHICKEN CURRY, Pappu saru, Yellow Mong Dal Fry, Kandhi Pachadi, Curd, Mango Pickle, semiya kesari"
+            },
+            1: { // Monday
+                morning: "Idly, MYSORE BAJI, ALU PARATHA, Tiffin Sambhar, Peanut Chutney, Mint Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Tomato Sauce, Milk, Coffee, Mango Pickle, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chappati, SORAKAI 65, Mix Veg Curry, Tomato Rasam, CURRY LEAVES RICE, Mixed Dal, Mango Pickle, Curd, Butter Milk, Crispy Fried Potato",
+                snacks: "PANI POORI, Tea & Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, carrot fry, BOILD EGG, Veg Sambar, Dal Tadka, Vanngai Pachadi, Curd, Mango Pickle, Banana"
+            },
+            2: { // Tuesday
+                morning: "Idly, TOMATO Rawa Upma, Mix Veg Sandwich, Tiffin Sambhar, Garlic Chutney, Coconut Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Tomato Sauce, Milk, Coffee, Mango Pickle, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chappati, Rava Kichidi, Mix Veg Curry, Tomato Rasam, Panneer Tikka, Dal Makhani, Mango Pickle, Curd, Butter Milk",
+                snacks: "DOSA, Tea & Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Panner Butter Masala, Moong Dal, Sambar, Garlic Pachadi, Curd, Mango Pickle"
+            },
+            3: { // Wednesday
+                morning: "Idly, SEMIYA Bhath, Tomato Rawa Bhath, Tiffin Sambhar, Garlic Peanut Chutney, Onion & Tomato Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Tomato Sauce, Milk, Coffee, Mango Pickle, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chappati, Panner Capsicum, Rajma Dal, Mysore Rasam, Veg Biryani, Mango Pickle, Curd, Butter Milk",
+                snacks: "BISCUTES, Tea & Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Beans Carrot Kurma, Dal Pancharatan, Veg Sambar, Onion Pachadi, Curd, Mango Pickle"
+            },
+            4: { // Thursday
+                morning: "Idly, Dosa, Pongal, Tiffin Sambhar, Coconut Chutney, Tomato Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Tomato Sauce, Milk, Coffee, Mango Pickle, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chappati, Veg Kofta, Aloo Methi Fry, Mysore Rasam, Veg Biryani, Mango Pickle, Curd, Butter Milk",
+                snacks: "VADA, Tea & Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Tomato Pulao, Dhal Tadka, Veg Sambar, Curd, Mango Pickle"
+            },
+            5: { // Friday
+                morning: "Idly, ATTUKULU, wheet rava upma, Tiffin Sambhar, Garlic Peanut Chutney, Onion & Tomato Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Tomato Sauce, Milk, Coffee, Mango Pickle, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chappati, Mixed Veg Curry, Chana Masala, Mysore Rasam, Veg Biryani, Mango Pickle, Curd, Butter Milk",
+                snacks: "BISCUTES, Tea & Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, ALU CHIPES, CHICKEN CURRY, Pappu saru, Yellow Mong Dal Fry, Kandhi Pachadi, Curd, Mango Pickle, semiya kesari"
+            },
+            6: { // Saturday
+                morning: "Idly, MYSORE BAJI, ALU PARATHA, Tiffin Sambhar, Peanut Chutney, Mint Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Tomato Sauce, Milk, Coffee, Mango Pickle, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chappati, SORAKAI 65, Mix Veg Curry, Tomato Rasam, CURRY LEAVES RICE, Mixed Dal, Mango Pickle, Curd, Butter Milk, Crispy Fried Potato",
+                snacks: "PANI POORI, Tea & Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, carrot fry, BOILD EGG, Veg Sambar, Dal Tadka, Vanngai Pachadi, Curd, Mango Pickle, Banana"
+            }
+        },
                 tulip: {
-                    0: { morning: "Pancakes", lunch: "Chicken Curry", snacks: "Samosa", dinner: "Biryani" },
-                    1: { morning: "Omelette", lunch: "Veg Pulao", snacks: "Pakora", dinner: "Paneer Butter Masala" },
-                    2: { morning: "Idli", lunch: "Fish Curry", snacks: "Sandwich", dinner: "Dal Tadka" },
-                    3: { morning: "Paratha", lunch: "Mutton Curry", snacks: "Chaat", dinner: "Chicken Biryani" },
-                    4: { morning: "Dosa", lunch: "Veg Biryani", snacks: "GULAB JAM", dinner: "Butter Chicken" },
-                    5: { morning: "Poha", lunch: "Egg Curry", snacks: "Biscuits", dinner: "Veg Korma" },
-                    6: { morning: "Upma", lunch: "Paneer Tikka", snacks: "Chips", dinner: "Fish Fry" }
-                }
-            };
+            0: { // Sunday
+                morning: "Idly, SEMIYA Bhath, Tomato Rawa Bhath, Tiffin Sambhar, Garlic Peanut Chutney, Onion & Tomato Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Tomato Sauce, Milk, Coffee, Mango Pickle, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chappati, Panner Capsicum, Rajma Dal, Mysore Rasam, Veg Biryani, Mango Pickle, Curd, Butter Milk",
+                snacks: "BISCUTES, Tea & Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Beans Carrot Kurma, Dal Pancharatan, Veg Sambar, Onion Pachadi, Curd, Mango Pickle"
+            },
+            1: { // Monday
+                morning: "Idly, MYSORE BAJI, WHEETRava Upma, Tiffin Sambhar, Peanut Chutney, Mint Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Tomato Sauce, Milk, Coffee, Mango Pickle, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chappati, LADISHFINGAR FRY, Green Peas Curry, Tamarind Rasam, Green Peas Rice, Dal Makhani, Mango Pickle, Curd, Butter Milk",
+                snacks: "DILPASAND, Tea & Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, EGG BURJI, Channa Masala, Dal Tadka, Onion Pachadi, Curd, Mango Pickle"
+            },
+            2: { // Tuesday
+                morning: "Idly, TOMATO Rawa Upma, Mix Veg Sandwich, Tiffin Sambhar, Garlic Chutney, Coconut Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Tomato Sauce, Milk, Coffee, Mango Pickle, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chappati, Rava Kichidi, Mix Veg Curry, Tomato Rasam, Panneer Tikka, Dal Makhani, Mango Pickle, Curd, Butter Milk",
+                snacks: "DOSA, Tea & Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Panner Butter Masala, Moong Dal, Sambar, Garlic Pachadi, Curd, Mango Pickle"
+            },
+            3: { // Wednesday
+                morning: "Idly, SEMIYA Bhath, Tomato Rawa Bhath, Tiffin Sambhar, Garlic Peanut Chutney, Onion & Tomato Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Tomato Sauce, Milk, Coffee, Mango Pickle, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chappati, Panner Capsicum, Rajma Dal, Mysore Rasam, Veg Biryani, Mango Pickle, Curd, Butter Milk",
+                snacks: "BISCUTES, Tea & Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Beans Carrot Kurma, Dal Pancharatan, Veg Sambar, Onion Pachadi, Curd, Mango Pickle"
+            },
+            4: { // Thursday
+                morning: "Idly, Dosa, Pongal, Tiffin Sambhar, Coconut Chutney, Tomato Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Tomato Sauce, Milk, Coffee, Mango Pickle, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chappati, Veg Kofta, Aloo Methi Fry, Mysore Rasam, Veg Biryani, Mango Pickle, Curd, Butter Milk",
+                snacks: "VADA, Tea & Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Tomato Pulao, Dhal Tadka, Veg Sambar, Curd, Mango Pickle"
+            },
+            5: { // Friday
+                morning: "Idly, ATTUKULU, wheet rava upma, Tiffin Sambhar, Garlic Peanut Chutney, Onion & Tomato Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Tomato Sauce, Milk, Coffee, Mango Pickle, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chappati, Mixed Veg Curry, Chana Masala, Mysore Rasam, Veg Biryani, Mango Pickle, Curd, Butter Milk",
+                snacks: "BISCUTES, Tea & Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, ALU CHIPES, CHICKEN CURRY, Pappu saru, Yellow Mong Dal Fry, Kandhi Pachadi, Curd, Mango Pickle, semiya kesari"
+            },
+            6: { // Saturday
+                morning: "Idly, MYSORE BAJI, ALU PARATHA, Tiffin Sambhar, Peanut Chutney, Mint Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Tomato Sauce, Milk, Coffee, Mango Pickle, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chappati, SORAKAI 65, Mix Veg Curry, Tomato Rasam, CURRY LEAVES RICE, Mixed Dal, Mango Pickle, Curd, Butter Milk, Crispy Fried Potato",
+                snacks: "PANI POORI, Tea & Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, carrot fry, BOILD EGG, Veg Sambar, Dal Tadka, Vanngai Pachadi, Curd, Mango Pickle, Banana"
+            }
+        }
+    };
 
             ['himalaya', 'tulip'].forEach(hostel => {
                 document.getElementById(`${hostel}-morning`).innerText = menu[hostel][today].morning;
@@ -264,6 +334,7 @@
             }
         };
     </script>
+    
 </head>
 <body>
     <div class="logo-overlay" id="logo-overlay">
@@ -346,7 +417,7 @@
 
     <main class="container mx-auto p-4">
         <section id="hostel-selection" class="fade-in">
-            <h2 class="text-2xl font-bold mb-4">Select Hostel(<B>HOSTEL MENU</B>)</h2>
+            <h2 class="text-2xl font-bold mb-4">Select Hostel(<B>HOSTEL MESS</B>)</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
                     <img class="hostel-image w-full rounded mb-4" src="https://assets.onecompiler.app/42fq36qvd/42yrqetcx/Screenshot%202024-11-21%20105958.png" alt="Himalaya Girls Hostel building with a beautiful garden in front" />
@@ -360,52 +431,84 @@
                 </div>
             </div>
         </section>
-        <section id="himalaya-menu" class="hidden">
-            <h2 class="text-2xl font-bold mb-4">Himalaya Girls Hostel Menu</h2>
-            <div class="bg-white p-4 rounded shadow-lg mb-4">
-                <div class="flex justify-between items-center mb-2">
-                    <h3 class="text-xl font-bold">Today's Menu</h3>
-                    <p id="current-date" class="text-lg"></p>
-                </div>
-                <p><strong>Morning:</strong> <span id="himalaya-morning"></span></p>
-                <p><strong>Lunch:</strong> <span id="himalaya-lunch"></span></p>
-                <p><strong>Snacks:</strong> <span id="himalaya-snacks"></span></p>
-                <p><strong>Dinner:</strong> <span id="himalaya-dinner"></span></p>
+     <section id="himalaya-menu" class="hidden">
+    <h2 class="text-3xl font-bold mb-6 text-center text-indigo-700">Himalaya Girls Hostel Menu</h2>
+    <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-semibold text-gray-800">Today's Menu</h3>
+            <p id="current-date" class="text-lg text-gray-600"></p>
+        </div>
+        <div class="space-y-4">
+            <!-- Morning Box -->
+            <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                <p class="text-lg text-gray-700"><strong>Morning:</strong> <span id="himalaya-morning" class="text-gray-500">Loading...</span></p>
             </div>
-            <div class="bg-white p-4 rounded shadow-lg mb-4">
-                <h3 class="text-xl font-bold mb-2">Ratings</h3>
-                <div id="himalaya-ratings" class="ratings flex space-x-2" data-hostel="himalaya">
-                    <span class="star" onclick="rateMenu('himalaya', 1)">★</span>
-                    <span class="star" onclick="rateMenu('himalaya', 2)">★</span>
-                    <span class="star" onclick="rateMenu('himalaya', 3)">★</span>
-                    <span class="star" onclick="rateMenu('himalaya', 4)">★</span>
-                    <span class="star" onclick="rateMenu('himalaya', 5)">★</span>
-                </div>
+            <!-- Lunch Box -->
+            <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                <p class="text-lg text-gray-700"><strong>Lunch:</strong> <span id="himalaya-lunch" class="text-gray-500">Loading...</span></p>
             </div>
-        </section>
-        <section id="tulip-menu" class="hidden">
-            <h2 class="text-2xl font-bold mb-4">Tulip Boys Hostel Menu</h2>
-            <div class="bg-white p-4 rounded shadow-lg mb-4">
-                <div class="flex justify-between items-center mb-2">
-                    <h3 class="text-xl font-bold">Today's Menu</h3>
-                    <p id="current-date" class="text-lg"></p>
-                </div>
-                <p><strong>Morning:</strong> <span id="tulip-morning"></span></p>
-                <p><strong>Lunch:</strong> <span id="tulip-lunch"></span></p>
-                <p><strong>Snacks:</strong> <span id="tulip-snacks"></span></p>
-                <p><strong>Dinner:</strong> <span id="tulip-dinner"></span></p>
+            <!-- Snacks Box -->
+            <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                <p class="text-lg text-gray-700"><strong>Snacks:</strong> <span id="himalaya-snacks" class="text-gray-500">Loading...</span></p>
             </div>
-            <div class="bg-white p-4 rounded shadow-lg mb-4">
-                <h3 class="text-xl font-bold mb-2">Ratings</h3>
-                <div id="tulip-ratings" class="ratings flex space-x-2" data-hostel="tulip">
-                    <span class="star" onclick="rateMenu('tulip', 1)">★</span>
-                    <span class="star" onclick="rateMenu('tulip', 2)">★</span>
-                    <span class="star" onclick="rateMenu('tulip', 3)">★</span>
-                    <span class="star" onclick="rateMenu('tulip', 4)">★</span>
-                    <span class="star" onclick="rateMenu('tulip', 5)">★</span>
-                </div>
+            <!-- Dinner Box -->
+            <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                <p class="text-lg text-gray-700"><strong>Dinner:</strong> <span id="himalaya-dinner" class="text-gray-500">Loading...</span></p>
             </div>
-        </section>
+        </div>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <h3 class="text-xl font-semibold mb-4 text-gray-800">Ratings</h3>
+        <div id="himalaya-ratings" class="ratings flex space-x-3 justify-center" data-hostel="himalaya">
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('himalaya', 1)">★</span>
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('himalaya', 2)">★</span>
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('himalaya', 3)">★</span>
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('himalaya', 4)">★</span>
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('himalaya', 5)">★</span>
+        </div>
+    </div>
+</section>
+
+<section id="tulip-menu" class="hidden">
+    <h2 class="text-3xl font-bold mb-6 text-center text-green-700">Tulip Boys Hostel Menu</h2>
+    <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-semibold text-gray-800">Today's Menu</h3>
+<p id="current-date" class="text-lg text-gray-600"></p>
+        </div>
+        <div class="space-y-4">
+            <!-- Morning Box -->
+            <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                <p class="text-lg text-gray-700"><strong>Morning:</strong> <span id="tulip-morning" class="text-gray-500">Loading...</span></p>
+            </div>
+            <!-- Lunch Box -->
+            <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                <p class="text-lg text-gray-700"><strong>Lunch:</strong> <span id="tulip-lunch" class="text-gray-500">Loading...</span></p>
+            </div>
+            <!-- Snacks Box -->
+            <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                <p class="text-lg text-gray-700"><strong>Snacks:</strong> <span id="tulip-snacks" class="text-gray-500">Loading...</span></p>
+            </div>
+            <!-- Dinner Box -->
+            <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                <p class="text-lg text-gray-700"><strong>Dinner:</strong> <span id="tulip-dinner" class="text-gray-500">Loading...</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <h3 class="text-xl font-semibold mb-4 text-gray-800">Ratings</h3>
+        <div id="tulip-ratings" class="ratings flex space-x-3 justify-center" data-hostel="tulip">
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('tulip', 1)">★</span>
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('tulip', 2)">★</span>
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('tulip', 3)">★</span>
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('tulip', 4)">★</span>
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('tulip', 5)">★</span>
+        </div>
+    </div>
+</section>
+
+
+
         <section id="useful-links" class="fade-in mt-8">
             <h2 class="text-2xl font-bold mb-4">Useful Links</h2>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
