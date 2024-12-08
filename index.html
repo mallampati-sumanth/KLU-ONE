@@ -135,6 +135,7 @@
 .logo-animation {
     animation: logoMove 2s ease-in-out forwards;
     border-radius: 50%; /* Smooth rounded edges */
+      
 }
 
     </style>
@@ -148,16 +149,16 @@
     menus.forEach(menu => {
         const menuElement = document.getElementById(menu);
         if (menuElement) {
-            menuElement.classList.add('hidden');
-            menuElement.classList.remove('slide-in');
+            menuElement.classList.add('hidden'); // Hide the menu initially
+            menuElement.classList.remove('slide-in-from-bottom'); // Remove the animation class
         }
     });
 
-    // Show the selected hostel's menu
+    // Show the selected hostel's menu with slide-in effect from bottom
     const selectedMenu = document.getElementById(hostel + '-menu');
     if (selectedMenu) {
-        selectedMenu.classList.remove('hidden');
-        selectedMenu.classList.add('slide-in');
+        selectedMenu.classList.remove('hidden'); // Make the menu visible
+        selectedMenu.classList.add('slide-in-from-bottom'); // Add the sliding animation from the bottom
     } else {
         console.error(`Menu section for ${hostel} not found!`);
     }
@@ -165,6 +166,9 @@
     // Update URL to reflect the current page state
     history.pushState({ page: hostel }, "", `#${hostel}`);
 }
+
+
+
 
 function submitFeedback(hostel, rating) {
     // Handle feedback submission (this could be expanded to send data to a server)
@@ -480,6 +484,27 @@ document.addEventListener('DOMContentLoaded', updateDate);
     </script>
     
 </head>
+<style>
+  /* Slide-in from bottom animation */
+@keyframes slide-in-from-bottom {
+    0% {
+        transform: translateY(100%); /* Starts below the screen */
+    }
+    100% {
+        transform: translateY(0); /* Ends at the normal position */
+    }
+}
+
+.slide-in-from-bottom {
+    position: relative; /* Makes the element move in from the bottom */
+    animation: slide-in-from-bottom 0.5s ease-out forwards; /* Animation for sliding from bottom */
+}
+
+
+}
+
+
+</style>
 <body>
     <div class="logo-overlay" id="logo-overlay">
         <img alt="KLU Logo with a stylized university emblem" class="logo-animation h-48 w-48" src="https://assets.onecompiler.app/42fq36qvd/42yt3xjfk/kluuu.jpg"/>
