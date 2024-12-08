@@ -140,17 +140,52 @@
     </style>
     <script>
         function showMenu(hostel) {
-            document.getElementById('hostel-selection').classList.add('hidden');
-            document.getElementById('himalaya-menu').classList.add('hidden');
-            document.getElementById('tulip-menu').classList.add('hidden');
-            document.getElementById(hostel + '-menu').classList.remove('hidden');
-            document.getElementById(hostel + '-menu').classList.add('slide-in');
-            history.pushState({ page: hostel }, "", `#${hostel}`);
-        }
+    // Hide the hostel selection section
+    document.getElementById('hostel-selection').classList.add('hidden');
 
-        function submitFeedback(hostel, rating) {
-            alert('Rating: ' + rating + ' stars');
+    // Hide all menu sections
+    const menus = ['himalaya-menu', 'tulip-menu', 'kanchanaganga-menu', 'aravalivindhya-menu'];
+    menus.forEach(menu => {
+        const menuElement = document.getElementById(menu);
+        if (menuElement) {
+            menuElement.classList.add('hidden');
+            menuElement.classList.remove('slide-in');
         }
+    });
+
+    // Show the selected hostel's menu
+    const selectedMenu = document.getElementById(hostel + '-menu');
+    if (selectedMenu) {
+        selectedMenu.classList.remove('hidden');
+        selectedMenu.classList.add('slide-in');
+    } else {
+        console.error(`Menu section for ${hostel} not found!`);
+    }
+
+    // Update URL to reflect the current page state
+    history.pushState({ page: hostel }, "", `#${hostel}`);
+}
+
+function submitFeedback(hostel, rating) {
+    // Handle feedback submission (this could be expanded to send data to a server)
+    console.log(`Feedback submitted for ${hostel}: ${rating} stars`);
+
+    // Optionally, display a confirmation to the user
+    alert(`Thank you for rating ${hostel} menu ${rating} stars!`);
+
+    // Example: Add logic to visually highlight the selected rating
+    const ratingContainer = document.getElementById(`${hostel}-ratings`);
+    if (ratingContainer) {
+        const stars = ratingContainer.querySelectorAll('.star');
+        stars.forEach((star, index) => {
+            star.classList.toggle('text-yellow-500', index < rating);
+            star.classList.toggle('text-gray-400', index >= rating);
+        });
+    } else {
+        console.error(`Ratings container for ${hostel} not found!`);
+    }
+}
+
 
         function updateMenu() {
             const today = new Date().getDay();
@@ -199,10 +234,8 @@
                 dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Alu Chips, Beans Carrot Kurma, Pappu Saru Rasam, Ginger Coconut Chutney, Yellow Mong Dal, Bendakai Pachadi, Curd, Cauliflower Pickle, Fried Rice"
             }
         },
-
-      
                 tulip: {
-                       0: { 
+                    0: { 
                 morning: "Idly, Semiya Bath, Tiffin Sambar, Garlic Peanut Chutney, Onion & Tomato Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Milk, Coffee, Boiled Egg",
                 lunch: "Plain Rice, Salad, Chapati, Alu Pusa Fry, Panner Capsicum, Veg Biryani, Veg Katta, Mango Pickle, Chicken Masala, Curd, Onion Raitha",
                 snacks: "Biscuit and Tea, Milk",
@@ -245,26 +278,120 @@
                 snacks: "Mirchi Baji and Tea, Milk",
                 dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Alu Chips, Beans Carrot Kurma, Pappu Saru Rasam, Ginger Coconut Chutney, Yellow Mong Dal, Bendakai Pachadi, Curd, Cauliflower Pickle, Fried Rice"
             }
+        },      
+        
+                kanchanaganga: {
+                        0: { 
+                morning: "Idly, Semiya Bath, Tiffin Sambar, Garlic Peanut Chutney, Onion & Tomato Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Milk, Coffee, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chapati, Alu Pusa Fry, Panner Capsicum, Veg Biryani, Veg Katta, Mango Pickle, Chicken Masala, Curd, Onion Raitha",
+                snacks: "Biscuit and Tea, Milk",
+                dinner: "Plain Rice, Veg Salad, Chapati, Carrot Beans White Peas Dry, Garlic Peanut Chutney, Rasam, Kandhi Pachadi, Curd, Mango Pickle, Fried Rice"
+            },
+            1: { 
+                morning: "Idly, Mysore Bajji, Wheat Rava Upma, Tiffin Sambar, Peanut Chutney, Mint Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Milk, Coffee, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chapati, Sorakai 65, Mix Veg Curry, Curry Leaves Rice, Mixed Dal, Mango Pickle, Brown Rice, Arikalu Millet, Curd, Butter Milk, Crispy Fried Potato",
+                snacks: "Pani Poori and Tea, Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Carrot Fry, Boiled Egg, Veg Sambar, Peanut Chutney, Dhal Tadka, Vannagai Pachadi, Curd, Mango Pickle, Semiya Kesari"
+            },
+            2: { 
+                morning: "Idly, Onion Dosa, Masala Phoa, Tiffin Sambar, Coconut Chutney, Onion Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Milk, Coffee, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chapati, Ladishfinger Fry, Aloo Green Peas Curry, Tomato Rice, Yellow Dal, Cauliflower Pickle, Brown Rice, Oodalu Millet, Curd, Butter Milk, Crispy Fried Potato",
+                snacks: "Dilpasand and Tea, Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Egg Burji, Channa Masala, Sambar, Coconut Chutney, Rajma Dhal, Dhondakai Pachadi, Curd, Cauliflower Pickle, Fried Rice"
+            },
+            3: { 
+                morning: "Idly, Rava Upma, Attukulu Upma, Tiffin Sambar, Ginger Palli Chutney, Tomato Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Milk, Coffee, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chapati, Alu Mudhkura, Tomato Louki Channa, Green Peas Rice, Dal Makhani, Mango Pickle, Brown Rice, Samalu Millet, Curd, Butter Milk, Crispy Fried Potato",
+                snacks: "Masala Palli and Badam Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Methi Paneer, Chicken Curry, Rasam, Ginger Palli Chutney, Dhal Pancharatan, Onion Pachadi, Curd, Mango Pickle, Fried Rice"
+            },
+            4: { 
+                morning: "Idly, Chapati, Wheat Veg Upma, Tiffin Sambar, Garlic Coconut Chutney, Coriander Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Milk, Coffee, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chapati, Dondakai 65, Cabbage Aloo Curry, Kitchadi, Dal Tadka, Cauliflower Pickle, Brown Rice, Korralu Millet, Curd, Butter Milk, Crispy Fried Potato",
+                snacks: "Pastry and Tea, Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Potato Chips, Tindle Masala, Egg Curry, Garlic Coconut Chutney, Yellow Mong Dal Fry, Soorakai Pachadi, Curd, Cauliflower Pickle, Banana"
+            },
+            5: { 
+                morning: "Idly, Attukulu, Tomato Rawa Bath, Tiffin Sambar, Mirchi Palli Chutney, Ginger Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Milk, Coffee, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chapati, Gabbage Pakodi, Alu Capsicum Masala, Mango Rice, Rajma Dal, Mango Pickle, Brown Rice, Oodalu Millet, Curd, Butter Milk, Crispy Fried Potato",
+                snacks: "Basundi and Tea, Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Cabbage Fry, Chicken Curry, Veg Sambar, Mirchi Palli Chutney, Yellow Dal Masala, Gongura Pachadi, Curd, Mango Pickle, Fried Rice"
+            },
+            6: { 
+                morning: "Idly, Uthappam, Tomato Bath, Sambar, Ginger Coconut Chutney, Dal Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Milk, Coffee, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chapati, Fryams, Alu Kabuli Channa Masala, Tamarind Rice, Dal Pancharatan, Cauliflower Pickle, Brown Rice, Samalu Millet, Curd, Butter Milk, Crispy Fried Potato",
+                snacks: "Mirchi Baji and Tea, Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Alu Chips, Beans Carrot Kurma, Pappu Saru Rasam, Ginger Coconut Chutney, Yellow Mong Dal, Bendakai Pachadi, Curd, Cauliflower Pickle, Fried Rice"
+            }
+        },  
+            aravalivindhya: {
+                        0: { 
+                morning: "Idly, Semiya Bath, Tiffin Sambar, Garlic Peanut Chutney, Onion & Tomato Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Milk, Coffee, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chapati, Alu Pusa Fry, Panner Capsicum, Veg Biryani, Veg Katta, Mango Pickle, Chicken Masala, Curd, Onion Raitha",
+                snacks: "Biscuit and Tea, Milk",
+                dinner: "Plain Rice, Veg Salad, Chapati, Carrot Beans White Peas Dry, Garlic Peanut Chutney, Rasam, Kandhi Pachadi, Curd, Mango Pickle, Fried Rice"
+            },
+            1: { 
+                morning: "Idly, Mysore Bajji, Wheat Rava Upma, Tiffin Sambar, Peanut Chutney, Mint Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Milk, Coffee, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chapati, Sorakai 65, Mix Veg Curry, Curry Leaves Rice, Mixed Dal, Mango Pickle, Brown Rice, Arikalu Millet, Curd, Butter Milk, Crispy Fried Potato",
+                snacks: "Pani Poori and Tea, Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Carrot Fry, Boiled Egg, Veg Sambar, Peanut Chutney, Dhal Tadka, Vannagai Pachadi, Curd, Mango Pickle, Semiya Kesari"
+            },
+            2: { 
+                morning: "Idly, Onion Dosa, Masala Phoa, Tiffin Sambar, Coconut Chutney, Onion Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Milk, Coffee, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chapati, Ladishfinger Fry, Aloo Green Peas Curry, Tomato Rice, Yellow Dal, Cauliflower Pickle, Brown Rice, Oodalu Millet, Curd, Butter Milk, Crispy Fried Potato",
+                snacks: "Dilpasand and Tea, Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Egg Burji, Channa Masala, Sambar, Coconut Chutney, Rajma Dhal, Dhondakai Pachadi, Curd, Cauliflower Pickle, Fried Rice"
+            },
+            3: { 
+                morning: "Idly, Rava Upma, Attukulu Upma, Tiffin Sambar, Ginger Palli Chutney, Tomato Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Milk, Coffee, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chapati, Alu Mudhkura, Tomato Louki Channa, Green Peas Rice, Dal Makhani, Mango Pickle, Brown Rice, Samalu Millet, Curd, Butter Milk, Crispy Fried Potato",
+                snacks: "Masala Palli and Badam Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Methi Paneer, Chicken Curry, Rasam, Ginger Palli Chutney, Dhal Pancharatan, Onion Pachadi, Curd, Mango Pickle, Fried Rice"
+            },
+            4: { 
+                morning: "Idly, Chapati, Wheat Veg Upma, Tiffin Sambar, Garlic Coconut Chutney, Coriander Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Milk, Coffee, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chapati, Dondakai 65, Cabbage Aloo Curry, Kitchadi, Dal Tadka, Cauliflower Pickle, Brown Rice, Korralu Millet, Curd, Butter Milk, Crispy Fried Potato",
+                snacks: "Pastry and Tea, Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Potato Chips, Tindle Masala, Egg Curry, Garlic Coconut Chutney, Yellow Mong Dal Fry, Soorakai Pachadi, Curd, Cauliflower Pickle, Banana"
+            },
+            5: { 
+                morning: "Idly, Attukulu, Tomato Rawa Bath, Tiffin Sambar, Mirchi Palli Chutney, Ginger Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Milk, Coffee, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chapati, Gabbage Pakodi, Alu Capsicum Masala, Mango Rice, Rajma Dal, Mango Pickle, Brown Rice, Oodalu Millet, Curd, Butter Milk, Crispy Fried Potato",
+                snacks: "Basundi and Tea, Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Cabbage Fry, Chicken Curry, Veg Sambar, Mirchi Palli Chutney, Yellow Dal Masala, Gongura Pachadi, Curd, Mango Pickle, Fried Rice"
+            },
+            6: { 
+                morning: "Idly, Uthappam, Tomato Bath, Sambar, Ginger Coconut Chutney, Dal Chutney, Jam, Bread, Cornflakes, Veg Sprouts, Veg Salad, Mayonnaise, Milk, Coffee, Boiled Egg",
+                lunch: "Plain Rice, Salad, Chapati, Fryams, Alu Kabuli Channa Masala, Tamarind Rice, Dal Pancharatan, Cauliflower Pickle, Brown Rice, Samalu Millet, Curd, Butter Milk, Crispy Fried Potato",
+                snacks: "Mirchi Baji and Tea, Milk",
+                dinner: "Plain Rice, Mix Veg Salad, Idly, Chapati, Alu Chips, Beans Carrot Kurma, Pappu Saru Rasam, Ginger Coconut Chutney, Yellow Mong Dal, Bendakai Pachadi, Curd, Cauliflower Pickle, Fried Rice"
+            }
         },
+};
 
-    };
 
-            ['himalaya', 'tulip'].forEach(hostel => {
-                document.getElementById(`${hostel}-morning`).innerText = menu[hostel][today].morning;
-                document.getElementById(`${hostel}-lunch`).innerText = menu[hostel][today].lunch;
-                document.getElementById(`${hostel}-snacks`).innerText = menu[hostel][today].snacks;
-                document.getElementById(`${hostel}-dinner`).innerText = menu[hostel][today].dinner;
-            });
+  
+            // Dynamically update menus for all hostels
+['himalaya', 'tulip', 'kanchanaganga', 'aravalivindhya'].forEach(hostel => {
+    if (menu[hostel] && menu[hostel][today]) {
+        document.getElementById(`${hostel}-morning`).innerText = menu[hostel][today].morning;
+        document.getElementById(`${hostel}-lunch`).innerText = menu[hostel][today].lunch;
+        document.getElementById(`${hostel}-snacks`).innerText = menu[hostel][today].snacks;
+        document.getElementById(`${hostel}-dinner`).innerText = menu[hostel][today].dinner;
+    } else {
+        console.warn(`Menu data for ${hostel} on ${today} is missing!`);
+    }
+});
 
-            const ratings = {
-                0: 4,
-                1: 2.5,
-                2: 4,
-                3: 4,
-                4: 2.5,
-                5: 4,
-                6: 3
-            };
+// Ratings object for hostels by days of the week
+const ratings = {
+    himalaya: { 0: 4, 1: 3.5, 2: 4, 3: 3.8, 4: 3, 5: 4.2, 6: 3.9 },
+    tulip: { 0: 3.5, 1: 3.2, 2: 4, 3: 4.1, 4: 3.8, 5: 4.3, 6: 3.7 },
+    kanchanaganga: { 0: 3.8, 1: 3.4, 2: 4, 3: 3.6, 4: 3.9, 5: 4, 6: 3.5 },
+    aravalivindhya: { 0: 3.7, 1: 3.3, 2: 4.1, 3: 4, 4: 3.5, 5: 4.2, 6: 3.6 }
+};
+
 
             document.querySelectorAll('.ratings').forEach(ratingElement => {
                 const hostel = ratingElement.dataset.hostel;
@@ -285,6 +412,8 @@
             document.getElementById('hostel-selection').classList.add('fade-in');
             document.getElementById('himalaya-menu').classList.add('hidden');
             document.getElementById('tulip-menu').classList.add('hidden');
+            document.getElementById('kanchanaganga-menu').classList.add('hidden');
+            document.getElementById('aravalivindhya-menu').classList.add('hidden');
             history.pushState({ page: "home" }, "", "#home");
         }
 
@@ -391,7 +520,7 @@
     </header>
     <marquee class="header bg-red-700 text-white p-2 font-bold">
     <span class="text-black-255"><i>Updates:</i></span> 
-    <span class="text-white">Even Sem Registrations Going to start on 5th and 6th of December!!</span> 
+    <span class="text-white">Welcome to KLU-ONE!!</span> 
     <span class="text-red-500"></span> 
     <span class="text-white"></span> 
     <span class="text-red-500">|</span> 
@@ -425,22 +554,37 @@
 </style>
 
     <main class="container mx-auto p-4">
-        <section id="hostel-selection" class="fade-in">
-            <h2 class="text-2xl font-bold mb-4">Select Hostel(<B>HOSTEL MESS</B>)</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
-                    <img class="hostel-image w-full rounded mb-4" src="https://assets.onecompiler.app/42fq36qvd/42yrqetcx/Screenshot%202024-11-21%20105958.png" alt="Himalaya Girls Hostel building with a beautiful garden in front" />
-                    <h3 class="text-xl font-bold mb-2" style="font-family: 'Roboto', sans-serif;">Himalaya Girls Hostel</h3>
-                    <button class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition duration-300" onclick="showMenu('himalaya')">Select</button>
-                </div>
-                <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
-                    <img class="hostel-image w-full rounded mb-4" src="https://assets.onecompiler.app/42fq36qvd/42yrzfg8u/tulip.jpg" alt="Tulip Boys Hostel building with a modern architectural design" />
-                    <h3 class="text-xl font-bold mb-2" style="font-family: 'Roboto', sans-serif;">Tulip Boys Hostel</h3>
-                    <button class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition duration-300" onclick="showMenu('tulip')">Select</button>
-                </div>
+    <section id="hostel-selection" class="fade-in">
+        <h2 class="text-2xl font-bold mb-4">Select Hostel (<b>HOSTEL MESS</b>)</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Himalaya Girls Hostel -->
+            <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
+                <img class="hostel-image w-full rounded mb-4" src="https://assets.onecompiler.app/42fq36qvd/42yrqetcx/Screenshot%202024-11-21%20105958.png" alt="Himalaya Girls Hostel building with a beautiful garden in front" />
+                <h3 class="text-xl font-bold mb-2" style="font-family: 'Roboto', sans-serif;">Himalaya Girls Hostel</h3>
+                <button class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition duration-300" onclick="showMenu('himalaya')">Select</button>
             </div>
-        </section>
-     <section id="himalaya-menu" class="hidden">
+            <!-- Tulip Boys Hostel -->
+            <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
+                <img class="hostel-image w-full rounded mb-4" src="https://assets.onecompiler.app/42fq36qvd/42yrzfg8u/tulip.jpg" alt="Tulip Boys Hostel building with a modern architectural design" />
+                <h3 class="text-xl font-bold mb-2" style="font-family: 'Roboto', sans-serif;">Tulip Boys Hostel</h3>
+                <button class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition duration-300" onclick="showMenu('tulip')">Select</button>
+            </div>
+            <!-- Kanchanaganga Hostel -->
+            <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
+                <img class="hostel-image w-full rounded mb-4" src="https://assets.onecompiler.app/42fq36qvd/4325r2b7b/kanchana.jpg" alt="Kanchanaganga Hostel building with lush greenery around" />
+                <h3 class="text-xl font-bold mb-2" style="font-family: 'Roboto', sans-serif;">Kanchanaganga Girls Hostel</h3>
+                <button class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition duration-300" onclick="showMenu('kanchanaganga')">Select</button>
+            </div>
+            <!-- Aravali Vindhya Boys Hostel -->
+            <div class="bg-white p-4 rounded shadow-lg text-center bounce-in transform transition duration-500 hover:scale-105">
+                <img class="hostel-image w-full rounded mb-4" src="https://assets.onecompiler.app/42fq36qvd/4325r2b7b/aravali.jpg" alt="Aravali Vindhya Boys Hostel building with modern amenities" />
+                <h3 class="text-xl font-bold mb-2" style="font-family: 'Roboto', sans-serif;">Aravali Vindhya Boys Hostel</h3>
+                <button class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition duration-300" onclick="showMenu('aravalivindhya')">Select</button>
+            </div>
+        </div>
+    </section>
+</main>
+<section id="himalaya-menu" class="hidden">
     <h2 class="text-3xl font-bold mb-6 text-center text-indigo-700">Himalaya Girls Hostel Menu</h2>
     <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
         <div class="flex justify-between items-center mb-4">
@@ -515,6 +659,82 @@
         </div>
     </div>
 </section>
+<section id="kanchanaganga-menu" class="hidden">
+    <h2 class="text-3xl font-bold mb-6 text-center text-blue-700">Kanchanaganga Hostel Menu</h2>
+    <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-semibold text-gray-800">Today's Menu</h3>
+            <p id="current-date" class="text-lg text-gray-600"></p>
+        </div>
+        <div class="space-y-4">
+            <!-- Morning Box -->
+            <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                <p class="text-lg text-gray-700"><strong>Morning:</strong> <span id="kanchanaganga-morning" class="text-gray-500">Loading...</span></p>
+            </div>
+            <!-- Lunch Box -->
+            <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                <p class="text-lg text-gray-700"><strong>Lunch:</strong> <span id="kanchanaganga-lunch" class="text-gray-500">Loading...</span></p>
+            </div>
+            <!-- Snacks Box -->
+            <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                <p class="text-lg text-gray-700"><strong>Snacks:</strong> <span id="kanchanaganga-snacks" class="text-gray-500">Loading...</span></p>
+            </div>
+            <!-- Dinner Box -->
+            <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                <p class="text-lg text-gray-700"><strong>Dinner:</strong> <span id="kanchanaganga-dinner" class="text-gray-500">Loading...</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <h3 class="text-xl font-semibold mb-4 text-gray-800">Ratings</h3>
+        <div id="kanchanaganga-ratings" class="ratings flex space-x-3 justify-center" data-hostel="kanchanaganga">
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('kanchanaganga', 1)">★</span>
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('kanchanaganga', 2)">★</span>
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('kanchanaganga', 3)">★</span>
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('kanchanaganga', 4)">★</span>
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('kanchanaganga', 5)">★</span>
+        </div>
+    </div>
+</section>
+
+<section id="aravalivindhya-menu" class="hidden">
+    <h2 class="text-3xl font-bold mb-6 text-center text-red-700">Aravali Vindhya Boys Hostel Menu</h2>
+    <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-semibold text-gray-800">Today's Menu</h3>
+            <p id="current-date" class="text-lg text-gray-600"></p>
+        </div>
+        <div class="space-y-4">
+            <!-- Morning Box -->
+            <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                <p class="text-lg text-gray-700"><strong>Morning:</strong> <span id="aravalivindhya-morning" class="text-gray-500">Loading...</span></p>
+            </div>
+            <!-- Lunch Box -->
+            <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                <p class="text-lg text-gray-700"><strong>Lunch:</strong> <span id="aravalivindhya-lunch" class="text-gray-500">Loading...</span></p>
+            </div>
+            <!-- Snacks Box -->
+            <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                <p class="text-lg text-gray-700"><strong>Snacks:</strong> <span id="aravalivindhya-snacks" class="text-gray-500">Loading...</span></p>
+            </div>
+            <!-- Dinner Box -->
+            <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+                <p class="text-lg text-gray-700"><strong>Dinner:</strong> <span id="aravalivindhya-dinner" class="text-gray-500">Loading...</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <h3 class="text-xl font-semibold mb-4 text-gray-800">Ratings</h3>
+        <div id="aravalivindhya-ratings" class="ratings flex space-x-3 justify-center" data-hostel="aravalivindhya">
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('aravali-vindhya', 1)">★</span>
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('aravali-vindhya', 2)">★</span>
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('aravali-vindhya', 3)">★</span>
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('aravali-vindhya', 4)">★</span>
+            <span class="star text-2xl cursor-pointer hover:text-yellow-500" onclick="rateMenu('aravali-vindhya', 5)">★</span>
+        </div>
+    </div>
+</section>
+
 
 
 
