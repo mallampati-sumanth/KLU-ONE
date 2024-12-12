@@ -1,0 +1,391 @@
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>KLU ONE Attendance, SGPA, and CGPA Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+    <style>
+      /* Logo Effect */
+      .logo-effect {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      }
+      .logo-effect:hover {
+        transform: scale(1.1) rotate(10deg);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+      /* Button Effect */
+      .button-effect {
+        transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+      
+      /* Input Focus Effect */
+      .input-effect:focus {
+        box-shadow: 0 0 10px rgba(0, 0, 255, 0.5);
+        border-color: #3b82f6; /* blue focus */
+      }
+      /* Navigation Button Style */
+      .nav-button {
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+      .nav-button:hover {
+        transform: translateY(-3px);
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+      /* Footer Styling */
+      footer {
+        background-color: #2d3748;
+        color: white;
+        text-align: center;
+        padding: 16px;
+        font-size: 14px;
+      }
+      footer p {
+        margin-top: 8px;
+      }
+      /* General Styling */
+      .active {
+        display: block;
+      }
+      .hidden {
+        display: none;
+      }
+      /* Card Styling */
+      .card {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      .card-header {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 12px;
+      }
+      .card-body {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      .card-footer {
+        text-align: right;
+      }
+      @keyframes shine {
+  0% {
+    background-position: -100%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+
+.text-shine {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(90deg, red, white, red);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 2s linear infinite;
+}
+
+    </style>
+<!-- Header -->
+<header class="bg-red-600 text-white py-6">
+  <div class="flex items-center justify-center">
+    <img
+      alt="K L University Logo"
+      class="h-16 w-16 mr-4 logo-effect"
+      height="64"
+      src="https://assets.onecompiler.app/42fq36qvd/42zbsafhz/Screenshot%202024-11-27%20111356.png"
+      width="64"
+    />
+    <div>
+      <h1 class="text-4xl font-bold">
+        KLU <span class="text-shine">ONE CALCULATORS</span>
+      </h1>
+      <p class="text-sm mt-2">Choose Attendance, SGPA, or CGPA Calculator</p>
+    </div>
+  </div>
+</header>
+
+
+    <!-- Main Container -->
+    <main class="max-w-lg mx-auto mt-10 bg-white shadow-lg rounded-lg p-6 space-y-8">
+      <!-- Navigation Section -->
+      <div class="flex justify-around mb-4">
+        <button class="px-4 py-2 bg-red-500 text-white rounded-md nav-button" id="attendanceNav">
+          Attendance Calculator
+        </button>
+        <button class="px-4 py-2 bg-blue-500 text-white rounded-md nav-button" id="sgpaNav">
+          SGPA Calculator
+        </button>
+        <button class="px-4 py-2 bg-green-500 text-white rounded-md nav-button" id="cgpaNav">
+          CGPA Calculator
+        </button>
+      </div>
+
+      <!-- Attendance Calculator Section -->
+      <section class="space-y-4 active" id="attendanceCalculator">
+        <div class="card">
+          <div class="card-header">Attendance Calculator</div>
+          <form class="space-y-4" id="attendanceForm">
+            <div>
+              <label class="block text-lg font-medium" for="subjectName">Subject Name (Optional)</label>
+              <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" id="subjectName" placeholder="Enter Subject Name" type="text"/>
+            </div>
+            <div>
+              <label class="block text-lg font-medium" for="lecturePercentage">Lecture (%)</label>
+              <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" id="lecturePercentage" max="100" min="0" placeholder="Enter Lecture %" type="number"/>
+            </div>
+            <div>
+              <label class="block text-lg font-medium" for="tutorialPercentage">Tutorial (%)</label>
+              <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" id="tutorialPercentage" max="100" min="0" placeholder="Enter Tutorial %" type="number"/>
+            </div>
+            <div>
+              <label class="block text-lg font-medium" for="practicalPercentage">Practical (%)</label>
+              <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" id="practicalPercentage" max="100" min="0" placeholder="Enter Practical %" type="number"/>
+            </div>
+            <div>
+              <label class="block text-lg font-medium" for="skillingPercentage">Skilling (%)</label>
+              <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" id="skillingPercentage" max="100" min="0" placeholder="Enter Skilling %" type="number"/>
+            </div>
+            <div class="flex justify-between mt-6">
+              <button class="px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:ring-2 focus:ring-red-500 button-effect" id="calculateButton" type="button">
+                Calculate Attendance
+              </button>
+              <button class="px-6 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 focus:ring-2 focus:ring-gray-400 button-effect" id="resetButton" type="button">
+                Reset
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Results Section -->
+        <div class="mt-8 hidden" id="results">
+          <h3 class="text-xl font-bold">Results(<b>90% accuracy</b>)</h3>
+          <p class="mt-2 text-lg" id="subjectResult"></p>
+          <p class="mt-2 text-lg font-semibold" id="overallAttendance"></p>
+          <h4 class="text-lg font-semibold mt-4">Component Analysis</h4>
+          <ul class="list-disc pl-5 text-gray-700" id="componentAnalysis"></ul>
+        </div>
+      </section>
+   <!-- SGPA Calculator Section -->
+   <section class="space-y-4 hidden" id="sgpaCalculator">
+    <h2 class="text-2xl font-bold mb-4">
+     SGPA Calculator
+    </h2>
+    <form class="space-y-4" id="sgpaForm" onsubmit="return false;">
+     <div>
+      <label class="block text-lg font-medium" for="numSubjects">
+       Number of Subjects
+      </label>
+      <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 input-effect" id="numSubjects" min="1" placeholder="Enter Number of Subjects" type="number"/>
+     </div>
+     <div class="space-y-4" id="subjectsContainer">
+     </div>
+     <div class="flex justify-between mt-6">
+      <button class="px-6 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:ring-2 focus:ring-green-500 button-effect" id="generateSubjectsButton" type="button">
+       Generate Subjects
+      </button>
+      <button class="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 button-effect hidden" id="calculateSgpaButton" type="button">
+       Calculate SGPA
+      </button>
+     </div>
+    </form>
+    <div class="hidden mt-8" id="sgpaResults">
+     <h3 class="text-xl font-bold">
+      SGPA Result
+     </h3>
+     <p class="mt-2 text-lg font-semibold text-gray-700" id="sgpaResult">
+     </p>
+    </div>
+   </section>
+   <!-- CGPA Calculator Section -->
+   <section class="space-y-4 hidden" id="cgpaCalculator">
+    <h2 class="text-2xl font-bold mb-4">
+     CGPA Calculator
+    </h2>
+    <form class="space-y-4" id="cgpaForm" onsubmit="return false;">
+     <div>
+      <label class="block text-lg font-medium" for="previousCgpa">
+       Previous CGPA
+      </label>
+      <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 input-effect" id="previousCgpa" max="10" min="0" placeholder="Enter Previous CGPA" step="0.01" type="number"/>
+     </div>
+     <div>
+      <label class="block text-lg font-medium" for="previousCredits">
+       Previous Credits
+      </label>
+      <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 input-effect" id="previousCredits" min="1" placeholder="Enter Previous Credits" type="number"/>
+     </div>
+     <div>
+      <label class="block text-lg font-medium" for="currentSgpa">
+       Current SGPA
+      </label>
+      <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 input-effect" id="currentSgpa" max="10" min="0" placeholder="Enter Current SGPA" step="0.01" type="number"/>
+     </div>
+     <div>
+      <label class="block text-lg font-medium" for="currentCredits">
+       Current Credits
+      </label>
+      
+      <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 input-effect" id="currentCredits" min="1" placeholder="Enter Current Credits" type="number"/>
+     </div>
+     <button class="px-6 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:ring-2 focus:ring-green-500 button-effect" id="calculateCgpaButton" type="button">
+      Calculate CGPA
+     </button>
+    </form>
+    <div class="hidden mt-8" id="cgpaResults">
+     <h3 class="text-xl font-bold">
+      CGPA Result
+     </h3>
+     <p class="mt-2 text-lg font-semibold text-gray-700" id="cgpaResult">
+     </p>
+    </div>
+   </section>
+  </main>
+  <footer class="bg-gray-800 text-white py-4 text-center">
+   <p>
+    © 2024 KLU ONE Calculators. All Rights Reserved.
+    
+    <p>Idea,Design and Development by Sumanth</p>
+   </p>
+  </footer>
+  <script>
+   // Common Navigation Logic
+    const attendanceNav = document.getElementById('attendanceNav');
+    const sgpaNav = document.getElementById('sgpaNav');
+    const cgpaNav = document.getElementById('cgpaNav');
+    const attendanceCalculator = document.getElementById('attendanceCalculator');
+    const sgpaCalculator = document.getElementById('sgpaCalculator');
+    const cgpaCalculator = document.getElementById('cgpaCalculator');
+    
+    const showSection = (sectionToShow) => {
+      attendanceCalculator.classList.add('hidden');
+      sgpaCalculator.classList.add('hidden');
+      cgpaCalculator.classList.add('hidden');
+      sectionToShow.classList.remove('hidden');
+    };
+    
+    attendanceNav.addEventListener('click', () => showSection(attendanceCalculator));
+    sgpaNav.addEventListener('click', () => showSection(sgpaCalculator));
+    cgpaNav.addEventListener('click', () => showSection(cgpaCalculator));
+    // Attendance Calculator Logic
+    const calculateButton = document.getElementById('calculateButton');
+    const resetButton = document.getElementById('resetButton');
+    const resultsSection = document.getElementById('results');
+    const subjectResultEl = document.getElementById('subjectResult');
+    const overallAttendanceEl = document.getElementById('overallAttendance');
+    const componentAnalysisEl = document.getElementById('componentAnalysis');
+    const calculateAttendance = () => {
+      const subjectName = document.getElementById('subjectName').value || 'N/A';
+      const lecturePercentage = parseFloat(document.getElementById('lecturePercentage').value) || null;
+      const tutorialPercentage = parseFloat(document.getElementById('tutorialPercentage').value) || null;
+      const practicalPercentage = parseFloat(document.getElementById('practicalPercentage').value) || null;
+      const skillingPercentage = parseFloat(document.getElementById('skillingPercentage').value) || null;
+      const weights = { lecture: 1.0, tutorial: 0.25, practical: 0.5, skilling: 0.25 };
+      let totalWeight = 0;
+      let weightedSum = 0;
+      const components = [
+        { percentage: lecturePercentage, weight: weights.lecture, name: "Lecture" },
+        { percentage: tutorialPercentage, weight: weights.tutorial, name: "Tutorial" },
+        { percentage: practicalPercentage, weight: weights.practical, name: "Practical" },
+        { percentage: skillingPercentage, weight: weights.skilling, name: "Skilling" }
+      ];
+      const analysis = components.map(component => {
+        if (component.percentage !== null) {
+          totalWeight += component.weight;
+          weightedSum += component.percentage * component.weight;
+          return `<li>${component.name}: ${component.percentage}%</li>`;
+        }
+        return '';
+      }).filter(Boolean);
+      if (totalWeight === 0) {
+        alert('Please provide percentages for at least one component.');
+        return;
+      }
+      const overallAttendance = weightedSum / totalWeight;
+      subjectResultEl.textContent = `Subject: ${subjectName}`;
+      overallAttendanceEl.textContent = `Overall Attendance: ${overallAttendance.toFixed(2)}%`;
+      componentAnalysisEl.innerHTML = analysis.join('');
+      resultsSection.classList.remove('hidden');
+    };
+    const resetForm = () => {
+      document.getElementById('subjectName').value = '';
+      document.getElementById('lecturePercentage').value = '';
+      document.getElementById('tutorialPercentage').value = '';
+      document.getElementById('practicalPercentage').value = '';
+      document.getElementById('skillingPercentage').value = '';
+      resultsSection.classList.add('hidden');
+    };
+    calculateButton.addEventListener('click', calculateAttendance);
+    resetButton.addEventListener('click', resetForm);
+    // SGPA Calculator Logic
+    const numSubjectsInput = document.getElementById('numSubjects');
+    const subjectsContainer = document.getElementById('subjectsContainer');
+    const generateSubjectsButton = document.getElementById('generateSubjectsButton');
+    const calculateSgpaButton = document.getElementById('calculateSgpaButton');
+    const sgpaResultEl = document.getElementById('sgpaResult');
+
+    generateSubjectsButton.addEventListener('click', () => {
+      subjectsContainer.innerHTML = '';
+      const numSubjects = parseInt(numSubjectsInput.value);
+      if (isNaN(numSubjects) || numSubjects <= 0) {
+        alert('Please enter a valid number of subjects.');
+        return;
+      }
+      for (let i = 1; i <= numSubjects; i++) {
+        subjectsContainer.innerHTML += `
+          <div>
+            <label class="block">Subject ${i}</label>
+            <input type="number" id="gradePoint${i}" placeholder="Grade Point" class="mt-1 mr-2 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 input-effect">
+            <input type="number" id="credit${i}" placeholder="Credits" class="mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 input-effect">
+          </div>`;
+      }
+      calculateSgpaButton.classList.remove('hidden');
+    });
+
+    calculateSgpaButton.addEventListener('click', () => {
+      let totalPoints = 0, totalCredits = 0;
+      const numSubjects = parseInt(numSubjectsInput.value);
+      for (let i = 1; i <= numSubjects; i++) {
+        const gradePoint = parseFloat(document.getElementById(`gradePoint${i}`).value);
+        const credit = parseFloat(document.getElementById(`credit${i}`).value);
+        if (isNaN(gradePoint) || isNaN(credit) || credit <= 0) {
+          alert('Please enter valid values for all subjects.');
+          return;
+        }
+        totalPoints += gradePoint * credit;
+        totalCredits += credit;
+      }
+      const sgpa = totalPoints / totalCredits;
+      sgpaResultEl.textContent = `SGPA: ${sgpa.toFixed(2)}`;
+      document.getElementById('sgpaResults').classList.remove('hidden');
+    });
+
+    // CGPA Calculator Logic
+    const calculateCgpaButton = document.getElementById('calculateCgpaButton');
+    const cgpaResultEl = document.getElementById('cgpaResult');
+    calculateCgpaButton.addEventListener('click', () => {
+      const previousCgpa = parseFloat(document.getElementById('previousCgpa').value);
+      const previousCredits = parseFloat(document.getElementById('previousCredits').value);
+      const currentSgpa = parseFloat(document.getElementById('currentSgpa').value);
+      const currentCredits = parseFloat(document.getElementById('currentCredits').value);
+      if (
+        isNaN(previousCgpa) || isNaN(previousCredits) ||
+        isNaN(currentSgpa) || isNaN(currentCredits) ||
+        previousCredits <= 0 || currentCredits <= 0
+      ) {
+        alert('Please enter valid values.');
+        return;
+      }
+      const totalCredits = previousCredits + currentCredits;
+      const cgpa = ((previousCgpa * previousCredits) + (currentSgpa * currentCredits)) / totalCredits;
+      cgpaResultEl.textContent = `CGPA: ${cgpa.toFixed(2)}`;
+      document.getElementById('cgpaResults').classList.remove('hidden');
+    });
+  </script>
+ </body>
+</html>
