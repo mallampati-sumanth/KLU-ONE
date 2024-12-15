@@ -611,7 +611,19 @@ document.addEventListener('DOMContentLoaded', updateDate);
     color: gold;
     animation: bounce 0.5s ease;
 }
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 }
 
 </style>
@@ -620,13 +632,18 @@ document.addEventListener('DOMContentLoaded', updateDate);
     <!-- Hostel Selection Section -->
     <section id="hostel-selection" class="fade-in text-center">
         <h1 class="text-4xl font-extrabold mb-4">
-            <span class="text-red-700-500"><b>Select Hostel</b></span>
+            <span class="text-red-700 shadow-md tracking-wide hover:text-red-500 transition duration-300">
+                <b>Select Hostel</b>
+            </span>
             <span class="ml-4 text-lg text-black">
                 <span class="text-blue-500">[</span>
-                <b>Hostel Mess</b>
+                <b class="text-white bg-red-700 px-2 py-1 rounded shadow-lg hover:bg-red-500 transition duration-300">
+                    Hostel Mess
+                </b>
                 <span class="text-blue-500">]</span>
             </span>
         </h1>
+    </section>
     
 
         <!-- Hostel Cards -->
@@ -888,11 +905,11 @@ document.addEventListener('DOMContentLoaded', updateDate);
         <div class="bg-white p-6 rounded-xl shadow-lg border border-red-300">
             <h3 class="text-2xl font-bold text-center text-gray-800 mb-6">Rate the Menu</h3>
             <div id="aravalivindhya-ratings" class="ratings flex justify-center space-x-4" data-hostel="aravali-vindhya">
-                <span class="star text-3xl cursor-pointer text-gray-400 hover:text-yellow-500 transition duration-300" onclick="rateMenu('aravali-vindhya', 1)">★</span>
-                <span class="star text-3xl cursor-pointer text-gray-400 hover:text-yellow-500 transition duration-300" onclick="rateMenu('aravali-vindhya', 2)">★</span>
-                <span class="star text-3xl cursor-pointer text-gray-400 hover:text-yellow-500 transition duration-300" onclick="rateMenu('aravali-vindhya', 3)">★</span>
-                <span class="star text-3xl cursor-pointer text-gray-400 hover:text-yellow-500 transition duration-300" onclick="rateMenu('aravali-vindhya', 4)">★</span>
-                <span class="star text-3xl cursor-pointer text-gray-400 hover:text-yellow-500 transition duration-300" onclick="rateMenu('aravali-vindhya', 5)">★</span>
+                <span class="star text-3xl cursor-pointer text-gray-400 hover:text-yellow-500 transition duration-300" onclick="rateMenu('aravalivindhya', 1)">★</span>
+                <span class="star text-3xl cursor-pointer text-gray-400 hover:text-yellow-500 transition duration-300" onclick="rateMenu('aravalivindhya', 2)">★</span>
+                <span class="star text-3xl cursor-pointer text-gray-400 hover:text-yellow-500 transition duration-300" onclick="rateMenu('aravalivindhya', 3)">★</span>
+                <span class="star text-3xl cursor-pointer text-gray-400 hover:text-yellow-500 transition duration-300" onclick="rateMenu('aravalivindhya', 4)">★</span>
+                <span class="star text-3xl cursor-pointer text-gray-400 hover:text-yellow-500 transition duration-300" onclick="rateMenu('aravalivindhya', 5)">★</span>
             </div>
         </div>
     </div>
