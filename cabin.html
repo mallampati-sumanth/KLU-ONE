@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <script src="cabin.js"></script>
+  <title>Search HOD and Faculty Cabin Numbers</title>
+  
+</head>
+<body class="bg-gray-100">
+
+  <!-- Header -->
+  <header class="bg-red-600 text-white p-4 flex items-center">
+    <img src="https://assets.onecompiler.app/42fq36qvd/42zbsafhz/Screenshot%202024-11-27%20111356.png" alt="University Logo" class="w-12 h-12 mr-4">
+    <div>
+      <h1 class="text-xl font-bold">HODs AND CABIN NUMBERS</h1>
+      <p class="text-sm">Search for the cabin number of a department's HOD or faculty member</p>
+    </div>
+  </header>
+
+<div class="max-w-xl mx-auto mt-6 flex justify-center">
+  <!-- HOD Tab -->
+  <button id="hod-tab" 
+          class="w-1/2 text-center py-2 font-bold rounded-l-md transition duration-300"
+          onclick="toggleSection('hod')">
+    HOD
+  </button>
+  <!-- Faculty Tab -->
+  <button id="faculty-tab" 
+          class="w-1/2 text-center py-2 font-bold rounded-r-md transition duration-300"
+          onclick="toggleSection('faculty')">
+    Faculty
+  </button>
+</div>
+
+<!-- HOD Search Section -->
+<main id="hod-section" class="max-w-xl mx-auto bg-white shadow-md rounded-md p-6 mt-6">
+  <h2 class="text-lg font-bold mb-4 text-red-600">Search HOD Details</h2>
+  <label for="search-input" class="block text-gray-700 mb-2">Search by Department Name, Abbreviation, or HOD Name:</label>
+  <input type="text" 
+         id="search-input" 
+         class="w-full px-4 py-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring focus:ring-red-300" 
+         placeholder="Enter department, abbreviation, or HOD name" 
+         oninput="searchHOD()">
+
+  <div id="result" class="mt-4 text-gray-700 bg-gray-100 p-4 rounded-md">
+    <p>Start typing to search...</p>
+  </div>
+</main>
+
+<!-- Faculty Search Section -->
+<main id="faculty-section" class="max-w-xl mx-auto bg-white shadow-md rounded-md p-6 mt-6" style="display: none;">
+  <h2 class="text-lg font-bold mb-4 text-red-600">Search Faculty Cabin</h2>
+  <label for="faculty-department" class="block text-gray-700 mb-2">Select Department:</label>
+  <select id="faculty-department" 
+          class="w-full px-4 py-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring focus:ring-red-300"
+          onchange="enableFacultySearch()">
+    <option value="">-- Select Department --</option>
+    <option value="ECE">Electronics and Communication Engineering</option>
+    <option value="CSE">Computer Science Engineering</option>
+    <option value="AIDS">Artificial Intelligence and Data Science</option>
+    <option value="CSIT">Computer Science and Information Technology</option>
+    <option value="EEE">Electrical and Electronics Engineering</option>
+    <option value="MECH">Mechanical Engineering</option>
+    <option value="IOT">Internet of Things</option>
+  </select>
+
+  <label for="faculty-search-input" class="block text-gray-700 mb-2">Enter Faculty Name:</label>
+  <input type="text" 
+         id="faculty-search-input" 
+         class="w-full px-4 py-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring focus:ring-red-300" 
+         placeholder="Enter faculty name" 
+         disabled 
+         oninput="searchFacultyCabin()">
+
+  <div id="faculty-result" class="mt-4 text-gray-700 bg-gray-100 p-4 rounded-md">
+    <p>Select a department to start searching...</p>
+  </div>
+</main>
+
+
+
+
+</body>
+</html>
