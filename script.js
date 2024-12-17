@@ -333,4 +333,32 @@ document.addEventListener('DOMContentLoaded', updateDate);
                 goHome();
             }
         };
-     
+      // Open Modal
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+            document.body.classList.add('overflow-hidden'); // Disable background scroll
+        }
+
+        // Close Modal
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+            document.body.classList.remove('overflow-hidden'); // Re-enable background scroll
+        }
+
+        // Switch to Login Form
+        function showLogin() {
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('signupForm').classList.add('hidden');
+            document.getElementById('loginTab').classList.add('bg-red-700', 'text-white');
+            document.getElementById('signupTab').classList.remove('bg-red-700', 'text-white');
+            document.getElementById('signupTab').classList.add('bg-gray-300', 'text-black');
+        }
+
+        // Switch to Signup Form
+        function showSignup() {
+            document.getElementById('signupForm').classList.remove('hidden');
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('signupTab').classList.add('bg-red-700', 'text-white');
+            document.getElementById('loginTab').classList.remove('bg-red-700', 'text-white');
+            document.getElementById('loginTab').classList.add('bg-gray-300', 'text-black');
+        }
