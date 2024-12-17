@@ -19,9 +19,21 @@
         <div class="container mx-auto flex flex-wrap justify-between items-center">
             <div class="flex items-center">
                 <img alt="KLU Logo with a stylized university emblem" class="h-16 mr-4 cursor-pointer" onclick="goHome()" src="https://assets.onecompiler.app/42fq36qvd/42yt2y2bp/Screenshot%202024-11-21%20221555.png" />
-                <h1 class="text-3xl md:text-5xl font-extrabold text-center leading-tight">
-    KLU <span class="shiny-text">ONE</span>
+                <h1 style="font-size: 3rem; font-weight: bold; text-align: center; background: linear-gradient(90deg, #ff0000, #0000ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+    KLU <span style="font-size: 1.5em; animation: shine 3s infinite linear;">ONE</span>
 </h1>
+
+<style>
+@keyframes shine {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 200%;
+    }
+}
+</style>
+
 
             </div>
 
