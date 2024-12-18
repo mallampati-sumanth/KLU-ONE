@@ -1,4 +1,4 @@
-KLU ONE
+                                                                            **   KLU ONE**
 KLU ONE is a web-based platform designed to assist KLU students with various services such as hostel mess menu management, attendance tracking, SGPA, and CGPA calculators, and more.
 
 Features
