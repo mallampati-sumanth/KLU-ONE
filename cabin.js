@@ -104,6 +104,8 @@ const hodData = [
   { sno: 97, name: "Dr. Bharat Bhushan Das", designation: "Assistant Professor", cabin: 197 },
   { sno: 98, name: "Dr. Poluri Raju", designation: "Assistant Professor", cabin: 198 },
   { sno: 99, name: "Dr. K. Deepak", designation: "Assistant Professor", cabin: 199 },
+  { sno: 100, name: "Dr. A V Prabhu", designation: "Associate Professor", cabin: 199 },
+  { sno: 99, name: "Dr.S R Srither", designation: "Assistant Professor", cabin: 199 },
     ],
   },
   {
