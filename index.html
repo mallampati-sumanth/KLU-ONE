@@ -263,217 +263,189 @@
         <span class="text-white">|Even Sem going to start on 18-12-2024</span>
     </marquee>
 
-<!-- Main Content -->
 <main class="container mx-auto mt-4 space-y-8">
- <!-- Beauty of KLU Section -->
-<section class="relative bg-blue-100 p-4 lg:p-8 shadow-lg rounded-lg">
+  <!-- Beauty of KLU Section -->
+  <section class="relative bg-blue-100 p-4 lg:p-8 shadow-lg rounded-lg">
     <h2 class="text-2xl lg:text-3xl font-bold text-blue-700 text-center mb-4">Beauty of KLU</h2>
-    <div class="overflow-hidden relative h-64 rounded-lg">
-        <div class="absolute inset-0 flex space-x-4 animate-scroll">
-            <img 
-                alt="Scenic view of KLU campus with lush greenery and modern architecture" 
-                class="h-full rounded-lg w-full md:w-1/3" 
-                src="https://assets.onecompiler.app/42fq36qvd/42zzxz8bc/kl_main.jpg" 
-            />
-            <img 
-                alt="KLU students engaged in cultural fest" 
-                class="h-full rounded-lg w-full md:w-1/3" 
-                src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature%20klu.jpg" 
-            />
-            <img 
-                alt="Modern academic blocks at KLU campus" 
-                class="h-full rounded-lg w-full md:w-1/3" 
-                src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature6.jpg" 
-            />
-            <img 
-                alt="KLU students engaged in cultural fest" 
-                class="h-full rounded-lg w-full md:w-1/3" 
-                src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature5.jpg" 
-            />
-            <img 
-                alt="Modern academic blocks at KLU campus" 
-                class="h-full rounded-lg w-full md:w-1/3" 
-                src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature2.jpg" 
-            />
-            <img 
-                alt="KLU students engaged in cultural fest" 
-                class="h-full rounded-lg w-full md:w-1/3" 
-                src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature7.jpg" 
-            />
-            <img 
-                alt="Modern academic blocks at KLU campus" 
-                class="h-full rounded-lg w-full md:w-1/3" 
-                src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature3.jpg" 
-            />
-        </div>
+    <div class="overflow-x-auto whitespace-nowrap rounded-lg scrollbar-hide">
+      <div class="inline-flex space-x-4">
+        <img 
+          alt="Modern academic blocks at KLU campus" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/Screenshot%202024-12-22%20165038.png" 
+        />
+        
+        <img 
+          alt="Scenic view of KLU campus with lush greenery and modern architecture" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src="https://assets.onecompiler.app/42fq36qvd/42zzxz8bc/kl_main.jpg" 
+        />
+        <img 
+          alt="KLU students engaged in cultural fest" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature%20klu.jpg" 
+        />
+        <img 
+          alt="Modern academic blocks at KLU campus" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature6.jpg" 
+        />
+        <img 
+          alt="KLU students engaged in cultural fest" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature5.jpg" 
+        />
+        <img 
+          alt="Modern academic blocks at KLU campus" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature2.jpg" 
+        />
+        
+        <img 
+          alt="KLU students engaged in cultural fest" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src=" https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature1.jpg" 
+        />
+      </div>
     </div>
-</section>
+  </section>
+</main>
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* for Internet Explorer and Edge */
+  scrollbar-width: none; /* for Firefox */
+}
+
+</style>
 
 
 <!-- About KLU ONE Section -->
 <section class="bg-gray-100 p-4 lg:p-8 shadow-lg rounded-lg" id="about-klu-one">
-    <img 
-        alt="Illustration of KLU ONE portal interface with various integrated tools and features" 
-        class="w-full rounded-t-lg" 
-        height="400" 
-        src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/features.webp" 
-    />
-    <div class="mt-4 text-center">
-        <h2 class="text-2xl lg:text-3xl font-bold text-red-700 mb-4">About KLU ONE</h2>
-        <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
-            KLU ONE is a comprehensive web app designed to unify various college portals for an enhanced student experience at KLU University. It simplifies academic tracking, hostel mess information, and faculty details into one easy-to-use platform.
-        </p>
-
-       <!-- Button to toggle the "How to Use" section -->
-<button 
-    class="mt-4 px-6 py-3 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 transition"
-    onclick="document.getElementById('how-to-use').classList.toggle('hidden'); this.innerText = this.innerText === 'How to Use' ? 'Close' : 'How to Use';">
-    How to Use
-</button>
-
-<!-- Hidden Content (Initially Hidden) -->
-<div id="how-to-use" class="hidden mt-4">
-    <h3 class="text-xl font-semibold text-red-700 mb-2">How to Use KLU ONE</h3>
+  <img 
+    alt="Illustration of KLU ONE portal interface with various integrated tools and features" 
+    class="w-full rounded-t-lg" 
+    height="400" 
+    src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/features.webp" 
+  />
+  <div class="mt-4 text-center">
+    <h2 class="text-2xl lg:text-3xl font-bold text-red-700 mb-4">About KLU ONE</h2>
     <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
-        KLU ONE offers integrated access to multiple features. Here's a quick guide to using it effectively:
+      KLU ONE is a comprehensive web app designed to unify various college portals for an enhanced student experience at KL University. It simplifies academic tracking, hostel mess information, and faculty details into one easy-to-use platform.
     </p>
-    <ol class="list-decimal pl-6 space-y-2 text-gray-700 text-base lg:text-lg">
-    <li><strong>ERP, LMS, SAC Portals:</strong> Use the navigation buttons in the header to seamlessly access ERP, LMS, and SAC portals.</li>
-    <li><strong>One Calculator:</strong> Access the "One Calculator" section, which includes:
-        <ul class="list-disc pl-6 mt-2">
+
+    <!-- Button to toggle the "How to Use" section -->
+    <button 
+      class="mt-4 px-6 py-3 bg-red-600 text-white font-bold rounded-full hover:bg-red-700 transition"
+      onclick="document.getElementById('how-to-use').classList.toggle('hidden'); this.innerText = this.innerText === 'How to Use' ? 'Close' : 'How to Use';">
+      How to Use
+    </button>
+
+    <!-- Hidden Content (Initially Hidden) -->
+    <div id="how-to-use" class="hidden mt-4 bg-red-100 p-4 rounded-full shadow-lg">
+      <h3 class="text-xl font-semibold text-red-700 mb-2">How to Use KLU ONE</h3>
+      <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
+        KLU ONE offers integrated access to multiple features. Here's a quick guide to using it effectively:
+      </p>
+      <ol class="list-decimal pl-6 space-y-2 text-gray-700 text-base lg:text-lg">
+        <li><strong>ERP, LMS, SAC Portals:</strong> Use the navigation buttons in the header to seamlessly access ERP, LMS, and SAC portals.</li>
+        <li><strong>One Calculator:</strong> Access the "One Calculator" section, which includes:
+          <ul class="list-disc pl-6 mt-2">
             <li><strong>Attendance Calculator:</strong> Enter subject names and attendance details for Lecture, Tutorial, Practical, and Skilling. Get an average attendance percentage with 90% accuracy.</li>
             <li><strong>SGPA Calculator:</strong> Input grades and credits for each subject to calculate your Semester Grade Point Average.</li>
             <li><strong>CGPA Calculator:</strong> Provide previous CGPA, previous credits, current SGPA, and current credits to calculate your Cumulative Grade Point Average.</li>
-        </ul>
-    </li>
-    <li><strong>Cabin Numbers:</strong> Go to the "Faculty" section. For HODs, enter the department name or HOD name. For faculty, select the department and provide the faculty name to retrieve the cabin number.</li>
-    <li><strong>Mess Menu:</strong> Visit the "Hostel" section, select your hostel, and view the respective menu. Some deviations may occur in the menu updates.</li>
-</ol>
+          </ul>
+        </li>
+        <li><strong>Cabin Numbers:</strong> Go to the "Faculty" section. For HODs, enter the department name or HOD name. For faculty, select the department and provide the faculty name to retrieve the cabin number.</li>
+        <li><strong>Mess Menu:</strong> Visit the "Hostel" section, select your hostel, and view the respective menu. Some deviations may occur in the menu updates.</li>
+      </ol>
 
-</div>
-
+      <!-- Back Option -->
+      <button 
+        class="mt-4 px-6 py-3 bg-red-600 text-white font-bold rounded-full hover:bg-red-700 transition"
+        onclick="document.getElementById('how-to-use').classList.toggle('hidden');">
+        Back
+      </button>
     </div>
+  </div>
 </section>
 
-
-
-    <!-- About KLU Section -->
+<!-- About KLU Section -->
 <section class="bg-white p-4 lg:p-8 shadow-lg rounded-lg flex justify-center items-center" id="about-klu">
-    <div class="text-center max-w-4xl">
-       
+  <div class="text-center max-w-4xl">
     <img 
-        alt="Image of KLU University campus with students and faculty engaged in various activities" 
-        class="w-full rounded-t-lg" 
-        height="400" 
-        src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/Screenshot%202024-12-22%20105437.png" 
+      alt="Image of KLU University campus with students and faculty engaged in various activities" 
+      class="w-full rounded-t-lg" 
+      height="400" 
+      src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/Screenshot%202024-12-22%20105437.png" 
     />
     <div class="mt-4">
-        <h2 class="text-2xl lg:text-3xl font-bold text-red-700 mb-4">About KLU</h2>
-        <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
-            KONERU LAKSHMAIAH UNIVERSITY is a leading educational institution committed to excellence in teaching, research, and innovation. 
-            With state-of-the-art facilities, experienced faculty, and a vibrant campus life, KLU offers a wide range of 
-            undergraduate, postgraduate, and doctoral programs. The university is dedicated to nurturing students into 
-            global leaders, equipped with the knowledge and skills to thrive in a dynamic world.
-        </p>
-        <!-- Achievements and Recognition -->
-        <div class="bg-gray-100 p-4 rounded-lg shadow-md" id="achievements-section" style="display:none;">
-            <h3 class="text-xl font-semibold text-red-600 mb-2">Accreditations & Rankings</h3>
-            <ul class="list-disc pl-6 space-y-2 text-gray-700 text-base lg:text-lg">
-                <li><strong>NAAC A++ Grade:</strong> With a 3.57 CGPA on a 4-point scale (2018)</li>
-                <li><strong>Category-1 University:</strong> By UGC under the categorization of universities for the grant of Graded Autonomy (2019)</li>
-                <li><strong>UGC Recognized:</strong> Under Section 2(f) and 12B of UGC Act 1956</li>
-                <li><strong>AICTE Approval:</strong> All Engineering Programs approved by All India Council for Technical Education (AICTE), New Delhi</li>
-                <li><strong>PCI Approval:</strong> Pharmacy programs approved by Pharmacy Council of India (PCI)</li>
-                <li><strong>CoA Approval:</strong> Architecture programs approved by Council of Architecture (CoA), India</li>
-                <li><strong>BAR Council of India Approval:</strong> Law programs approved by BAR Council of India</li>
-                <li><strong>Government Approval:</strong> University approved by MHRD-Govt. of India & UGC (Under Section 3 of UGC Act 1956)</li>
-            </ul>
-        </div>
-        <!-- NIRF Rankings -->
-        <div class="mt-6 bg-gray-100 p-4 rounded-lg shadow-md" id="nirf-section" style="display:none;">
-            <h3 class="text-xl font-semibold text-red-600 mb-2">NIRF 2024 Rankings</h3>
-            <ul class="list-decimal pl-6 space-y-2 text-gray-700 text-base lg:text-lg">
-                <li><strong>#22:</strong> University Ranking</li>
-                <li><strong>#35:</strong> Engineering Ranking</li>
-                <li><strong>#79:</strong> Management Ranking</li>
-                <li><strong>#40:</strong> Overall Ranking</li>
-                <li><strong>#Band(11-50):</strong> Innovation</li>
-            </ul>
-        </div>
-        <!-- More Button -->
-        <div class="text-center mt-4">
-            <button 
-                class="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 transition-all" 
-                onclick="toggleVisibility()">
-                More Info
-            </button>
-        </div>
+      <h2 class="text-2xl lg:text-3xl font-bold text-red-700 mb-4">About KLU</h2>
+      <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
+        KONERU LAKSHMAIAH UNIVERSITY is a leading educational institution committed to excellence in teaching, research, and innovation. 
+        With state-of-the-art facilities, experienced faculty, and a vibrant campus life, KLU offers a wide range of 
+        undergraduate, postgraduate, and doctoral programs. The university is dedicated to nurturing students into 
+        global leaders, equipped with the knowledge and skills to thrive in a dynamic world.
+      </p>
+      
+      <!-- Achievements and Recognition -->
+      <div id="achievements-section" class="hidden mt-4 bg-red-100 p-4 rounded-full shadow-lg">
+        <h3 class="text-xl font-semibold text-red-700 mb-2">Accreditations & Rankings</h3>
+        <ul class="list-disc pl-6 space-y-2 text-gray-700 text-base lg:text-lg">
+          <li><strong>NAAC A++ Grade:</strong> With a 3.57 CGPA on a 4-point scale (2018)</li>
+          <li><strong>Category-1 University:</strong> By UGC under the categorization of universities for the grant of Graded Autonomy (2019)</li>
+          <li><strong>UGC Recognized:</strong> Under Section 2(f) and 12B of UGC Act 1956</li>
+          <li><strong>AICTE Approval:</strong> All Engineering Programs approved by All India Council for Technical Education (AICTE), New Delhi</li>
+          <li><strong>PCI Approval:</strong> Pharmacy programs approved by Pharmacy Council of India (PCI)</li>
+          <li><strong>CoA Approval:</strong> Architecture programs approved by Council of Architecture (CoA), India</li>
+          <li><strong>BAR Council of India Approval:</strong> Law programs approved by BAR Council of India</li>
+          <li><strong>Government Approval:</strong> University approved by MHRD-Govt. of India & UGC (Under Section 3 of UGC Act 1956)</li>
+        </ul>
+      </div>
+      
+      <!-- NIRF Rankings -->
+      <div id="nirf-section" class="hidden mt-4 bg-red-100 p-4 rounded-full shadow-lg">
+        <h3 class="text-xl font-semibold text-red-700 mb-2">NIRF 2024 Rankings</h3>
+        <ul class="list-decimal pl-6 space-y-2 text-gray-700 text-base lg:text-lg">
+          <li><strong>#22:</strong> University Ranking</li>
+          <li><strong>#35:</strong> Engineering Ranking</li>
+          <li><strong>#79:</strong> Management Ranking</li>
+          <li><strong>#40:</strong> Overall Ranking</li>
+          <li><strong>#Band(11-50):</strong> Innovation</li>
+        </ul>
+      </div>
+
+      <!-- More Button -->
+      <div class="text-center mt-4">
+        <button 
+          id="toggle-button" 
+          class="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 transition"
+          onclick="toggleVisibility()">
+          More Info
+        </button>
+      </div>
     </div>
+  </div>
 </section>
 
 <!-- JavaScript to Toggle Visibility -->
 <script>
-    function toggleVisibility() {
-        // Get the sections to toggle
-        const achievementsSection = document.getElementById('achievements-section');
-        const nirfSection = document.getElementById('nirf-section');
-        
-        // Toggle the visibility of the sections
-        if (achievementsSection.style.display === 'none' || nirfSection.style.display === 'none') {
-            achievementsSection.style.display = 'block';
-            nirfSection.style.display = 'block';
-        } else {
-            achievementsSection.style.display = 'none';
-            nirfSection.style.display = 'none';
-        }
-    }
+  function toggleVisibility() {
+    const achievementsSection = document.getElementById('achievements-section');
+    const nirfSection = document.getElementById('nirf-section');
+    const toggleButton = document.getElementById('toggle-button');
+
+    // Toggle visibility of the sections
+    achievementsSection.classList.toggle('hidden');
+    nirfSection.classList.toggle('hidden');
+
+    // Update button text
+    toggleButton.innerText = toggleButton.innerText === 'More Info' ? 'Less Info' : 'More Info';
+  }
 </script>
 
-    </section>
-</main>
-
-<style>
-/* Keyframes to animate the scrolling */
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-/* Apply scroll animation */
-.animate-scroll {
-    display: flex;
-    animation: scroll 30s linear infinite;
-}
-
-/* Ensure images fit and adjust their sizes based on screen width */
-.animate-scroll img {
-    height: 100%;
-    object-fit: cover;
-}
-
-/* For mobile devices: each image will take full width and scroll continuously */
-@media (max-width: 767px) {
-    .animate-scroll {
-        flex-wrap: nowrap; /* Prevent wrapping on mobile */
-    }
-    .animate-scroll img {
-        width: 100%; /* Each image takes full width */
-    }
-}
-
-/* For larger screens (tablet and above), each image takes up 33.33% of the width */
-@media (min-width: 768px) {
-    .animate-scroll img {
-        width: 33.3333%; /* Each image takes 1/3 of the width */
-    }
-}
-
-
-</style>
 
 
 
