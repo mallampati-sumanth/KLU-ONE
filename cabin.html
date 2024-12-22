@@ -9,32 +9,46 @@
   <script src="cabin.js"></script>
   <title>Search HOD and Faculty Cabin Numbers</title>
   
-</head>
-<body class="bg-gray-100">
+ <header class="bg-red-700 text-white p-4 flex flex-col items-center relative">
+    <!-- Logo -->
+    <img src="https://assets.onecompiler.app/42fq36qvd/42zbsafhz/Screenshot%202024-11-27%20111356.png" alt="University Logo" class="w-12 h-12 mb-3">
+    
+    <!-- Text Content -->
+    <div class="text-center">
+      <h1 class="text-2xl font-bold">HODs AND FACULTY CABIN NUMBERS</h1>
+      <p class="text-sm mt-1">Search for the cabin number of a department's HOD or faculty member</p>
+    </div>
 
-  <!-- Header -->
-  <header class="bg-red-600 text-white p-4 flex items-center">
-    <img src="https://assets.onecompiler.app/42fq36qvd/42zbsafhz/Screenshot%202024-11-27%20111356.png" alt="University Logo" class="w-12 h-12 mr-4">
-    <div>
-      <h1 class="text-xl font-bold">HODs AND CABIN NUMBERS</h1>
-      <p class="text-sm">Search for the cabin number of a department's HOD or faculty member</p>
+    <!-- Home Button -->
+    <div class="mt-4">
+      <a
+        class="bg-white text-red-700 font-bold px-4 py-2 rounded-lg shadow-md hover:bg-red-600 hover:text-white transition duration-300 ease-in-out sm:px-6 sm:py-3 sm:text-lg focus:outline-none focus:ring-2 focus:ring-red-400 inline-flex items-center"
+        href="index.html"
+      >
+        Home
+        <span class="ml-2">🏠</span>
+      </a>
     </div>
   </header>
+
 
 <div class="max-w-xl mx-auto mt-6 flex justify-center">
   <!-- HOD Tab -->
   <button id="hod-tab" 
-          class="w-1/2 text-center py-2 font-bold rounded-l-md transition duration-300"
+          class="w-1/2 text-center py-2 font-bold rounded-full transition duration-300 bg-black text-white border-0 outline-none"
           onclick="toggleSection('hod')">
     HOD
-  </button>
+  </button>  
   <!-- Faculty Tab -->
   <button id="faculty-tab" 
-          class="w-1/2 text-center py-2 font-bold rounded-r-md transition duration-300"
+          class="w-1/2 text-center py-2 font-bold rounded-full transition duration-300 bg-black text-white border-0 outline-none"
           onclick="toggleSection('faculty')">
     Faculty
   </button>
 </div>
+
+
+
 
 <!-- HOD Search Section -->
 <main id="hod-section" class="max-w-xl mx-auto bg-white shadow-md rounded-md p-6 mt-6">
@@ -66,6 +80,7 @@
     <option value="EEE">Electrical and Electronics Engineering</option>
     <option value="MECH">Mechanical Engineering</option>
     <option value="IOT">Internet of Things</option>
+    <option value="CIVIL">Civil Engineering</option>
   </select>
 
   <label for="faculty-search-input" class="block text-gray-700 mb-2">Enter Faculty Name:</label>
@@ -80,9 +95,6 @@
     <p>Select a department to start searching...</p>
   </div>
 </main>
-
-
-
 
 </body>
 </html>
