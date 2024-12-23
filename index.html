@@ -163,63 +163,11 @@
                     </li>
                 </ul>
             </nav>
-            <button 
-                class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white text-red-700 font-bold px-4 py-2 rounded-lg shadow-md 
-                       hover:bg-red-600 hover:text-white transition duration-300 ease-in-out 
-                       sm:px-6 sm:py-3 sm:text-lg focus:outline-none focus:ring-2 focus:ring-red-400" 
-                onclick="openLoginModal()">
-                Login
-            </button>
+            
         </div>
     </header>
 
-    <!-- Login/Signup Modal -->
-    <div id="loginModal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
-        <div class="bg-white w-96 rounded-lg p-6 relative">
-            <!-- Close Button -->
-            <button class="absolute top-4 right-4 text-gray-500 hover:text-red-700" onclick="closeLoginModal()">✖</button>
-
-            <!-- Tabs for Login and Signup -->
-            <div class="flex justify-between mb-4">
-                <button id="loginTab" class="w-1/2 text-center py-2 bg-red-700 text-white font-bold" onclick="showLogin()">Login</button>
-                <button id="signupTab" class="w-1/2 text-center py-2 bg-gray-300 text-black font-bold" onclick="showSignup()">Signup</button>
-            </div>
-
-            <!-- Login Form -->
-            <div id="loginForm">
-                <h2 class="text-xl font-bold mb-4">Login</h2>
-                <form>
-                    <div class="mb-4">
-                        <label class="block font-semibold">Email</label>
-                        <input type="email" class="w-full p-2 border rounded-lg" placeholder="Enter your email" required>
-                    </div>
-                    <div class="mb-4">
-                        <label class="block font-semibold">Password</label>
-                        <input type="password" class="w-full p-2 border rounded-lg" placeholder="Enter your password" required>
-                    </div>
-                    <button type="submit" class="w-full bg-red-700 text-white py-2 rounded-lg hover:bg-red-800">Login</button>
-                </form>
-            </div>
-
-            <!-- Signup Form -->
-            <div id="signupForm" class="hidden">
-                <h2 class="text-xl font-bold mb-4">Signup</h2>
-                <form>
-                    <div class="mb-4">
-                        <label class="block font-semibold">Name</label>
-                        <input type="text" class="w-full p-2 border rounded-lg" placeholder="Enter your name" required>
-                    </div>
-                    <div class="mb-4">
-                        <label class="block font-semibold">Email</label>
-                        <input type="email" class="w-full p-2 border rounded-lg" placeholder="Enter your email" required>
-                    </div>
-                    <div class="mb-4">
-                        <label class="block font-semibold">Password</label>
-                        <input type="password" class="w-full p-2 border rounded-lg" placeholder="Create a password" required>
-                    </div>
-                    <button type="submit" class="w-full bg-red-700 text-white py-2 rounded-lg hover:bg-red-800">Signup</button>
-                </form>
-            </div>
+    
         </div>
     </div>
 <script>
@@ -372,6 +320,7 @@
   </div>
 </section>
 
+
 <!-- About KLU Section -->
 <section class="bg-white p-4 lg:p-8 shadow-lg rounded-lg flex justify-center items-center" id="about-klu">
   <div class="text-center max-w-4xl">
@@ -447,7 +396,34 @@
 </script>
 
 
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/67659a42af5bfec1dbdf0e98/1ifie5559';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+<style>
+    /* Resize the Tawk.to widget */
+    #Tawk_API, #Tawk_API iframe {
+      width: 35% !important; /* Adjust the width */
+      height: 50% !important; /* Adjust the height */
+    }
 
+    /* Mobile Devices: Resize the widget */
+    @media (max-width: 768px) {
+      #Tawk_API iframe {
+        width: 60% !important; /* Adjust the width */
+        height: 80% !important; /* Adjust the height */
+      }
+    }
+    </style>
 
     <!-- Footer -->
 <footer class="bg-gray-800 text-white text-center p-4 lg:p-8 mt-4 lg:mt-8">
@@ -482,5 +458,7 @@
             shiningText.textContent = shiningText.textContent === "ONE" ? "1" : "ONE";
         }, 2000);
     </script>
+    
+    
 </body>
 </html>
