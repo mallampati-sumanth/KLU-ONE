@@ -1,405 +1,520 @@
 <html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>KLU ONE Attendance, SGPA, and CGPA Calculator</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KLU ONE</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-      /* Logo Effect */
-      .logo-effect {
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-      }
-      .logo-effect:hover {
-        transform: scale(1.1) rotate(10deg);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      }
-      /* Button Effect */
-      .button-effect {
-        transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
-      }
-      
-      /* Input Focus Effect */
-      .input-effect:focus {
-        box-shadow: 0 0 10px rgba(0, 0, 255, 0.5);
-        border-color: #3b82f6; /* blue focus */
-      }
-      /* Navigation Button Style */
-      .nav-button {
-        transition: background-color 0.3s ease, transform 0.3s ease;
-      }
-      .nav-button:hover {
-        transform: translateY(-3px);
-        background-color: rgba(0, 0, 0, 0.1);
-      }
-      /* Footer Styling */
-      footer {
-        background-color: #2d3748;
-        color: white;
-        text-align: center;
-        padding: 16px;
-        font-size: 14px;
-      }
-      footer p {
-        margin-top: 8px;
-      }
-      /* General Styling */
-      .active {
-        display: block;
-      }
-      .hidden {
-        display: none;
-      }
-      /* Card Styling */
-      .card {
-        background-color: #fff;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      }
-      .card-header {
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 12px;
-      }
-      .card-body {
-        margin-top: 20px;
-        margin-bottom: 20px;
-      }
-      .card-footer {
-        text-align: right;
-      }
-      @keyframes shine {
-  0% {
-    background-position: -100%;
-  }
-  100% {
-    background-position: 200%;
-  }
+    body {
+    font-family: 'Roboto', sans-serif;
 }
 
-.text-shine {
-  position: relative;
-  display: inline-block;
-  background: linear-gradient(90deg, red, white, red);
-  background-size: 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shine 2s linear infinite;
+.logo-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo-animation {
+    animation: logoMove 2s ease-in-out forwards, redGlow 1.5s ease-in-out forwards;
+    border-radius: 50%;
+}
+
+@keyframes logoMove {
+    0% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Red glow effect around the logo */
+@keyframes redGlow {
+    0% { 
+        box-shadow: 0 0 0px rgba(255, 0, 0, 0.7);
+    }
+    50% { 
+        box-shadow: 0 0 15px rgba(255, 0, 0, 0.7), 0 0 25px rgba(255, 0, 0, 0.5);
+    }
+    100% { 
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    }
+}
+
+.animated-text {
+    color: white;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.4);
+    animation: shine 3s infinite alternate;
+    display: inline-block;
+}
+
+@keyframes shine {
+    0% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+    50% {
+        text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 45px rgba(255, 255, 255, 0.6);
+    }
+    100% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+}
+
+.fade-in { animation: fadeIn 2s; }
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.header {
+    border: 3px solid red;
+    box-shadow: 0 0 10px 3px red;
+}
+
+@media (max-width: 640px) {
+    .header {
+        padding: 8px;
+    }
+
+    .header img {
+        height: 40px;
+        margin-right: 8px;
+    }
+
+    .header h1 {
+        font-size: 1.25rem;
+    }
+
+    nav a {
+        font-size: 0.875rem;
+    }
+
+    .login-btn {
+        padding: 4px 8px;
+        font-size: 0.875rem;
+    }
 }
 
     </style>
-<!-- Header -->
-<header class="bg-red-600 text-white py-4">
-  <div class="flex items-center justify-between px-4 relative">
-    <!-- Logo and Title -->
-    <div class="flex items-center">
-      <img
-        alt="K L University Logo"
-        class="h-16 w-16 mr-4 logo-effect"
-        height="64"
-        src="https://assets.onecompiler.app/42fq36qvd/42zbsafhz/Screenshot%202024-11-27%20111356.png"
-        width="64"
-      />
-      <div>
-        <h1 class="text-4xl font-bold">
-          KLU <span class="text-shine">ONE CALCULATORS</span>
-        </h1>
-        <p class="text-sm mt-2">Choose Attendance, SGPA, or CGPA Calculator</p>
+</head>
+<body>
+    <div class="logo-overlay" id="logo-overlay">
+        <img alt="KLU Logo with a stylized university emblem" class="logo-animation h-48 w-48" src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/kloo_app_logo_enhanced.jpg" />
+    </div>
+    <header class="bg-red-700 text-white p-4 fade-in shadow-lg relative">
+        <div class="container mx-auto flex flex-wrap justify-between items-center">
+            <div class="flex items-center">
+                <img alt="KLU Logo with a stylized university emblem" class="h-16 mr-4 cursor-pointer" onclick="goHome()" src="https://assets.onecompiler.app/42fq36qvd/42yt2y2bp/Screenshot%202024-11-21%20221555.png" />
+                <div style="text-align: center; margin-top: 20px;">
+                    <h1 style="font-size: 2rem; font-weight: bold; text-align: center; color: white; word-break: keep-all;">
+    KLU 
+    <span id="shining-text" class="animated-text" style="font-weight: bold; font-size: 2rem;">ONE</span>
+</h1>
+
+                </div>
+            </div>
+            <nav class="w-full md:w-auto mt-4 md:mt-0">
+                <ul class="flex flex-col md:flex-row md:space-x-4">
+                    <li>
+                        <a class="hover:underline text-lg font-bold" href="#" onclick="goHome()">Home
+                            <span class="ml-2">🏠</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="hover:underline text-lg font-bold" href="https://newerp.kluniversity.in/" target="_blank">ERP
+                            <span class="ml-2">🎓</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="hover:underline text-lg font-bold" href="https://lms.kluniversity.in/my/" target="_blank">LMS
+                            <span class="ml-2">📚</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="hover:underline text-lg font-bold" href="https://sac.kluniversity.in/" target="_blank">SAC
+                            <span class="ml-2">👫</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="hover:underline text-lg font-bold" href="calculator.html">
+                            ONE Calculator
+                            <span class="ml-2">📟</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="hover:underline text-lg font-bold" href="cabin.html">
+                            ONE Cabin NO"S
+                            <span class="ml-2">🏤</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="hover:underline text-lg font-bold" href="mess.html">
+                            ONE Mess
+                            <span class="ml-2">🍽️</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+        </div>
+    </header>
+
+    
+        </div>
+    </div>
+<script>
+        // Open Modal
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+            document.body.classList.add('overflow-hidden'); // Disable background scroll
+        }
+
+        // Close Modal
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+            document.body.classList.remove('overflow-hidden'); // Re-enable background scroll
+        }
+
+        // Switch to Login Form
+        function showLogin() {
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('signupForm').classList.add('hidden');
+            document.getElementById('loginTab').classList.add('bg-red-700', 'text-white');
+            document.getElementById('signupTab').classList.remove('bg-red-700', 'text-white');
+            document.getElementById('signupTab').classList.add('bg-gray-300', 'text-black');
+        }
+
+        // Switch to Signup Form
+        function showSignup() {
+            document.getElementById('signupForm').classList.remove('hidden');
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('signupTab').classList.add('bg-red-700', 'text-white');
+            document.getElementById('loginTab').classList.remove('bg-red-700', 'text-white');
+            document.getElementById('loginTab').classList.add('bg-gray-300', 'text-black');
+        }
+    </script>
+
+    <marquee class="header bg-red-700 text-white p-2 font-bold">
+        <span class="text-black-255"><i>Updates:</i></span> 
+        <span class="text-white">Welcome to KLU-ONE!!</span> 
+        <span class="text-red-500"></span> 
+        <span class="text-white">Cabin NO's be updated soon!</span> 
+        <span class="text-red-500">|</span> 
+        <span class="text-white">|Even Sem going to start on 18-12-2024</span>
+    </marquee>
+
+<main class="container mx-auto mt-4 space-y-8">
+  <!-- Beauty of KLU Section -->
+  <section class="relative bg-blue-100 p-4 lg:p-8 shadow-lg rounded-lg">
+    <h2 class="text-2xl lg:text-3xl font-bold text-blue-700 text-center mb-4">Beauty of KLU</h2>
+    <div class="overflow-x-auto whitespace-nowrap rounded-lg scrollbar-hide">
+      <div class="inline-flex space-x-4">
+        <img 
+          alt="Modern academic blocks at KLU campus" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/Screenshot%202024-12-22%20165038.png" 
+        />
+        
+        <img 
+          alt="Scenic view of KLU campus with lush greenery and modern architecture" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src="https://assets.onecompiler.app/42fq36qvd/42zzxz8bc/kl_main.jpg" 
+        />
+        <img 
+          alt="KLU students engaged in cultural fest" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature%20klu.jpg" 
+        />
+        <img 
+          alt="Modern academic blocks at KLU campus" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature6.jpg" 
+        />
+        <img 
+          alt="KLU students engaged in cultural fest" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature5.jpg" 
+        />
+        <img 
+          alt="Modern academic blocks at KLU campus" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature2.jpg" 
+        />
+        
+        <img 
+          alt="KLU students engaged in cultural fest" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src=" https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature1.jpg" 
+        />
       </div>
     </div>
+  </section>
+</main>
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* for Internet Explorer and Edge */
+  scrollbar-width: none; /* for Firefox */
+}
 
-    <!-- Home Button -->
-    <div class="absolute top-2 right-4">
-      <a
-        class="bg-white text-red-700 font-bold px-4 py-2 rounded-lg shadow-md hover:bg-red-600 hover:text-white transition duration-300 ease-in-out sm:px-6 sm:py-3 sm:text-lg focus:outline-none focus:ring-2 focus:ring-red-400 inline-flex items-center"
-        href="index.html"
-      >
-        Home
-        <span class="ml-2">🏠</span>
-      </a>
+</style>
+
+
+<!-- About KLU ONE Section -->
+<section class="bg-gray-100 p-4 lg:p-8 shadow-lg rounded-lg border-4 border-red-300" id="about-klu-one">
+  <img 
+    alt="Illustration of KLU ONE portal interface with various integrated tools and features" 
+    class="w-full rounded-t-lg" 
+    height="400" 
+    src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/features.webp" 
+  />
+  <div class="mt-4 text-center">
+    <h2 class="text-2xl lg:text-3xl font-bold text-red-700 mb-4">About KLU ONE</h2>
+    <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
+      KLU ONE is a comprehensive web app designed to unify various college portals for an enhanced student experience at KL University. It simplifies academic tracking, hostel mess information, and faculty details into one easy-to-use platform.
+    </p>
+
+    <!-- Button to toggle the "How to Use" section -->
+    <button 
+      class="mt-4 px-6 py-3 bg-red-600 text-white font-bold rounded-full hover:bg-red-700 transition"
+      onclick="document.getElementById('how-to-use').classList.toggle('hidden'); this.innerText = this.innerText === 'How to Use' ? 'Close' : 'How to Use';">
+      How to Use
+    </button>
+
+    <!-- Hidden Content (Initially Hidden) -->
+    <div id="how-to-use" class="hidden mt-4 bg-red-100 p-4 rounded-full shadow-lg">
+      <h3 class="text-xl font-semibold text-red-700 mb-2">How to Use KLU ONE</h3>
+      <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
+        KLU ONE offers integrated access to multiple features. Here's a quick guide to using it effectively:
+      </p>
+      <ol class="list-decimal pl-6 space-y-2 text-gray-700 text-base lg:text-lg">
+        <li><strong>ERP, LMS, SAC Portals:</strong> Use the navigation buttons in the header to seamlessly access ERP, LMS, and SAC portals.</li>
+        <li><strong>One Calculator:</strong> Access the "One Calculator" section, which includes:
+          <ul class="list-disc pl-6 mt-2">
+            <li><strong>Attendance Calculator:</strong> Enter subject names and attendance details for Lecture, Tutorial, Practical, and Skilling. Get an average attendance percentage with 90% accuracy.</li>
+            <li><strong>SGPA Calculator:</strong> Input grades and credits for each subject to calculate your Semester Grade Point Average.</li>
+            <li><strong>CGPA Calculator:</strong> Provide previous CGPA, previous credits, current SGPA, and current credits to calculate your Cumulative Grade Point Average.</li>
+          </ul>
+        </li>
+        <li><strong>Cabin Numbers:</strong> Go to the "Faculty" section. For HODs, enter the department name or HOD name. For faculty, select the department and provide the faculty name to retrieve the cabin number.</li>
+        <li><strong>Mess Menu:</strong> Visit the "Hostel" section, select your hostel, and view the respective menu. Some deviations may occur in the menu updates.</li>
+      </ol>
+
+      <!-- Back Option -->
+      <button 
+        class="mt-4 px-6 py-3 bg-red-600 text-white font-bold rounded-full hover:bg-red-700 transition"
+        onclick="document.getElementById('how-to-use').classList.toggle('hidden');">
+        Back
+      </button>
     </div>
   </div>
-</header>
+</section>
 
 
-
-    <!-- Main Container -->
-    <main class="max-w-lg mx-auto mt-10 bg-white shadow-lg rounded-lg p-6 space-y-8">
-      <!-- Navigation Section -->
-      <div class="flex justify-around mb-4">
-        <button class="px-4 py-2 bg-red-500 text-white rounded-md nav-button" id="attendanceNav">
-          Attendance Calculator
-        </button>
-        <button class="px-4 py-2 bg-blue-500 text-white rounded-md nav-button" id="sgpaNav">
-          SGPA Calculator
-        </button>
-        <button class="px-4 py-2 bg-green-500 text-white rounded-md nav-button" id="cgpaNav">
-          CGPA Calculator
-        </button>
+<!-- About KLU Section -->
+<section class="bg-white p-4 lg:p-8 shadow-lg rounded-lg border-4 border-blue-300" id="about-klu">
+  <div class="text-center max-w-4xl">
+    <img 
+      alt="Image of KLU University campus with students and faculty engaged in various activities" 
+      class="w-full rounded-t-lg" 
+      height="400" 
+      src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/Screenshot%202024-12-22%20105437.png" 
+    />
+    <div class="mt-4">
+      <h2 class="text-2xl lg:text-3xl font-bold text-red-700 mb-4">About KLU</h2>
+      <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
+        KONERU LAKSHMAIAH UNIVERSITY is a leading educational institution committed to excellence in teaching, research, and innovation. 
+        With state-of-the-art facilities, experienced faculty, and a vibrant campus life, KLU offers a wide range of 
+        undergraduate, postgraduate, and doctoral programs. The university is dedicated to nurturing students into 
+        global leaders, equipped with the knowledge and skills to thrive in a dynamic world.
+      </p>
+      
+      <!-- Achievements and Recognition -->
+      <div id="achievements-section" class="hidden mt-4 bg-red-100 p-4 rounded-full shadow-lg">
+        <h3 class="text-xl font-semibold text-red-700 mb-2">Accreditations & Rankings</h3>
+        <ul class="list-disc pl-6 space-y-2 text-gray-700 text-base lg:text-lg">
+          <li><strong>NAAC A++ Grade:</strong> With a 3.57 CGPA on a 4-point scale (2018)</li>
+          <li><strong>Category-1 University:</strong> By UGC under the categorization of universities for the grant of Graded Autonomy (2019)</li>
+          <li><strong>UGC Recognized:</strong> Under Section 2(f) and 12B of UGC Act 1956</li>
+          <li><strong>AICTE Approval:</strong> All Engineering Programs approved by All India Council for Technical Education (AICTE), New Delhi</li>
+          <li><strong>PCI Approval:</strong> Pharmacy programs approved by Pharmacy Council of India (PCI)</li>
+          <li><strong>CoA Approval:</strong> Architecture programs approved by Council of Architecture (CoA), India</li>
+          <li><strong>BAR Council of India Approval:</strong> Law programs approved by BAR Council of India</li>
+          <li><strong>Government Approval:</strong> University approved by MHRD-Govt. of India & UGC (Under Section 3 of UGC Act 1956)</li>
+        </ul>
+      </div>
+      
+      <!-- NIRF Rankings -->
+      <div id="nirf-section" class="hidden mt-4 bg-red-100 p-4 rounded-full shadow-lg">
+        <h3 class="text-xl font-semibold text-red-700 mb-2">NIRF 2024 Rankings</h3>
+        <ul class="list-decimal pl-6 space-y-2 text-gray-700 text-base lg:text-lg">
+          <li><strong>#22:</strong> University Ranking</li>
+          <li><strong>#35:</strong> Engineering Ranking</li>
+          <li><strong>#79:</strong> Management Ranking</li>
+          <li><strong>#40:</strong> Overall Ranking</li>
+          <li><strong>#Band(11-50):</strong> Innovation</li>
+        </ul>
       </div>
 
-      <!-- Attendance Calculator Section -->
-      <section class="space-y-4 active" id="attendanceCalculator">
-        <div class="card">
-          <div class="card-header">Attendance Calculator</div>
-          <form class="space-y-4" id="attendanceForm">
-            <div>
-              <label class="block text-lg font-medium" for="subjectName">Subject Name (Optional)</label>
-              <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" id="subjectName" placeholder="Enter Subject Name" type="text"/>
-            </div>
-            <div>
-              <label class="block text-lg font-medium" for="lecturePercentage">Lecture (%)</label>
-              <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" id="lecturePercentage" max="100" min="0" placeholder="Enter Lecture %" type="number"/>
-            </div>
-            <div>
-              <label class="block text-lg font-medium" for="tutorialPercentage">Tutorial (%)</label>
-              <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" id="tutorialPercentage" max="100" min="0" placeholder="Enter Tutorial %" type="number"/>
-            </div>
-            <div>
-              <label class="block text-lg font-medium" for="practicalPercentage">Practical (%)</label>
-              <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" id="practicalPercentage" max="100" min="0" placeholder="Enter Practical %" type="number"/>
-            </div>
-            <div>
-              <label class="block text-lg font-medium" for="skillingPercentage">Skilling (%)</label>
-              <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" id="skillingPercentage" max="100" min="0" placeholder="Enter Skilling %" type="number"/>
-            </div>
-            <div class="flex justify-between mt-6">
-              <button class="px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:ring-2 focus:ring-red-500 button-effect" id="calculateButton" type="button">
-                Calculate Attendance
-              </button>
-              <button class="px-6 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 focus:ring-2 focus:ring-gray-400 button-effect" id="resetButton" type="button">
-                Reset
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <!-- Results Section -->
-        <div class="mt-8 hidden" id="results">
-          <h3 class="text-xl font-bold">Results(<b>90% accuracy</b>)</h3>
-          <p class="mt-2 text-lg" id="subjectResult"></p>
-          <p class="mt-2 text-lg font-semibold" id="overallAttendance"></p>
-          <h4 class="text-lg font-semibold mt-4">Component Analysis</h4>
-          <ul class="list-disc pl-5 text-gray-700" id="componentAnalysis"></ul>
-        </div>
-      </section>
-   <!-- SGPA Calculator Section -->
-   <section class="space-y-4 hidden" id="sgpaCalculator">
-    <h2 class="text-2xl font-bold mb-4">
-     SGPA Calculator
-    </h2>
-    <form class="space-y-4" id="sgpaForm" onsubmit="return false;">
-     <div>
-      <label class="block text-lg font-medium" for="numSubjects">
-       Number of Subjects
-      </label>
-      <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 input-effect" id="numSubjects" min="1" placeholder="Enter Number of Subjects" type="number"/>
-     </div>
-     <div class="space-y-4" id="subjectsContainer">
-     </div>
-     <div class="flex justify-between mt-6">
-      <button class="px-6 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:ring-2 focus:ring-green-500 button-effect" id="generateSubjectsButton" type="button">
-       Generate Subjects
-      </button>
-      <button class="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 button-effect hidden" id="calculateSgpaButton" type="button">
-       Calculate SGPA
-      </button>
-     </div>
-    </form>
-    <div class="hidden mt-8" id="sgpaResults">
-     <h3 class="text-xl font-bold">
-      SGPA Result
-     </h3>
-     <p class="mt-2 text-lg font-semibold text-gray-700" id="sgpaResult">
-     </p>
+      <!-- More Button -->
+      <div class="text-center mt-4">
+        <button 
+          id="toggle-button" 
+          class="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 transition"
+          onclick="toggleVisibility()">
+          More Info
+        </button>
+      </div>
     </div>
-   </section>
-   <!-- CGPA Calculator Section -->
-   <section class="space-y-4 hidden" id="cgpaCalculator">
-    <h2 class="text-2xl font-bold mb-4">
-     CGPA Calculator
-    </h2>
-    <form class="space-y-4" id="cgpaForm" onsubmit="return false;">
-     <div>
-      <label class="block text-lg font-medium" for="previousCgpa">
-       Previous CGPA
-      </label>
-      <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 input-effect" id="previousCgpa" max="10" min="0" placeholder="Enter Previous CGPA" step="0.01" type="number"/>
-     </div>
-     <div>
-      <label class="block text-lg font-medium" for="previousCredits">
-       Previous Credits
-      </label>
-      <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 input-effect" id="previousCredits" min="1" placeholder="Enter Previous Credits" type="number"/>
-     </div>
-     <div>
-      <label class="block text-lg font-medium" for="currentSgpa">
-       Current SGPA
-      </label>
-      <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 input-effect" id="currentSgpa" max="10" min="0" placeholder="Enter Current SGPA" step="0.01" type="number"/>
-     </div>
-     <div>
-      <label class="block text-lg font-medium" for="currentCredits">
-       Current Credits
-      </label>
-      
-      <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 input-effect" id="currentCredits" min="1" placeholder="Enter Current Credits" type="number"/>
-     </div>
-     <button class="px-6 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:ring-2 focus:ring-green-500 button-effect" id="calculateCgpaButton" type="button">
-      Calculate CGPA
-     </button>
-    </form>
-    <div class="hidden mt-8" id="cgpaResults">
-     <h3 class="text-xl font-bold">
-      CGPA Result
-     </h3>
-     <p class="mt-2 text-lg font-semibold text-gray-700" id="cgpaResult">
-     </p>
+  </div>
+</section>
+
+<!-- Useful Links Section -->
+<section class="bg-white p-4 lg:p-8 shadow-lg rounded-lg border-4 border-green-300" id="useful-links">
+  <div class="text-center max-w-4xl">
+    <div class="mt-4">
+      <h2 class="text-2xl lg:text-3xl font-bold text-red-600 mb-4">Useful Links</h2>
+      <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
+        Access all the important portals and resources of KLU in one place. Click on the links below to navigate.
+      </p>
+
+      <!-- Links Section -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+        <!-- ERP Link -->
+        <a 
+          href="https://newerp.kluniversity.in/" 
+          target="_blank" 
+          class="block bg-red-600 text-white px-6 py-4 rounded-lg shadow-lg hover:bg-white hover:text-red-600 border-2 border-red-600 transition duration-300 text-center">
+          ERP
+        </a>
+
+        <!-- LMS Link -->
+        <a 
+          href="https://lms.kluniversity.in/my/" 
+          target="_blank" 
+          class="block bg-red-600 text-white px-6 py-4 rounded-lg shadow-lg hover:bg-white hover:text-red-600 border-2 border-red-600 transition duration-300 text-center">
+          LMS
+        </a>
+
+        <!-- ONE Calculator Link -->
+<a 
+  href="calculator.html" 
+  class="block bg-red-600 text-white px-6 py-4 rounded-lg shadow-lg hover:bg-white hover:text-red-600 border-2 border-red-600 transition duration-300 text-center">
+  ONE CALCULATOR
+</a>
+
+<!-- ONE Mess Link -->
+<a 
+  href="mess.html" 
+  class="block bg-red-600 text-white px-6 py-4 rounded-lg shadow-lg hover:bg-white hover:text-red-600 border-2 border-red-600 transition duration-300 text-center">
+  ONE MESS
+</a>
+
+<!-- ONE Cabin Numbers Link -->
+<a 
+  href="cabin.html" 
+  class="block bg-red-600 text-white px-6 py-4 rounded-lg shadow-lg hover:bg-white hover:text-red-600 border-2 border-red-600 transition duration-300 text-center">
+  ONE CABIN NO'S
+</a>
+
+      </div>
     </div>
-   </section>
-  </main>
-  <footer class="bg-gray-800 text-white py-4 text-center">
-   <p>
-    © 2024 KLU ONE Calculators. All Rights Reserved.
-    
-    <p>Idea,Design and Development by Sumanth</p>
-   </p>
-  </footer>
-  <script>
-   // Common Navigation Logic
-    const attendanceNav = document.getElementById('attendanceNav');
-    const sgpaNav = document.getElementById('sgpaNav');
-    const cgpaNav = document.getElementById('cgpaNav');
-    const attendanceCalculator = document.getElementById('attendanceCalculator');
-    const sgpaCalculator = document.getElementById('sgpaCalculator');
-    const cgpaCalculator = document.getElementById('cgpaCalculator');
-    
-    const showSection = (sectionToShow) => {
-      attendanceCalculator.classList.add('hidden');
-      sgpaCalculator.classList.add('hidden');
-      cgpaCalculator.classList.add('hidden');
-      sectionToShow.classList.remove('hidden');
-    };
-    
-    attendanceNav.addEventListener('click', () => showSection(attendanceCalculator));
-    sgpaNav.addEventListener('click', () => showSection(sgpaCalculator));
-    cgpaNav.addEventListener('click', () => showSection(cgpaCalculator));
-    // Attendance Calculator Logic
-    const calculateButton = document.getElementById('calculateButton');
-    const resetButton = document.getElementById('resetButton');
-    const resultsSection = document.getElementById('results');
-    const subjectResultEl = document.getElementById('subjectResult');
-    const overallAttendanceEl = document.getElementById('overallAttendance');
-    const componentAnalysisEl = document.getElementById('componentAnalysis');
-    const calculateAttendance = () => {
-      const subjectName = document.getElementById('subjectName').value || 'N/A';
-      const lecturePercentage = parseFloat(document.getElementById('lecturePercentage').value) || null;
-      const tutorialPercentage = parseFloat(document.getElementById('tutorialPercentage').value) || null;
-      const practicalPercentage = parseFloat(document.getElementById('practicalPercentage').value) || null;
-      const skillingPercentage = parseFloat(document.getElementById('skillingPercentage').value) || null;
-      const weights = { lecture: 1.0, tutorial: 0.25, practical: 0.5, skilling: 0.25 };
-      let totalWeight = 0;
-      let weightedSum = 0;
-      const components = [
-        { percentage: lecturePercentage, weight: weights.lecture, name: "Lecture" },
-        { percentage: tutorialPercentage, weight: weights.tutorial, name: "Tutorial" },
-        { percentage: practicalPercentage, weight: weights.practical, name: "Practical" },
-        { percentage: skillingPercentage, weight: weights.skilling, name: "Skilling" }
-      ];
-      const analysis = components.map(component => {
-        if (component.percentage !== null) {
-          totalWeight += component.weight;
-          weightedSum += component.percentage * component.weight;
-          return `<li>${component.name}: ${component.percentage}%</li>`;
-        }
-        return '';
-      }).filter(Boolean);
-      if (totalWeight === 0) {
-        alert('Please provide percentages for at least one component.');
-        return;
-      }
-      const overallAttendance = weightedSum / totalWeight;
-      subjectResultEl.textContent = `Subject: ${subjectName}`;
-      overallAttendanceEl.textContent = `Overall Attendance: ${overallAttendance.toFixed(2)}%`;
-      componentAnalysisEl.innerHTML = analysis.join('');
-      resultsSection.classList.remove('hidden');
-    };
-    const resetForm = () => {
-      document.getElementById('subjectName').value = '';
-      document.getElementById('lecturePercentage').value = '';
-      document.getElementById('tutorialPercentage').value = '';
-      document.getElementById('practicalPercentage').value = '';
-      document.getElementById('skillingPercentage').value = '';
-      resultsSection.classList.add('hidden');
-    };
-    calculateButton.addEventListener('click', calculateAttendance);
-    resetButton.addEventListener('click', resetForm);
-    // SGPA Calculator Logic
-    const numSubjectsInput = document.getElementById('numSubjects');
-    const subjectsContainer = document.getElementById('subjectsContainer');
-    const generateSubjectsButton = document.getElementById('generateSubjectsButton');
-    const calculateSgpaButton = document.getElementById('calculateSgpaButton');
-    const sgpaResultEl = document.getElementById('sgpaResult');
+  </div>
+</section>
 
-    generateSubjectsButton.addEventListener('click', () => {
-      subjectsContainer.innerHTML = '';
-      const numSubjects = parseInt(numSubjectsInput.value);
-      if (isNaN(numSubjects) || numSubjects <= 0) {
-        alert('Please enter a valid number of subjects.');
-        return;
-      }
-      for (let i = 1; i <= numSubjects; i++) {
-        subjectsContainer.innerHTML += `
-          <div>
-            <label class="block">Subject ${i}</label>
-            <input type="number" id="gradePoint${i}" placeholder="Grade Point" class="mt-1 mr-2 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 input-effect">
-            <input type="number" id="credit${i}" placeholder="Credits" class="mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 input-effect">
-          </div>`;
-      }
-      calculateSgpaButton.classList.remove('hidden');
-    });
 
-    calculateSgpaButton.addEventListener('click', () => {
-      let totalPoints = 0, totalCredits = 0;
-      const numSubjects = parseInt(numSubjectsInput.value);
-      for (let i = 1; i <= numSubjects; i++) {
-        const gradePoint = parseFloat(document.getElementById(`gradePoint${i}`).value);
-        const credit = parseFloat(document.getElementById(`credit${i}`).value);
-        if (isNaN(gradePoint) || isNaN(credit) || credit <= 0) {
-          alert('Please enter valid values for all subjects.');
-          return;
-        }
-        totalPoints += gradePoint * credit;
-        totalCredits += credit;
-      }
-      const sgpa = totalPoints / totalCredits;
-      sgpaResultEl.textContent = `SGPA: ${sgpa.toFixed(2)}`;
-      document.getElementById('sgpaResults').classList.remove('hidden');
-    });
 
-    // CGPA Calculator Logic
-    const calculateCgpaButton = document.getElementById('calculateCgpaButton');
-    const cgpaResultEl = document.getElementById('cgpaResult');
-    calculateCgpaButton.addEventListener('click', () => {
-      const previousCgpa = parseFloat(document.getElementById('previousCgpa').value);
-      const previousCredits = parseFloat(document.getElementById('previousCredits').value);
-      const currentSgpa = parseFloat(document.getElementById('currentSgpa').value);
-      const currentCredits = parseFloat(document.getElementById('currentCredits').value);
-      if (
-        isNaN(previousCgpa) || isNaN(previousCredits) ||
-        isNaN(currentSgpa) || isNaN(currentCredits) ||
-        previousCredits <= 0 || currentCredits <= 0
-      ) {
-        alert('Please enter valid values.');
-        return;
+<!-- JavaScript to Toggle Visibility -->
+<script>
+  function toggleVisibility() {
+    const achievementsSection = document.getElementById('achievements-section');
+    const nirfSection = document.getElementById('nirf-section');
+    const toggleButton = document.getElementById('toggle-button');
+
+    // Toggle visibility of the sections
+    achievementsSection.classList.toggle('hidden');
+    nirfSection.classList.toggle('hidden');
+
+    // Update button text
+    toggleButton.innerText = toggleButton.innerText === 'More Info' ? 'Less Info' : 'More Info';
+  }
+</script>
+
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/67659a42af5bfec1dbdf0e98/1ifie5559';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+<!--End of Tawk.to Script-->
+<style>
+    /* Resize the Tawk.to widget */
+    #Tawk_API, #Tawk_API iframe {
+      width: 35% !important; /* Adjust the width */
+      height: 50% !important; /* Adjust the height */
+    }
+
+    /* Mobile Devices: Resize the widget */
+    @media (max-width: 768px) {
+      #Tawk_API iframe {
+        width: 60% !important; /* Adjust the width */
+        height: 80% !important; /* Adjust the height */
       }
-      const totalCredits = previousCredits + currentCredits;
-      const cgpa = ((previousCgpa * previousCredits) + (currentSgpa * currentCredits)) / totalCredits;
-      cgpaResultEl.textContent = `CGPA: ${cgpa.toFixed(2)}`;
-      document.getElementById('cgpaResults').classList.remove('hidden');
-    });
-  </script>
- </body>
+    }
+    </style>
+
+    <!-- Footer -->
+<footer class="bg-gray-800 text-white text-center p-4 lg:p-8 mt-4 lg:mt-8">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
+            <!-- Left Section -->
+            <div class="text-sm lg:text-base">
+                <p>&copy; 2024 KLU ONE. All rights reserved.</p>
+                <p>Idea, Design, and Development by <b>SUMANTH</b></p>
+            </div>
+            <!-- Social Media Icons -->
+            <div class="flex space-x-6 text-xl">
+                <a href="#" class="hover:text-blue-500 transition-colors"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="hover:text-blue-400 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-blue-700 transition-colors"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <script>
+        // Remove Logo Overlay after Animation
+        window.onload = () => {
+            const overlay = document.getElementById('logo-overlay');
+            setTimeout(() => { overlay.style.display = 'none'; }, 2000);
+        };
+
+        // Flip "ONE" and "1" text
+        setInterval(() => {
+            const shiningText = document.getElementById("shining-text");
+            shiningText.textContent = shiningText.textContent === "ONE" ? "1" : "ONE";
+        }, 2000);
+    </script>
+    
+    
+</body>
 </html>
