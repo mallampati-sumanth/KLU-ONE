@@ -6,107 +6,90 @@ const hodData = [
     name: "Dr. Suman Maloji",
     cabin: "R-403",
     facultyList: [
-  { sno: 1, name: "Dr. Suman Maloji", designation: "Professor & HOD", cabin: "R-403" },
-  { sno: 2, name: "Dr. A. S. Chandra Sekhara Sastry", designation: "Professor", cabin: 102 },
-  { sno: 3, name: "Dr. Vullanki Rajesh", designation: "Professor", cabin: 103 },
-  { sno: 4, name: "Dr. Habibulla Khan", designation: "Professor", cabin: 104 },
-  { sno: 5, name: "Dr. Kotamaraju Sarat Kumar", designation: "Professor", cabin: 105 },
-  { sno: 6, name: "Dr. Chinnari Sri Kavya Korada", designation: "Professor", cabin: 106 },
-  { sno: 7, name: "Dr. B.T.P. Madhav", designation: "Professor", cabin: 107 },
-  { sno: 8, name: "Dr. Madhavareddy Venkata Narayana", designation: "Professor", cabin: 108 },
-  { sno: 9, name: "Dr. Immadi Govardhini", designation: "Professor", cabin: "L-413" },
-  { sno: 10, name: "Dr. Kakarla Hari Kishore", designation: "Professor", cabin: 110 },
-  { sno: 11, name: "Dr. Venkata Ratnam Devanaboyina", designation: "Professor", cabin: 111 },
-  { sno: 12, name: "Dr. Seeram Srinivasa Rao", designation: "Professor", cabin: 112 },
-  { sno: 13, name: "Dr. Mohammad Zia Ur Rahman", designation: "Professor", cabin: 113 },
-  { sno: 14, name: "Dr. Polurie Venkata Vijay Kishore", designation: "Professor", cabin: 114 },
-  { sno: 15, name: "Dr. Pokkunuri Pardha Saradhi", designation: "Professor", cabin: 115 },
-  { sno: 16, name: "Dr. Karumuri Srinivasa Rao", designation: "Professor", cabin: 116 },
-  { sno: 17, name: "Dr. Sujatha Moorthy", designation: "Professor", cabin: "R-102" },
-  { sno: 18, name: "Dr. M. Siva Ganga Prasad", designation: "Professor", cabin: 118 },
-  { sno: 19, name: "Dr. Patcha Satya Srinivas Babu", designation: "Professor", cabin: 119 },
-  { sno: 20, name: "Dr. Thirumuru Rama Krishna", designation: "Professor", cabin: 120 },
-  { sno: 21, name: "Dr. Ravi Kumar Mokkapati", designation: "Associate Professor", cabin: 121 },
-  { sno: 22, name: "Dr. B. Srinivasa Kumar", designation: "Associate Professor", cabin: 122 },
-  { sno: 23, name: "Dr. Grande Suresh Kumar", designation: "Associate Professor", cabin: 123 },
-  { sno: 24, name: "Dr. Kallakunta Ravi Kumar", designation: "Associate Professor", cabin: 124 },
-  { sno: 25, name: "Dr. Gorla Venkata Ganesh", designation: "Associate Professor", cabin: 125 },
-  { sno: 26, name: "Dr. Munuswamy Siva Kumar", designation: "Associate Professor", cabin: 126 },
-  { sno: 27, name: "Dr. Syed Shameem", designation: "Associate Professor", cabin: 127 },
-  { sno: 28, name: "Dr. Mareedu Venkata Durga Prasad", designation: "Associate Professor", cabin: 128 },
-  { sno: 29, name: "Dr. Guda Rama Krishna Prasad", designation: "Associate Professor", cabin: 129 },
-  { sno: 30, name: "Dr. Dokku Bhavana", designation: "Associate Professor", cabin: 130 },
-  { sno: 31, name: "Dr. Vasipalli Subba Reddy", designation: "Associate Professor", cabin: 131 },
-  { sno: 32, name: "Dr. Sreevardhan Cheerla", designation: "Associate Professor", cabin: 132 },
-  { sno: 33, name: "Dr. Badugu Suresh", designation: "Associate Professor", cabin: 133 },
-  { sno: 34, name: "Dr. Chakka Raghava Prasad", designation: "Associate Professor", cabin: 134 },
-  { sno: 35, name: "Dr. Nalluri Siddaiah", designation: "Associate Professor", cabin: 135 },
-  { sno: 36, name: "Dr. Devireddy Sreenivasa Rao", designation: "Associate Professor", cabin: 136 },
-  { sno: 37, name: "Dr. Pathan Saleem Akram", designation: "Associate Professor", cabin: 137 },
-  { sno: 38, name: "Dr. Gubbala China Satyanarayana", designation: "Associate Professor", cabin: 138 },
-  { sno: 39, name: "Dr. Katta Rajesh Babu", designation: "Associate Professor", cabin: 139 },
-  { sno: 40, name: "Dr. G. Sai Krishna Santosh", designation: "Associate Professor", cabin: 140 },
-  { sno: 41, name: "Dr. Sampad Kumar Panda", designation: "Associate Professor", cabin: 141 },
-  { sno: 42, name: "Dr. Ernest Ravindran R S", designation: "Associate Professor", cabin: 142 },
-  { sno: 43, name: "Dr. Yalavarthi Usha Devi", designation: "Associate Professor", cabin: 143 },
-  { sno: 44, name: "Dr. Kondaveeti Girija Sravani", designation: "Associate Professor", cabin: 144 },
-  { sno: 45, name: "Dr. Lakshman Pappula", designation: "Associate Professor", cabin: 145 },
-  { sno: 46, name: "Dr. Mannepalli Kasi Prasad", designation: "Associate Professor", cabin: 146 },
-  { sno: 47, name: "Dr. N Prabakaran", designation: "Associate Professor", cabin: 147 },
-  { sno: 48, name: "Dr. Vipul Agarwal", designation: "Associate Professor", cabin: 148 },
-  { sno: 49, name: "Dr. Bhimavarapu John Philip", designation: "Associate Professor", cabin: 149 },
-  { sno: 50, name: "Dr. Durga Prasad Tripathi", designation: "Associate Professor", cabin: 150 },
-  { sno: 51, name: "Dr. Bukya Balaji", designation: "Associate Professor", cabin: 151 },
-  { sno: 52, name: "Dr. Jyothi Ravi Kiran Kumar Dabbakuti", designation: "Associate Professor", cabin: 152 },
-  { sno: 53, name: "Dr. M. Muzammil Parvez", designation: "Associate Professor", cabin: 153 },
-  { sno: 54, name: "Dr. Chella Santhosh", designation: "Associate Professor", cabin: 154 },
-  { sno: 55, name: "Dr. S Arun Metha", designation: "Associate Professor", cabin: 155 },
-  { sno: 56, name: "Dr. Eepuri Kiran Kumar", designation: "Associate Professor", cabin: 156 },
-  { sno: 57, name: "Dr. Aravind Kilaru", designation: "Associate Professor", cabin: 157 },
-  { sno: 58, name: "Dr. Atul Kumar", designation: "Associate Professor", cabin: 158 },
-  { sno: 59, name: "Dr. Aravindhan Alagarsamy", designation: "Associate Professor", cabin: 159 },
-  { sno: 60, name: "Dr. Abhishek Pahuja", designation: "Associate Professor", cabin: 160 },
-  { sno: 61, name: "Dr. Debajit Deb", designation: "Associate Professor", cabin: 161 },
-  { sno: 62, name: "Dr. Sumit Bhushan", designation: "Associate Professor", cabin: 162 },
-  { sno: 63, name: "Dr. Vivekananthan Venkateswaran", designation: "Associate Professor", cabin: 163 },
-  { sno: 64, name: "Dr. Nagesh Mantravadi", designation: "Associate Professor", cabin: 164 },
-  { sno: 65, name: "Dr. Nepalli Venkata Krishna Ramesh", designation: "Associate Professor", cabin: 165 },
-  { sno: 66, name: "Dr. Merigala Rajanidevi", designation: "Associate Professor", cabin: 166 },
-  { sno: 67, name: "Dr. Ranjan Kumar Mohapatra", designation: "Associate Professor", cabin: 167 },
-  { sno: 68, name: "Dr. Narayanam V. Siva Kumari", designation: "Assistant Professor", cabin: 168 },
-  { sno: 69, name: "Mr. Suresh Namgiri", designation: "Assistant Professor", cabin: 169 },
-  { sno: 70, name: "Mr. Badita Kali Vara Prasad", designation: "Assistant Professor", cabin: 170 },
-  { sno: 71, name: "Dr. Koganti Sripath Roy", designation: "Assistant Professor", cabin: 171 },
-  { sno: 72, name: "Dr. Karra Sony", designation: "Assistant Professor", cabin: 172 },
-  { sno: 73, name: "Dr. SK Babu", designation: "Assistant Professor", cabin: 173 },
-  { sno: 74, name: "Ms. Kolachana Swetha", designation: "Assistant Professor", cabin: 174 },
-  { sno: 75, name: "Dr. T. Nageswara Rao", designation: "Assistant Professor", cabin: 175 },
-  { sno: 76, name: "Mr. Palagani Srikanth Reddy", designation: "Assistant Professor", cabin: 176 },
-  { sno: 77, name: "Dr. Kasi Uday Kiran", designation: "Assistant Professor", cabin: 177 },
-  { sno: 78, name: "Dr. Vankayalapati Sahiti", designation: "Assistant Professor", cabin: 178 },
-  { sno: 79, name: "Mr. Ramaiah Challa", designation: "Assistant Professor", cabin: 179 },
-  { sno: 80, name: "Dr. K. Suresh Kumar", designation: "Assistant Professor", cabin: 180 },
-  { sno: 81, name: "Dr. Kambhampati Venkata Sowmya", designation: "Assistant Professor", cabin: 181 },
-  { sno: 82, name: "Dr. Nadakuduru Venkata Ramana", designation: "Assistant Professor", cabin: 182 },
-  { sno: 83, name: "Dr. Karri Radha", designation: "Assistant Professor", cabin: 183 },
-  { sno: 84, name: "Dr. Sowmya Ranjan Panda", designation: "Assistant Professor", cabin: 184 },
-  { sno: 85, name: "Dr. Rudraraju Sridevi", designation: "Assistant Professor", cabin: 185 },
-  { sno: 86, name: "Dr. Sujatha Guntur", designation: "Assistant Professor", cabin: 186 },
-  { sno: 87, name: "Mr. Kalluri Venkata Ravi", designation: "Assistant Professor", cabin: 187 },
-  { sno: 88, name: "Dr. Kakatiya Bhupal", designation: "Assistant Professor", cabin: 188 },
-  { sno: 89, name: "Mr. Deva Kumar L N", designation: "Assistant Professor", cabin: 189 },
-  { sno: 90, name: "Dr. Surampalli Prameela", designation: "Assistant Professor", cabin: 190 },
-  { sno: 91, name: "Dr. Ganta Sri Latha", designation: "Assistant Professor", cabin: 191 },
-  { sno: 92, name: "Dr. Peraka Rajya Laxmi", designation: "Assistant Professor", cabin: 192 },
-  { sno: 93, name: "Mr. T. Ashok Kumar", designation: "Assistant Professor", cabin: 193 },
-  { sno: 94, name: "Dr. Satya Madhavi", designation: "Assistant Professor", cabin: 194 },
-  { sno: 95, name: "Dr. K. C. Jaya Sankar", designation: "Assistant Professor", cabin: 195 },
-  { sno: 96, name: "Dr. Nadendla Pavani", designation: "Assistant Professor", cabin: 196 },
-  { sno: 97, name: "Dr. Bharat Bhushan Das", designation: "Assistant Professor", cabin: 197 },
-  { sno: 98, name: "Dr. Poluri Raju", designation: "Assistant Professor", cabin: 198 },
-  { sno: 99, name: "Dr. K. Deepak", designation: "Assistant Professor", cabin: 199 },
-  { sno: 100, name: "Dr. A V Prabhu", designation: "Associate Professor", cabin: 199 },
-  { sno: 99, name: "Dr.S R Srither", designation: "Assistant Professor", cabin: 199 },
+  { sno: 1, name: "Dr.M.Venkata Narayana", designation: "Professor", room: "R102", cabin: "1B1" },
+  { sno: 2, name: "Dr.M.Suman", designation: "Professor", room: "R403", cabin: "R403" },
+  { sno: 3, name: "Dr.I.Govardhani", designation: "Professor", room: "L417", cabin: "" },
+  { sno: 4, name: "Dr.K.Ch.Sri Kavya", designation: "Professor", room: "R611", cabin: "R611" },
+  { sno: 5, name: "Dr.B.T.P.Madhav", designation: "Professor", room: "L709", cabin: "L709" },
+  { sno: 6, name: "Dr.K.Sarat Kumar", designation: "Professor", room: "C222", cabin: "C222" },
+  { sno: 7, name: "Dr.K.Hari Kishore", designation: "Professor", room: "C115", cabin: "C115" },
+  { sno: 8, name: "Dr.M.Sridhar", designation: "Professor", room: "R102", cabin: "1A6" },
+  { sno: 9, name: "Dr.D.Venkata Ratnam", designation: "Professor", room: "L701", cabin: "L701" },
+  { sno: 10, name: "Dr.G.V.Subbarao", designation: "Professor", room: "L702", cabin: "L702" },
+  { sno: 11, name: "Dr.M.Venu Gopala Rao", designation: "Professor", room: "C215B", cabin: "C215B" },
+  { sno: 12, name: "Dr.V.Rajesh", designation: "Professor", room: "C302", cabin: "C302" },
+  { sno: 13, name: "Dr.A.S.C.S.Sastry", designation: "Professor", room: "L409", cabin: "L409" },
+  { sno: 14, name: "Dr. Md.Z Rahman", designation: "Professor", room: "R102", cabin: "1A10" },
+  { sno: 15, name: "Dr.P.Venkat Vijay Kishore", designation: "Professor", room: "L703", cabin: "L703" },
+  { sno: 16, name: "Dr.P.Pardhasaradhi", designation: "Professor", room: "R102", cabin: "1A11" },
+  { sno: 17, name: "Dr.S.Koteswararao", designation: "Professor", room: "L702", cabin: "L702" },
+  { sno: 18, name: "Dr.K.Srinivasarao", designation: "Professor", room: "L706", cabin: "L706" },
+  { sno: 19, name: "Dr.M.Sujatha", designation: "Professor", room: "R102", cabin: "1A3" },
+  { sno: 20, name: "Dr.P. Satya Srinivas Babu", designation: "Professor", room: "C611", cabin: "C611" },
+  { sno: 21, name: "Dr.Habibulla Khan", designation: "Professor", room: "C106A", cabin: "C106A" },
+  { sno: 22, name: "Dr.Santosh Kumar", designation: "Professor", room: "C610", cabin: "C610" },
+  { sno: 23, name: "Dr.M.Ravi Kumar", designation: "Associate Professor", room: "R401", cabin: "4A14" },
+  { sno: 24, name: "Dr.K.Ravi Kumar", designation: "Associate Professor", room: "L409", cabin: "L409" },
+  { sno: 25, name: "Dr.G.Venkata Ganesh", designation: "Associate Professor", room: "R102", cabin: "1A5" },
+  { sno: 26, name: "Dr.M.Siva Kumar", designation: "Associate Professor", room: "M001", cabin: "M001" },
+  { sno: 27, name: "Dr.Syed Inthiyaz", designation: "Associate Professor", room: "C316", cabin: "C316" },
+  { sno: 28, name: "Dr.Fazal Noorbasha", designation: "Associate Professor", room: "R102", cabin: "1A2" },
+  { sno: 29, name: "Dr.Syed Shameem", designation: "Associate Professor", room: "R102", cabin: "1A9" },
+  { sno: 30, name: "Dr.G.R.K.Prasad", designation: "Associate Professor", room: "C316", cabin: "C316" },
+  { sno: 31, name: "Dr.D.Bhavana", designation: "Associate Professor", room: "R401", cabin: "4A17" },
+  { sno: 32, name: "Dr.V.Subba Reddy", designation: "Associate Professor", room: "R401", cabin: "4A16" },
+  { sno: 33, name: "Dr.C.Sreevardhan", designation: "Associate Professor", room: "L409", cabin: "L409" },
+  { sno: 34, name: "Dr.B.Suresh", designation: "Associate Professor", room: "R501", cabin: "5A13" },
+  { sno: 35, name: "Dr.Ch.Raghava Prasad", designation: "Associate Professor", room: "L409", cabin: "L409" },
+  { sno: 36, name: "Dr.D.Sreenivasa Rao", designation: "Associate Professor", room: "R401", cabin: "4A1" },
+  { sno: 37, name: "Dr.P.Saleem Akram", designation: "Associate Professor", room: "R401", cabin: "4A22" },
+  { sno: 38, name: "Dr.China Satyanarayana", designation: "Associate Professor", room: "L701", cabin: "L701" },
+  { sno: 39, name: "Dr.K.Rajesh Babu", designation: "Associate Professor", room: "R305", cabin: "3A4" },
+  { sno: 40, name: "Dr.G.Sai Krishna Santosh", designation: "Associate Professor", room: "R305", cabin: "3A5" },
+  { sno: 41, name: "Dr.A.V.Prabhu", designation: "Associate Professor", room: "R401", cabin: "4A24" },
+  { sno: 42, name: "Dr.Sampad Kumar Panda", designation: "Associate Professor", room: "R501", cabin: "5A18" },
+  { sno: 43, name: "Dr.R.S.Ernest Ravindran", designation: "Associate Professor", room: "R305", cabin: "3A10" },
+  { sno: 44, name: "Dr.Y.Usha Devi", designation: "Associate Professor", room: "R305", cabin: "3A6" },
+  { sno: 45, name: "Dr.K.Girija Sravani", designation: "Associate Professor", room: "L706", cabin: "L706" },
+  { sno: 46, name: "Dr.M.Kasi Prasad", designation: "Associate Professor", room: "R501", cabin: "5A23" },
+  { sno: 47, name: "Dr.N.Prabakaran", designation: "Associate Professor", room: "R305", cabin: "3A8" },
+  { sno: 48, name: "Dr.Vipul Agarwal", designation: "Associate Professor", room: "R305", cabin: "3A12" },
+  { sno: 49, name: "Dr.C.S. Preetham Reddy", designation: "Associate Professor", room: "R102", cabin: "1A8" },
+  { sno: 50, name: "Dr.Bukya Balaji", designation: "Associate Professor", room: "R401", cabin: "4A18" },
+  { sno: 51, name: "Dr.M.Muzammil Parvez", designation: "Associate Professor", room: "R401", cabin: "4A10" },
+  { sno: 52, name: "Dr.P.Syam Sundar", designation: "Associate Professor", room: "R305", cabin: "3A1" },
+  { sno: 53, name: "Dr.SV.Aswin Kumer", designation: "Associate Professor", room: "R401", cabin: "4A20" },
+  { sno: 54, name: "Dr.R.Revathi", designation: "Associate Professor", room: "R401", cabin: "4A12" },
+  { sno: 55, name: "Dr.S.Rooban", designation: "Associate Professor", room: "R401", cabin: "4A13" },
+  { sno: 56, name: "Dr.Chella Santhosh", designation: "Associate Professor", room: "R401", cabin: "4A15" },
+  { sno: 57, name: "Dr.S.Arunmetha", designation: "Associate Professor", room: "R401", cabin: "4B2" },
+  { sno: 58, name: "Dr.E.Kiran Kumar", designation: "Associate Professor", room: "R305", cabin: "3A2" },
+  { sno: 59, name: "Dr.Aravind Kilaru", designation: "Associate Professor", room: "R305", cabin: "3A4" },
+  { sno: 60, name: "Dr.Aravindhan Alagarsamy", designation: "Associate Professor", room: "R401", cabin: "4A8" },
+  { sno: 61, name: "Dr.Abhishek Pahuja", designation: "Associate Professor", room: "R501", cabin: "5A21" },
+  { sno: 62, name: "Dr.Sumit Bhushan", designation: "Associate Professor", room: "R305", cabin: "3A9" },
+  { sno: 63, name: "Dr.Vivekananthan Venkateswaran", designation: "Associate Professor", room: "C611", cabin: "C611" },
+  { sno: 64, name: "Dr.SR Srither", designation: "Associate Professor", room: "R401", cabin: "4A11" },
+  { sno: 65, name: "Dr.Sandip Swarnakar", designation: "Associate Professor", room: "R501", cabin: "5A19" },
+  { sno: 66, name: "Dr.K.Sripath Roy", designation: "Assistant Professor", room: "C206", cabin: "C206" },
+  { sno: 67, name: "Dr.K.Sony", designation: "Assistant Professor", room: "R401", cabin: "4A9" },
+  { sno: 68, name: "Mr.P.Srikanth Reddy", designation: "Assistant Professor", room: "R106", cabin: "R106" },
+  { sno: 69, name: "Dr.K.Uday Kiran", designation: "Assistant Professor", room: "C114B", cabin: "C114B" },
+  { sno: 70, name: "Dr.K.Suresh Kumar", designation: "Assistant Professor", room: "R401", cabin: "4A21" },
+  { sno: 71, name: "Dr.K.V.Sowmya", designation: "Assistant Professor", room: "C413", cabin: "C413" },
+  { sno: 72, name: "Mr.M.Lakshmana Kumar", designation: "Assistant Professor", room: "C214B", cabin: "C214B" },
+  { sno: 73, name: "Dr.S.Vamsee Krishna", designation: "Assistant Professor", room: "R102", cabin: "1A1" },
+  { sno: 74, name: "Dr.Atul Kumar", designation: "Assistant Professor", room: "R102", cabin: "1A4" },
+  { sno: 75, name: "Dr.SK.Hasane Ahammad", designation: "Assistant Professor", room: "L704A", cabin: "L704A" },
+  { sno: 76, name: "Dr.Debajit Deb", designation: "Assistant Professor", room: "R305", cabin: "3A3" },
+  { sno: 77, name: "Dr.Vasimalla Yesudasu", designation: "Assistant Professor", room: "R608", cabin: "R608" },
+  { sno: 78, name: "Mr.M.Ajay Babu", designation: "Assistant Professor", room: "R005", cabin: "R005" },
+  { sno: 79, name: "Dr.Nishant Kumar", designation: "Assistant Professor", room: "R401", cabin: "4A19" },
+  { sno: 80, name: "Dr.Vyoma Singh", designation: "Assistant Professor", room: "R102", cabin: "1B4" },
+  { sno: 81, name: "Dr.Balaji Ramachandran", designation: "Assistant Professor", room: "R401", cabin: "4A23" },
+  { sno: 82, name: "Ms.P.Sivani", designation: "Assistant Professor", room: "R305", cabin: "3B4" },
+  { sno: 83, name: "Mr.Sripathi Siva Prasad", designation: "Assistant Professor", room: "R608", cabin: "R608" },
+  { sno: 84, name: "Dr.Sourabh Jain", designation: "Assistant Professor", room: "R401", cabin: "4B3" }
     ],
   },
   {
@@ -931,40 +914,43 @@ function toggleSection(section) {
   }
 
   // Function to search Faculty Cabin by department and name
-  function searchFacultyCabin() {
-    const departmentValue = document.getElementById("faculty-department").value;
-    const facultySearchValue = document.getElementById("faculty-search-input").value.toLowerCase();
-    const resultDiv = document.getElementById("faculty-result");
+function searchFacultyCabin() {
+  const departmentValue = document.getElementById("faculty-department").value;
+  const facultySearchValue = document.getElementById("faculty-search-input").value.toLowerCase();
+  const resultDiv = document.getElementById("faculty-result");
 
-    if (!departmentValue) {
-      resultDiv.innerHTML = `<p class="text-lg font-bold text-red-600">Please select a department first.</p>`;
-      return;
-    }
-
-    if (!facultySearchValue) {
-      resultDiv.innerHTML = `<p class="text-lg font-bold text-red-600">Please enter a faculty name.</p>`;
-      return;
-    }
-
-    const selectedDepartment = hodData.find((hod) => hod.alias.includes(departmentValue));
-
-    if (!selectedDepartment || !selectedDepartment.facultyList) {
-      resultDiv.innerHTML = `<p class="text-lg font-bold text-red-600">Department not found or has no faculty listed.</p>`;
-      return;
-    }
-
-    const foundFaculty = selectedDepartment.facultyList.find((faculty) =>
-      faculty.name.toLowerCase().includes(facultySearchValue)
-    );
-
-    if (foundFaculty) {
-      resultDiv.innerHTML = `
-        <p class="text-lg font-bold text-green-600">Faculty Member Found:</p>
-        <p><strong>Department:</strong> ${selectedDepartment.department}</p>
-        <p><strong>Name:</strong> ${foundFaculty.name}</p>
-        <p><strong>Cabin Number:</strong> ${foundFaculty.cabin || "Not Available"}</p>
-      `;
-    } else {
-      resultDiv.innerHTML = `<p class="text-lg font-bold text-red-600">No faculty found in the selected department.</p>`;
-    }
+  if (!departmentValue) {
+    resultDiv.innerHTML = `<p class="text-lg font-bold text-red-600">Please select a department first.</p>`;
+    return;
   }
+
+  if (!facultySearchValue) {
+    resultDiv.innerHTML = `<p class="text-lg font-bold text-red-600">Please enter a faculty name.</p>`;
+    return;
+  }
+
+  // Assuming hodData is available globally or passed into this function
+  const selectedDepartment = hodData.find((hod) => hod.alias.includes(departmentValue));
+
+  if (!selectedDepartment || !selectedDepartment.facultyList) {
+    resultDiv.innerHTML = `<p class="text-lg font-bold text-red-600">Department not found or has no faculty listed.</p>`;
+    return;
+  }
+
+  const foundFaculty = selectedDepartment.facultyList.find((faculty) =>
+    faculty.name.toLowerCase().includes(facultySearchValue)
+  );
+
+  if (foundFaculty) {
+    resultDiv.innerHTML = `
+      <p class="text-lg font-bold text-green-600">Faculty Member Found:</p>
+      <p><strong>Department:</strong> ${selectedDepartment.department}</p>
+      <p><strong>Name:</strong> ${foundFaculty.name}</p>
+      <p><strong>Designation:</strong> ${foundFaculty.designation}</p>
+      <p><strong>Room Number:</strong> ${foundFaculty.room || "Not Available"}</p>
+      <p><strong>Cabin Number:</strong> ${foundFaculty.cabin || "Not Available"}</p>
+    `;
+  } else {
+    resultDiv.innerHTML = `<p class="text-lg font-bold text-red-600">No faculty found in the selected department.</p>`;
+  }
+}
