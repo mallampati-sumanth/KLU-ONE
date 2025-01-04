@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>Map Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        .zoom-container {
+            overflow: hidden;
+            position: relative;
+        }
+        .zoom-container img {
+            transition: transform 0.25s ease;
+        }
+        .zoom-container:hover img {
+            transform: scale(1.5);
+        }
+    </style>
+</head>
+<body class="font-roboto bg-gray-100">
+    <header class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">Map Viewer</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a class="hover:underline" href="#">Home</a></li>
+                    <li><a class="hover:underline" href="#">About</a></li>
+                    <li><a class="hover:underline" href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container mx-auto p-4">
+    <div class="bg-white shadow-md rounded-lg overflow-hidden zoom-container">
+        <a href="https://postimg.cc/tntZnxRs" target="_blank">
+            <img src="https://i.postimg.cc/2yg4JQP7/map.png" alt="A detailed map showing various geographical features and landmarks" class="w-full h-auto" width="1200" height="800"/>
+        </a>
+    </div>
+</main>
+
+    <footer class="bg-blue-600 text-white p-4 mt-4">
+        <div class="container mx-auto text-center">
+            <p>© 2023 Map Viewer. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
