@@ -1,47 +1,92 @@
-<html>
+<html lang="en">
 <head>
-    <title>Map Website</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
-    <style>
-        .zoom-container {
-            overflow: hidden;
-            position: relative;
-        }
-        .zoom-container img {
-            transition: transform 0.25s ease;
-        }
-        .zoom-container:hover img {
-            transform: scale(1.5);
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <title>University Map</title>
 </head>
-<body class="font-roboto bg-gray-100">
-    <header class="bg-blue-600 text-white p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold">Map Viewer</h1>
-            <nav>
-                <ul class="flex space-x-4">
-                    <li><a class="hover:underline" href="#">Home</a></li>
-                    <li><a class="hover:underline" href="#">About</a></li>
-                    <li><a class="hover:underline" href="#">Contact</a></li>
-                </ul>
-            </nav>
+<body class="bg-gray-100">
+    <header class="bg-red-700 text-white p-4 flex flex-col items-center relative">
+        <!-- Logo -->
+        <img src="https://assets.onecompiler.app/42fq36qvd/42zbsafhz/Screenshot%202024-11-27%20111356.png" alt="University Logo" class="w-12 h-12 mb-3">
+        
+        <!-- Text Content -->
+        <div class="text-center">
+            <h1 class="text-2xl font-bold">Campus Map</h1>
+            <p class="text-sm mt-1">Navigate your way around the campus with ease</p>
+        </div>
+
+        <!-- Home Button -->
+        <div class="mt-4">
+            <a
+                class="bg-white text-red-800 font-bold px-4 py-2 rounded-lg shadow-md hover:bg-red-700 hover:text-white transition duration-300 ease-in-out sm:px-6 sm:py-3 sm:text-lg focus:outline-none focus:ring-2 focus:ring-red-500 inline-flex items-center"
+                href="index.html"
+            >
+                Home
+                <span class="ml-2">🏠</span>
+            </a>
         </div>
     </header>
-    <main class="container mx-auto p-4">
-    <div class="bg-white shadow-md rounded-lg overflow-hidden zoom-container">
-        <a href="https://postimg.cc/tntZnxRs" target="_blank">
-            <img src="https://i.postimg.cc/2yg4JQP7/map.png" alt="A detailed map showing various geographical features and landmarks" class="w-full h-auto" width="1200" height="800"/>
-        </a>
-    </div>
-</main>
 
-    <footer class="bg-blue-600 text-white p-4 mt-4">
-        <div class="container mx-auto text-center">
-            <p>© 2023 Map Viewer. All rights reserved.</p>
-        </div>
-    </footer>
+    <main class="container mx-auto p-4">
+        <section id="map-section" class="fade-in text-center">
+            <h1 class="text-4xl font-extrabold mb-4">
+                <span class="text-red-700"><b>Interactive Campus Map</b></span>
+            </h1>
+            <p class="text-lg text-gray-700 mb-6">Explore the campus with our dynamic Google Maps integration</p>
+
+            <!-- Google Map Embed -->
+            <div class="map-container relative w-full h-96 rounded-lg shadow-lg overflow-hidden border border-red-300">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3111.8402168309585!2d-77.03687008481758!3d38.9071922795709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7b7b7b7b7b7b7%3A0x7b7b7b7b7b7b7b7b!2sCampus!5e0!3m2!1sen!2sus!4v1619473232095!5m2!1sen!2sus"
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                ></iframe>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+                <!-- Location 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center transform transition duration-500 hover:shadow-2xl hover:scale-105 hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-700 tracking-tight">Library</h3>
+                    <button class="bg-gradient-to-r from-red-500 to-red-700 text-white text-sm sm:text-base px-8 py-4 rounded-full shadow hover:from-red-600 hover:to-red-800 hover:shadow-lg transition duration-300 focus:outline-none focus:ring-4 focus:ring-red-400 whitespace-nowrap" onclick="navigateTo('library')">
+                        Navigate
+                    </button>
+                </div>
+                <!-- Location 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center transform transition duration-500 hover:shadow-2xl hover:scale-105 hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-700 tracking-tight">Cafeteria</h3>
+                    <button class="bg-gradient-to-r from-red-500 to-red-700 text-white text-sm sm:text-base px-8 py-4 rounded-full shadow hover:from-red-600 hover:to-red-800 hover:shadow-lg transition duration-300 focus:outline-none focus:ring-4 focus:ring-red-400 whitespace-nowrap" onclick="navigateTo('cafeteria')">
+                        Navigate
+                    </button>
+                </div>
+                <!-- Location 3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center transform transition duration-500 hover:shadow-2xl hover:scale-105 hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-700 tracking-tight">Hostel</h3>
+                    <button class="bg-gradient-to-r from-red-500 to-red-700 text-white text-sm sm:text-base px-8 py-4 rounded-full shadow hover:from-red-600 hover:to-red-800 hover:shadow-lg transition duration-300 focus:outline-none focus:ring-4 focus:ring-red-400 whitespace-nowrap" onclick="navigateTo('hostel')">
+                        Navigate
+                    </button>
+                </div>
+                <!-- Location 4 -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center transform transition duration-500 hover:shadow-2xl hover:scale-105 hover:-translate-y-1">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-700 tracking-tight">Auditorium</h3>
+                    <button class="bg-gradient-to-r from-red-500 to-red-700 text-white text-sm sm:text-base px-8 py-4 rounded-full shadow hover:from-red-600 hover:to-red-800 hover:shadow-lg transition duration-300 focus:outline-none focus:ring-4 focus:ring-red-400 whitespace-nowrap" onclick="navigateTo('auditorium')">
+                        Navigate
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function navigateTo(location) {
+            alert(`Navigating to ${location} on the map!`);
+        }
+    </script>
 </body>
 </html>
