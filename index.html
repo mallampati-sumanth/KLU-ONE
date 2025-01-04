@@ -1,4 +1,3 @@
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,47 +7,48 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
     body {
-    font-family: 'Roboto', sans-serif;
-}
-
-.logo-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.logo-animation {
-    animation: logoMove 2s ease-in-out forwards, redGlow 1.5s ease-in-out forwards;
-    border-radius: 50%;
-}
-
-@keyframes logoMove {
-    0% { opacity: 0; transform: scale(0.5); }
-    50% { opacity: 1; transform: scale(1.2); }
-    100% { transform: scale(1); }
-}
-
-/* Red glow effect around the logo */
-@keyframes redGlow {
-    0% { 
-        box-shadow: 0 0 0px rgba(255, 0, 0, 0.7);
+        font-family: 'Roboto', sans-serif;
     }
-    50% { 
-        box-shadow: 0 0 15px rgba(255, 0, 0, 0.7), 0 0 25px rgba(255, 0, 0, 0.5);
-    }
-    100% { 
-        box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
-    }
-}
 
-.animated-text {
+    /* Logo overlay animation */
+    .logo-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .logo-animation {
+        animation: logoMove 2s ease-in-out forwards, redGlow 1.5s ease-in-out forwards;
+        border-radius: 50%;
+    }
+
+    @keyframes logoMove {
+        0% { opacity: 0; transform: scale(0.5); }
+        50% { opacity: 1; transform: scale(1.2); }
+        100% { transform: scale(1); }
+    }
+
+    @keyframes redGlow {
+        0% { box-shadow: 0 0 0px rgba(255, 0, 0, 0.7); }
+        50% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.7), 0 0 25px rgba(255, 0, 0, 0.5); }
+        100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.6); }
+    }
+
+    <style>
+    /* General styling */
+    body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .animated-text {
     color: white;
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.4);
     animation: shine 3s infinite alternate;
@@ -74,146 +74,211 @@
     to { opacity: 1; }
 }
 
-.header {
-    border: 3px solid red;
-    box-shadow: 0 0 10px 3px red;
-}
+    /* Hamburger menu styling */
+    .hamburger-menu {
+        display: block;
+        cursor: pointer;
+    }
 
-@media (max-width: 640px) {
+    .hamburger-menu div {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        margin: 5px;
+        transition: 0.3s;
+    }
+
+    /* Close (cross) button styling */
+    .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 30px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .close-btn:hover {
+        color: #e5e5e5;
+    }
+
+    /* Sliding left-to-right menu */
+    .nav-links {
+        position: fixed;
+        left: -250px;
+        top: 0;
+        width: 250px;
+        height: 100%;
+        background-color: #b91c1c; /* Red color */
+        transition: left 0.3s ease;
+        padding-top: 60px;
+        z-index: 100;
+        box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-links.show {
+        left: 0;
+    }
+
+    .nav-links ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .nav-links li {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #fff; /* Adds a line between items */
+    }
+
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        display: block;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+        background-color: #9e1b1b; /* Slightly darker red on hover */
+    }
+
+    /* Logo styling and header */
+    .logo-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
     .header {
-        padding: 8px;
+        background-color: #b91c1c; /* Red background for header */
+        color: white;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     }
 
     .header img {
-        height: 40px;
-        margin-right: 8px;
+        height: 50px;
     }
 
-    .header h1 {
-        font-size: 1.25rem;
-    }
+    /* Responsive design */
+    @media (max-width: 640px) {
+        .header {
+            padding: 8px;
+        }
 
-    nav a {
-        font-size: 0.875rem;
-    }
+        .header img {
+            height: 40px;
+        }
 
-    .login-btn {
-        padding: 4px 8px;
-        font-size: 0.875rem;
+        .header h1 {
+            font-size: 1.25rem;
+        }
+
+        .nav-links.show {
+            left: 0;
+        }
     }
-}
+</style>
 
     </style>
 </head>
+<script>
+  // Function to toggle the menu visibility
+function toggleMenu() {
+    const navLinks = document.getElementById('nav-links');
+    navLinks.classList.toggle('show');
+}
+
+// Function to close the menu when clicking the close (cross) button
+function closeMenu() {
+    const navLinks = document.getElementById('nav-links');
+    navLinks.classList.remove('show');
+}
+
+// Function to close the menu when clicking outside the menu area
+document.addEventListener('click', function(event) {
+    const navLinks = document.getElementById('nav-links');
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    // Check if the click is outside the menu and the hamburger button
+    if (!navLinks.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+        navLinks.classList.remove('show');
+    }
+});
+
+</script>
+
 <body>
     <div class="logo-overlay" id="logo-overlay">
         <img alt="KLU Logo with a stylized university emblem" class="logo-animation h-48 w-48" src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/kloo_app_logo_enhanced.jpg" />
     </div>
+
     <header class="bg-red-700 text-white p-4 fade-in shadow-lg relative">
         <div class="container mx-auto flex flex-wrap justify-between items-center">
             <div class="flex items-center">
                 <img alt="KLU Logo with a stylized university emblem" class="h-16 mr-4 cursor-pointer" onclick="goHome()" src="https://assets.onecompiler.app/42fq36qvd/42yt2y2bp/Screenshot%202024-11-21%20221555.png" />
                 <div style="text-align: center; margin-top: 20px;">
                     <h1 style="font-size: 2rem; font-weight: bold; text-align: center; color: white; word-break: keep-all;">
-    KLU 
-    <span id="shining-text" class="animated-text" style="font-weight: bold; font-size: 2rem;">ONE</span>
-</h1>
-
+                    KLU 
+                    <span id="shining-text" class="animated-text" style="font-weight: bold; font-size: 2rem;">ONE</span>
+                    </h1>
                 </div>
             </div>
-            <nav class="w-full md:w-auto mt-4 md:mt-0">
-                <ul class="flex flex-col md:flex-row md:space-x-4">
-                    <li>
-                        <a class="hover:underline text-lg font-bold" href="#" onclick="goHome()">Home
-                            <span class="ml-2">🏠</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="hover:underline text-lg font-bold" href="https://newerp.kluniversity.in/" target="_blank">ERP
-                            <span class="ml-2">🎓</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="hover:underline text-lg font-bold" href="https://lms.kluniversity.in/my/" target="_blank">LMS
-                            <span class="ml-2">📚</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="hover:underline text-lg font-bold" href="https://sac.kluniversity.in/" target="_blank">SAC
-                            <span class="ml-2">👫</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="hover:underline text-lg font-bold" href="calculator.html">
-                            ONE Calculator
-                            <span class="ml-2">📟</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="hover:underline text-lg font-bold" href="cabin.html">
-                            ONE Cabin NO"S
-                            <span class="ml-2">🏤</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="hover:underline text-lg font-bold" href="mess.html">
-                            ONE Mess
-                            <span class="ml-2">🍽️</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="hover:underline text-lg font-bold" href="transport.html">
-                            ONE Transport
-                            <span class="ml-2">🚎️</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="hover:underline text-lg font-bold" href="map.html">
-                            ONE Map
-                            <span class="ml-2"><i class='fas fa-map-marker-alt' style='font-size:24px'></i></span>
-                        </a>
-                    </li>
-                    
-                </ul>
-            </nav>
-            
+            <!-- Hamburger menu -->
+            <div class="hamburger-menu md:hidden" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
     </header>
 
-    
-        </div>
-    </div>
-<script>
-        // Open Modal
-        function openLoginModal() {
-            document.getElementById('loginModal').classList.remove('hidden');
-            document.body.classList.add('overflow-hidden'); // Disable background scroll
-        }
-
-        // Close Modal
-        function closeLoginModal() {
-            document.getElementById('loginModal').classList.add('hidden');
-            document.body.classList.remove('overflow-hidden'); // Re-enable background scroll
-        }
-
-        // Switch to Login Form
-        function showLogin() {
-            document.getElementById('loginForm').classList.remove('hidden');
-            document.getElementById('signupForm').classList.add('hidden');
-            document.getElementById('loginTab').classList.add('bg-red-700', 'text-white');
-            document.getElementById('signupTab').classList.remove('bg-red-700', 'text-white');
-            document.getElementById('signupTab').classList.add('bg-gray-300', 'text-black');
-        }
-
-        // Switch to Signup Form
-        function showSignup() {
-            document.getElementById('signupForm').classList.remove('hidden');
-            document.getElementById('loginForm').classList.add('hidden');
-            document.getElementById('signupTab').classList.add('bg-red-700', 'text-white');
-            document.getElementById('loginTab').classList.remove('bg-red-700', 'text-white');
-            document.getElementById('loginTab').classList.add('bg-gray-300', 'text-black');
-        }
-    </script>
+    <!-- Navigation links -->
+    <nav class="nav-links" id="nav-links">
+        <ul>
+            <li>
+                <a href="#" onclick="goHome()">Home 🏠</a>
+            </li>
+            <li>
+            <a href="https://newerp.kluniversity.in/" target="_blank">ERP 🎓</a>
+        </li>
+        <li>
+            <a href="https://lms.kluniversity.in/my/" target="_blank">LMS 📚</a>
+        </li>
+        <li>
+            <a href="https://sac.kluniversity.in/" target="_blank">SAC 👫</a>
+        </li>
+            <li>
+                <a href="calculator.html">ONE Calculator 📟</a>
+            </li>
+            <li>
+                <a href="cabin.html">ONE Cabin NO"S 🏤</a>
+            </li>
+            <li>
+                <a href="mess.html">ONE Mess 🍽️</a>
+            </li>
+            <li>
+                <a href="transport.html">ONE Transport 🚎️</a>
+            </li>
+            <li>
+                <a href="map.html">ONE Map 🗺️</a>
+            </li>
+        </ul>
+    </nav>
 
     <marquee class="header bg-red-700 text-white p-2 font-bold">
         <span class="text-black-255"><i>Updates:</i></span> 
@@ -224,225 +289,153 @@
         <span class="text-white">|Even Sem going to start on 18-12-2024</span>
     </marquee>
 
-<main class="container mx-auto mt-4 space-y-8">
-  <!-- Beauty of KLU Section -->
-  <section class="relative bg-blue-100 p-4 lg:p-8 shadow-lg rounded-lg">
-    <h2 class="text-2xl lg:text-3xl font-bold text-blue-700 text-center mb-4">Beauty of KLU</h2>
-    <div class="overflow-x-auto whitespace-nowrap rounded-lg scrollbar-hide">
-      <div class="inline-flex space-x-4">
-        <img 
-          alt="Modern academic blocks at KLU campus" 
-          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
-          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/Screenshot%202024-12-22%20165038.png" 
-        />
-        
-        <img 
-          alt="Scenic view of KLU campus with lush greenery and modern architecture" 
-          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
-          src="https://assets.onecompiler.app/42fq36qvd/42zzxz8bc/kl_main.jpg" 
-        />
-        <img 
-          alt="KLU students engaged in cultural fest" 
-          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
-          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature%20klu.jpg" 
-        />
-        <img 
-          alt="Modern academic blocks at KLU campus" 
-          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
-          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature6.jpg" 
-        />
-        <img 
-          alt="KLU students engaged in cultural fest" 
-          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
-          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature5.jpg" 
-        />
-        <img 
-          alt="Modern academic blocks at KLU campus" 
-          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
-          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature2.jpg" 
-        />
-        
-        <img 
-          alt="KLU students engaged in cultural fest" 
-          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
-          src=" https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature1.jpg" 
-        />
-      </div>
-    </div>
-  </section>
-</main>
-<style>
-  .scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-.scrollbar-hide {
-  -ms-overflow-style: none; /* for Internet Explorer and Edge */
-  scrollbar-width: none; /* for Firefox */
-}
-
-</style>
-
-
-<!-- About KLU ONE Section -->
+    <main class="container mx-auto mt-4 space-y-8">
+      <!-- About KLU ONE Section -->
 <section class="bg-gray-100 p-4 lg:p-8 shadow-lg rounded-lg border-4 border-red-300" id="about-klu-one">
-  <img 
-    alt="Illustration of KLU ONE portal interface with various integrated tools and features" 
-    class="w-full rounded-t-lg" 
-    height="400" 
-    src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/features.webp" 
-  />
-  <div class="mt-4 text-center">
-    <h2 class="text-2xl lg:text-3xl font-bold text-red-700 mb-4">About KLU ONE</h2>
-    <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
-      KLU ONE is a comprehensive web app designed to unify various college portals for an enhanced student experience at KL University. It simplifies academic tracking, hostel mess information, and faculty details into one easy-to-use platform.
-    </p>
+    <img 
+      alt="Illustration of KLU ONE portal interface with various integrated tools and features" 
+      class="w-full h-64 object-cover rounded-t-lg" 
+      src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/features.webp" 
+    />
+    <div class="mt-4 text-center">
+        <h2 class="text-2xl lg:text-3xl font-bold text-red-700 mb-4">About KLU ONE</h2>
+        <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
+            KLU ONE is a comprehensive web app designed to unify various college portals for an enhanced student experience at KL University. It simplifies academic tracking, hostel mess information, and faculty details into one easy-to-use platform.
+        </p>
 
-    <!-- Button to toggle the "How to Use" section -->
-    <button 
-      class="mt-4 px-6 py-3 bg-red-600 text-white font-bold rounded-full hover:bg-red-700 transition"
-      onclick="document.getElementById('how-to-use').classList.toggle('hidden'); this.innerText = this.innerText === 'How to Use' ? 'Close' : 'How to Use';">
-      How to Use
-    </button>
+        <!-- Button to toggle the "How to Use" section -->
+        <button 
+          class="mt-4 px-6 py-3 bg-red-600 text-white font-bold rounded-full hover:bg-red-700 transition"
+          onclick="document.getElementById('how-to-use').classList.toggle('hidden'); this.innerText = this.innerText === 'How to Use' ? 'Close' : 'How to Use';">
+          How to Use
+        </button>
 
-    <!-- Hidden Content (Initially Hidden) -->
-    <div id="how-to-use" class="hidden mt-4 bg-red-100 p-4 rounded-full shadow-lg">
-      <h3 class="text-xl font-semibold text-red-700 mb-2">How to Use KLU ONE</h3>
-      <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
-        KLU ONE offers integrated access to multiple features. Here's a quick guide to using it effectively:
-      </p>
-      <ol class="list-decimal pl-6 space-y-2 text-gray-700 text-base lg:text-lg">
-        <li><strong>ERP, LMS, SAC Portals:</strong> Use the navigation buttons in the header to seamlessly access ERP, LMS, and SAC portals.</li>
-        <li><strong>One Calculator:</strong> Access the "One Calculator" section, which includes:
-          <ul class="list-disc pl-6 mt-2">
-            <li><strong>Attendance Calculator:</strong> Enter subject names and attendance details for Lecture, Tutorial, Practical, and Skilling. Get an average attendance percentage with 90% accuracy.</li>
-            <li><strong>SGPA Calculator:</strong> Input grades and credits for each subject to calculate your Semester Grade Point Average.</li>
-            <li><strong>CGPA Calculator:</strong> Provide previous CGPA, previous credits, current SGPA, and current credits to calculate your Cumulative Grade Point Average.</li>
-          </ul>
-        </li>
-        <li><strong>Cabin Numbers:</strong> Go to the "Faculty" section. For HODs, enter the department name or HOD name. For faculty, select the department and provide the faculty name to retrieve the cabin number.</li>
-        <li><strong>Mess Menu:</strong> Visit the "Hostel" section, select your hostel, and view the respective menu. Some deviations may occur in the menu updates.</li>
-      </ol>
+        <!-- Hidden Content (Initially Hidden) -->
+        <div id="how-to-use" class="hidden mt-4 bg-red-100 p-4 rounded-full shadow-lg">
+            <h3 class="text-xl font-semibold text-red-700 mb-2">How to Use KLU ONE</h3>
+            <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
+                KLU ONE offers integrated access to multiple features. Here's a quick guide to using it effectively:
+            </p>
+            <ol class="list-decimal pl-6 space-y-2 text-gray-700 text-base lg:text-lg">
+                <li><strong>ERP, LMS, SAC Portals:</strong> Use the navigation buttons in the header to seamlessly access ERP, LMS, and SAC portals.</li>
+                <li><strong>One Calculator:</strong> Access the "One Calculator" section, which includes:
+                    <ul class="list-disc pl-6 mt-2">
+                        <li><strong>Attendance Calculator:</strong> Enter subject names and attendance details for Lecture, Tutorial, Practical, and Skilling. Get an average attendance percentage with 90% accuracy.</li>
+                        <li><strong>SGPA Calculator:</strong> Input grades and credits for each subject to calculate your Semester Grade Point Average.</li>
+                        <li><strong>CGPA Calculator:</strong> Provide previous CGPA, previous credits, current SGPA, and current credits to calculate your Cumulative Grade Point Average.</li>
+                    </ul>
+                </li>
+                <li><strong>Cabin Numbers:</strong> Go to the "Faculty" section. For HODs, enter the department name or HOD name. For faculty, select the department and provide the faculty name to retrieve the cabin number.</li>
+                <li><strong>Mess Menu:</strong> Visit the "Hostel" section, select your hostel, and view the respective menu. Some deviations may occur in the menu updates.</li>
+            </ol>
 
-      <!-- Back Option -->
-      <button 
-        class="mt-4 px-6 py-3 bg-red-600 text-white font-bold rounded-full hover:bg-red-700 transition"
-        onclick="document.getElementById('how-to-use').classList.toggle('hidden');">
-        Back
-      </button>
+            <!-- Back Option -->
+            <button 
+              class="mt-4 px-6 py-3 bg-red-600 text-white font-bold rounded-full hover:bg-red-700 transition"
+              onclick="document.getElementById('how-to-use').classList.toggle('hidden');">
+              Back
+            </button>
+        </div>
     </div>
-  </div>
 </section>
-
 
 <!-- About KLU Section -->
 <section class="bg-white p-4 lg:p-8 shadow-lg rounded-lg border-4 border-blue-300" id="about-klu">
-  <div class="text-center max-w-4xl">
-    <img 
-      alt="Image of KLU University campus with students and faculty engaged in various activities" 
-      class="w-full rounded-t-lg" 
-      height="400" 
-      src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/Screenshot%202024-12-22%20105437.png" 
-    />
-    <div class="mt-4">
-      <h2 class="text-2xl lg:text-3xl font-bold text-red-700 mb-4">About KLU</h2>
-      <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
-        KONERU LAKSHMAIAH UNIVERSITY is a leading educational institution committed to excellence in teaching, research, and innovation. 
-        With state-of-the-art facilities, experienced faculty, and a vibrant campus life, KLU offers a wide range of 
-        undergraduate, postgraduate, and doctoral programs. The university is dedicated to nurturing students into 
-        global leaders, equipped with the knowledge and skills to thrive in a dynamic world.
-      </p>
-      
-      <!-- Achievements and Recognition -->
-      <div id="achievements-section" class="hidden mt-4 bg-red-100 p-4 rounded-full shadow-lg">
-        <h3 class="text-xl font-semibold text-red-700 mb-2">Accreditations & Rankings</h3>
-        <ul class="list-disc pl-6 space-y-2 text-gray-700 text-base lg:text-lg">
-          <li><strong>NAAC A++ Grade:</strong> With a 3.57 CGPA on a 4-point scale (2018)</li>
-          <li><strong>Category-1 University:</strong> By UGC under the categorization of universities for the grant of Graded Autonomy (2019)</li>
-          <li><strong>UGC Recognized:</strong> Under Section 2(f) and 12B of UGC Act 1956</li>
-          <li><strong>AICTE Approval:</strong> All Engineering Programs approved by All India Council for Technical Education (AICTE), New Delhi</li>
-          <li><strong>PCI Approval:</strong> Pharmacy programs approved by Pharmacy Council of India (PCI)</li>
-          <li><strong>CoA Approval:</strong> Architecture programs approved by Council of Architecture (CoA), India</li>
-          <li><strong>BAR Council of India Approval:</strong> Law programs approved by BAR Council of India</li>
-          <li><strong>Government Approval:</strong> University approved by MHRD-Govt. of India & UGC (Under Section 3 of UGC Act 1956)</li>
-        </ul>
-      </div>
-      
-      <!-- NIRF Rankings -->
-      <div id="nirf-section" class="hidden mt-4 bg-red-100 p-4 rounded-full shadow-lg">
-        <h3 class="text-xl font-semibold text-red-700 mb-2">NIRF 2024 Rankings</h3>
-        <ul class="list-decimal pl-6 space-y-2 text-gray-700 text-base lg:text-lg">
-          <li><strong>#22:</strong> University Ranking</li>
-          <li><strong>#35:</strong> Engineering Ranking</li>
-          <li><strong>#79:</strong> Management Ranking</li>
-          <li><strong>#40:</strong> Overall Ranking</li>
-          <li><strong>#Band(11-50):</strong> Innovation</li>
-        </ul>
-      </div>
+    <div class="text-center max-w-4xl mx-auto">
+        <img 
+          alt="Image of KLU University campus with students and faculty engaged in various activities" 
+          class="w-full h-64 object-cover rounded-t-lg" 
+          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/Screenshot%202024-12-22%20105437.png" 
+        />
+        <div class="mt-4">
+            <h2 class="text-2xl lg:text-3xl font-bold text-red-700 mb-4">About KLU</h2>
+            <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
+                KONERU LAKSHMAIAH UNIVERSITY is a leading educational institution committed to excellence in teaching, research, and innovation. 
+                With state-of-the-art facilities, experienced faculty, and a vibrant campus life, KLU offers a wide range of 
+                undergraduate, postgraduate, and doctoral programs. The university is dedicated to nurturing students into 
+                global leaders, equipped with the knowledge and skills to thrive in a dynamic world.
+            </p>
+            
+            <!-- Achievements and Recognition -->
+            <div id="achievements-section" class="hidden mt-4 bg-red-100 p-4 rounded-full shadow-lg">
+                <h3 class="text-xl font-semibold text-red-700 mb-2">Accreditations & Rankings</h3>
+                <ul class="list-disc pl-6 space-y-2 text-gray-700 text-base lg:text-lg">
+                    <li><strong>NAAC A++ Grade:</strong> With a 3.57 CGPA on a 4-point scale (2018)</li>
+                    <li><strong>Category-1 University:</strong> By UGC under the categorization of universities for the grant of Graded Autonomy (2019)</li>
+                    <li><strong>UGC Recognized:</strong> Under Section 2(f) and 12B of UGC Act 1956</li>
+                    <li><strong>AICTE Approval:</strong> All Engineering Programs approved by All India Council for Technical Education (AICTE), New Delhi</li>
+                    <li><strong>PCI Approval:</strong> Pharmacy programs approved by Pharmacy Council of India (PCI)</li>
+                    <li><strong>CoA Approval:</strong> Architecture programs approved by Council of Architecture (CoA), India</li>
+                    <li><strong>BAR Council of India Approval:</strong> Law programs approved by BAR Council of India</li>
+                    <li><strong>Government Approval:</strong> University approved by MHRD-Govt. of India & UGC (Under Section 3 of UGC Act 1956)</li>
+                </ul>
+            </div>
+            
+            <!-- NIRF Rankings -->
+            <div id="nirf-section" class="hidden mt-4 bg-red-100 p-4 rounded-full shadow-lg">
+                <h3 class="text-xl font-semibold text-red-700 mb-2">NIRF 2024 Rankings</h3>
+                <ul class="list-decimal pl-6 space-y-2 text-gray-700 text-base lg:text-lg">
+                    <li><strong>#22:</strong> University Ranking</li>
+                    <li><strong>#35:</strong> Engineering Ranking</li>
+                    <li><strong>#79:</strong> Management Ranking</li>
+                    <li><strong>#40:</strong> Overall Ranking</li>
+                    <li><strong>#Band(11-50):</strong> Innovation</li>
+                </ul>
+            </div>
 
-      <!-- More Button -->
-      <div class="text-center mt-4">
-        <button 
-          id="toggle-button" 
-          class="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 transition"
-          onclick="toggleVisibility()">
-          More Info
-        </button>
-      </div>
+            <!-- More Button -->
+            <div class="text-center mt-4">
+                <button 
+                  id="toggle-button" 
+                  class="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 transition"
+                  onclick="toggleVisibility()">
+                  More Info
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
 <!-- Useful Links Section -->
 <section class="bg-white p-4 lg:p-8 shadow-lg rounded-lg border-4 border-green-300" id="useful-links">
-  <div class="text-center max-w-4xl">
-    <div class="mt-4">
-      <h2 class="text-2xl lg:text-3xl font-bold text-red-600 mb-4">Useful Links</h2>
-      <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
-        Access all the important portals and resources of KLU in one place. Click on the links below to navigate.
-      </p>
+    <div class="text-center max-w-4xl mx-auto">
+        <div class="mt-4">
+            <h2 class="text-2xl lg:text-3xl font-bold text-red-600 mb-4">Useful Links</h2>
+            <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
+                Access all the important portals and resources of KLU in one place. Click on the links below to navigate.
+            </p>
 
-      <!-- Links Section -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-        <!-- ERP Link -->
-        <a 
-          href="https://newerp.kluniversity.in/" 
-          target="_blank" 
-          class="block bg-red-600 text-white px-6 py-4 rounded-lg shadow-lg hover:bg-white hover:text-red-600 border-2 border-red-600 transition duration-300 text-center">
-          ERP
-        </a>
+            <!-- Links Section -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                <!-- ONE Calculator Link -->
+                <a 
+                  href="calculator.html" 
+                  class="block bg-red-600 text-white px-6 py-4 rounded-lg shadow-lg hover:bg-white hover:text-red-600 border-2 border-red-600 transition duration-300 text-center">
+                  ONE CALCULATOR
+                </a>
 
-        <!-- LMS Link -->
-        <a 
-          href="https://lms.kluniversity.in/my/" 
-          target="_blank" 
-          class="block bg-red-600 text-white px-6 py-4 rounded-lg shadow-lg hover:bg-white hover:text-red-600 border-2 border-red-600 transition duration-300 text-center">
-          LMS
-        </a>
+                <!-- ONE Mess Link -->
+                <a 
+                  href="mess.html" 
+                  class="block bg-red-600 text-white px-6 py-4 rounded-lg shadow-lg hover:bg-white hover:text-red-600 border-2 border-red-600 transition duration-300 text-center">
+                  ONE MESS
+                </a>
 
-        <!-- ONE Calculator Link -->
-<a 
-  href="calculator.html" 
-  class="block bg-red-600 text-white px-6 py-4 rounded-lg shadow-lg hover:bg-white hover:text-red-600 border-2 border-red-600 transition duration-300 text-center">
-  ONE CALCULATOR
-</a>
-
-<!-- ONE Mess Link -->
-<a 
-  href="mess.html" 
-  class="block bg-red-600 text-white px-6 py-4 rounded-lg shadow-lg hover:bg-white hover:text-red-600 border-2 border-red-600 transition duration-300 text-center">
-  ONE MESS
-</a>
-
-<!-- ONE Cabin Numbers Link -->
-<a 
-  href="cabin.html" 
-  class="block bg-red-600 text-white px-6 py-4 rounded-lg shadow-lg hover:bg-white hover:text-red-600 border-2 border-red-600 transition duration-300 text-center">
-  ONE CABIN NO'S
-</a>
-
-      </div>
+                <!-- ONE Cabin Numbers Link -->
+                <a 
+                  href="cabin.html" 
+                  class="block bg-red-600 text-white px-6 py-4 rounded-lg shadow-lg hover:bg-white hover:text-red-600 border-2 border-red-600 transition duration-300 text-center">
+                  ONE CABIN NO'S
+                </a>
+                <!-- ONE Cabin Numbers Link -->
+                <a 
+                  href="transport.html" 
+                  class="block bg-red-600 text-white px-6 py-4 rounded-lg shadow-lg hover:bg-white hover:text-red-600 border-2 border-red-600 transition duration-300 text-center">
+                  ONE TRANSPORT
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
 
@@ -493,8 +486,9 @@ s0.parentNode.insertBefore(s1,s0);
       }
     }
     </style>
-
-    <!-- Footer -->
+      </section>
+    </main>
+        <!-- Footer -->
 <footer class="bg-gray-800 text-white text-center p-4 lg:p-8 mt-4 lg:mt-8">
     <div class="container mx-auto px-4">
         <div class="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
@@ -505,16 +499,32 @@ s0.parentNode.insertBefore(s1,s0);
             </div>
             <!-- Social Media Icons -->
             <div class="flex space-x-6 text-xl">
-                <a href="#" class="hover:text-blue-500 transition-colors"><i class="fab fa-facebook"></i></a>
+                <a href="https://t.me/+UkXqcAeBmw84N2Jl" class="hover:text-blue-500 transition-colors"><i class="fab fa-telegram"></i></a>
                 <a href="#" class="hover:text-blue-400 transition-colors"><i class="fab fa-twitter"></i></a>
                 <a href="#" class="hover:text-blue-700 transition-colors"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
     </div>
 </footer>
+</body>
 
+<script>
+    window.onload = function () {
+        setTimeout(function () {
+            document.getElementById('logo-overlay').style.display = 'none';
+        }, 3000);
+    };
 
-    <script>
+    function goHome() {
+        window.location.href = 'index.html';
+    }
+
+    function toggleMenu() {
+        const navLinks = document.getElementById('nav-links');
+        navLinks.classList.toggle('show');
+    }
+</script>
+<script>
         // Remove Logo Overlay after Animation
         window.onload = () => {
             const overlay = document.getElementById('logo-overlay');
@@ -527,7 +537,4 @@ s0.parentNode.insertBefore(s1,s0);
             shiningText.textContent = shiningText.textContent === "ONE" ? "1" : "ONE";
         }, 2000);
     </script>
-    
-    
-</body>
-</html>
+
