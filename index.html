@@ -3,12 +3,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KLU ONE</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
     <link rel="icon" href="path-to-your-favicon.ico" type="image/x-icon">
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -494,25 +493,81 @@ s0.parentNode.insertBefore(s1,s0);
     </style>
       </section>
     </main>
-        <!-- Footer -->
-<footer class="bg-gray-800 text-white text-center p-4 lg:p-8 mt-4 lg:mt-8">
-    <div class="container mx-auto px-4">
-        <div class="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
+<footer class="bg-gray-900 text-white text-center py-6">
+    <div class="container mx-auto px-6">
+        <div class="flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0">
             <!-- Left Section -->
             <div class="text-sm lg:text-base">
                 <p>&copy; 2024 KLU ONE. All rights reserved.</p>
-                <p>Idea, Design, and Development by <b>SUMANTH</b></p>
+                <p>
+                    Idea, Design, and Development by 
+                    <span class="developer-name font-bold text-yellow-400">MALLAMPATI SUMANTH</span>
+                </p>
             </div>
+
             <!-- Social Media Icons -->
-            <div class="flex space-x-6 text-xl">
-                <a href="https://t.me/+UkXqcAeBmw84N2Jl" class="hover:text-blue-500 transition-colors"><i class="fab fa-telegram"></i></a>
-                <a href="#" class="hover:text-blue-400 transition-colors"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="hover:text-blue-700 transition-colors"><i class="fab fa-linkedin"></i></a>
+            <div class="flex space-x-6 text-2xl">
+                <a href="https://t.me/+UkXqcAeBmw84N2Jl" target="_blank" class="hover:text-blue-500 transition-colors">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://whatsapp.com/channel/0029VamjrND9Bb5p7eVOzB18" target="_blank" class="hover:text-blue-400 transition-colors">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
             </div>
         </div>
     </div>
 </footer>
-</body>
+
+<!-- Tailwind and FontAwesome Icons Integration -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<style>
+    /* Developer Name Shine Animation */
+    .developer-name {
+        position: relative;
+        display: inline-block;
+        background: linear-gradient(90deg, #facc15, #f87171, #facc15);
+        background-size: 200% auto;
+        color: white;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shine 3s linear infinite;
+    }
+
+    @keyframes shine {
+        0% {
+            background-position: 0% center;
+        }
+        100% {
+            background-position: 200% center;
+        }
+    }
+</style>
+
+<!-- Tailwind and FontAwesome Icons Integration -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<style>
+    /* Developer Name Animation */
+    .developer-name {
+        animation: color-cycle 4s infinite ease-in-out;
+    }
+
+    @keyframes color-cycle {
+        0%, 100% { color: #facc15; } /* Yellow */
+        50% { color: #f87171; } /* Red */
+    }
+
+    /* Background Animation */
+    @keyframes background-scroll {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+
+    .animate-background {
+        animation: background-scroll 10s linear infinite;
+    }
+</style>
+
 
 <script>
     window.onload = function () {
