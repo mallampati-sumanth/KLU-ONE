@@ -237,10 +237,11 @@ document.addEventListener('click', function(event) {
             <div class="flex items-center">
                 <img alt="KLU Logo with a stylized university emblem" class="h-16 mr-4 cursor-pointer" onclick="goHome()" src="https://assets.onecompiler.app/42fq36qvd/42yt2y2bp/Screenshot%202024-11-21%20221555.png" />
                 <div style="text-align: center; margin-top: 20px;">
-                    <h1 style="font-size: 2rem; font-weight: bold; text-align: center; color: white; word-break: keep-all;">
-                    KLU 
-                    <span id="shining-text" class="animated-text" style="font-weight: bold; font-size: 2rem;">ONE</span>
-                    </h1>
+                   <h1 style="font-size: 1.5rem; font-weight: bold; text-align: center; color: white; word-break: keep-all;">
+    KLU 
+    <span id="shining-text" class="animated-text" style="font-weight: bold; font-size: 1.5rem;">ONE</span>
+</h1>
+
                 </div>
             </div>
             <!-- Hamburger menu -->
@@ -294,7 +295,64 @@ document.addEventListener('click', function(event) {
         <span class="text-white">|Even Sem going to start on 18-12-2024</span>
     </marquee>
 
-    <main class="container mx-auto mt-4 space-y-8">
+    <main class="container mx-auto mt-4 space-y-8"
+        <!-- Beauty of KLU Section -->
+  <section class="relative bg-blue-100 p-4 lg:p-8 shadow-lg rounded-lg">
+    <h2 class="text-2xl lg:text-3xl font-bold text-blue-700 text-center mb-4">Beauty of KLU</h2>
+    <div class="overflow-x-auto whitespace-nowrap rounded-lg scrollbar-hide">
+      <div class="inline-flex space-x-4">
+        <img 
+          alt="Modern academic blocks at KLU campus" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/Screenshot%202024-12-22%20165038.png" 
+        />
+        
+        <img 
+          alt="Scenic view of KLU campus with lush greenery and modern architecture" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src="https://assets.onecompiler.app/42fq36qvd/42zzxz8bc/kl_main.jpg" 
+        />
+        <img 
+          alt="KLU students engaged in cultural fest" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature%20klu.jpg" 
+        />
+        <img 
+          alt="Modern academic blocks at KLU campus" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature6.jpg" 
+        />
+        <img 
+          alt="KLU students engaged in cultural fest" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature5.jpg" 
+        />
+        <img 
+          alt="Modern academic blocks at KLU campus" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature2.jpg" 
+        />
+        
+        <img 
+          alt="KLU students engaged in cultural fest" 
+          class="h-64 rounded-lg w-64 md:w-1/3 object-cover" 
+          src=" https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature1.jpg" 
+        />
+      </div>
+    </div>
+  </section>
+</main>
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* for Internet Explorer and Edge */
+  scrollbar-width: none; /* for Firefox */
+}
+
+</style>
+
       <!-- About KLU ONE Section -->
 <section class="bg-gray-100 p-4 lg:p-8 shadow-lg rounded-lg border-4 border-red-300" id="about-klu-one">
     <img 
@@ -343,6 +401,7 @@ document.addEventListener('click', function(event) {
         </div>
     </div>
 </section>
+
 
 <!-- About KLU Section -->
 <section class="bg-white p-4 lg:p-8 shadow-lg rounded-lg border-4 border-blue-300" id="about-klu">
