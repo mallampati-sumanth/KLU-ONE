@@ -110,47 +110,56 @@
         color: #e5e5e5;
     }
 
-    /* Sliding left-to-right menu */
-    .nav-links {
-        position: fixed;
-        left: -250px;
-        top: 0;
-        width: 250px;
-        height: 100%;
-        background-color: #b91c1c; /* Red color */
-        transition: left 0.3s ease;
-        padding-top: 60px;
-        z-index: 100;
-        box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.5);
-    }
+   .nav-links {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #b91c1c; /* Red color */
+    transition: left 0.3s ease;
+    padding-top: 60px;
+    z-index: 100;
+    box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column; /* Ensures proper layout */
+}
 
-    .nav-links.show {
-        left: 0;
-    }
+.nav-links ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto; /* Makes the buttons scrollable */
+    height: calc(100% - 60px); /* Adjusts for padding or header */
+}
 
-    .nav-links ul {
-        list-style-type: none;
-        padding: 0;
-    }
+.nav-links li {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #fff; /* Adds a line between items */
+}
 
-    .nav-links li {
-        padding: 15px;
-        text-align: left;
-        border-bottom: 1px solid #fff; /* Adds a line between items */
-    }
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adds space between icon and text */
+}
 
-    .nav-links a {
-        color: white;
-        text-decoration: none;
-        font-size: 18px;
-        display: block;
-        padding: 10px 20px;
-        transition: background-color 0.3s ease;
-    }
+.nav-links a i {
+    font-size: 20px; /* Adjust icon size */
+}
 
-    .nav-links a:hover {
-        background-color: #9e1b1b; /* Slightly darker red on hover */
-    }
+
+.nav-links a:hover {
+    background-color: #9e1b1b; /* Slightly darker red on hover */
+}
+
 
     /* Logo styling and header */
     .logo-overlay {
@@ -175,6 +184,19 @@
         align-items: center;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     }
+    .nav-links::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.nav-links::-webkit-scrollbar-thumb {
+    background-color: #9e1b1b; /* Scrollbar thumb color */
+    border-radius: 4px; /* Rounded edges */
+}
+
+.nav-links::-webkit-scrollbar-thumb:hover {
+    background-color: #7e1515; /* Darker on hover */
+}
+
 
     .header img {
         height: 50px;
@@ -256,6 +278,12 @@ document.addEventListener('click', function(event) {
     <!-- Navigation links -->
     <nav class="nav-links" id="nav-links">
         <ul>
+          <marquee>
+            <li>
+    <a href="#"><b>SELECT YOUR DESIRED ONE !!</b></a>
+</li>
+          </marquee>
+
             <li>
                 <a href="#" onclick="goHome()">Home 🏠</a>
             </li>
