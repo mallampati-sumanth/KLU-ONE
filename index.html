@@ -1,369 +1,506 @@
+<!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   KLU ONE
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-    <link rel="icon" href="path-to-your-favicon.ico" type="image/x-icon">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
- <style>
-   .carousel {
-        position: relative;
-        overflow: hidden;
-    }
-    .carousel img {
-        width: 100%;
-        height: 400px;
-        object-fit: cover;
-        transition: transform 0.5s ease-in-out;
-    }
-    .carousel-inner {
-        display: flex;
-        width: 300%;
-    }
-    .carousel-inner img {
-        width: 33.3333%;
-    }
-    .shave-effect {
-        animation: shave 1s infinite alternate;
-    }
-    @keyframes shave {
-   
-</style>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KLU ONE - Comprehensive Web Portal for KL University</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="font-roboto">
-<!-- Header Section -->
-<header class="bg-red-800 text-white p-4 flex justify-between items-center">
-   <div class="text-2xl font-bold shave-effect" id="college-name">
-      KLU ONE
-   </div>
-   <nav class="hidden md:flex space-x-4">
-      <a class="hover:underline" href="https://newerp.kluniversity.in/">ERP</a>
-      <a class="hover:underline" href="https://lms.kluniversity.in/my/">LMS</a>
-      <a class="hover:underline" href="https://academics.klef.in/login">Academics</a>
-      <a class="hover:underline" href="calculator.html">Calculator</a>
-      <a class="hover:underline" href="mess.html">Mess</a>
-      <a class="hover:underline" href="cabin.html">Cabin</a>
-      <a class="hover:underline" href="map.html">Map</a>
-      <a class="hover:underline" href="transport.html">Transport</a>
-   </nav>
-   <button 
-      class="bg-white text-black px-4 py-2 rounded-md hidden md:block" 
-      onclick="window.location.href='login.html'">
-      Login
-   </button>
-   <button class="md:hidden text-2xl" id="menu-toggle">
-      <i class="fas fa-bars"></i>
-   </button>
-</header>
-
-<!-- Marquee Section -->
-<div class="bg-white text-red-700 p-2">
-   <marquee behavior="scroll" class="text-lg" direction="left">
-    Welcome to KLU ONE !!
-   </marquee>
-</div>
-
-<!-- Mobile Menu -->
-<div class="md:hidden bg-red-800 text-white p-4 hidden" id="mobile-menu">
-   <a class="block py-2" href="https://newerp.kluniversity.in/">ERP</a>
-   <a class="block py-2" href="https://lms.kluniversity.in/my/">LMS</a>
-   <a class="block py-2" href="https://academics.klef.in/login">Academics</a>
-   <a class="block py-2" href="calculator.html">Calculator</a>
-   <a class="block py-2" href="mess.html">Mess</a>
-   <a class="block py-2" href="cabin.html">Cabin</a>
-   <a class="block py-2" href="map">Map</a>
-   <a class="block py-2" href="transport.html">Transport</a>
-   <button class="bg-yellow-500 text-black px-4 py-2 rounded-md w-full mt-4"
-    onclick="window.location.href='login.html'">
-    Login
-</button>
-
-</div>
-
-  <!-- Hero Section -->
-  <section class="relative">
-   <div class="carousel">
-    <div class="carousel-inner">
-     <img alt="High-quality image of the college campus" src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/Screenshot%202024-12-22%20105437.png"/>
-     <img alt="High-quality image of a college event" src="https://storage.googleapis.com/a1aa/image/2UrSu1rs4uIMdoMJCfS3XxtpMo8kxOeHabeyWcRnQ8c.jpg"/>
-     <img alt="High-quality image of college facilities" src="https://storage.googleapis.com/a1aa/image/K_rLLPPMgvz89qJuAchAav7-0paR_6TeqgleWmgsFNE.jpg"/>
-    </div>
-    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-<h1 class="shining-text">
-    <span class="red">HELLO</span> <span class="white">KLUIAN'S!!</span>
-</h1>
-
-<style>
-    .shining-text {
-        font-size: 2.5rem; /* Adjust size */
-        font-weight: bold;
-        text-align: center;
-        text-transform: uppercase;
-    }
-
-    .red {
-        color: red;
-        animation: shine-red 2s infinite alternate;
-    }
-
-    .white {
-        color: white;
-        animation: shine-white 2s infinite alternate;
-    }
-
-    @keyframes shine-red {
-        0% {
-            text-shadow: 0 0 5px rgba(255, 0, 0, 0.5), 
-                         0 0 10px rgba(255, 0, 0, 0.5), 
-                         0 0 15px rgba(255, 0, 0, 0.4);
-        }
-        100% {
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 
-                         0 0 20px rgba(255, 0, 0, 0.6), 
-                         0 0 30px rgba(255, 0, 0, 0.5);
-        }
-    }
-
-    @keyframes shine-white {
-        0% {
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 
-                         0 0 10px rgba(255, 255, 255, 0.5), 
-                         0 0 15px rgba(255, 255, 255, 0.4);
-        }
-        100% {
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 
-                         0 0 20px rgba(255, 255, 255, 0.6), 
-                         0 0 30px rgba(255, 255, 255, 0.5);
-        }
-    }
-</style>
-
-    </div>
-   </div>
-  </section>
-  <!-- Main Content Section -->
-<main class="p-8 space-y-8">
-
-  <!-- Important Links -->
-  <section id="important-links" class="bg-gray-100 p-6 rounded-lg">
-    <h2 class="text-2xl font-bold mb-4 text-red-700">Important Links</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <a href="calculator.html" class="bg-red-800 text-white p-3 rounded-lg text-center hover:bg-red-600 transition">Attendance Calculator </a>
-      <a href="cabin.html" class="bg-red-800 text-white p-3 rounded-lg text-center hover:bg-red-600 transition">Cabin Numbers</a>
-      <a href="hostel.html" class="bg-red-800 text-white p-3 rounded-lg text-center hover:bg-red-600 transition">Hostel Mess</a>
-    </div>
-  </section>
-
- <!-- About KLU ONE Section -->
-<section class="bg-gray-100 p-4 lg:p-8 shadow-lg rounded-lg border-4 border-red-300" id="about-klu-one">
-    <img 
-      alt="Illustration of KLU ONE portal interface with various integrated tools and features" 
-      class="w-full h-64 object-cover rounded-t-lg" 
-      src="https://assets.onecompiler.app/42fq36qvd/43awjnnd3/Screenshot%202025-03-05%20195709.png" 
-    />
-    <div class="mt-4 text-center">
-        <h2 class="text-2xl lg:text-3xl font-bold text-red-700 mb-4">About KLU ONE</h2>
-        <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
-            KLU ONE is a comprehensive web app designed to unify various college portals for an enhanced student experience at KL University. It simplifies academic tracking, hostel mess information, and faculty details into one easy-to-use platform.
-        </p>
-
-        <!-- Button to toggle the "How to Use" section -->
-        <button 
-          class="mt-4 px-6 py-3 bg-red-600 text-white font-bold rounded-full hover:bg-red-700 transition"
-          onclick="document.getElementById('how-to-use').classList.toggle('hidden'); this.innerText = this.innerText === 'How to Use' ? 'Close' : 'How to Use';">
-          How to Use
-        </button>
-
-        <!-- Hidden Content (Initially Hidden) -->
-        <div id="how-to-use" class="hidden mt-4 bg-red-100 p-4 rounded-full shadow-lg">
-            <h3 class="text-xl font-semibold text-red-700 mb-2">How to Use KLU ONE</h3>
-            <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
-                KLU ONE offers integrated access to multiple features. Here's a quick guide to using it effectively:
-            </p>
-            <ol class="list-decimal pl-6 space-y-2 text-gray-700 text-base lg:text-lg">
-                <li><strong>ERP, LMS, SAC Portals:</strong> Use the navigation buttons in the header to seamlessly access ERP, LMS, and SAC portals.</li>
-                <li><strong>One Calculator:</strong> Access the "One Calculator" section, which includes:
-                    <ul class="list-disc pl-6 mt-2">
-                        <li><strong>Attendance Calculator:</strong> Enter subject names and attendance details for Lecture, Tutorial, Practical, and Skilling. Get an average attendance percentage with 90% accuracy.</li>
-                        <li><strong>SGPA Calculator:</strong> Input grades and credits for each subject to calculate your Semester Grade Point Average.</li>
-                        <li><strong>CGPA Calculator:</strong> Provide previous CGPA, previous credits, current SGPA, and current credits to calculate your Cumulative Grade Point Average.</li>
-                    </ul>
-                </li>
-                <li><strong>Cabin Numbers:</strong> Go to the "Faculty" section. For HODs, enter the department name or HOD name. For faculty, select the department and provide the faculty name to retrieve the cabin number.</li>
-                <li><strong>Mess Menu:</strong> Visit the "Hostel" section, select your hostel, and view the respective menu. Some deviations may occur in the menu updates.</li>
-            </ol>
-
-            <!-- Back Option -->
-            <button 
-              class="mt-4 px-6 py-3 bg-red-600 text-white font-bold rounded-full hover:bg-red-700 transition"
-              onclick="document.getElementById('how-to-use').classList.toggle('hidden');">
-              Back
-            </button>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <img src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/kloo_app_logo_enhanced.jpg" alt="KLU Logo">
+          <h1>KLU <span>ONE</span></h1>
         </div>
-    </div>
-</section>
-
-
-<!-- About KLU Section -->
-<section class="bg-white p-4 lg:p-8 shadow-lg rounded-lg border-4 border-blue-300" id="about-klu">
-    <div class="text-center max-w-4xl mx-auto">
-        <img 
-          alt="Image of KLU University campus with students and faculty engaged in various activities" 
-          class="w-full h-64 object-cover rounded-t-lg" 
-          src="https://assets.onecompiler.app/42fq36qvd/43awjnnd3/Screenshot%202025-03-05%20195239.png" 
-        />
-        <div class="mt-4">
-            <h2 class="text-2xl lg:text-3xl font-bold text-red-700 mb-4">About KLU</h2>
-            <p class="text-gray-700 leading-relaxed text-base lg:text-lg mb-4">
-                KONERU LAKSHMAIAH UNIVERSITY is a leading educational institution committed to excellence in teaching, research, and innovation. 
-                With state-of-the-art facilities, experienced faculty, and a vibrant campus life, KLU offers a wide range of 
-                undergraduate, postgraduate, and doctoral programs. The university is dedicated to nurturing students into 
-                global leaders, equipped with the knowledge and skills to thrive in a dynamic world.
-            </p>
-            
-            <!-- Achievements and Recognition -->
-            <div id="achievements-section" class="hidden mt-4 bg-red-100 p-4 rounded-full shadow-lg">
-                <h3 class="text-xl font-semibold text-red-700 mb-2">Accreditations & Rankings</h3>
-                <ul class="list-disc pl-6 space-y-2 text-gray-700 text-base lg:text-lg">
-                    <li><strong>NAAC A++ Grade:</strong> With a 3.57 CGPA on a 4-point scale (2018)</li>
-                    <li><strong>Category-1 University:</strong> By UGC under the categorization of universities for the grant of Graded Autonomy (2019)</li>
-                    <li><strong>UGC Recognized:</strong> Under Section 2(f) and 12B of UGC Act 1956</li>
-                    <li><strong>AICTE Approval:</strong> All Engineering Programs approved by All India Council for Technical Education (AICTE), New Delhi</li>
-                    <li><strong>PCI Approval:</strong> Pharmacy programs approved by Pharmacy Council of India (PCI)</li>
-                    <li><strong>CoA Approval:</strong> Architecture programs approved by Council of Architecture (CoA), India</li>
-                    <li><strong>BAR Council of India Approval:</strong> Law programs approved by BAR Council of India</li>
-                    <li><strong>Government Approval:</strong> University approved by MHRD-Govt. of India & UGC (Under Section 3 of UGC Act 1956)</li>
-                </ul>
-            </div>
-            
-            <!-- NIRF Rankings -->
-            <div id="nirf-section" class="hidden mt-4 bg-red-100 p-4 rounded-full shadow-lg">
-                <h3 class="text-xl font-semibold text-red-700 mb-2">NIRF 2024 Rankings</h3>
-                <ul class="list-decimal pl-6 space-y-2 text-gray-700 text-base lg:text-lg">
-                    <li><strong>#22:</strong> University Ranking</li>
-                    <li><strong>#35:</strong> Engineering Ranking</li>
-                    <li><strong>#79:</strong> Management Ranking</li>
-                    <li><strong>#40:</strong> Overall Ranking</li>
-                    <li><strong>#Band(11-50):</strong> Innovation</li>
-                </ul>
-            </div>
-
-            <!-- More Button -->
-            <div class="text-center mt-4">
-                <button 
-                  id="toggle-button" 
-                  class="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 transition"
-                  onclick="toggleVisibility()">
-                  More Info
-                </button>
-            </div>
+        <nav class="main-nav">
+          <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#portals">Portals</a></li>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#about-klu">About KLU</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="header-buttons">
+          <a href="#" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <div class="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+          </div>
         </div>
-    </div>
-</section>
-
-<!-- JavaScript to Toggle Visibility -->
-<script>
-  function toggleVisibility() {
-    const achievementsSection = document.getElementById('achievements-section');
-    const nirfSection = document.getElementById('nirf-section');
-    const toggleButton = document.getElementById('toggle-button');
-
-    // Toggle visibility of the sections
-    achievementsSection.classList.toggle('hidden');
-    nirfSection.classList.toggle('hidden');
-
-    // Update button text
-    toggleButton.innerText = toggleButton.innerText === 'More Info' ? 'Less Info' : 'More Info';
-  }
-</script>
-
-
-
-</main>
-
-<!-- Footer Section -->
-<footer class="bg-gray-900 text-white p-8 relative">
-  <!-- Background Image -->
-  <img 
-    src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/Screenshot%202024-12-22%20105437.png" 
-    alt="Decorative background image for the footer section" 
-    class="absolute inset-0 w-full h-full object-cover opacity-50" 
-    width="1200" height="800"
-  />
-  
-  <!-- Red Shade Overlay -->
-  <div class="absolute inset-0 bg-red-700 bg-opacity-50"></div>
-
-  <div class="relative grid grid-cols-1 md:grid-cols-4 gap-8">
-    <!-- Quick Links -->
-    <div>
-      <h3 class="text-xl font-bold mb-4">Quick Links</h3>
-      <ul>
-        <li><a class="hover:underline" href="https://newerp.kluniversity.in/">ERP</a></li>
-        <li><a class="hover:underline" href="https://lms.kluniversity.in/my/">LMS</a></li>
-        <li><a class="hover:underline" href="https://academics.klef.in/login">Academics</a></li>
-        <li><a class="hover:underline" href="calculator.html">Calculator</a></li>
-        <li><a class="hover:underline" href="mess.html">Mess</a></li>
-        <li><a class="hover:underline" href="cabin.html">Cabin</a></li>
-        <li><a class="hover:underline" href="map.html">Map</a></li>
-        <li><a class="hover:underline" href="transport.html">Transport</a></li>
-      </ul>
-    </div>
-
-    <!-- Social Media Links -->
-    <div>
-      <h3 class="text-xl font-bold mb-4">Follow Us</h3>
-      <div class="flex space-x-4">
-        <a class="text-2xl hover:text-gray-300" href="#"><i class="fab fa-facebook"></i></a>
-        <a class="text-2xl hover:text-gray-300" href="#"><i class="fab fa-twitter"></i></a>
-        <a class="text-2xl hover:text-gray-300" href="#"><i class="fab fa-instagram"></i></a>
-        <a class="text-2xl hover:text-gray-300" href="#"><i class="fab fa-linkedin"></i></a>
       </div>
     </div>
+  </header>
 
-   
-
-    <!-- Educational Community Subscription -->
-    <div class="text-center">
-      <h3 class="text-xl font-bold mb-4">OUR EDUCATIONAL COMMUNITY</h3>
-      <button 
-        class="w-full bg-yellow-500 text-black p-2 rounded-md hover:bg-yellow-400 transition" 
-        onclick="openWhatsAppChannel()">
-        Subscribe
-      </button>
+<!-- Updates Marquee -->
+<div class="updates-marquee">
+  <div class="container">
+    <div class="marquee-container">
+      <i class="fas fa-bullhorn"></i>
+      <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" class="red-text">
+        <span><i class="fas fa-circle"></i> Welcome To KLU ONE!!</span>
+        <span><i class="fas fa-circle"></i> ECE Faculty Cabin numbers are updated</span>
+        <span><i class="fas fa-circle"></i> Some deviations May Occur </span>
+        <span><i class="fas fa-circle"></i> </span>
+        <span><i class="fas fa-circle"></i> </span>
+      </marquee>
     </div>
   </div>
-</footer>
+</div>
 
-<script>
-  function openWhatsAppChannel() {
-    window.open("https://whatsapp.com/channel/0029VamjrND9Bb5p7eVOzB18", "_blank");
+<!-- CSS -->
+<style>
+  .red-text {
+    color: red;
+    font-weight: bold;
   }
-</script>
+</style>
 
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <ul class="mobile-nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#portals">Portals</a></li>
+      <li><a href="#tools">Tools</a></li>
+      <li><a href="#about-klu">About KLU</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </div>
-</footer>
 
-  <script>
-   document.getElementById('menu-toggle').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="carousel-container">
+      <div class="carousel">
+        <div class="carousel-slide active">
+          <img src="https://assets.onecompiler.app/42fq36qvd/43awjnnd3/Screenshot%202025-03-05%20195239.png" alt="KLU Campus">
+          <div class="carousel-caption">
+            <h2 class="animate-text">Welcome to KLU ONE</h2>
+            <p class="animate-text">Your comprehensive portal for all KL University resources</p>
+            <a href="#portals" class="hero-btn animate-text">Explore Portals</a>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature5.jpg" alt="KLU Students">
+          <div class="carousel-caption">
+            <h2 class="animate-text">Access All University Portals</h2>
+            <p class="animate-text">ERP, LMS, and Academic resources in one place</p>
+            <a href="#portals" class="hero-btn animate-text">View Portals</a>
+          </div>
+        </div>
+        <div class="carousel-slide">
+          <img src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature3.jpg" alt="KLU Library">
+          <div class="carousel-caption">
+            <h2 class="animate-text">Useful Tools at Your Fingertips</h2>
+            <p class="animate-text">Calculator, Mess, Cabin, Map, and Transport information</p>
+            <a href="#tools" class="hero-btn animate-text">Discover Tools</a>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+        <div class="carousel-indicators">
+          <span class="indicator active"></span>
+          <span class="indicator"></span>
+          <span class="indicator"></span>
+        </div>
+        <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </section>
 
-        let currentIndex = 0;
-        const images = document.querySelectorAll('.carousel-inner img');
-        const totalImages = images.length;
+  <!-- Quick Access Section -->
+  <section class="quick-access">
+    <div class="container">
+      <div class="quick-access-grid">
+        <a href="https://newerp.kluniversity.in/" class="quick-access-item animate-on-scroll" data-animation="fadeInUp" data-delay="0">
+          <i class="fas fa-user-graduate"></i>
+          <span>ERP Portal</span>
+        </a>
+        <a href="https://lms.kluniversity.in/" class="quick-access-item animate-on-scroll" data-animation="fadeInUp" data-delay="100">
+          <i class="fas fa-book-open"></i>
+          <span>LMS</span>
+        </a>
+        <a href="https://academics.klef.in/klef" class="quick-access-item animate-on-scroll" data-animation="fadeInUp" data-delay="200">
+          <i class="fas fa-graduation-cap"></i>
+          <span>Academics</span>
+        </a>
+        <a href="calculator.html" class="quick-access-item animate-on-scroll" data-animation="fadeInUp" data-delay="300">
+          <i class="fas fa-calculator"></i>
+          <span>Calculator</span>
+        </a>
+        <a href="mess.html" class="quick-access-item animate-on-scroll" data-animation="fadeInUp" data-delay="400">
+          <i class="fas fa-utensils"></i>
+          <span>Mess</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
+  <!-- About KLU ONE Section -->
+  <section id="about-klu-one" class="about-klu-one">
+    <div class="container">
+      <div class="section-header animate-on-scroll" data-animation="fadeInDown">
+        <h2>About KLU ONE</h2>
+        <div class="underline"></div>
+      </div>
+      <div class="about-content">
+        <div class="about-text animate-on-scroll" data-animation="fadeInRight">
+          <p>KLU ONE is a unified platform designed to provide KL University students with seamless access to all university resources, portals, and tools in one convenient location. Our goal is to simplify the student experience by eliminating the need to navigate multiple websites and remember different login credentials.</p>
+          <p>With KLU ONE, you can access your ERP, LMS, academic resources, and various campus utilities through a single, user-friendly interface. We've designed this portal with student needs in mind, ensuring that you can find everything you need quickly and efficiently.</p>
+          <div class="about-stats">
+            <div class="stat-item animate-on-scroll" data-animation="fadeInUp" data-delay="0">
+              <div class="stat-number" data-count="1320">0</div>
+              <div class="stat-label">Users</div>
+            </div>
+            <div class="stat-item animate-on-scroll" data-animation="fadeInUp" data-delay="200">
+              <div class="stat-number" data-count="30000">0</div>
+              <div class="stat-label">Impressions</div>
+            </div>
+            <div class="stat-item animate-on-scroll" data-animation="fadeInUp" data-delay="400">
+              <div class="stat-number" data-count="6">0</div>
+              <div class="stat-label">Features</div>
+            </div>
+            <div class="stat-item animate-on-scroll" data-animation="fadeInUp" data-delay="600">
+              <div class="stat-number" data-count="300">0</div>
+              <div class="stat-label">Downloads</div>
+            </div>
+          </div>
+        </div>
+        <div class="how-to-use animate-on-scroll" data-animation="fadeInLeft">
+          <div class="how-to-use-header">
+            <h3>How to Use KLU ONE</h3>
+            <button class="toggle-btn"><i class="fas fa-plus"></i></button>
+          </div>
+          <div class="how-to-use-content">
+            <ol>
+              <li><strong>Navigate to Portals:</strong> Click on the "Portals" section to access ERP, LMS, and Academic resources.</li>
+              <li><strong>Explore Tools:</strong> Visit the "Tools" section for calculators, mess schedules, cabin bookings, campus maps, and transport information.</li>
+              <li><strong>Single Sign-On:</strong> Log in once to access all connected university systems without re-entering credentials.</li>
+              <li><strong>Stay Updated:</strong> Check the announcements marquee at the top for important university updates and news.</li>
+              <li><strong>Mobile Access:</strong> KLU ONE is fully responsive, allowing you to access all features from your mobile device or tablet.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- University Portals Section -->
+  <section id="portals" class="portals">
+    <div class="container">
+      <div class="section-header animate-on-scroll" data-animation="fadeInDown">
+        <h2>University Portals</h2>
+        <div class="underline"></div>
+      </div>
+      <div class="portals-grid">
+        <div id="erp" class="portal-card animate-on-scroll" data-animation="fadeInUp" data-delay="0">
+          <div class="portal-icon">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <h3>ERP Portal</h3>
+          <p>Access your student profile, attendance, grades, and fee information</p>
+          <a href="https://newerp.kluniversity.in/" class="portal-btn">Access ERP</a>
+        </div>
+        <div id="lms" class="portal-card animate-on-scroll" data-animation="fadeInUp" data-delay="200">
+          <div class="portal-icon">
+            <i class="fas fa-book-open"></i>
+          </div>
+          <h3>Learning Management</h3>
+          <p>Access course materials, assignments, and online learning resources</p>
+          <a href="https://lms.kluniversity.in/" class="portal-btn">Access LMS</a>
+        </div>
+        <div id="https://academics.klef.in/klef" class="portal-card animate-on-scroll" data-animation="fadeInUp" data-delay="400">
+          <div class="portal-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3>Academic Portal</h3>
+          <p>View academic calendar, curriculum, and program information</p>
+          <a href="#" class="portal-btn">Access Academics</a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Useful Tools Section -->
+  <section id="tools" class="tools">
+    <div class="container">
+      <div class="section-header animate-on-scroll" data-animation="fadeInDown">
+        <h2>Useful Tools</h2>
+        <div class="underline"></div>
+      </div>
+      <div class="tools-grid">
+        <div id="calculator" class="tool-card animate-on-scroll" data-animation="zoomIn" data-delay="0">
+          <div class="tool-icon">
+            <i class="fas fa-calculator"></i>
+          </div>
+          <h3>GPA Calculator</h3>
+          <p>Calculate your semester and cumulative GPA</p>
+          <a href="calculator.html" class="tool-btn">Use Calculator</a>
+        </div>
+        <div id="mess" class="tool-card animate-on-scroll" data-animation="zoomIn" data-delay="200">
+          <div class="tool-icon">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <h3>Mess Schedule</h3>
+          <p>View mess timings and weekly menu</p>
+          <a href="mess.html" class="tool-btn">View Mess Info</a>
+        </div>
+        <div id="cabin" class="tool-card animate-on-scroll" data-animation="zoomIn" data-delay="400">
+          <div class="tool-icon">
+            <i class="fas fa-door-open"></i>
+          </div>
+          <h3>Cabin</h3>
+          <p>Book faculty cabins for discussions</p>
+          <a href="cabin.html" class="tool-btn">Book Cabin</a>
+        </div>
+        <div id="map" class="tool-card animate-on-scroll" data-animation="zoomIn" data-delay="600">
+          <div class="tool-icon">
+            <i class="fas fa-map-marked-alt"></i>
+          </div>
+          <h3>Campus Map</h3>
+          <p>Interactive map to navigate the campus</p>
+          <a href="map.html" class="tool-btn">Open Map</a>
+        </div>
+        <div id="transport" class="tool-card animate-on-scroll" data-animation="zoomIn" data-delay="800">
+          <div class="tool-icon">
+            <i class="fas fa-bus"></i>
+          </div>
+          <h3>Transport Info</h3>
+          <p>Bus routes, timings, and tracking</p>
+          <a href="transport.html" class="tool-btn">Transport Details</a>
+        </div>
+        <div class="tool-card animate-on-scroll" data-animation="zoomIn" data-delay="1000">
+          <div class="tool-icon">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <h3>Event Calendar</h3>
+          <p>University events and important dates</p>
+          <a href="event.html" class="tool-btn">View Calendar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About KLU Section -->
+  <section id="about-klu" class="about-klu">
+    <div class="container">
+      <div class="section-header animate-on-scroll" data-animation="fadeInDown">
+        <h2>About KL University</h2>
+        <div class="underline"></div>
+      </div>
+      <div class="about-klu-content">
+        <div class="about-klu-image animate-on-scroll" data-animation="fadeInLeft">
+          <img src="https://assets.onecompiler.app/42fq36qvd/42zzxz8bc/kl_main.jpg" alt="KL University Campus">
+        </div>
+        <div class="about-klu-text animate-on-scroll" data-animation="fadeInRight">
+          <p>Koneru Lakshmaiah Education Foundation, commonly known as KL University, is a deemed university located in the Vaddeswaram, Guntur district of Andhra Pradesh, India. Established in 1980, KL University has grown to become one of the premier educational institutions in the country, known for its excellence in engineering, management, and sciences.</p>
+          <p>The university is committed to providing high-quality education that prepares students for successful careers and meaningful contributions to society. With state-of-the-art facilities, experienced faculty, and a focus on research and innovation, KL University offers a comprehensive learning environment that fosters academic growth and personal development.</p>
+          <div class="achievements">
+            <div class="achievements-header">
+              <h3>University Achievements</h3>
+              <button class="toggle-btn"><i class="fas fa-plus"></i></button>
+            </div>
+            <div class="achievements-content">
+              <ul>
+                <li>NAAC 'A++' Grade with 3.57 CGPA</li>
+                <li>Ranked among Top 50 Universities in India by NIRF</li>
+                <li>UGC 12(B) & 2(f) Status</li>
+                <li>ISO 9001:2015 Certified Institution</li>
+                <li>Category-I University status by UGC</li>
+                <li>Recognized as Scientific and Industrial Research Organization (SIRO)</li>
+                <li>Member of Association of Indian Universities (AIU)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Important Links Section -->
+  <section id="important-links" class="important-links">
+    <div class="container">
+      <div class="section-header animate-on-scroll" data-animation="fadeInDown">
+        <h2>Important Links</h2>
+        <div class="underline"></div>
+      </div>
+      <div class="links-grid">
+        <div class="link-category animate-on-scroll" data-animation="fadeInUp" data-delay="0">
+          <h3>Academic</h3>
+          <ul>
+            <li><a href="#">Academic Calendar</a></li>
+            <li><a href="#">Curriculum</a></li>
+            <li><a href="#">Examination Schedule</a></li>
+            <li><a href="#">Results</a></li>
+            <li><a href="#">Research Portal</a></li>
+          </ul>
+        </div>
+        <div class="link-category animate-on-scroll" data-animation="fadeInUp" data-delay="200">
+          <h3>Administration</h3>
+          <ul>
+            <li><a href="#">Fee Payment</a></li>
+            <li><a href="#">Scholarships</a></li>
+            <li><a href="#">Hostel Management</a></li>
+            <li><a href="#">Transport Management</a></li>
+            <li><a href="#">Grievance Cell</a></li>
+          </ul>
+        </div>
+        <div class="link-category animate-on-scroll" data-animation="fadeInUp" data-delay="400">
+          <h3>Campus Life</h3>
+          <ul>
+            <li><a href="#">Student Clubs</a></li>
+            <li><a href="#">Sports Facilities</a></li>
+            <li><a href="#">Cultural Events</a></li>
+            <li><a href="#">Library Resources</a></li>
+            <li><a href="#">Health Center</a></li>
+          </ul>
+        </div>
        
-  </script>
- </body>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-header animate-on-scroll" data-animation="fadeInDown">
+        <h2>Contact Us</h2>
+        <div class="underline"></div>
+      </div>
+      <div class="contact-content">
+        <div class="contact-form animate-on-scroll" data-animation="fadeInLeft">
+          <h3>Send us a Message</h3>
+          <form>
+            <div class="form-group">
+              <input type="text" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <input type="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Subject" required>
+            </div>
+            <div class="form-group">
+              <textarea placeholder="Your Message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+        <div class="contact-info animate-on-scroll" data-animation="fadeInRight">
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h3>Address</h3>
+              <p>KL University, Green Fields, Vaddeswaram, Guntur District, Andhra Pradesh, India - 522302</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h3>Phone</h3>
+              <p>+91 863 2399999</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h3>Email</h3>
+              <p>info@kluniversity.in</p>
+            </div>
+          </div>
+          <div class="subscription">
+            <h3>Subscribe to Updates</h3>
+            <p>Stay informed about the latest news and updates from KLU ONE</p>
+            <form class="subscription-form">
+              <input type="email" placeholder="Enter your email" required>
+              <button type="submit">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="map-section">
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826.6357226287974!2d80.62050931486823!3d16.44136198864752!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35f0a2a7d81943%3A0x8ba5d78f65df94b8!2sK%20L%20University!5e0!3m2!1sen!2sin!4v1649941591234!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-about">
+            <div class="footer-logo">
+              <img src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/Screenshot%202025-02-06%20151827.png" alt="KLU Logo">
+              <h2>KLU <span>ONE</span></h2>
+            </div>
+            <p>KLU ONE is the comprehensive web portal for KL University, providing access to all university resources, portals, and tools in one convenient location.</p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about-klu">About KLU</a></li>
+              <li><a href="#portals">Portals</a></li>
+              <li><a href="#tools">Tools</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h3>Resources</h3>
+            <ul>
+              <li><a href="#">Student Handbook</a></li>
+              <li><a href="#">Faculty Directory</a></li>
+              <li><a href="#">Campus Map</a></li>
+              <li><a href="#">Academic Calendar</a></li>
+              <li><a href="#">Library Catalog</a></li>
+            </ul>
+          </div>
+          <div class="footer-contact">
+            <h3>Contact Us</h3>
+            <ul>
+              <li><i class="fas fa-map-marker-alt"></i> KL University, Vaddeswaram, Guntur District, AP - 522302</li>
+              <li><i class="fas fa-phone"></i> +91 863 2399999</li>
+              <li><i class="fas fa-envelope"></i> info@kluniversity.in</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2024 KL University. All Rights Reserved.</p>
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+    <div class="back-to-top">
+      <a href="#home"><i class="fas fa-arrow-up"></i></a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
+
