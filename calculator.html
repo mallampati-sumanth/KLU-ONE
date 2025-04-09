@@ -1,405 +1,2091 @@
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>KLU ONE Attendance, SGPA, and CGPA Calculator</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-    <style>
-      /* Logo Effect */
-      .logo-effect {
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-      }
-      .logo-effect:hover {
-        transform: scale(1.1) rotate(10deg);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      }
-      /* Button Effect */
-      .button-effect {
-        transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
-      }
-      
-      /* Input Focus Effect */
-      .input-effect:focus {
-        box-shadow: 0 0 10px rgba(0, 0, 255, 0.5);
-        border-color: #3b82f6; /* blue focus */
-      }
-      /* Navigation Button Style */
-      .nav-button {
-        transition: background-color 0.3s ease, transform 0.3s ease;
-      }
-      .nav-button:hover {
-        transform: translateY(-3px);
-        background-color: rgba(0, 0, 0, 0.1);
-      }
-      /* Footer Styling */
-      footer {
-        background-color: #2d3748;
-        color: white;
-        text-align: center;
-        padding: 16px;
-        font-size: 14px;
-      }
-      footer p {
-        margin-top: 8px;
-      }
-      /* General Styling */
-      .active {
-        display: block;
-      }
-      .hidden {
-        display: none;
-      }
-      /* Card Styling */
-      .card {
-        background-color: #fff;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      }
-      .card-header {
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 12px;
-      }
-      .card-body {
-        margin-top: 20px;
-        margin-bottom: 20px;
-      }
-      .card-footer {
-        text-align: right;
-      }
-      @keyframes shine {
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KLU ONE Calculators</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <style>
+    /* ===== BASE STYLES ===== */
+:root {
+  --primary: #e60000;
+  --primary-light: #ff3333;
+  --primary-dark: #cc0000;
+  --primary-gradient: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  --white: #ffffff;
+  --off-white: #f8f9fa;
+  --light-gray: #f1f3f5;
+  --gray: #dee2e6;
+  --dark-gray: #343a40;
+  --black: #212529;
+  --success: #28a745;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --info: #17a2b8;
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --transition-fast: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-normal: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-slow: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 20px;
+  --border-radius-xl: 30px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: var(--off-white);
+  color: var(--dark-gray);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+  opacity: 1;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===== PARTICLE BACKGROUND ===== */
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+}
+
+/* ===== APP CONTAINER ===== */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== FLOATING ELEMENTS ===== */
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.floating-element {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  top: var(--top);
+  left: var(--left);
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(230, 0, 0, 0.05), transparent);
+  animation: float 15s infinite ease-in-out;
+  animation-delay: var(--delay);
+  opacity: 0.6;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(30px, -30px) rotate(90deg);
+  }
+  50% {
+    transform: translate(0, -60px) rotate(180deg);
+  }
+  75% {
+    transform: translate(-30px, -30px) rotate(270deg);
+  }
+}
+
+/* ===== HEADER ===== */
+.header {
+  text-align: center;
+  padding: 40px 0;
+  position: relative;
+  margin-bottom: 30px;
+  animation: slideDown 0.6s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  perspective: 1000px;
+}
+
+.logo {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+}
+
+.logo:hover {
+  transform: rotateY(180deg);
+}
+
+.logo-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--white);
+  background: var(--primary-gradient);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(230, 0, 0, 0.3);
+  backface-visibility: hidden;
+}
+
+.logo-text span {
+  display: inline-block;
+  animation: float-letter 3s infinite ease-in-out;
+}
+
+.logo-text span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.logo-text span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes float-letter {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.logo-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-radius: 15px;
+  animation: shine 3s infinite;
+  backface-visibility: hidden;
+}
+
+@keyframes shine {
   0% {
-    background-position: -100%;
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  20%,
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  background: linear-gradient(to right, var(--primary-dark), var(--primary), var(--primary-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: text-gradient 8s linear infinite;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes text-gradient {
+  0% {
+    background-position: 0% center;
   }
   100% {
-    background-position: 200%;
+    background-position: 200% center;
   }
 }
 
-.text-shine {
+.highlight {
   position: relative;
   display: inline-block;
-  background: linear-gradient(90deg, red, white, red);
-  background-size: 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shine 2s linear infinite;
 }
 
-    </style>
-<!-- Header -->
-<header class="bg-red-600 text-white py-4">
-  <div class="flex items-center justify-between px-4 relative">
-    <!-- Logo and Title -->
-    <div class="flex items-center">
-      <img
-        alt="K L University Logo"
-        class="h-16 w-16 mr-4 logo-effect"
-        height="64"
-        src="https://assets.onecompiler.app/42fq36qvd/42zbsafhz/Screenshot%202024-11-27%20111356.png"
-        width="64"
-      />
-      <div>
-        <h1 class="text-4xl font-bold">
-          KLU <span class="text-shine">ONE CALCULATORS</span>
-        </h1>
-        <p class="text-sm mt-2">Choose Attendance, SGPA, or CGPA Calculator</p>
-      </div>
+.highlight::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--primary-gradient);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease;
+}
+
+.title:hover .highlight::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--dark-gray);
+  opacity: 0.8;
+  letter-spacing: 1px;
+}
+
+/* ===== NAVIGATION TABS ===== */
+.nav-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.nav-tab {
+  position: relative;
+  padding: 15px 25px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--dark-gray);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: var(--glass-shadow);
+  overflow: hidden;
+}
+
+.nav-tab::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.nav-tab:hover::before {
+  transform: translateX(100%);
+}
+
+.nav-tab:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.nav-tab.active {
+  background: var(--primary-gradient);
+  color: var(--white);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(230, 0, 0, 0.2);
+}
+
+.nav-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.nav-tab:hover .nav-icon {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.nav-tab.active .nav-icon {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.nav-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: var(--white);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav-tab.active .nav-indicator {
+  width: 80%;
+}
+
+/* ===== CONTENT AREA ===== */
+.content {
+  flex: 1;
+  position: relative;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.calculator-section {
+  display: none;
+  animation: fade-slide-up 0.5s ease forwards;
+}
+
+.calculator-section.active {
+  display: block;
+}
+
+@keyframes fade-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== GLASS CARD ===== */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--glass-shadow);
+  padding: 30px;
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+
+.glass-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.card-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--primary-gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  color: var(--white);
+  font-size: 1.5rem;
+  box-shadow: 0 10px 20px rgba(230, 0, 0, 0.2);
+  animation: float-icon 3s infinite ease-in-out;
+}
+
+@keyframes float-icon {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.card-header h2 {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 10px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-description {
+  color: var(--dark-gray);
+  opacity: 0.8;
+  font-size: 1rem;
+}
+
+.card-body {
+  margin-bottom: 30px;
+}
+
+/* ===== FORM STYLES ===== */
+.form-group {
+  margin-bottom: 25px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.form-group:hover {
+  transform: translateX(5px);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--dark-gray);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.form-group:hover label {
+  color: var(--primary);
+}
+
+.form-group label i {
+  color: var(--primary);
+  transition: transform 0.3s ease;
+}
+
+.form-group:hover label i {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid var(--gray);
+  border-radius: var(--border-radius-md);
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(230, 0, 0, 0.2);
+}
+
+.input-focus-effect {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-gradient);
+  transition: width 0.3s ease;
+}
+
+.input-wrapper input:focus ~ .input-focus-effect {
+  width: 100%;
+}
+
+.btn-inline {
+  margin-left: 10px;
+  padding: 10px 15px;
+  background: var(--primary-gradient);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-inline:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(230, 0, 0, 0.3);
+}
+
+.subjects-container {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding-right: 10px;
+}
+
+.subject-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: var(--border-radius-md);
+  transition: all 0.3s ease;
+  animation: fade-in 0.5s ease forwards;
+}
+
+.subject-row:hover {
+  transform: translateX(5px);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* ===== BUTTON STYLES ===== */
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.btn {
+  position: relative;
+  padding: 12px 25px;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: var(--primary-gradient);
+  color: var(--white);
+  flex: 2;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--dark-gray);
+  border: 2px solid var(--gray);
+  flex: 1;
+}
+
+.btn-content {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-icon {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.btn:hover .btn-icon {
+  transform: rotate(360deg);
+}
+
+.btn-effect {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.7s ease;
+}
+
+.btn:hover .btn-effect {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(230, 0, 0, 0.3);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== RESULTS SECTION ===== */
+.results-section {
+  margin-top: 40px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: var(--border-radius-lg);
+  transition: all 0.5s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.results-section.show {
+  opacity: 1;
+  transform: translateY(0);
+  animation: pop-in 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  70% {
+    transform: scale(1.05) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.results-section.hidden {
+  display: none;
+}
+
+.results-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.results-header h3 {
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.results-divider {
+  height: 3px;
+  width: 80px;
+  background: var(--primary-gradient);
+  margin: 0 auto;
+  border-radius: 3px;
+}
+
+.result-card {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.result-visual {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.circular-progress {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.circular-progress svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.progress-bg {
+  fill: none;
+  stroke: var(--light-gray);
+  stroke-width: 8;
+}
+
+.progress-bar {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  transition: stroke-dashoffset 1.5s ease, stroke 0.5s ease;
+}
+
+.progress-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.result-details {
+  flex: 2;
+  min-width: 250px;
+}
+
+.result-details h4 {
+  font-size: 1.5rem;
+  color: var(--dark-gray);
+  margin-bottom: 15px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 8px 15px;
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  margin-bottom: 15px;
+  background: var(--light-gray);
+  color: var(--dark-gray);
+  transition: all 0.3s ease;
+}
+
+.status-badge.good {
+  background-color: rgba(40, 167, 69, 0.2);
+  color: var(--success);
+}
+
+.status-badge.warning {
+  background-color: rgba(255, 193, 7, 0.2);
+  color: var(--warning);
+}
+
+.status-badge.danger {
+  background-color: rgba(220, 53, 69, 0.2);
+  color: var(--danger);
+}
+
+.component-analysis {
+  margin-top: 15px;
+}
+
+.component-analysis h5 {
+  font-size: 1.1rem;
+  color: var(--dark-gray);
+  margin-bottom: 10px;
+}
+
+.component-analysis ul {
+  list-style-type: none;
+}
+
+.component-analysis li {
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: var(--border-radius-sm);
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+  animation: fade-in 0.5s ease forwards;
+  animation-delay: calc(var(--i) * 0.1s);
+}
+
+.component-analysis li:hover {
+  transform: translateX(5px);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  margin-top: auto;
+  padding: 30px 0;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 2px;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  box-shadow: var(--glass-shadow);
+}
+
+.social-link:hover {
+  background: var(--primary-gradient);
+  color: var(--white);
+  transform: translateY(-5px) rotate(10deg);
+  box-shadow: 0 10px 20px rgba(230, 0, 0, 0.2);
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .nav-tabs {
+    gap: 10px;
+  }
+
+  .nav-tab {
+    padding: 12px 20px;
+  }
+
+  .glass-card {
+    padding: 20px;
+  }
+
+  .result-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .logo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .logo-text {
+    font-size: 2.5rem;
+  }
+
+  .nav-tab {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .subject-row {
+    grid-template-columns: 1fr;
+  }
+
+  .circular-progress {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+.shake {
+  animation: shake 0.5s ease;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+}
+
+  </style>
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+  
+  <div class="app-container">
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+      <div class="floating-element" style="--delay: 0s; --size: 80px; --top: 15%; --left: 10%;"></div>
+      <div class="floating-element" style="--delay: 5s; --size: 120px; --top: 70%; --left: 85%;"></div>
+      <div class="floating-element" style="--delay: 2s; --size: 60px; --top: 25%; --left: 80%;"></div>
+      <div class="floating-element" style="--delay: 7s; --size: 100px; --top: 80%; --left: 20%;"></div>
     </div>
 
-    <!-- Home Button -->
-    <div class="absolute top-2 right-4">
-      <a
-        class="bg-white text-red-700 font-bold px-4 py-2 rounded-lg shadow-md hover:bg-red-600 hover:text-white transition duration-300 ease-in-out sm:px-6 sm:py-3 sm:text-lg focus:outline-none focus:ring-2 focus:ring-red-400 inline-flex items-center"
-        href="index.html"
-      >
-        Home
-        <span class="ml-2">🏠</span>
-      </a>
-    </div>
-  </div>
-</header>
-
-
-
-    <!-- Main Container -->
-    <main class="max-w-lg mx-auto mt-10 bg-white shadow-lg rounded-lg p-6 space-y-8">
-      <!-- Navigation Section -->
-      <div class="flex justify-around mb-4">
-        <button class="px-4 py-2 bg-red-500 text-white rounded-md nav-button" id="attendanceNav">
-          Attendance Calculator
-        </button>
-        <button class="px-4 py-2 bg-blue-500 text-white rounded-md nav-button" id="sgpaNav">
-          SGPA Calculator
-        </button>
-        <button class="px-4 py-2 bg-green-500 text-white rounded-md nav-button" id="cgpaNav">
-          CGPA Calculator
-        </button>
-      </div>
-
-      <!-- Attendance Calculator Section -->
-      <section class="space-y-4 active" id="attendanceCalculator">
-        <div class="card">
-          <div class="card-header">Attendance Calculator</div>
-          <form class="space-y-4" id="attendanceForm">
-            <div>
-              <label class="block text-lg font-medium" for="subjectName">Subject Name (Optional)</label>
-              <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" id="subjectName" placeholder="Enter Subject Name" type="text"/>
-            </div>
-            <div>
-              <label class="block text-lg font-medium" for="lecturePercentage">Lecture (%)</label>
-              <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" id="lecturePercentage" max="100" min="0" placeholder="Enter Lecture %" type="number"/>
-            </div>
-            <div>
-              <label class="block text-lg font-medium" for="tutorialPercentage">Tutorial (%)</label>
-              <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" id="tutorialPercentage" max="100" min="0" placeholder="Enter Tutorial %" type="number"/>
-            </div>
-            <div>
-              <label class="block text-lg font-medium" for="practicalPercentage">Practical (%)</label>
-              <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" id="practicalPercentage" max="100" min="0" placeholder="Enter Practical %" type="number"/>
-            </div>
-            <div>
-              <label class="block text-lg font-medium" for="skillingPercentage">Skilling (%)</label>
-              <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 input-effect" id="skillingPercentage" max="100" min="0" placeholder="Enter Skilling %" type="number"/>
-            </div>
-            <div class="flex justify-between mt-6">
-              <button class="px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:ring-2 focus:ring-red-500 button-effect" id="calculateButton" type="button">
-                Calculate Attendance
-              </button>
-              <button class="px-6 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 focus:ring-2 focus:ring-gray-400 button-effect" id="resetButton" type="button">
-                Reset
-              </button>
-            </div>
-          </form>
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-container">
+        <div class="logo">
+          <div class="logo-text">
+            <span>K</span>
+            <span>L</span>
+            <span>U</span>
+          </div>
+          <div class="logo-shine"></div>
         </div>
+      </div>
+      <h1 class="title">ONE <span class="highlight">Calculators</span></h1>
+      <p class="subtitle">Your Academic Companion</p>
+    </header>
 
-        <!-- Results Section -->
-        <div class="mt-8 hidden" id="results">
-          <h3 class="text-xl font-bold">Results(<b>some deviations may occur</b>)</h3>
-          <p class="mt-2 text-lg" id="subjectResult"></p>
-          <p class="mt-2 text-lg font-semibold" id="overallAttendance"></p>
-          <h4 class="text-lg font-semibold mt-4">Component Analysis</h4>
-          <ul class="list-disc pl-5 text-gray-700" id="componentAnalysis"></ul>
+    <!-- Navigation -->
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="attendance">
+        <span class="nav-icon"><i class="fas fa-calendar-check"></i></span>
+        <span class="nav-text">Attendance</span>
+        <span class="nav-indicator"></span>
+      </button>
+      <button class="nav-tab" data-tab="sgpa">
+        <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+        <span class="nav-text">SGPA</span>
+        <span class="nav-indicator"></span>
+      </button>
+      <button class="nav-tab" data-tab="cgpa">
+        <span class="nav-icon"><i class="fas fa-graduation-cap"></i></span>
+        <span class="nav-text">CGPA</span>
+        <span class="nav-indicator"></span>
+      </button>
+    </nav>
+
+    <!-- Content Area -->
+    <main class="content">
+      <!-- Attendance Calculator -->
+      <section class="calculator-section active" id="attendance">
+        <div class="glass-card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-calendar-check"></i></div>
+            <h2>Attendance Calculator</h2>
+            <p class="card-description">Calculate your weighted attendance percentage</p>
+          </div>
+          
+          <div class="card-body">
+            <div class="form-group">
+              <label for="subjectName">
+                <i class="fas fa-book"></i> Subject Name
+              </label>
+              <div class="input-wrapper">
+                <input type="text" id="subjectName" placeholder="Enter subject name">
+                <span class="input-focus-effect"></span>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="lecturePercentage">
+                <i class="fas fa-chalkboard-teacher"></i> Lecture Attendance (%)
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="lecturePercentage" min="0" max="100" placeholder="Enter percentage">
+                <span class="input-focus-effect"></span>
+              </div>
+            </div>
+            <script>
+              // Initialize particles.js
+document.addEventListener("DOMContentLoaded", () => {
+  // Check if particlesJS is already defined
+  if (typeof particlesJS === "undefined") {
+    console.error("particlesJS is not defined. Make sure particles.js library is included.")
+    return // Exit if particlesJS is not available
+  }
+
+  // Particles.js configuration
+  particlesJS("particles-js", {
+    particles: {
+      number: {
+        value: 80,
+        density: {
+          enable: true,
+          value_area: 800,
+        },
+      },
+      color: {
+        value: "#e60000",
+      },
+      shape: {
+        type: "circle",
+        stroke: {
+          width: 0,
+          color: "#000000",
+        },
+        polygon: {
+          nb_sides: 5,
+        },
+      },
+      opacity: {
+        value: 0.3,
+        random: true,
+        anim: {
+          enable: true,
+          speed: 1,
+          opacity_min: 0.1,
+          sync: false,
+        },
+      },
+      size: {
+        value: 3,
+        random: true,
+        anim: {
+          enable: true,
+          speed: 2,
+          size_min: 0.1,
+          sync: false,
+        },
+      },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: "#e60000",
+        opacity: 0.2,
+        width: 1,
+      },
+      move: {
+        enable: true,
+        speed: 1,
+        direction: "none",
+        random: true,
+        straight: false,
+        out_mode: "out",
+        bounce: false,
+        attract: {
+          enable: false,
+          rotateX: 600,
+          rotateY: 1200,
+        },
+      },
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: {
+        onhover: {
+          enable: true,
+          mode: "grab",
+        },
+        onclick: {
+          enable: true,
+          mode: "push",
+        },
+        resize: true,
+      },
+      modes: {
+        grab: {
+          distance: 140,
+          line_linked: {
+            opacity: 0.5,
+          },
+        },
+        push: {
+          particles_nb: 4,
+        },
+      },
+    },
+    retina_detect: true,
+  })
+
+  // Set current year in footer
+  document.getElementById("currentYear").textContent = new Date().getFullYear()
+
+  // Animate elements on load
+  animateElementsOnLoad()
+
+  // Tab Navigation with smooth transitions
+  const navTabs = document.querySelectorAll(".nav-tab")
+  const calculatorSections = document.querySelectorAll(".calculator-section")
+
+  navTabs.forEach((tab) => {
+    tab.addEventListener("click", function () {
+      // If already active, do nothing
+      if (this.classList.contains("active")) return
+
+      // Remove active class from all tabs
+      navTabs.forEach((t) => t.classList.remove("active"))
+
+      // Add active class to clicked tab with transition
+      this.classList.add("active")
+
+      // Get the target section
+      const tabId = this.getAttribute("data-tab")
+      const targetSection = document.getElementById(tabId)
+
+      // Fade out all sections
+      calculatorSections.forEach((section) => {
+        if (section.classList.contains("active")) {
+          section.style.opacity = "0"
+          section.style.transform = "translateY(20px)"
+
+          setTimeout(() => {
+            section.classList.remove("active")
+
+            // Fade in the target section
+            targetSection.classList.add("active")
+            setTimeout(() => {
+              targetSection.style.opacity = "1"
+              targetSection.style.transform = "translateY(0)"
+            }, 50)
+          }, 300)
+        }
+      })
+    })
+  })
+
+  // Initialize all sections with proper styles
+  calculatorSections.forEach((section) => {
+    if (section.classList.contains("active")) {
+      section.style.opacity = "1"
+      section.style.transform = "translateY(0)"
+    } else {
+      section.style.opacity = "0"
+      section.style.transform = "translateY(20px)"
+    }
+  })
+
+  // Ripple effect on buttons
+  const buttons = document.querySelectorAll(".btn")
+  buttons.forEach((button) => {
+    button.addEventListener("click", function (e) {
+      const x = e.clientX - this.getBoundingClientRect().left
+      const y = e.clientY - this.getBoundingClientRect().top
+
+      const ripple = document.createElement("span")
+      ripple.classList.add("ripple")
+      ripple.style.left = `${x}px`
+      ripple.style.top = `${y}px`
+
+      this.appendChild(ripple)
+
+      setTimeout(() => {
+        ripple.remove()
+      }, 600)
+    })
+  })
+
+  // Animate elements on load
+  function animateElementsOnLoad() {
+    const elements = document.querySelectorAll(".header, .nav-tabs, .content")
+    elements.forEach((el, index) => {
+      el.style.opacity = "1"
+      el.style.transform = "translateY(0)"
+    })
+  }
+
+  // Helper function to animate number values
+  function animateValue(element, start, end, duration) {
+    let startTimestamp = null
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1)
+      const value = progress * (end - start) + start
+      element.textContent = Number.parseFloat(value).toFixed(2)
+      if (progress < 1) {
+        window.requestAnimationFrame(step)
+      }
+    }
+    window.requestAnimationFrame(step)
+  }
+
+  // Helper function to show notifications
+  function showNotification(message, type = "info") {
+    const notification = document.createElement("div")
+    notification.className = `notification ${type}`
+    notification.textContent = message
+
+    document.body.appendChild(notification)
+
+    setTimeout(() => {
+      notification.classList.add("show")
+    }, 10)
+
+    setTimeout(() => {
+      notification.classList.remove("show")
+      setTimeout(() => {
+        notification.remove()
+      }, 300)
+    }, 3000)
+  }
+
+  // Attendance Calculator
+  const calculateAttendanceBtn = document.getElementById("calculateAttendance")
+  const resetAttendanceBtn = document.getElementById("resetAttendance")
+  const attendanceResults = document.getElementById("attendanceResults")
+  const subjectResultEl = document.getElementById("subjectResult")
+  const overallAttendanceEl = document.getElementById("overallAttendance")
+  const componentAnalysisEl = document.getElementById("componentAnalysis")
+  const attendanceStatusEl = document.getElementById("attendanceStatus")
+  const attendanceValueEl = document.getElementById("attendanceValue")
+
+  calculateAttendanceBtn.addEventListener("click", function () {
+    // Add loading animation
+    this.disabled = true
+    this.querySelector(".btn-content").textContent = "Calculating..."
+    this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-spinner fa-spin"></i>'
+
+    setTimeout(() => {
+      calculateAttendance()
+
+      // Reset button
+      this.disabled = false
+      this.querySelector(".btn-content").textContent = "Calculate"
+      this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-calculator"></i>'
+    }, 800)
+  })
+
+  resetAttendanceBtn.addEventListener("click", resetAttendanceForm)
+
+  const calculateAttendance = () => {
+    const subjectName = document.getElementById("subjectName").value || "N/A"
+    const lecturePercentage = Number.parseFloat(document.getElementById("lecturePercentage").value) || null
+    const tutorialPercentage = Number.parseFloat(document.getElementById("tutorialPercentage").value) || null
+    const practicalPercentage = Number.parseFloat(document.getElementById("practicalPercentage").value) || null
+    const skillingPercentage = Number.parseFloat(document.getElementById("skillingPercentage").value) || null
+    const weights = { lecture: 1.0, tutorial: 0.25, practical: 0.5, skilling: 0.25 }
+    let totalWeight = 0
+    let weightedSum = 0
+    const components = [
+      { percentage: lecturePercentage, weight: weights.lecture, name: "Lecture" },
+      { percentage: tutorialPercentage, weight: weights.tutorial, name: "Tutorial" },
+      { percentage: practicalPercentage, weight: weights.practical, name: "Practical" },
+      { percentage: skillingPercentage, weight: weights.skilling, name: "Skilling" },
+    ]
+
+    const analysis = components
+      .map((component, index) => {
+        if (component.percentage !== null) {
+          totalWeight += component.weight
+          weightedSum += component.percentage * component.weight
+          return `<li style="--i:${index}"><strong>${component.name}:</strong> ${component.percentage}%</li>`
+        }
+        return ""
+      })
+      .filter(Boolean)
+
+    if (totalWeight === 0) {
+      showNotification("Please provide percentages for at least one component.", "warning")
+      return
+    }
+
+    const overallAttendance = weightedSum / totalWeight
+
+    // Update result elements
+    subjectResultEl.textContent = `Subject: ${subjectName}`
+    overallAttendanceEl.textContent = `Overall Attendance: ${overallAttendance.toFixed(2)}%`
+    componentAnalysisEl.innerHTML = analysis.join("")
+
+    // Update progress circle
+    const progressBar = document.querySelector("#attendanceResults .progress-bar")
+    const circumference = 2 * Math.PI * 45 // 45 is the radius
+    progressBar.style.strokeDasharray = circumference
+    const offset = circumference - (overallAttendance / 100) * circumference
+
+    // Animate the progress
+    progressBar.style.strokeDashoffset = circumference
+    setTimeout(() => {
+      progressBar.style.strokeDashoffset = offset
+    }, 100)
+
+    // Set color based on attendance
+    if (overallAttendance >= 75) {
+      progressBar.style.stroke = "#28a745" // Green
+      attendanceStatusEl.textContent = "Good Standing"
+      attendanceStatusEl.className = "status-badge good"
+    } else if (overallAttendance >= 65) {
+      progressBar.style.stroke = "#ffc107" // Yellow
+      attendanceStatusEl.textContent = "Warning: Attendance Below 75%"
+      attendanceStatusEl.className = "status-badge warning"
+    } else {
+      progressBar.style.stroke = "#dc3545" // Red
+      attendanceStatusEl.textContent = "Danger: Very Low Attendance"
+      attendanceStatusEl.className = "status-badge danger"
+    }
+
+    // Update value with animation
+    animateValue(attendanceValueEl, 0, overallAttendance.toFixed(2), 1000)
+
+    // Show results with animation
+    attendanceResults.classList.remove("hidden")
+    attendanceResults.classList.add("show")
+  }
+
+  function resetAttendanceForm() {
+    document.getElementById("subjectName").value = ""
+    document.getElementById("lecturePercentage").value = ""
+    document.getElementById("tutorialPercentage").value = ""
+    document.getElementById("practicalPercentage").value = ""
+    document.getElementById("skillingPercentage").value = ""
+    attendanceResults.classList.remove("show")
+
+    // Add a small delay before hiding completely
+    setTimeout(() => {
+      attendanceResults.classList.add("hidden")
+    }, 500)
+  }
+
+  // SGPA Calculator
+  const generateSubjectsBtn = document.getElementById("generateSubjects")
+  const calculateSGPABtn = document.getElementById("calculateSGPA")
+  const resetSGPABtn = document.getElementById("resetSGPA")
+  const subjectsContainer = document.getElementById("subjectsContainer")
+  const sgpaResults = document.getElementById("sgpaResults")
+  const sgpaValueEl = document.getElementById("sgpaValue")
+  const sgpaStatusEl = document.getElementById("sgpaStatus")
+  const creditDistributionEl = document.getElementById("creditDistribution")
+
+  generateSubjectsBtn.addEventListener("click", generateSubjectInputs)
+  calculateSGPABtn.addEventListener("click", function () {
+    // Add loading animation
+    this.disabled = true
+    this.querySelector(".btn-content").textContent = "Calculating..."
+    this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-spinner fa-spin"></i>'
+
+    setTimeout(() => {
+      calculateSGPA()
+
+      // Reset button
+      this.disabled = false
+      this.querySelector(".btn-content").textContent = "Calculate SGPA"
+      this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-calculator"></i>'
+    }, 800)
+  })
+  resetSGPABtn.addEventListener("click", resetSGPAForm)
+
+  function generateSubjectInputs() {
+    const numSubjects = Number.parseInt(document.getElementById("numSubjects").value) || 0
+
+    if (numSubjects <= 0 || numSubjects > 12) {
+      showNotification("Please enter a valid number of subjects (1-12).", "warning")
+      return
+    }
+
+    // Clear previous inputs with animation
+    if (subjectsContainer.children.length > 0) {
+      Array.from(subjectsContainer.children).forEach((child, index) => {
+        setTimeout(() => {
+          child.style.opacity = "0"
+          child.style.transform = "translateX(20px)"
+        }, index * 50)
+      })
+
+      setTimeout(
+        () => {
+          subjectsContainer.innerHTML = ""
+          createSubjectRows()
+        },
+        subjectsContainer.children.length * 50 + 100,
+      )
+    } else {
+      createSubjectRows()
+    }
+
+    function createSubjectRows() {
+      for (let i = 1; i <= numSubjects; i++) {
+        const subjectRow = document.createElement("div")
+        subjectRow.className = "subject-row"
+        subjectRow.style.opacity = "0"
+        subjectRow.style.transform = "translateX(-20px)"
+
+        subjectRow.innerHTML = `
+          <div class="input-wrapper">
+            <input type="text" id="subject${i}" placeholder="Subject ${i} Name">
+            <span class="input-focus-effect"></span>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="credit${i}" min="1" max="4" step="0.5" placeholder="Credits">
+            <span class="input-focus-effect"></span>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="grade${i}" min="0" max="10" step="0.1" placeholder="Grade Points">
+            <span class="input-focus-effect"></span>
+          </div>
+        `
+
+        subjectsContainer.appendChild(subjectRow)
+
+        // Animate each row
+        setTimeout(() => {
+          subjectRow.style.transition = "all 0.3s ease"
+          subjectRow.style.opacity = "1"
+          subjectRow.style.transform = "translateX(0)"
+        }, i * 100)
+      }
+    }
+  }
+
+  function calculateSGPA() {
+    const numSubjects = Number.parseInt(document.getElementById("numSubjects").value) || 0
+    let totalPoints = 0
+    let totalCredits = 0
+    const subjectData = []
+
+    // Loop through all subjects
+    for (let i = 1; i <= numSubjects; i++) {
+      const subjectName = document.getElementById(`subject${i}`)?.value || `Subject ${i}`
+      const credit = Number.parseFloat(document.getElementById(`credit${i}`)?.value || 0)
+      const grade = Number.parseFloat(document.getElementById(`grade${i}`)?.value || 0)
+
+      if (credit > 0 && grade >= 0) {
+        totalPoints += grade * credit
+        totalCredits += credit
+        subjectData.push({ name: subjectName, credit, grade })
+      }
+    }
+
+    if (totalCredits === 0) {
+      showNotification("Please enter valid credits and grades for at least one subject.", "warning")
+      return
+    }
+
+    // Calculate SGPA
+    const sgpa = totalPoints / totalCredits
+
+    // Generate credit distribution HTML
+    let distributionHTML = '<div class="credit-chart">'
+    subjectData.forEach((subject, index) => {
+      const percentage = (subject.credit / totalCredits) * 100
+      distributionHTML += `
+        <div class="credit-item" style="--i:${index}">
+          <div class="credit-bar" style="width: ${percentage}%"></div>
+          <div class="credit-label">${subject.name}: ${subject.credit} credits (${percentage.toFixed(1)}%)</div>
+        </div>
+      `
+    })
+    distributionHTML += "</div>"
+
+    creditDistributionEl.innerHTML = distributionHTML
+
+    // Update progress circle
+    const progressBar = document.querySelector("#sgpaResults .progress-bar")
+    const circumference = 2 * Math.PI * 45 // 45 is the radius
+    progressBar.style.strokeDasharray = circumference
+    const offset = circumference - (sgpa / 10) * circumference
+
+    // Animate the progress
+    progressBar.style.strokeDashoffset = circumference
+    setTimeout(() => {
+      progressBar.style.strokeDashoffset = offset
+    }, 100)
+
+    // Set color and status based on SGPA
+    let statusText, statusClass, color
+    if (sgpa >= 9) {
+      color = "#28a745" // Green
+      statusText = "Outstanding Performance!"
+      statusClass = "good"
+    } else if (sgpa >= 8) {
+      color = "#28a745" // Green
+      statusText = "Excellent Performance!"
+      statusClass = "good"
+    } else if (sgpa >= 7) {
+      color = "#17a2b8" // Blue
+      statusText = "Very Good Performance!"
+      statusClass = "good"
+    } else if (sgpa >= 6) {
+      color = "#ffc107" // Yellow
+      statusText = "Good Performance!"
+      statusClass = "warning"
+    } else {
+      color = "#dc3545" // Red
+      statusText = "Need Improvement"
+      statusClass = "danger"
+    }
+
+    progressBar.style.stroke = color
+    sgpaStatusEl.textContent = statusText
+    sgpaStatusEl.className = `status-badge ${statusClass}`
+
+    // Update value with animation
+    animateValue(sgpaValueEl, 0, sgpa.toFixed(2), 1000)
+
+    // Show results with animation
+    sgpaResults.classList.remove("hidden")
+    sgpaResults.classList.add("show")
+  }
+
+  function resetSGPAForm() {
+    document.getElementById("numSubjects").value = "6"
+    subjectsContainer.innerHTML = ""
+    sgpaResults.classList.remove("show")
+
+    // Add a small delay before hiding completely
+    setTimeout(() => {
+      sgpaResults.classList.add("hidden")
+    }, 500)
+  }
+
+  // CGPA Calculator
+  const calculateCGPABtn = document.getElementById("calculateCGPA")
+  const resetCGPABtn = document.getElementById("resetCGPA")
+  const cgpaResults = document.getElementById("cgpaResults")
+  const cgpaValueEl = document.getElementById("cgpaValue")
+  const cgpaStatusEl = document.getElementById("cgpaStatus")
+  const creditSummaryEl = document.getElementById("creditSummary")
+
+  calculateCGPABtn.addEventListener("click", function () {
+    // Add loading animation
+    this.disabled = true
+    this.querySelector(".btn-content").textContent = "Calculating..."
+    this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-spinner fa-spin"></i>'
+
+    setTimeout(() => {
+      calculateCGPA()
+
+      // Reset button
+      this.disabled = false
+      this.querySelector(".btn-content").textContent = "Calculate CGPA"
+      this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-calculator"></i>'
+    }, 800)
+  })
+  resetCGPABtn.addEventListener("click", resetCGPAForm)
+
+  function calculateCGPA() {
+    const previousCGPA = Number.parseFloat(document.getElementById("previousCGPA").value) || 0
+    const previousCredits = Number.parseFloat(document.getElementById("previousCredits").value) || 0
+    const currentSGPA = Number.parseFloat(document.getElementById("currentSGPA").value) || 0
+    const currentCredits = Number.parseFloat(document.getElementById("currentCredits").value) || 0
+
+    if (previousCGPA === 0 && previousCredits === 0 && (currentSGPA === 0 || currentCredits === 0)) {
+      showNotification("Please enter valid CGPA and credits information.", "warning")
+      return
+    }
+
+    // Calculate total credits
+    const totalCredits = previousCredits + currentCredits
+
+    // Calculate CGPA using weighted average
+    const cgpa = totalCredits > 0 ? (previousCGPA * previousCredits + currentSGPA * currentCredits) / totalCredits : 0
+
+    // Generate credit summary HTML
+    const summaryHTML = `
+      <div class="credit-summary">
+        <div class="summary-item">
+          <div class="summary-label">Previous Credits:</div>
+          <div class="summary-value">${previousCredits}</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-label">Current Credits:</div>
+          <div class="summary-value">${currentCredits}</div>
+        </div>
+        <div class="summary-item total">
+          <div class="summary-label">Total Credits:</div>
+          <div class="summary-value">${totalCredits}</div>
+        </div>
+      </div>
+    `
+
+    creditSummaryEl.innerHTML = summaryHTML
+
+    // Update progress circle
+    const progressBar = document.querySelector("#cgpaResults .progress-bar")
+    const circumference = 2 * Math.PI * 45 // 45 is the radius
+    progressBar.style.strokeDasharray = circumference
+    const offset = circumference - (cgpa / 10) * circumference
+
+    // Animate the progress
+    progressBar.style.strokeDashoffset = circumference
+    setTimeout(() => {
+      progressBar.style.strokeDashoffset = offset
+    }, 100)
+
+    // Set color and status based on CGPA
+    let statusText, statusClass, color
+    if (cgpa >= 9) {
+      color = "#28a745" // Green
+      statusText = "Outstanding Academic Performance!"
+      statusClass = "good"
+    } else if (cgpa >= 8) {
+      color = "#28a745" // Green
+      statusText = "Excellent Academic Standing!"
+      statusClass = "good"
+    } else if (cgpa >= 7) {
+      color = "#17a2b8" // Blue
+      statusText = "Very Good Academic Progress!"
+      statusClass = "good"
+    } else if (cgpa >= 6) {
+      color = "#ffc107" // Yellow
+      statusText = "Good Academic Standing!"
+      statusClass = "warning"
+    } else {
+      color = "#dc3545" // Red
+      statusText = "Need Academic Improvement"
+      statusClass = "danger"
+    }
+
+    progressBar.style.stroke = color
+    cgpaStatusEl.textContent = statusText
+    cgpaStatusEl.className = `status-badge ${statusClass}`
+
+    // Update value with animation
+    animateValue(cgpaValueEl, 0, cgpa.toFixed(2), 1000)
+
+    // Show results with animation
+    cgpaResults.classList.remove("hidden")
+    cgpaResults.classList.add("show")
+  }
+
+  function resetCGPAForm() {
+    document.getElementById("previousCGPA").value = ""
+    document.getElementById("previousCredits").value = ""
+    document.getElementById("currentSGPA").value = ""
+    document.getElementById("currentCredits").value = ""
+    cgpaResults.classList.remove("show")
+
+    // Add a small delay before hiding completely
+    setTimeout(() => {
+      cgpaResults.classList.add("hidden")
+    }, 500)
+  }
+
+  // Add CSS for notifications
+  const style = document.createElement("style")
+  style.textContent = `
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 15px 20px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      transform: translateX(120%);
+      transition: transform 0.3s ease;
+    }
+    
+    .notification.show {
+      transform: translateX(0);
+    }
+    
+    .notification.info {
+      border-left: 4px solid #17a2b8;
+    }
+    
+    .notification.success {
+      border-left: 4px solid #28a745;
+    }
+    
+    .notification.warning {
+      border-left: 4px solid #ffc107;
+    }
+    
+    .notification.error {
+      border-left: 4px solid #dc3545;
+    }
+    
+    .credit-chart {
+      margin-top: 10px;
+    }
+    
+    .credit-item {
+      margin-bottom: 8px;
+      animation: fade-in 0.5s ease forwards;
+      animation-delay: calc(var(--i) * 0.1s);
+    }
+    
+    .credit-bar {
+      height: 8px;
+      background: var(--primary-gradient);
+      border-radius: 4px;
+      margin-bottom: 4px;
+      transition: width 1s ease;
+    }
+    
+    .credit-label {
+      font-size: 0.9rem;
+    }
+    
+    .credit-summary {
+      margin-top: 10px;
+    }
+    
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--gray);
+    }
+    
+    .summary-item.total {
+      font-weight: bold;
+      border-top: 2px solid var(--primary);
+      border-bottom: none;
+      margin-top: 5px;
+      padding-top: 10px;
+    }
+  `
+  document.head.appendChild(style)
+})
+
+            </script>
+            <div class="form-group">
+              <label for="tutorialPercentage">
+                <i class="fas fa-users"></i> Tutorial Attendance (%)
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="tutorialPercentage" min="0" max="100" placeholder="Enter percentage">
+                <span class="input-focus-effect"></span>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="practicalPercentage">
+                <i class="fas fa-flask"></i> Practical Attendance (%)
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="practicalPercentage" min="0" max="100" placeholder="Enter percentage">
+                <span class="input-focus-effect"></span>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="skillingPercentage">
+                <i class="fas fa-laptop-code"></i> Skilling Attendance (%)
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="skillingPercentage" min="0" max="100" placeholder="Enter percentage">
+                <span class="input-focus-effect"></span>
+              </div>
+            </div>
+            
+            <div class="button-group">
+              <button id="calculateAttendance" class="btn btn-primary">
+                <span class="btn-content">Calculate</span>
+                <span class="btn-icon"><i class="fas fa-calculator"></i></span>
+                <span class="btn-effect"></span>
+              </button>
+              <button id="resetAttendance" class="btn btn-secondary">
+                <span class="btn-content">Reset</span>
+                <span class="btn-icon"><i class="fas fa-redo"></i></span>
+                <span class="btn-effect"></span>
+              </button>
+            </div>
+          </div>
+          
+          <div class="results-section hidden" id="attendanceResults">
+            <div class="results-header">
+              <h3>Results</h3>
+              <div class="results-divider"></div>
+            </div>
+            
+            <div class="result-card">
+              <div class="result-visual">
+                <div class="circular-progress">
+                  <svg viewBox="0 0 100 100">
+                    <circle class="progress-bg" cx="50" cy="50" r="45"></circle>
+                    <circle class="progress-bar" cx="50" cy="50" r="45"></circle>
+                  </svg>
+                  <div class="progress-value">
+                    <span id="attendanceValue">0</span>%
+                  </div>
+                </div>
+              </div>
+              
+              <div class="result-details">
+                <h4 id="subjectResult">Subject: N/A</h4>
+                <h4 id="overallAttendance">Overall Attendance: 0%</h4>
+                <div class="status-badge" id="attendanceStatus">Calculating...</div>
+                <div class="component-analysis">
+                  <h5>Component Analysis:</h5>
+                  <ul id="componentAnalysis"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
-   <!-- SGPA Calculator Section -->
-   <section class="space-y-4 hidden" id="sgpaCalculator">
-    <h2 class="text-2xl font-bold mb-4">
-     SGPA Calculator
-    </h2>
-    <form class="space-y-4" id="sgpaForm" onsubmit="return false;">
-     <div>
-      <label class="block text-lg font-medium" for="numSubjects">
-       Number of Subjects
-      </label>
-      <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 input-effect" id="numSubjects" min="1" placeholder="Enter Number of Subjects" type="number"/>
-     </div>
-     <div class="space-y-4" id="subjectsContainer">
-     </div>
-     <div class="flex justify-between mt-6">
-      <button class="px-6 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:ring-2 focus:ring-green-500 button-effect" id="generateSubjectsButton" type="button">
-       Generate Subjects
-      </button>
-      <button class="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 button-effect hidden" id="calculateSgpaButton" type="button">
-       Calculate SGPA
-      </button>
-     </div>
-    </form>
-    <div class="hidden mt-8" id="sgpaResults">
-     <h3 class="text-xl font-bold">
-      SGPA Result
-     </h3>
-     <p class="mt-2 text-lg font-semibold text-gray-700" id="sgpaResult">
-     </p>
-    </div>
-   </section>
-   <!-- CGPA Calculator Section -->
-   <section class="space-y-4 hidden" id="cgpaCalculator">
-    <h2 class="text-2xl font-bold mb-4">
-     CGPA Calculator
-    </h2>
-    <form class="space-y-4" id="cgpaForm" onsubmit="return false;">
-     <div>
-      <label class="block text-lg font-medium" for="previousCgpa">
-       Previous CGPA
-      </label>
-      <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 input-effect" id="previousCgpa" max="10" min="0" placeholder="Enter Previous CGPA" step="0.01" type="number"/>
-     </div>
-     <div>
-      <label class="block text-lg font-medium" for="previousCredits">
-       Previous Credits
-      </label>
-      <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 input-effect" id="previousCredits" min="1" placeholder="Enter Previous Credits" type="number"/>
-     </div>
-     <div>
-      <label class="block text-lg font-medium" for="currentSgpa">
-       Current SGPA
-      </label>
-      <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 input-effect" id="currentSgpa" max="10" min="0" placeholder="Enter Current SGPA" step="0.01" type="number"/>
-     </div>
-     <div>
-      <label class="block text-lg font-medium" for="currentCredits">
-       Current Credits
-      </label>
-      
-      <input class="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 input-effect" id="currentCredits" min="1" placeholder="Enter Current Credits" type="number"/>
-     </div>
-     <button class="px-6 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:ring-2 focus:ring-green-500 button-effect" id="calculateCgpaButton" type="button">
-      Calculate CGPA
-     </button>
-    </form>
-    <div class="hidden mt-8" id="cgpaResults">
-     <h3 class="text-xl font-bold">
-      CGPA Result
-     </h3>
-     <p class="mt-2 text-lg font-semibold text-gray-700" id="cgpaResult">
-     </p>
-    </div>
-   </section>
-  </main>
-  <footer class="bg-gray-800 text-white py-4 text-center">
-   <p>
-    © 2024 KLU ONE Calculators. All Rights Reserved.
-    
-    <p>Idea,Design and Development by Sumanth</p>
-   </p>
-  </footer>
-  <script>
-   // Common Navigation Logic
-    const attendanceNav = document.getElementById('attendanceNav');
-    const sgpaNav = document.getElementById('sgpaNav');
-    const cgpaNav = document.getElementById('cgpaNav');
-    const attendanceCalculator = document.getElementById('attendanceCalculator');
-    const sgpaCalculator = document.getElementById('sgpaCalculator');
-    const cgpaCalculator = document.getElementById('cgpaCalculator');
-    
-    const showSection = (sectionToShow) => {
-      attendanceCalculator.classList.add('hidden');
-      sgpaCalculator.classList.add('hidden');
-      cgpaCalculator.classList.add('hidden');
-      sectionToShow.classList.remove('hidden');
-    };
-    
-    attendanceNav.addEventListener('click', () => showSection(attendanceCalculator));
-    sgpaNav.addEventListener('click', () => showSection(sgpaCalculator));
-    cgpaNav.addEventListener('click', () => showSection(cgpaCalculator));
-    // Attendance Calculator Logic
-    const calculateButton = document.getElementById('calculateButton');
-    const resetButton = document.getElementById('resetButton');
-    const resultsSection = document.getElementById('results');
-    const subjectResultEl = document.getElementById('subjectResult');
-    const overallAttendanceEl = document.getElementById('overallAttendance');
-    const componentAnalysisEl = document.getElementById('componentAnalysis');
-    const calculateAttendance = () => {
-      const subjectName = document.getElementById('subjectName').value || 'N/A';
-      const lecturePercentage = parseFloat(document.getElementById('lecturePercentage').value) || null;
-      const tutorialPercentage = parseFloat(document.getElementById('tutorialPercentage').value) || null;
-      const practicalPercentage = parseFloat(document.getElementById('practicalPercentage').value) || null;
-      const skillingPercentage = parseFloat(document.getElementById('skillingPercentage').value) || null;
-      const weights = { lecture: 1.0, tutorial: 0.25, practical: 0.5, skilling: 0.25 };
-      let totalWeight = 0;
-      let weightedSum = 0;
-      const components = [
-        { percentage: lecturePercentage, weight: weights.lecture, name: "Lecture" },
-        { percentage: tutorialPercentage, weight: weights.tutorial, name: "Tutorial" },
-        { percentage: practicalPercentage, weight: weights.practical, name: "Practical" },
-        { percentage: skillingPercentage, weight: weights.skilling, name: "Skilling" }
-      ];
-      const analysis = components.map(component => {
-        if (component.percentage !== null) {
-          totalWeight += component.weight;
-          weightedSum += component.percentage * component.weight;
-          return `<li>${component.name}: ${component.percentage}%</li>`;
-        }
-        return '';
-      }).filter(Boolean);
-      if (totalWeight === 0) {
-        alert('Please provide percentages for at least one component.');
-        return;
-      }
-      const overallAttendance = weightedSum / totalWeight;
-      subjectResultEl.textContent = `Subject: ${subjectName}`;
-      overallAttendanceEl.textContent = `Overall Attendance: ${overallAttendance.toFixed(2)}%`;
-      componentAnalysisEl.innerHTML = analysis.join('');
-      resultsSection.classList.remove('hidden');
-    };
-    const resetForm = () => {
-      document.getElementById('subjectName').value = '';
-      document.getElementById('lecturePercentage').value = '';
-      document.getElementById('tutorialPercentage').value = '';
-      document.getElementById('practicalPercentage').value = '';
-      document.getElementById('skillingPercentage').value = '';
-      resultsSection.classList.add('hidden');
-    };
-    calculateButton.addEventListener('click', calculateAttendance);
-    resetButton.addEventListener('click', resetForm);
-    // SGPA Calculator Logic
-    const numSubjectsInput = document.getElementById('numSubjects');
-    const subjectsContainer = document.getElementById('subjectsContainer');
-    const generateSubjectsButton = document.getElementById('generateSubjectsButton');
-    const calculateSgpaButton = document.getElementById('calculateSgpaButton');
-    const sgpaResultEl = document.getElementById('sgpaResult');
 
-    generateSubjectsButton.addEventListener('click', () => {
-      subjectsContainer.innerHTML = '';
-      const numSubjects = parseInt(numSubjectsInput.value);
-      if (isNaN(numSubjects) || numSubjects <= 0) {
-        alert('Please enter a valid number of subjects.');
-        return;
-      }
-      for (let i = 1; i <= numSubjects; i++) {
-        subjectsContainer.innerHTML += `
-          <div>
-            <label class="block">Subject ${i}</label>
-            <input type="number" id="gradePoint${i}" placeholder="Grade Point" class="mt-1 mr-2 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 input-effect">
-            <input type="number" id="credit${i}" placeholder="Credits" class="mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 input-effect">
-          </div>`;
-      }
-      calculateSgpaButton.classList.remove('hidden');
-    });
+      <!-- SGPA Calculator -->
+      <section class="calculator-section" id="sgpa">
+        <div class="glass-card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+            <h2>SGPA Calculator</h2>
+            <p class="card-description">Calculate your Semester Grade Point Average</p>
+          </div>
+          
+          <div class="card-body">
+            <div class="form-group">
+              <label for="numSubjects">
+                <i class="fas fa-list-ol"></i> Number of Subjects
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="numSubjects" min="1" max="12" value="6">
+                <span class="input-focus-effect"></span>
+                <button id="generateSubjects" class="btn btn-inline">
+                  <span class="btn-content">Generate</span>
+                  <span class="btn-icon"><i class="fas fa-plus"></i></span>
+                </button>
+              </div>
+            </div>
+            
+            <div id="subjectsContainer" class="subjects-container"></div>
+            
+            <div class="button-group">
+              <button id="calculateSGPA" class="btn btn-primary">
+                <span class="btn-content">Calculate SGPA</span>
+                <span class="btn-icon"><i class="fas fa-calculator"></i></span>
+                <span class="btn-effect"></span>
+              </button>
+              <button id="resetSGPA" class="btn btn-secondary">
+                <span class="btn-content">Reset</span>
+                <span class="btn-icon"><i class="fas fa-redo"></i></span>
+                <span class="btn-effect"></span>
+              </button>
+            </div>
+          </div>
+          
+          <div class="results-section hidden" id="sgpaResults">
+            <div class="results-header">
+              <h3>Results</h3>
+              <div class="results-divider"></div>
+            </div>
+            
+            <div class="result-card">
+              <div class="result-visual">
+                <div class="circular-progress">
+                  <svg viewBox="0 0 100 100">
+                    <circle class="progress-bg" cx="50" cy="50" r="45"></circle>
+                    <circle class="progress-bar" cx="50" cy="50" r="45"></circle>
+                  </svg>
+                  <div class="progress-value">
+                    <span id="sgpaValue">0</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="result-details">
+                <h4>Your SGPA</h4>
+                <div class="status-badge" id="sgpaStatus">Calculating...</div>
+                <div class="component-analysis">
+                  <h5>Credit Distribution:</h5>
+                  <div id="creditDistribution"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    calculateSgpaButton.addEventListener('click', () => {
-      let totalPoints = 0, totalCredits = 0;
-      const numSubjects = parseInt(numSubjectsInput.value);
-      for (let i = 1; i <= numSubjects; i++) {
-        const gradePoint = parseFloat(document.getElementById(`gradePoint${i}`).value);
-        const credit = parseFloat(document.getElementById(`credit${i}`).value);
-        if (isNaN(gradePoint) || isNaN(credit) || credit <= 0) {
-          alert('Please enter valid values for all subjects.');
-          return;
-        }
-        totalPoints += gradePoint * credit;
-        totalCredits += credit;
-      }
-      const sgpa = totalPoints / totalCredits;
-      sgpaResultEl.textContent = `SGPA: ${sgpa.toFixed(2)}`;
-      document.getElementById('sgpaResults').classList.remove('hidden');
-    });
+      <!-- CGPA Calculator -->
+      <section class="calculator-section" id="cgpa">
+        <div class="glass-card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+            <h2>CGPA Calculator</h2>
+            <p class="card-description">Calculate your Cumulative Grade Point Average</p>
+          </div>
+          
+          <div class="card-body">
+            <div class="form-group">
+              <label for="previousCGPA">
+                <i class="fas fa-history"></i> Previous CGPA
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="previousCGPA" min="0" max="10" step="0.01" placeholder="Enter previous CGPA">
+                <span class="input-focus-effect"></span>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="previousCredits">
+                <i class="fas fa-award"></i> Previous Total Credits
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="previousCredits" min="0" placeholder="Enter previous credits">
+                <span class="input-focus-effect"></span>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="currentSGPA">
+                <i class="fas fa-chart-bar"></i> Current Semester SGPA
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="currentSGPA" min="0" max="10" step="0.01" placeholder="Enter current SGPA">
+                <span class="input-focus-effect"></span>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="currentCredits">
+                <i class="fas fa-certificate"></i> Current Semester Credits
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="currentCredits" min="0" placeholder="Enter current credits">
+                <span class="input-focus-effect"></span>
+              </div>
+            </div>
+            
+            <div class="button-group">
+              <button id="calculateCGPA" class="btn btn-primary">
+                <span class="btn-content">Calculate CGPA</span>
+                <span class="btn-icon"><i class="fas fa-calculator"></i></span>
+                <span class="btn-effect"></span>
+              </button>
+              <button id="resetCGPA" class="btn btn-secondary">
+                <span class="btn-content">Reset</span>
+                <span class="btn-icon"><i class="fas fa-redo"></i></span>
+                <span class="btn-effect"></span>
+              </button>
+            </div>
+          </div>
+          
+          <div class="results-section hidden" id="cgpaResults">
+            <div class="results-header">
+              <h3>Results</h3>
+              <div class="results-divider"></div>
+            </div>
+            
+            <div class="result-card">
+              <div class="result-visual">
+                <div class="circular-progress">
+                  <svg viewBox="0 0 100 100">
+                    <circle class="progress-bg" cx="50" cy="50" r="45"></circle>
+                    <circle class="progress-bar" cx="50" cy="50" r="45"></circle>
+                  </svg>
+                  <div class="progress-value">
+                    <span id="cgpaValue">0</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="result-details">
+                <h4>Your CGPA</h4>
+                <div class="status-badge" id="cgpaStatus">Calculating...</div>
+                <div class="component-analysis">
+                  <h5>Credit Summary:</h5>
+                  <div id="creditSummary"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
-    // CGPA Calculator Logic
-    const calculateCgpaButton = document.getElementById('calculateCgpaButton');
-    const cgpaResultEl = document.getElementById('cgpaResult');
-    calculateCgpaButton.addEventListener('click', () => {
-      const previousCgpa = parseFloat(document.getElementById('previousCgpa').value);
-      const previousCredits = parseFloat(document.getElementById('previousCredits').value);
-      const currentSgpa = parseFloat(document.getElementById('currentSgpa').value);
-      const currentCredits = parseFloat(document.getElementById('currentCredits').value);
-      if (
-        isNaN(previousCgpa) || isNaN(previousCredits) ||
-        isNaN(currentSgpa) || isNaN(currentCredits) ||
-        previousCredits <= 0 || currentCredits <= 0
-      ) {
-        alert('Please enter valid values.');
-        return;
-      }
-      const totalCredits = previousCredits + currentCredits;
-      const cgpa = ((previousCgpa * previousCredits) + (currentSgpa * currentCredits)) / totalCredits;
-      cgpaResultEl.textContent = `CGPA: ${cgpa.toFixed(2)}`;
-      document.getElementById('cgpaResults').classList.remove('hidden');
-    });
-  </script>
- </body>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-logo">KLU ONE</div>
+        <p>&copy; <span id="currentYear"></span> KLU ONE Calculators | Developed by Sumanth</p>
+        
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>
