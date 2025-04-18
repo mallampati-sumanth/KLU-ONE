@@ -1,12 +1,12 @@
-
+// Faculty data
 const hodData = [
-  {
-    department: "Electronics and Communication Engineering",
-    alias: ["ECE"],
-    name: "Dr. Suman Maloji",
-    cabin: "R-403",
-    facultyList: [
-  { sno: 1, name: "Dr.M.Venkata Narayana", designation: "Professor", room: "R102", cabin: "1B1" },
+    {
+        department: "Electronics and Communication Engineering",
+        alias: ["ECE"],
+        name: "Dr. Suman Maloji",
+        cabin: "R-403",
+        facultyList: [
+           { sno: 1, name: "Dr.M.Venkata Narayana", designation: "Professor", room: "R102", cabin: "1B1" },
   { sno: 2, name: "Dr.M.Suman", designation: "Professor", room: "R403", cabin: "R403" },
   { sno: 3, name: "Dr.I.Govardhani", designation: "Professor", room: "L417", cabin: "" },
   { sno: 4, name: "Dr.K.Ch.Sri Kavya", designation: "Professor", room: "R611", cabin: "R611" },
@@ -90,15 +90,15 @@ const hodData = [
   { sno: 82, name: "Ms.P.Sivani", designation: "Assistant Professor", room: "R305", cabin: "3B4" },
   { sno: 83, name: "Mr.Sripathi Siva Prasad", designation: "Assistant Professor", room: "R608", cabin: "R608" },
   { sno: 84, name: "Dr.Sourabh Jain", designation: "Assistant Professor", room: "R401", cabin: "4B3" }
-    ],
-  },
-  {
-    department: "Computer Science Engineering",
-    alias: ["CSE"],
-    name: "Dr. T. Pavan Kumar",
-    cabin: "Room 201",
-    facultyList: [
-  { sno: 1, name: "Dr. Tummala Pavan Kumar", designation: "Professor & HOD", cabin: 100 },
+        ],
+    },
+    {
+        department: "Computer Science Engineering",
+        alias: ["CSE"],
+        name: "Dr. T. Pavan Kumar",
+        cabin: "Room 201",
+        facultyList: [
+            { sno: 1, name: "Dr. Tummala Pavan Kumar", designation: "Professor & HOD", cabin: 100 },
   { sno: 2, name: "Dr. Tirumala Kodanda Rama Krishna Rao", designation: "Professor", cabin: 101 },
   { sno: 3, name: "Dr. Senthil Athithan", designation: "Professor", cabin: 102 },
   { sno: 4, name: "Dr. Vinnakota S V Prabhakar", designation: "Professor", cabin: 103 },
@@ -625,21 +625,21 @@ const hodData = [
 { sno: 525, name: "Ms.ASWINI DEVI TALUPURI", designation: "ASST PROFESSOR", cabin: 525 },
 { sno: 526, name: "Mr.KARI VENKATA SUMANTH", designation: "ASST PROFESSOR", cabin: 526 },
 { sno: 527, name: "Mr.LOBSANG DARGE", designation: "ASST PROFESSOR", cabin: 527 }
-    ],
-  },
-  {
-    department: "Honors Through Experiential Learning",
-    alias: ["HTE"],
-    name: "Dr.Ashwin Kumar",
-    cabin: "R-001(ground floor)",
-  },
-  {
-    department: "Artificial Intelligence and Data Science",
-    alias: ["AIDS"],
-    name: "Dr. B. Tirapathi Reddy",
-    cabin: "R-401",
-    facultyList: [
- { sno: 1, name: "Dr. B. Tirapathi Reddy", designation: "Professor & HOD", cabin: 200 },
+        ],
+    },
+    {
+        department: "Honors Through Experiential Learning",
+        alias: ["HTE"],
+        name: "Dr.Ashwin Kumar",
+        cabin: "R-001(ground floor)",
+    },
+    {
+        department: "Artificial Intelligence and Data Science",
+        alias: ["AIDS"],
+        name: "Dr. B. Tirapathi Reddy",
+        cabin: "R-401",
+        facultyList: [
+            { sno: 1, name: "Dr. B. Tirapathi Reddy", designation: "Professor & HOD", cabin: 200 },
   { sno: 2, name: "Dr. V. S. Bhagavan", designation: "Professor", cabin: 201 },
   { sno: 3, name: "Dr. Vishnubhotla Rama Krishna", designation: "Professor", cabin: 202 },
   { sno: 4, name: "Dr. Praveen Kumar Pinjala", designation: "Professor", cabin: 203 },
@@ -683,15 +683,15 @@ const hodData = [
   { sno: 42, name: "Dr. Saiyed Faiyaz Waris", designation: "Asst Professor", cabin: 241 },
   { sno: 43, name: "Shaik Jilani Basha", designation: "Asst Professor", cabin: 242 },
   { sno: 44, name: "Dr. Tamal Kumar Kundu", designation: "Asst Professor", cabin: 243 }
-]
-  },
-  {
-    department: "Computer Science and Information Technology",
-    alias: ["CSIT"],
-    name: "Dr. Suresh Kumar",
-    cabin: "Room 401",
-    facultyList: [
-    { sno: 1, name: "Dr. Kothalanka Amareendra", designation: "Professor & HOD", cabin: 101 },
+        ],
+    },
+    {
+        department: "Computer Science and Information Technology",
+        alias: ["CSIT"],
+        name: "Dr. Suresh Kumar",
+        cabin: "Room 401",
+        facultyList: [
+           { sno: 1, name: "Dr. Kothalanka Amareendra", designation: "Professor & HOD", cabin: 101 },
   { sno: 2, name: "Dr. Manchiraju Kameswara Rao", designation: "Professor", cabin: 102 },
   { sno: 3, name: "Dr. Ganga Rama Koteswara Rao", designation: "Professor", cabin: 103 },
   { sno: 4, name: "Dr. K. Rama Krishna", designation: "Professor", cabin: 104 },
@@ -728,15 +728,15 @@ const hodData = [
   { sno: 35, name: "M. Chaitanya Kumari", designation: "Asst Professor", cabin: 135 },
   { sno: 36, name: "Ch. Ramesh Kumar", designation: "Asst Professor", cabin: 136 },
   { sno: 37, name: "Dr. G Sateesh", designation: "Asst Professor", cabin: 137 }
-    ],
-  },
-  {
-    department: "Electrical and Electronics Engineering",
-    alias: ["EEE"],
-    name: "Dr. R. Ramesh",
-    cabin: "Room 501",
-    facultyList: [
-      { sno: 1, name: "Dr. A. Pandian", designation: "Professor & HOD", cabin: 244 },
+        ],
+    },
+    {
+        department: "Electrical and Electronics Engineering",
+        alias: ["EEE"],
+        name: "Dr. R. Ramesh",
+        cabin: "Room 501",
+        facultyList: [
+            { sno: 1, name: "Dr. A. Pandian", designation: "Professor & HOD", cabin: 244 },
   { sno: 2, name: "Dr. Burthi Loveswara Rao", designation: "Professor", cabin: 245 },
   { sno: 3, name: "Dr. Kuthuri Narasimha Raju", designation: "Professor", cabin: 246 },
   { sno: 4, name: "Dr. Jarupula Somlal", designation: "Professor", cabin: 247 },
@@ -753,15 +753,15 @@ const hodData = [
   { sno: 15, name: "Dr. G. Swapna", designation: "Asst Professor", cabin: 258 },
   { sno: 16, name: "Mr. Srungaram Ravi Teja", designation: "Asst Professor", cabin: 259 },
   { sno: 17, name: "Dr. Goda Ganesh Raja Sekhar", designation: "Asst Professor", cabin: 260 }
-    ],
-  },
-  {
-    department: "Mechanical Engineering",
-    alias: ["MECH"],
-    name: "Dr. R. Vijay Kumar",
-    cabin: "Room 601",
-    facultyList: [
-      { sno: 1, name: "Dr. T Vijaya Kumar", designation: "Associate Professor & HOD", cabin: 261 },
+        ],
+    },
+    {
+        department: "Mechanical Engineering",
+        alias: ["MECH"],
+        name: "Dr. R. Vijay Kumar",
+        cabin: "Room 601",
+        facultyList: [
+            { sno: 1, name: "Dr. T Vijaya Kumar", designation: "Associate Professor & HOD", cabin: 261 },
       { sno: 2, name: "Dr. Adusumilli Srinath", designation: "Professor", cabin: 262 },
       { sno: 3, name: "Dr. Konijeti Rama Krishna", designation: "Professor", cabin: 263 },
       { sno: 4, name: "Dr. Surya Narayana Padhi", designation: "Professor", cabin: 264 },
@@ -785,15 +785,15 @@ const hodData = [
       { sno: 22, name: "Dr. Priyaranjan Samal", designation: "Asst Professor", cabin: 282 },
       { sno: 23, name: "Dr. Giphin George", designation: "Asst Professor", cabin: 283 },
       { sno: 24, name: "Mr. Puttam Srinivasarao", designation: "Asst Professor", cabin: 284 }
-    ],
-  },
-  {
-    department: "Civil Engineering",
-    alias: ["CIVIL"],
-    name: "Dr. S. K. Reddy",
-    cabin: "Room 701",
-    facultyList: [
-      { sno: 1, name: "Dr. Palleboina Poluraju", designation: "Professor & HOD", cabin: 101 },
+        ],
+    },
+    {
+        department: "Civil Engineering",
+        alias: ["CIVIL"],
+        name: "Dr. S. K. Reddy",
+        cabin: "Room 701",
+        facultyList: [
+           { sno: 1, name: "Dr. Palleboina Poluraju", designation: "Professor & HOD", cabin: 101 },
       { sno: 2, name: "Dr. Chappidi Hanumantha Rao", designation: "Professor", cabin: 202 },
       { sno: 3, name: "Dr. A.V.S. Prasad", designation: "Professor", cabin: 203 },
       { sno: 4, name: "Dr. A Aravindan", designation: "Professor", cabin: 104 },
@@ -809,15 +809,15 @@ const hodData = [
       { sno: 14, name: "Mr. Kanneganti Jyothishya Brahma Chari", designation: "Asst Professor", cabin: 503 },
       { sno: 15, name: "Dr. Lingeshwaran N", designation: "Asst Professor", cabin: 601 },
       { sno: 16, name: "Dr. Anu Mary Ealias", designation: "Asst Professor", cabin: 602 }
-    ]
-  },
-  {
-    department: "Internet of Things",
-    alias: ["IOT"],
-    name: "Dr. Sunil Kumar",
-    cabin: "Room 801",
-    facultyList: [
-      { sno: 1, name: "Dr. Penke Satyanarayana", designation: "Professor & HOD" },
+        ],
+    },
+    {
+        department: "Internet of Things",
+        alias: ["IOT"],
+        name: "Dr. Sunil Kumar",
+        cabin: "Room 801",
+        facultyList: [
+            { sno: 1, name: "Dr. Penke Satyanarayana", designation: "Professor & HOD" },
       { sno: 2, name: "Dr. Miryala Sridhar", designation: "Professor" },
       { sno: 3, name: "Dr. Santosh Kumar", designation: "Professor" },
       { sno: 4, name: "Dr. Tatini Narendra Babu", designation: "Associate Professor" },
@@ -830,127 +830,569 @@ const hodData = [
       { sno: 11, name: "Dr. K.V. Vineetha", designation: "Asst Professor" },
       { sno: 12, name: "Dr. Anand Kumar D", designation: "Asst Professor" },
       { sno: 13, name: "Dr. P. Guru Krishna Thej", designation: "Asst Professor" }
-    ]
-  }
+    
+        ],
+    },
 ];
 
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // DOM Elements
+    const themeToggle = document.getElementById('themeToggle');
+    const resetBtn = document.getElementById('resetBtn');
+    const tabs = document.querySelectorAll('.tab');
+    const tabIndicator = document.querySelector('.tab-indicator');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    const deptSelect = document.getElementById('deptSelect');
+    const facultySearchInput = document.getElementById('facultySearchInput');
+    const facultySearchBtn = document.getElementById('facultySearchBtn');
+    const hodSearchInput = document.getElementById('hodSearchInput');
+    const hodSearchBtn = document.getElementById('hodSearchBtn');
+    const hodResults = document.getElementById('hodResults');
+    const facultyResults = document.getElementById('facultyResults');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const toastContainer = document.getElementById('toastContainer');
+    const recentSearches = document.getElementById('recentSearches');
+    const currentYear = document.getElementById('currentYear');
 
-function toggleSection(section) {
-  const hodTab = document.getElementById("hod-tab");
-  const facultyTab = document.getElementById("faculty-tab");
-  const hodSection = document.getElementById("hod-section");
-  const facultySection = document.getElementById("faculty-section");
+    // Initialize the app
+    initApp();
 
-  if (section === "hod") {
-    // Highlight HOD tab
-    hodTab.classList.add("bg-red-500", "text-white");
-    hodTab.classList.remove("bg-white", "text-gray-700");
+    // Initialize the application
+    function initApp() {
+        // Set current year in footer
+        currentYear.textContent = new Date().getFullYear();
+        
+        // Check for saved theme preference
+        checkThemePreference();
+        
+        // Populate department dropdown
+        populateDepartments();
+        
+        // Set up event listeners
+        setupEventListeners();
+        
+        // Load recent searches from localStorage
+        loadRecentSearches();
+        
+        // Show welcome toast after a short delay
+        setTimeout(() => {
+            showToast('Welcome', 'Faculty Cabin Finder is ready to help you locate faculty members', 'info');
+        }, 1000);
+    }
 
-    // Reset Faculty tab
-    facultyTab.classList.add("bg-white", "text-gray-700");
-    facultyTab.classList.remove("bg-red-500", "text-white");
+    // Check for saved theme preference
+    function checkThemePreference() {
+        const darkMode = localStorage.getItem('darkMode') === 'true';
+        if (darkMode) {
+            document.body.classList.add('dark-theme');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+    }
 
-    // Show HOD section and hide Faculty section
-    hodSection.style.display = "block";
-    facultySection.style.display = "none";
-  } else if (section === "faculty") {
-    // Highlight Faculty tab
-    facultyTab.classList.add("bg-red-500", "text-white");
-    facultyTab.classList.remove("bg-white", "text-gray-700");
+    // Populate departments in the dropdown
+    function populateDepartments() {
+        hodData.forEach((dept) => {
+            const option = document.createElement('option');
+            option.value = dept.alias && dept.alias.length > 0 ? dept.alias[0] : dept.department;
+            option.textContent = `${dept.department} ${dept.alias && dept.alias.length > 0 ? `(${dept.alias[0]})` : ''}`;
+            deptSelect.appendChild(option);
+        });
+    }
 
-    // Reset HOD tab
-    hodTab.classList.add("bg-white", "text-gray-700");
-    hodTab.classList.remove("bg-red-500", "text-white");
+    // Set up event listeners
+    function setupEventListeners() {
+        // Theme toggle
+        themeToggle.addEventListener('click', toggleTheme);
+        
+        // Reset button
+        resetBtn.addEventListener('click', resetApp);
+        
+        // Tab switching
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                switchTab(tabId);
+            });
+        });
+        
+        // Department selection
+        deptSelect.addEventListener('change', handleDepartmentChange);
+        
+        // HOD search
+        hodSearchBtn.addEventListener('click', searchHOD);
+        hodSearchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchHOD();
+            }
+        });
+        
+        // Faculty search
+        facultySearchBtn.addEventListener('click', searchFaculty);
+        facultySearchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !facultySearchInput.disabled) {
+                searchFaculty();
+            }
+        });
+    }
 
-    // Show Faculty section and hide HOD section
-    facultySection.style.display = "block";
-    hodSection.style.display = "none";
-  }
-}
+    // Toggle theme
+    function toggleTheme() {
+        const isDarkMode = document.body.classList.toggle('dark-theme');
+        localStorage.setItem('darkMode', isDarkMode);
+        
+        if (isDarkMode) {
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            showToast('Dark Mode', 'Dark theme activated', 'info');
+        } else {
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            showToast('Light Mode', 'Light theme activated', 'info');
+        }
+    }
 
+    // Switch between tabs
+    function switchTab(tabId) {
+        // Update active tab
+        tabs.forEach(tab => {
+            if (tab.getAttribute('data-tab') === tabId) {
+                tab.classList.add('active');
+            } else {
+                tab.classList.remove('active');
+            }
+        });
+        
+        // Move tab indicator
+        const activeTab = document.querySelector(`.tab[data-tab="${tabId}"]`);
+        const tabIndex = Array.from(tabs).indexOf(activeTab);
+        tabIndicator.style.transform = `translateX(${tabIndex * 100}%)`;
+        
+        // Show active tab content
+        tabPanes.forEach(pane => {
+            if (pane.id === `${tabId}-tab`) {
+                pane.classList.add('active');
+            } else {
+                pane.classList.remove('active');
+            }
+        });
+        
+        // Reset results
+        hodResults.innerHTML = '';
+        hodResults.classList.remove('show');
+        facultyResults.innerHTML = '';
+        facultyResults.classList.remove('show');
+    }
 
-  // Function to search HOD by name or department
-  function searchHOD() {
-  const searchValue = document.getElementById("search-input").value.toLowerCase();
-  const resultDiv = document.getElementById("result");
+    // Handle department change
+    function handleDepartmentChange() {
+        const selectedDept = deptSelect.value;
+        
+        if (selectedDept) {
+            facultySearchInput.disabled = false;
+            facultySearchBtn.disabled = false;
+            facultySearchInput.value = '';
+            facultyResults.innerHTML = '';
+            facultyResults.classList.remove('show');
+            
+            showToast('Department Selected', `${selectedDept} department selected`, 'info');
+        } else {
+            facultySearchInput.disabled = true;
+            facultySearchBtn.disabled = true;
+        }
+    }
 
-  if (!searchValue) {
-    resultDiv.innerHTML = `<p class="text-lg font-bold text-red-600">Please enter a department or HOD name to search.</p>`;
-    return;
-  }
+    // Search for HOD
+    function searchHOD() {
+        const searchValue = hodSearchInput.value.trim();
+        
+        if (!searchValue) {
+            showToast('Search Error', 'Please enter a department or HOD name', 'error');
+            return;
+        }
+        
+        // Show loading spinner
+        loadingSpinner.classList.add('show');
+        
+        // Simulate API call delay
+        setTimeout(() => {
+            const searchTerm = searchValue.toLowerCase();
+            
+            const found = hodData.find((hod) => {
+                const searchIn = [
+                    hod.department.toLowerCase(),
+                    ...(hod.alias?.map(a => a.toLowerCase()) || []),
+                    hod.name.toLowerCase(),
+                ];
+                
+                return searchIn.some(value => value.includes(searchTerm));
+            });
+            
+            // Hide loading spinner
+            loadingSpinner.classList.remove('show');
+            
+            if (found) {
+                showHODResult(found);
+                addToRecentSearches(searchValue, 'hod');
+                showToast('Search Successful', 'HOD information found', 'success');
+            } else {
+                showError(hodResults, 'No results found. Try searching with a different department or HOD name.');
+                showToast('No Results', 'No matching HOD found', 'warning');
+            }
+        }, 1200); // Simulate delay for better UX
+    }
 
-  const found = hodData.find((hod) => {
-    const searchIn = [
-      hod.department.toLowerCase(),
-      ...hod.alias.map((a) => a.toLowerCase()),
-      hod.name.toLowerCase(),
-    ];
+    // Search for Faculty
+    function searchFaculty() {
+        const departmentValue = deptSelect.value;
+        const searchValue = facultySearchInput.value.trim();
+        
+        if (!departmentValue) {
+            showToast('Search Error', 'Please select a department', 'error');
+            return;
+        }
+        
+        if (!searchValue) {
+            showToast('Search Error', 'Please enter a faculty name', 'error');
+            return;
+        }
+        
+        // Show loading spinner
+        loadingSpinner.classList.add('show');
+        
+        // Simulate API call delay
+        setTimeout(() => {
+            const searchTerm = searchValue.toLowerCase();
+            
+            const department = hodData.find(hod => 
+                (hod.alias && hod.alias.includes(departmentValue)) || hod.department === departmentValue
+            );
+            
+            if (!department || !department.facultyList) {
+                loadingSpinner.classList.remove('show');
+                showError(facultyResults, 'Department not found or has no faculty listed.');
+                showToast('Department Error', 'No faculty data available for this department', 'error');
+                return;
+            }
+            
+            const foundFaculty = department.facultyList.find(faculty => 
+                faculty.name.toLowerCase().includes(searchTerm)
+            );
+            
+            // Hide loading spinner
+            loadingSpinner.classList.remove('show');
+            
+            if (foundFaculty) {
+                showFacultyResult(department, foundFaculty);
+                addToRecentSearches(`${searchValue} (${departmentValue})`, 'faculty');
+                showToast('Search Successful', 'Faculty information found', 'success');
+            } else {
+                showError(facultyResults, 'No faculty found with that name in the selected department.');
+                showToast('No Results', 'No matching faculty found', 'warning');
+            }
+        }, 1200); // Simulate delay for better UX
+    }
 
-    return searchIn.some((value) => value.includes(searchValue));
-  });
+    // Show HOD search result
+    function showHODResult(hod) {
+        hodResults.innerHTML = '';
+        
+        // Create result message
+        const resultMessage = document.createElement('div');
+        resultMessage.className = 'result-message success';
+        resultMessage.innerHTML = `
+            <div class="toast-icon"><i class="fas fa-check-circle"></i></div>
+            <div>HOD information found</div>
+        `;
+        hodResults.appendChild(resultMessage);
+        
+        // Create result card
+        const resultCard = document.createElement('div');
+        resultCard.className = 'result-card';
+        resultCard.style.setProperty('--i', '1');
+        
+        // Card header
+        const cardHeader = document.createElement('div');
+        cardHeader.className = 'result-header';
+        cardHeader.innerHTML = `
+            <div class="result-title">${hod.name}</div>
+            <div class="result-badge">HOD</div>
+        `;
+        
+        // Card info
+        const cardInfo = document.createElement('div');
+        cardInfo.className = 'result-info';
+        
+        // Department info
+        const deptInfo = document.createElement('div');
+        deptInfo.className = 'info-item';
+        deptInfo.innerHTML = `
+            <div class="info-label">Department</div>
+            <div class="info-value">${hod.department}</div>
+        `;
+        
+        // Alias info if available
+        let aliasInfo = '';
+        if (hod.alias && hod.alias.length > 0) {
+            aliasInfo = `
+                <div class="info-item">
+                    <div class="info-label">Department Code</div>
+                    <div class="info-value">${hod.alias.join(', ')}</div>
+                </div>
+            `;
+        }
+        
+        // Cabin info
+        const cabinInfo = document.createElement('div');
+        cabinInfo.className = 'info-item';
+        cabinInfo.innerHTML = `
+            <div class="info-label">Cabin Number</div>
+            <div class="info-value cabin-highlight">${hod.cabin || "Not Available"}</div>
+        `;
+        
+        // Append all elements
+        cardInfo.appendChild(deptInfo);
+        if (aliasInfo) {
+            cardInfo.innerHTML += aliasInfo;
+        }
+        cardInfo.appendChild(cabinInfo);
+        
+        resultCard.appendChild(cardHeader);
+        resultCard.appendChild(cardInfo);
+        
+        hodResults.appendChild(resultCard);
+        hodResults.classList.add('show');
+    }
 
-  if (found) {
-    resultDiv.innerHTML = `
-      <p class="text-lg font-bold text-green-600">Result Found:</p>
-      <p><strong>Department:</strong> ${found.department}</p>
-      <p><strong>HOD Name:</strong> ${found.name}</p>
-      <p><strong>Cabin Number:</strong> ${found.cabin || "Not Available"}</p>
-    `;
-  } else {
-    resultDiv.innerHTML = `
-      <p class="text-lg font-bold text-red-600">No Results Found</p>
-      <p>Try searching with a different department or HOD name.</p>
-    `;
-  }
-}
+    // Show Faculty search result
+    function showFacultyResult(department, faculty) {
+        facultyResults.innerHTML = '';
+        
+        // Create result message
+        const resultMessage = document.createElement('div');
+        resultMessage.className = 'result-message success';
+        resultMessage.innerHTML = `
+            <div class="toast-icon"><i class="fas fa-check-circle"></i></div>
+            <div>Faculty member found</div>
+        `;
+        facultyResults.appendChild(resultMessage);
+        
+        // Create result card
+        const resultCard = document.createElement('div');
+        resultCard.className = 'result-card';
+        resultCard.style.setProperty('--i', '1');
+        
+        // Card header
+        const cardHeader = document.createElement('div');
+        cardHeader.className = 'result-header';
+        cardHeader.innerHTML = `
+            <div class="result-title">${faculty.name}</div>
+            <div class="result-badge">${faculty.designation || "Faculty"}</div>
+        `;
+        
+        // Card info
+        const cardInfo = document.createElement('div');
+        cardInfo.className = 'result-info';
+        
+        // Department info
+        const deptInfo = document.createElement('div');
+        deptInfo.className = 'info-item';
+        deptInfo.innerHTML = `
+            <div class="info-label">Department</div>
+            <div class="info-value">${department.department}</div>
+        `;
+        
+        // Room info if available
+        let roomInfo = '';
+        if (faculty.room) {
+            roomInfo = `
+                <div class="info-item">
+                    <div class="info-label">Room Number</div>
+                    <div class="info-value">${faculty.room}</div>
+                </div>
+            `;
+        }
+        
+        // Cabin info
+        const cabinInfo = document.createElement('div');
+        cabinInfo.className = 'info-item';
+        cabinInfo.innerHTML = `
+            <div class="info-label">Cabin Number</div>
+            <div class="info-value cabin-highlight">${faculty.cabin || "Not Available"}</div>
+        `;
+        
+        // Append all elements
+        cardInfo.appendChild(deptInfo);
+        if (roomInfo) {
+            cardInfo.innerHTML += roomInfo;
+        }
+        cardInfo.appendChild(cabinInfo);
+        
+        resultCard.appendChild(cardHeader);
+        resultCard.appendChild(cardInfo);
+        
+        facultyResults.appendChild(resultCard);
+        facultyResults.classList.add('show');
+    }
 
-  // Function to enable faculty search input
-  function enableFacultySearch() {
-    const departmentValue = document.getElementById("faculty-department").value;
-    const facultyInput = document.getElementById("faculty-search-input");
-    facultyInput.disabled = !departmentValue;
-    facultyInput.value = "";
-    document.getElementById("faculty-result").innerHTML = "";
-  }
+    // Show error message
+    function showError(container, message) {
+        container.innerHTML = '';
+        
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'result-message error';
+        errorMessage.innerHTML = `
+            <div class="toast-icon"><i class="fas fa-exclamation-circle"></i></div>
+            <div>${message}</div>
+        `;
+        
+        container.appendChild(errorMessage);
+        container.classList.add('show');
+    }
 
-  // Function to search Faculty Cabin by department and name
-function searchFacultyCabin() {
-  const departmentValue = document.getElementById("faculty-department").value;
-  const facultySearchValue = document.getElementById("faculty-search-input").value.toLowerCase();
-  const resultDiv = document.getElementById("faculty-result");
+    // Show toast notification
+    function showToast(title, message, type = 'info') {
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        
+        let icon;
+        switch(type) {
+            case 'success':
+                icon = 'check-circle';
+                break;
+            case 'error':
+                icon = 'exclamation-circle';
+                break;
+            case 'warning':
+                icon = 'exclamation-triangle';
+                break;
+            default:
+                icon = 'info-circle';
+        }
+        
+        toast.innerHTML = `
+            <div class="toast-icon">
+                <i class="fas fa-${icon}"></i>
+            </div>
+            <div class="toast-content">
+                <div class="toast-title">${title}</div>
+                <div class="toast-message">${message}</div>
+            </div>
+            <div class="toast-close">
+                <i class="fas fa-times"></i>
+            </div>
+        `;
+        
+        toastContainer.appendChild(toast);
+        
+        // Add click event to close toast
+        toast.querySelector('.toast-close').addEventListener('click', () => {
+            toast.style.opacity = '0';
+            setTimeout(() => {
+                toast.remove();
+            }, 300);
+        });
+        
+        // Auto remove toast after 4 seconds
+        setTimeout(() => {
+            if (toast.parentNode === toastContainer) {
+                toast.style.opacity = '0';
+                setTimeout(() => {
+                    if (toast.parentNode === toastContainer) {
+                        toast.remove();
+                    }
+                }, 300);
+            }
+        }, 4000);
+    }
 
-  if (!departmentValue) {
-    resultDiv.innerHTML = `<p class="text-lg font-bold text-red-600">Please select a department first.</p>`;
-    return;
-  }
+    // Add to recent searches
+    function addToRecentSearches(searchTerm, type) {
+        // Get existing searches or initialize empty array
+        let searches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+        
+        // Add new search at the beginning
+        searches.unshift({
+            term: searchTerm,
+            type: type,
+            timestamp: new Date().getTime()
+        });
+        
+        // Keep only the last 5 searches
+        searches = searches.slice(0, 5);
+        
+        // Save to localStorage
+        localStorage.setItem('recentSearches', JSON.stringify(searches));
+        
+        // Update UI
+        loadRecentSearches();
+    }
 
-  if (!facultySearchValue) {
-    resultDiv.innerHTML = `<p class="text-lg font-bold text-red-600">Please enter a faculty name.</p>`;
-    return;
-  }
+    // Load recent searches
+    function loadRecentSearches() {
+        const searches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+        
+        if (searches.length === 0) {
+            recentSearches.innerHTML = '<p class="empty-state">No recent searches</p>';
+            return;
+        }
+        
+        recentSearches.innerHTML = '';
+        
+        searches.forEach((search, index) => {
+            const searchTag = document.createElement('div');
+            searchTag.className = 'search-tag';
+            searchTag.style.setProperty('--i', index);
+            
+            let icon = search.type === 'hod' ? 'user-tie' : 'users';
+            
+            searchTag.innerHTML = `
+                <i class="fas fa-${icon}"></i>
+                <span>${search.term}</span>
+            `;
+            
+            // Add click event to re-run the search
+            searchTag.addEventListener('click', () => {
+                if (search.type === 'hod') {
+                    switchTab('hod');
+                    hodSearchInput.value = search.term;
+                    searchHOD();
+                } else {
+                    // For faculty searches, we need to parse the term
+                    const match = search.term.match(/(.*) $$(.*)$$/);
+                    if (match) {
+                        const name = match[1];
+                        const dept = match[2];
+                        
+                        switchTab('faculty');
+                        deptSelect.value = dept;
+                        handleDepartmentChange();
+                        facultySearchInput.value = name;
+                        searchFaculty();
+                    }
+                }
+            });
+            
+            recentSearches.appendChild(searchTag);
+        });
+    }
 
-  // Assuming hodData is available globally or passed into this function
-  const selectedDepartment = hodData.find((hod) => hod.alias.includes(departmentValue));
-
-  if (!selectedDepartment || !selectedDepartment.facultyList) {
-    resultDiv.innerHTML = `<p class="text-lg font-bold text-red-600">Department not found or has no faculty listed.</p>`;
-    return;
-  }
-
-  const foundFaculty = selectedDepartment.facultyList.find((faculty) =>
-    faculty.name.toLowerCase().includes(facultySearchValue)
-  );
-
-  if (foundFaculty) {
-    resultDiv.innerHTML = `
-      <p class="text-lg font-bold text-green-600">Faculty Member Found:</p>
-      <p><strong>Department:</strong> ${selectedDepartment.department}</p>
-      <p><strong>Name:</strong> ${foundFaculty.name}</p>
-      <p><strong>Designation:</strong> ${foundFaculty.designation}</p>
-      <p><strong>Room Number:</strong> ${foundFaculty.room || "Not Available"}</p>
-      <p><strong>Cabin Number:</strong> ${foundFaculty.cabin || "Not Available"}</p>
-    `;
-  } else {
-    resultDiv.innerHTML = `<p class="text-lg font-bold text-red-600">No faculty found in the selected department.</p>`;
-  }
-}
+    // Reset the app
+    function resetApp() {
+        // Reset HOD search
+        hodSearchInput.value = '';
+        hodResults.innerHTML = '';
+        hodResults.classList.remove('show');
+        
+        // Reset Faculty search
+        deptSelect.selectedIndex = 0;
+        facultySearchInput.value = '';
+        facultySearchInput.disabled = true;
+        facultySearchBtn.disabled = true;
+        facultyResults.innerHTML = '';
+        facultyResults.classList.remove('show');
+        
+        // Switch to HOD tab
+        switchTab('hod');
+        
+        showToast('Reset Complete', 'All search fields have been reset', 'info');
+    }
+});
