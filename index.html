@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <!-- Header -->
@@ -14,7 +15,7 @@
     <div class="container">
       <div class="header-content">
         <div class="logo">
-          <img src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/kloo_app_logo_enhanced.jpg" alt="KLU Logo">
+         <img src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/kloo_app_logo_enhanced.jpg" alt="KLU Logo">
           <h1>KLU <span>ONE</span></h1>
         </div>
         <nav class="main-nav">
@@ -26,43 +27,31 @@
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
-       <div class="header-buttons">
-    <a href="login.html" class="login-btn">
-        <i class="fas fa-sign-in-alt"></i> Login
-    </a>
-    <div class="mobile-menu-toggle">
-        <i class="fas fa-bars"></i>
-    </div>
-</div>
-
+        <div class="header-buttons">
+          <a href="#" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <div class="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-<!-- Updates Marquee -->
-<div class="updates-marquee">
-  <div class="container">
-    <div class="marquee-container">
-      <i class="fas fa-bullhorn"></i>
-      <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" class="red-text">
-        <span><i class="fas fa-circle"></i> Welcome To KLU ONE!!</span>
-        <span><i class="fas fa-circle"></i> ECE Faculty Cabin numbers are updated</span>
-        <span><i class="fas fa-circle"></i> Some deviations May Occur </span>
-        <span><i class="fas fa-circle"></i> </span>
-        <span><i class="fas fa-circle"></i> </span>
-      </marquee>
+  <!-- Updates Marquee -->
+  <div class="updates-marquee">
+    <div class="container">
+      <div class="marquee-container">
+        <i class="fas fa-bullhorn"></i>
+        <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+          <span><i class="fas fa-circle"></i> Welcome to Y23's KLU ONE</span>
+          <span><i class="fas fa-circle"></i>All in ONE </span>
+          <span><i class="fas fa-circle"></i>ECE cabin numbers are updated </span>
+          <span><i class="fas fa-circle"></i> </span>
+          <span><i class="fas fa-circle"></i> </span>
+        </marquee>
+      </div>
     </div>
   </div>
-</div>
-
-<!-- CSS -->
-<style>
-  .red-text {
-    color: red;
-    font-weight: bold;
-  }
-</style>
-
 
   <!-- Mobile Menu -->
   <div class="mobile-menu">
@@ -76,67 +65,45 @@
   </div>
 
   <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="carousel-container">
-      <div class="carousel">
-        <div class="carousel-slide active">
-          <img src="https://assets.onecompiler.app/42fq36qvd/43awjnnd3/Screenshot%202025-03-05%20195239.png" alt="KLU Campus">
-          <div class="carousel-caption">
-            <h2 class="animate-text">Welcome to KLU ONE</h2>
-            <p class="animate-text">Your comprehensive portal for all KL University resources</p>
-            <a href="#portals" class="hero-btn animate-text">Explore Portals</a>
-          </div>
-        </div>
-        <div class="carousel-slide">
-          <img src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature5.jpg" alt="KLU Students">
-          <div class="carousel-caption">
-            <h2 class="animate-text">Access All University Portals</h2>
-            <p class="animate-text">ERP, LMS, and Academic resources in one place</p>
-            <a href="#portals" class="hero-btn animate-text">View Portals</a>
-          </div>
-        </div>
-        <div class="carousel-slide">
-          <img src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/nature3.jpg" alt="KLU Library">
-          <div class="carousel-caption">
-            <h2 class="animate-text">Useful Tools at Your Fingertips</h2>
-            <p class="animate-text">Calculator, Mess, Cabin, Map, and Transport information</p>
-            <a href="#tools" class="hero-btn animate-text">Discover Tools</a>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-controls">
-        <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
-        <div class="carousel-indicators">
-          <span class="indicator active"></span>
-          <span class="indicator"></span>
-          <span class="indicator"></span>
-        </div>
-        <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
-      </div>
+<section id="home" class="hero">
+  <div class="video-hero-container">
+    <div class="video-container">
+      <iframe
+        src="https://www.youtube.com/embed/yp1nKQrMXJ4?autoplay=1&mute=1&loop=1&playlist=yp1nKQrMXJ4&controls=0&rel=0&showinfo=0&modestbranding=1"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
     </div>
-  </section>
+    <div class="hero-caption">
+      <h2 class="animate-text">Welcome to KLU ONE</h2>
+      <p class="animate-text">Your comprehensive portal for all KL University resources</p>
+      <a href="#portals" class="hero-btn animate-text">Explore Portals</a>
+    </div>
+  </div>
+</section>
 
   <!-- Quick Access Section -->
   <section class="quick-access">
     <div class="container">
       <div class="quick-access-grid">
-        <a href="https://newerp.kluniversity.in/" class="quick-access-item animate-on-scroll" data-animation="fadeInUp" data-delay="0">
+        <a href="#erp" class="quick-access-item animate-on-scroll" data-animation="fadeInUp" data-delay="0">
           <i class="fas fa-user-graduate"></i>
           <span>ERP Portal</span>
         </a>
-        <a href="https://lms.kluniversity.in/" class="quick-access-item animate-on-scroll" data-animation="fadeInUp" data-delay="100">
+        <a href="#lms" class="quick-access-item animate-on-scroll" data-animation="fadeInUp" data-delay="100">
           <i class="fas fa-book-open"></i>
           <span>LMS</span>
         </a>
-        <a href="https://academics.klef.in/klef" class="quick-access-item animate-on-scroll" data-animation="fadeInUp" data-delay="200">
+        <a href="#academics" class="quick-access-item animate-on-scroll" data-animation="fadeInUp" data-delay="200">
           <i class="fas fa-graduation-cap"></i>
           <span>Academics</span>
         </a>
-        <a href="calculator.html" class="quick-access-item animate-on-scroll" data-animation="fadeInUp" data-delay="300">
+        <a href="#calculator" class="quick-access-item animate-on-scroll" data-animation="fadeInUp" data-delay="300">
           <i class="fas fa-calculator"></i>
           <span>Calculator</span>
         </a>
-        <a href="mess.html" class="quick-access-item animate-on-scroll" data-animation="fadeInUp" data-delay="400">
+        <a href="#mess" class="quick-access-item animate-on-scroll" data-animation="fadeInUp" data-delay="400">
           <i class="fas fa-utensils"></i>
           <span>Mess</span>
         </a>
@@ -157,20 +124,20 @@
           <p>With KLU ONE, you can access your ERP, LMS, academic resources, and various campus utilities through a single, user-friendly interface. We've designed this portal with student needs in mind, ensuring that you can find everything you need quickly and efficiently.</p>
           <div class="about-stats">
             <div class="stat-item animate-on-scroll" data-animation="fadeInUp" data-delay="0">
-              <div class="stat-number" data-count="1320">0</div>
-              <div class="stat-label">Users</div>
+              <div class="stat-number" data-count="15000">0</div>
+              <div class="stat-label">Students</div>
             </div>
             <div class="stat-item animate-on-scroll" data-animation="fadeInUp" data-delay="200">
-              <div class="stat-number" data-count="30000">0</div>
-              <div class="stat-label">Impressions</div>
+              <div class="stat-number" data-count="1200">0</div>
+              <div class="stat-label">Faculty</div>
             </div>
             <div class="stat-item animate-on-scroll" data-animation="fadeInUp" data-delay="400">
-              <div class="stat-number" data-count="6">0</div>
-              <div class="stat-label">Features</div>
+              <div class="stat-number" data-count="50">0</div>
+              <div class="stat-label">Programs</div>
             </div>
             <div class="stat-item animate-on-scroll" data-animation="fadeInUp" data-delay="600">
-              <div class="stat-number" data-count="300">0</div>
-              <div class="stat-label">Downloads</div>
+              <div class="stat-number" data-count="25">0</div>
+              <div class="stat-label">Research Centers</div>
             </div>
           </div>
         </div>
@@ -207,7 +174,7 @@
           </div>
           <h3>ERP Portal</h3>
           <p>Access your student profile, attendance, grades, and fee information</p>
-          <a href="https://newerp.kluniversity.in/" class="portal-btn">Access ERP</a>
+          <a href="#" class="portal-btn">Access ERP</a>
         </div>
         <div id="lms" class="portal-card animate-on-scroll" data-animation="fadeInUp" data-delay="200">
           <div class="portal-icon">
@@ -215,9 +182,9 @@
           </div>
           <h3>Learning Management</h3>
           <p>Access course materials, assignments, and online learning resources</p>
-          <a href="https://lms.kluniversity.in/" class="portal-btn">Access LMS</a>
+          <a href="#" class="portal-btn">Access LMS</a>
         </div>
-        <div id="https://academics.klef.in/klef" class="portal-card animate-on-scroll" data-animation="fadeInUp" data-delay="400">
+        <div id="academics" class="portal-card animate-on-scroll" data-animation="fadeInUp" data-delay="400">
           <div class="portal-icon">
             <i class="fas fa-graduation-cap"></i>
           </div>
@@ -225,7 +192,14 @@
           <p>View academic calendar, curriculum, and program information</p>
           <a href="#" class="portal-btn">Access Academics</a>
         </div>
-        
+        <div class="portal-card animate-on-scroll" data-animation="fadeInUp" data-delay="600">
+          <div class="portal-icon">
+            <i class="fas fa-clipboard-list"></i>
+          </div>
+          <h3>Examination Portal</h3>
+          <p>View exam schedules, results, and grade cards</p>
+          <a href="#" class="portal-btn">Access Exams</a>
+        </div>
       </div>
     </div>
   </section>
@@ -244,7 +218,7 @@
           </div>
           <h3>GPA Calculator</h3>
           <p>Calculate your semester and cumulative GPA</p>
-          <a href="calculator.html" class="tool-btn">Use Calculator</a>
+          <a href="#" class="tool-btn">Use Calculator</a>
         </div>
         <div id="mess" class="tool-card animate-on-scroll" data-animation="zoomIn" data-delay="200">
           <div class="tool-icon">
@@ -252,15 +226,15 @@
           </div>
           <h3>Mess Schedule</h3>
           <p>View mess timings and weekly menu</p>
-          <a href="mess.html" class="tool-btn">View Mess Info</a>
+          <a href="#" class="tool-btn">View Mess Info</a>
         </div>
         <div id="cabin" class="tool-card animate-on-scroll" data-animation="zoomIn" data-delay="400">
           <div class="tool-icon">
             <i class="fas fa-door-open"></i>
           </div>
-          <h3>Cabin</h3>
+          <h3>Cabin Booking</h3>
           <p>Book faculty cabins for discussions</p>
-          <a href="cabin.html" class="tool-btn">Book Cabin</a>
+          <a href="#" class="tool-btn">Book Cabin</a>
         </div>
         <div id="map" class="tool-card animate-on-scroll" data-animation="zoomIn" data-delay="600">
           <div class="tool-icon">
@@ -268,7 +242,7 @@
           </div>
           <h3>Campus Map</h3>
           <p>Interactive map to navigate the campus</p>
-          <a href="map.html" class="tool-btn">Open Map</a>
+          <a href="#" class="tool-btn">Open Map</a>
         </div>
         <div id="transport" class="tool-card animate-on-scroll" data-animation="zoomIn" data-delay="800">
           <div class="tool-icon">
@@ -276,7 +250,7 @@
           </div>
           <h3>Transport Info</h3>
           <p>Bus routes, timings, and tracking</p>
-          <a href="transport.html" class="tool-btn">Transport Details</a>
+          <a href="#" class="tool-btn">Transport Details</a>
         </div>
         <div class="tool-card animate-on-scroll" data-animation="zoomIn" data-delay="1000">
           <div class="tool-icon">
@@ -284,7 +258,7 @@
           </div>
           <h3>Event Calendar</h3>
           <p>University events and important dates</p>
-          <a href="event.html" class="tool-btn">View Calendar</a>
+          <a href="#" class="tool-btn">View Calendar</a>
         </div>
       </div>
     </div>
@@ -345,26 +319,35 @@
           </ul>
         </div>
         <div class="link-category animate-on-scroll" data-animation="fadeInUp" data-delay="200">
-          <h3>Administration</h3>
+          <h3><i class="fas fa-star"></i> Quick Services</h3>
           <ul>
-            <li><a href="#">Fee Payment</a></li>
-            <li><a href="#">Scholarships</a></li>
-            <li><a href="#">Hostel Management</a></li>
-            <li><a href="#">Transport Management</a></li>
-            <li><a href="#">Grievance Cell</a></li>
+            <li><a href="#"><i class="fas fa-wifi"></i> Campus WiFi</a></li>
+            <li><a href="#"><i class="fas fa-print"></i> Print Services</a></li>
+            <li><a href="#"><i class="fas fa-id-card"></i> ID Card Services</a></li>
+            <li><a href="#"><i class="fas fa-parking"></i> Parking Info</a></li>
+            <li><a href="#"><i class="fas fa-coffee"></i> Cafeteria Menu</a></li>
           </ul>
         </div>
         <div class="link-category animate-on-scroll" data-animation="fadeInUp" data-delay="400">
-          <h3>Campus Life</h3>
+          <h3><i class="fas fa-heart"></i> Student Wellness</h3>
           <ul>
-            <li><a href="#">Student Clubs</a></li>
-            <li><a href="#">Sports Facilities</a></li>
-            <li><a href="#">Cultural Events</a></li>
-            <li><a href="#">Library Resources</a></li>
-            <li><a href="#">Health Center</a></li>
+            <li><a href="#"><i class="fas fa-dumbbell"></i> Fitness Center</a></li>
+            <li><a href="#"><i class="fas fa-medkit"></i> Health Services</a></li>
+            <li><a href="#"><i class="fas fa-brain"></i> Counseling</a></li>
+            <li><a href="#"><i class="fas fa-moon"></i> Meditation Room</a></li>
+            <li><a href="#"><i class="fas fa-gamepad"></i> Recreation</a></li>
           </ul>
         </div>
-       
+        <div class="link-category animate-on-scroll" data-animation="fadeInUp" data-delay="600">
+          <h3><i class="fas fa-rocket"></i> Innovation Hub</h3>
+          <ul>
+            <li><a href="#"><i class="fas fa-lightbulb"></i> Startup Incubator</a></li>
+            <li><a href="#"><i class="fas fa-code"></i> Coding Labs</a></li>
+            <li><a href="#"><i class="fas fa-robot"></i> AI Research</a></li>
+            <li><a href="#"><i class="fas fa-flask"></i> Innovation Labs</a></li>
+            <li><a href="#"><i class="fas fa-trophy"></i> Competitions</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -429,319 +412,8 @@
       </div>
     </div>
   </section>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-  // Mobile Menu Toggle
-  const menuToggle = document.querySelector(".mobile-menu-toggle")
-  const mobileMenu = document.querySelector(".mobile-menu")
 
-  menuToggle.addEventListener("click", () => {
-    mobileMenu.classList.toggle("active")
-
-    // Change icon based on menu state
-    const icon = menuToggle.querySelector("i")
-    if (mobileMenu.classList.contains("active")) {
-      icon.classList.remove("fa-bars")
-      icon.classList.add("fa-times")
-    } else {
-      icon.classList.remove("fa-times")
-      icon.classList.add("fa-bars")
-    }
-  })
-
-  // Mobile Dropdown Toggle
-  const mobileDropdownToggles = document.querySelectorAll(".mobile-dropdown-toggle")
-
-  mobileDropdownToggles.forEach((toggle) => {
-    toggle.addEventListener("click", function (e) {
-      e.preventDefault()
-      const dropdownMenu = this.nextElementSibling
-      dropdownMenu.classList.toggle("active")
-
-      // Change icon based on dropdown state
-      const icon = this.querySelector("i")
-      if (dropdownMenu.classList.contains("active")) {
-        icon.classList.remove("fa-chevron-down")
-        icon.classList.add("fa-chevron-up")
-      } else {
-        icon.classList.remove("fa-chevron-up")
-        icon.classList.add("fa-chevron-down")
-      }
-    })
-  })
-
-  // Carousel Functionality
-  const slides = document.querySelectorAll(".carousel-slide")
-  const indicators = document.querySelectorAll(".indicator")
-  const prevBtn = document.querySelector(".prev-btn")
-  const nextBtn = document.querySelector(".next-btn")
-  let currentSlide = 0
-  let slideInterval
-
-  // Initialize carousel
-  function initCarousel() {
-    // Hide all slides
-    slides.forEach((slide) => {
-      slide.classList.remove("active")
-    })
-
-    // Deactivate all indicators
-    indicators.forEach((indicator) => {
-      indicator.classList.remove("active")
-    })
-
-    // Show current slide
-    slides[currentSlide].classList.add("active")
-    indicators[currentSlide].classList.add("active")
-
-    // Animate text
-    const texts = slides[currentSlide].querySelectorAll(".animate-text")
-    texts.forEach((text) => {
-      text.style.animation = "none"
-      setTimeout(() => {
-        text.style.animation = "fadeInUp 1s forwards 0.5s"
-      }, 10)
-    })
-  }
-
-  // Next slide
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length
-    initCarousel()
-  }
-
-  // Previous slide
-  function prevSlide() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length
-    initCarousel()
-  }
-
-  // Start automatic slideshow
-  function startSlideshow() {
-    slideInterval = setInterval(nextSlide, 5000)
-  }
-
-  // Stop automatic slideshow
-  function stopSlideshow() {
-    clearInterval(slideInterval)
-  }
-
-  // Event listeners for carousel controls
-  nextBtn.addEventListener("click", () => {
-    stopSlideshow()
-    nextSlide()
-    startSlideshow()
-  })
-
-  prevBtn.addEventListener("click", () => {
-    stopSlideshow()
-    prevSlide()
-    startSlideshow()
-  })
-
-  // Event listeners for indicators
-  indicators.forEach((indicator, index) => {
-    indicator.addEventListener("click", () => {
-      stopSlideshow()
-      currentSlide = index
-      initCarousel()
-      startSlideshow()
-    })
-  })
-
-  // Initialize carousel and start slideshow
-  initCarousel()
-  startSlideshow()
-
-  // Toggle How to Use section
-  const howToUseToggle = document.querySelector(".how-to-use .toggle-btn")
-  const howToUseContent = document.querySelector(".how-to-use-content")
-
-  howToUseToggle.addEventListener("click", () => {
-    howToUseContent.classList.toggle("active")
-
-    // Change icon based on content state
-    const icon = howToUseToggle.querySelector("i")
-    if (howToUseContent.classList.contains("active")) {
-      icon.classList.remove("fa-plus")
-      icon.classList.add("fa-minus")
-    } else {
-      icon.classList.remove("fa-minus")
-      icon.classList.add("fa-plus")
-    }
-  })
-
-  // Toggle Achievements section
-  const achievementsToggle = document.querySelector(".achievements .toggle-btn")
-  const achievementsContent = document.querySelector(".achievements-content")
-
-  achievementsToggle.addEventListener("click", () => {
-    achievementsContent.classList.toggle("active")
-
-    // Change icon based on content state
-    const icon = achievementsToggle.querySelector("i")
-    if (achievementsContent.classList.contains("active")) {
-      icon.classList.remove("fa-plus")
-      icon.classList.add("fa-minus")
-    } else {
-      icon.classList.remove("fa-minus")
-      icon.classList.add("fa-plus")
-    }
-  })
-
-  // Animate on Scroll
-  const animateElements = document.querySelectorAll(".animate-on-scroll")
-
-  function checkIfInView() {
-    const windowHeight = window.innerHeight
-    const windowTopPosition = window.scrollY
-    const windowBottomPosition = windowTopPosition + windowHeight
-
-    animateElements.forEach((element) => {
-      const elementHeight = element.offsetHeight
-      const elementTopPosition = element.offsetTop
-      const elementBottomPosition = elementTopPosition + elementHeight
-
-      // Check if element is in view
-      if (elementBottomPosition >= windowTopPosition && elementTopPosition <= windowBottomPosition) {
-        const delay = element.getAttribute("data-delay") || 0
-        setTimeout(() => {
-          element.classList.add("animate")
-
-          // If element has a specific animation class
-          const animation = element.getAttribute("data-animation")
-          if (animation) {
-            element.classList.add(`animate__${animation}`)
-          }
-        }, delay)
-      }
-    })
-  }
-
-  // Check elements on load
-  window.addEventListener("load", checkIfInView)
-
-  // Check elements on scroll
-  window.addEventListener("scroll", checkIfInView)
-
-  // Counter Animation for Stats
-  const statNumbers = document.querySelectorAll(".stat-number")
-
-  function animateCounter(element) {
-    const target = Number.parseInt(element.getAttribute("data-count"))
-    const duration = 2000 // 2 seconds
-    const step = target / (duration / 16) // 16ms is approx. one frame at 60fps
-    let current = 0
-
-    const timer = setInterval(() => {
-      current += step
-      element.textContent = Math.floor(current)
-
-      if (current >= target) {
-        element.textContent = target
-        clearInterval(timer)
-      }
-    }, 16)
-  }
-
-  // Animate counters when they come into view
-  function checkCounters() {
-    statNumbers.forEach((counter) => {
-      const position = counter.getBoundingClientRect()
-
-      // If element is in viewport
-      if (position.top < window.innerHeight && position.bottom >= 0 && !counter.classList.contains("animated")) {
-        counter.classList.add("animated")
-        animateCounter(counter)
-      }
-    })
-  }
-
-  // Check counters on scroll
-  window.addEventListener("scroll", checkCounters)
-
-  // Check counters on load
-  window.addEventListener("load", checkCounters)
-
-  // Back to Top Button
-  const backToTopBtn = document.querySelector(".back-to-top")
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-      backToTopBtn.classList.add("active")
-    } else {
-      backToTopBtn.classList.remove("active")
-    }
-  })
-
-  // Smooth scrolling for navigation links
-  const navLinks = document.querySelectorAll(".nav-links a, .mobile-nav-links a, .back-to-top a")
-
-  navLinks.forEach((link) => {
-    link.addEventListener("click", function (e) {
-      // Only if the link has a hash
-      if (this.getAttribute("href").startsWith("#")) {
-        e.preventDefault()
-
-        // Close mobile menu if open
-        if (mobileMenu.classList.contains("active")) {
-          mobileMenu.classList.remove("active")
-          const icon = menuToggle.querySelector("i")
-          icon.classList.remove("fa-times")
-          icon.classList.add("fa-bars")
-        }
-
-        // Get the target section
-        const targetId = this.getAttribute("href")
-        const targetSection = document.querySelector(targetId)
-
-        if (targetSection) {
-          // Scroll to target section
-          window.scrollTo({
-            top: targetSection.offsetTop - 70,
-            behavior: "smooth",
-          })
-
-          // Update active link
-          navLinks.forEach((navLink) => {
-            navLink.classList.remove("active")
-          })
-          this.classList.add("active")
-        }
-      }
-    })
-  })
-
-  // Highlight active nav link on scroll
-  window.addEventListener("scroll", () => {
-    const scrollPosition = window.scrollY
-
-    // Get all sections
-    const sections = document.querySelectorAll("section")
-
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 100
-      const sectionHeight = section.offsetHeight
-      const sectionId = section.getAttribute("id")
-
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        // Remove active class from all links
-        navLinks.forEach((link) => {
-          link.classList.remove("active")
-        })
-
-        // Add active class to corresponding link
-        const activeLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`)
-        if (activeLink) {
-          activeLink.classList.add("active")
-        }
-      }
-    })
-  })
-})
-
-
-</script>  <!-- Map Section -->
+  <!-- Map Section -->
   <section class="map-section">
     <div class="map-container">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826.6357226287974!2d80.62050931486823!3d16.44136198864752!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35f0a2a7d81943%3A0x8ba5d78f65df94b8!2sK%20L%20University!5e0!3m2!1sen!2sin!4v1649941591234!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
@@ -755,7 +427,7 @@
         <div class="footer-grid">
           <div class="footer-about">
             <div class="footer-logo">
-              <img src="https://assets.onecompiler.app/42fq36qvd/433s28xjq/Screenshot%202025-02-06%20151827.png" alt="KLU Logo">
+              <img src="https://source.unsplash.com/random/120x60/?university,logo" alt="KLU Logo">
               <h2>KLU <span>ONE</span></h2>
             </div>
             <p>KLU ONE is the comprehensive web portal for KL University, providing access to all university resources, portals, and tools in one convenient location.</p>
@@ -800,7 +472,9 @@
     </div>
     <div class="footer-bottom">
       <div class="container">
-        <p>&copy; 2023 KL University. All Rights Reserved.</p>
+        <p>&copy; 2023 KL University. All Rights Reserved.<br>
+          
+        </bf> |Idea & Designed and developed by <span class="developer-credit">Sumanth</span> with <i class="fas fa-heart heartbeat"></i></p>
         <div class="footer-links">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Use</a>
@@ -812,11 +486,12 @@
       <a href="#home"><i class="fas fa-arrow-up"></i></a>
     </div>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
-
 <style>
-  /* Base Styles */
+/* Base Styles */
 :root {
   --primary-color: #e31e24; /* KLU's brand red */
   --primary-dark: #c41920;
@@ -897,49 +572,6 @@ img {
   transform: translateY(0);
 }
 
-/* Top Bar Styles */
-.top-bar {
-  background-color: var(--secondary-color);
-  color: #fff;
-  padding: 8px 0;
-}
-
-.top-bar-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.quick-links {
-  display: flex;
-  gap: 15px;
-}
-
-.quick-links a {
-  color: #fff;
-  font-size: 0.9rem;
-  transition: var(--transition);
-}
-
-.quick-links a:hover {
-  color: var(--primary-color);
-}
-
-.top-contact {
-  display: flex;
-  gap: 20px;
-}
-
-.top-contact a {
-  color: #fff;
-  font-size: 0.9rem;
-  transition: var(--transition);
-}
-
-.top-contact a:hover {
-  color: var(--primary-color);
-}
-
 /* Header Styles */
 .header {
   background-color: #fff;
@@ -987,8 +619,7 @@ img {
 }
 
 .nav-links li {
-  margin-left: 20px;
-  position: relative;
+  margin-left: 30px;
 }
 
 .nav-links a {
@@ -1018,56 +649,6 @@ img {
 .nav-links a:hover::after,
 .nav-links a.active::after {
   width: 100%;
-}
-
-.dropdown {
-  position: relative;
-}
-
-.dropdown-toggle {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #fff;
-  box-shadow: var(--shadow);
-  min-width: 200px;
-  padding: 10px 0;
-  border-radius: 5px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
-  z-index: 1000;
-}
-
-.dropdown:hover .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.dropdown-menu li {
-  margin: 0;
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 8px 20px;
-  font-size: 0.95rem;
-  color: var(--text-color);
-  transition: var(--transition);
-}
-
-.dropdown-menu a:hover {
-  background-color: #f9f9f9;
-  color: var(--primary-color);
-  padding-left: 25px;
 }
 
 .header-buttons {
@@ -1100,11 +681,48 @@ img {
   color: var(--secondary-color);
 }
 
+/* Updates Marquee Styles */
+.updates-marquee {
+  background-color: var(--light-color);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.marquee-container {
+  display: flex;
+  align-items: center;
+}
+
+.marquee-container i {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  margin-right: 15px;
+}
+
+.updates-marquee marquee {
+  flex: 1;
+}
+
+.updates-marquee span {
+  display: inline-block;
+  margin-right: 50px;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+.updates-marquee span i {
+  color: var(--primary-color);
+  font-size: 0.6rem;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Mobile Menu Styles */
 .mobile-menu {
   display: none;
   background-color: #fff;
   position: fixed;
-  top: 110px;
+  top: 70px;
   left: 0;
   width: 100%;
   z-index: 999;
@@ -1112,8 +730,6 @@ img {
   padding: 20px;
   transform: translateY(-100%);
   transition: transform 0.3s ease;
-  max-height: 80vh;
-  overflow-y: auto;
 }
 
 .mobile-menu.active {
@@ -1137,67 +753,40 @@ img {
   color: var(--primary-color);
 }
 
-.mobile-dropdown {
-  position: relative;
-}
-
-.mobile-dropdown-toggle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.mobile-dropdown-menu {
-  display: none;
-  padding-left: 20px;
-  margin-top: 10px;
-}
-
-.mobile-dropdown-menu.active {
-  display: block;
-}
-
-.mobile-dropdown-menu li {
-  margin-bottom: 10px;
-}
-
-.mobile-dropdown-menu a {
-  font-size: 1rem;
-  padding: 5px 0;
-}
-
 /* Hero Section Styles */
 .hero {
   position: relative;
-}
-
-.carousel-container {
-  position: relative;
+  height: 600px;
   overflow: hidden;
 }
 
-.carousel {
-  display: flex;
-  transition: transform 0.5s ease;
-}
-
-.carousel-slide {
-  min-width: 100%;
+.video-hero-container {
   position: relative;
-  display: none;
-}
-
-.carousel-slide.active {
-  display: block;
-}
-
-.carousel-slide img {
   width: 100%;
-  height: 600px;
-  object-fit: cover;
+  height: 100%;
 }
 
-.carousel-caption {
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 56.25vw; /* 16:9 aspect ratio */
+  min-height: 100%;
+  min-width: 177.77vh; /* 16:9 aspect ratio */
+  transform: translate(-50%, -50%);
+}
+
+.hero-caption {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1209,16 +798,17 @@ img {
   border-radius: 5px;
   width: 80%;
   max-width: 800px;
+  z-index: 10;
 }
 
-.carousel-caption h2 {
+.hero-caption h2 {
   font-size: 2.8rem;
   margin-bottom: 15px;
   opacity: 0;
   transform: translateY(20px);
 }
 
-.carousel-caption p {
+.hero-caption p {
   font-size: 1.3rem;
   margin-bottom: 20px;
   opacity: 0;
@@ -1254,55 +844,111 @@ img {
   }
 }
 
-.carousel-controls {
+/* Responsive adjustments for video hero */
+@media (max-width: 1200px) {
+  .hero {
+    height: 500px;
+  }
+
+  .hero-caption h2 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .hero {
+    height: 450px;
+  }
+
+  .hero-caption {
+    width: 90%;
+    padding: 25px;
+  }
+
+  .hero-caption h2 {
+    font-size: 2.2rem;
+  }
+
+  .hero-caption p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    height: 400px;
+  }
+
+  .hero-caption h2 {
+    font-size: 1.8rem;
+  }
+
+  .hero-caption p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero {
+    height: 350px;
+  }
+
+  .hero-caption {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .hero-caption h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero-caption p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Video Container Styles */
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+}
+
+.video-container iframe {
   position: absolute;
-  bottom: 30px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
+  width: 100vw;
+  height: 56.25vw; /* 16:9 aspect ratio */
+  min-height: 100%;
+  min-width: 177.77vh; /* 16:9 aspect ratio */
+  transform: translate(-50%, -50%);
 }
 
-.prev-btn,
-.next-btn {
-  background-color: rgba(255, 255, 255, 0.5);
-  border: none;
-  color: var(--dark-color);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: var(--transition);
+/* Ensure video covers the full container */
+@media (max-width: 1200px) {
+  .video-container {
+    height: 500px;
+  }
 }
 
-.prev-btn:hover,
-.next-btn:hover {
-  background-color: rgba(255, 255, 255, 0.8);
-  transform: scale(1.1);
+@media (max-width: 991px) {
+  .video-container {
+    height: 450px;
+  }
 }
 
-.carousel-indicators {
-  display: flex;
-  gap: 10px;
+@media (max-width: 767px) {
+  .video-container {
+    height: 400px;
+  }
 }
 
-.indicator {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.indicator.active {
-  background-color: var(--primary-color);
-  transform: scale(1.2);
+@media (max-width: 576px) {
+  .video-container {
+    height: 350px;
+  }
 }
 
 /* Quick Access Section Styles */
@@ -1342,116 +988,6 @@ img {
 
 .quick-access-item span {
   font-weight: 500;
-}
-
-/* Announcements Section Styles */
-.announcements {
-  padding: 80px 0;
-  background-color: var(--light-color);
-}
-
-.announcements-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-}
-
-.announcement-card {
-  display: flex;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  transition: var(--transition);
-}
-
-.announcement-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-.announcement-date {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--primary-color);
-  color: #fff;
-  padding: 15px;
-  min-width: 80px;
-}
-
-.announcement-date .day {
-  font-size: 1.8rem;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.announcement-date .month {
-  font-size: 1rem;
-  text-transform: uppercase;
-}
-
-.announcement-content {
-  padding: 20px;
-  flex: 1;
-}
-
-.announcement-content h3 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  color: var(--secondary-color);
-}
-
-.announcement-content p {
-  color: var(--text-light);
-  margin-bottom: 15px;
-  font-size: 0.95rem;
-}
-
-.read-more {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  color: var(--primary-color);
-  font-weight: 500;
-  font-size: 0.9rem;
-  transition: var(--transition);
-}
-
-.read-more:hover {
-  gap: 8px;
-}
-
-.view-all-container {
-  text-align: center;
-  margin-top: 40px;
-}
-
-.view-all-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background-color: var(--primary-color);
-  color: #fff;
-  padding: 12px 25px;
-  border-radius: 5px;
-  font-weight: 500;
-  transition: var(--transition);
-}
-
-.view-all-btn:hover {
-  background-color: var(--primary-dark);
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.view-all-btn i {
-  transition: transform 0.3s ease;
-}
-
-.view-all-btn:hover i {
-  transform: translateX(5px);
 }
 
 /* About KLU ONE Section Styles */
@@ -1555,57 +1091,6 @@ img {
   margin-bottom: 10px;
 }
 
-/* Academic Programs Section Styles */
-.academic-programs {
-  padding: 80px 0;
-  background-color: var(--light-color);
-}
-
-.programs-tabs {
-  margin-top: 40px;
-}
-
-.tabs-nav {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
-}
-
-.tab-btn {
-  padding: 12px 25px;
-  background-color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.tab-btn:hover {
-  background-color: #f0f0f0;
-}
-
-.tab-btn.active {
-  background-color: var(--primary-color);
-  color: #fff;
-}
-
-.tabs-content {
-  position: relative;
-}
-
-.tab-pane {
-  display: none;
-}
-
-.tab-pane.active {
-  display: block;
-  animation: fadeIn 0.5s ease;
-}
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -1615,77 +1100,10 @@ img {
   }
 }
 
-.programs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-}
-
-.program-card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: var(--shadow);
-  padding: 30px 20px;
-  text-align: center;
-  transition: var(--transition);
-}
-
-.program-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
-
-.program-icon {
-  width: 80px;
-  height: 80px;
-  background-color: var(--primary-color);
-  color: #fff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 20px;
-  transition: var(--transition);
-}
-
-.program-card:hover .program-icon {
-  transform: scale(1.1);
-}
-
-.program-icon i {
-  font-size: 2rem;
-}
-
-.program-card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 15px;
-  color: var(--secondary-color);
-}
-
-.program-card p {
-  color: var(--text-light);
-  margin-bottom: 20px;
-}
-
-.program-btn {
-  display: inline-block;
-  background-color: var(--primary-color);
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-weight: 500;
-  transition: var(--transition);
-}
-
-.program-btn:hover {
-  background-color: var(--primary-dark);
-  transform: translateY(-3px);
-}
-
 /* University Portals Section Styles */
 .portals {
   padding: 80px 0;
-  background-color: #fff;
+  background-color: var(--light-color);
 }
 
 .portals-grid {
@@ -1756,61 +1174,6 @@ img {
   background-color: var(--primary-dark);
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Research Highlights Section Styles */
-.research-highlights {
-  padding: 80px 0;
-  background-color: var(--light-color);
-}
-
-.research-content {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
-}
-
-.research-text p {
-  margin-bottom: 20px;
-  font-size: 1.1rem;
-  color: var(--text-color);
-}
-
-.research-stats {
-  display: flex;
-  justify-content: space-between;
-  margin: 30px 0;
-}
-
-.research-stats .stat-item {
-  flex: 1;
-  margin: 0 10px;
-}
-
-.research-btn {
-  display: inline-block;
-  background-color: var(--primary-color);
-  color: #fff;
-  padding: 12px 25px;
-  border-radius: 5px;
-  font-weight: 500;
-  transition: var(--transition);
-}
-
-.research-btn:hover {
-  background-color: var(--primary-dark);
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.research-image img {
-  border-radius: 8px;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
-}
-
-.research-image:hover img {
-  transform: scale(1.03);
 }
 
 /* Useful Tools Section Styles */
@@ -1888,66 +1251,10 @@ img {
   transform: translateY(-3px);
 }
 
-/* Campus Life Section Styles */
-.campus-life {
-  padding: 80px 0;
-  background-color: var(--light-color);
-}
-
-.campus-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-.gallery-item {
-  position: relative;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.gallery-item:hover img {
-  transform: scale(1.1);
-}
-
-.gallery-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-  color: #fff;
-  padding: 20px;
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
-}
-
-.gallery-item:hover .gallery-overlay {
-  transform: translateY(0);
-}
-
-.gallery-overlay h3 {
-  font-size: 1.2rem;
-  margin-bottom: 5px;
-}
-
-.gallery-overlay p {
-  font-size: 0.9rem;
-  opacity: 0.9;
-}
-
 /* About KLU Section Styles */
 .about-klu {
   padding: 80px 0;
-  background-color: #fff;
+  background-color: var(--light-color);
 }
 
 .about-klu-content {
@@ -2012,97 +1319,10 @@ img {
   margin-bottom: 10px;
 }
 
-/* Faculty Section Styles */
-.faculty {
-  padding: 80px 0;
-  background-color: var(--light-color);
-}
-
-.faculty-slider {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-}
-
-.faculty-card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  transition: var(--transition);
-}
-
-.faculty-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
-
-.faculty-image {
-  overflow: hidden;
-}
-
-.faculty-image img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  transition: var(--transition);
-}
-
-.faculty-card:hover .faculty-image img {
-  transform: scale(1.1);
-}
-
-.faculty-info {
-  padding: 20px;
-  text-align: center;
-}
-
-.faculty-info h3 {
-  font-size: 1.3rem;
-  margin-bottom: 5px;
-  color: var(--secondary-color);
-}
-
-.faculty-designation {
-  color: var(--primary-color);
-  font-weight: 500;
-  margin-bottom: 5px;
-}
-
-.faculty-qualification {
-  color: var(--text-light);
-  font-size: 0.9rem;
-  margin-bottom: 15px;
-}
-
-.faculty-social {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
-.faculty-social a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 35px;
-  height: 35px;
-  background-color: var(--light-color);
-  color: var(--secondary-color);
-  border-radius: 50%;
-  transition: var(--transition);
-}
-
-.faculty-social a:hover {
-  background-color: var(--primary-color);
-  color: #fff;
-  transform: translateY(-3px);
-}
-
 /* Important Links Section Styles */
 .important-links {
   padding: 80px 0;
-  background-color: var(--light-color);
+  background-color: #fff;
 }
 
 .links-grid {
@@ -2164,7 +1384,7 @@ img {
 /* Contact Section Styles */
 .contact {
   padding: 80px 0;
-  background-color: #fff;
+  background-color: var(--light-color);
 }
 
 .contact-content {
@@ -2477,7 +1697,6 @@ img {
 @media (min-width: 768px) {
   .about-content,
   .about-klu-content,
-  .research-content,
   .contact-content {
     grid-template-columns: 3fr 2fr;
   }
@@ -2498,10 +1717,6 @@ img {
 }
 
 @media (max-width: 991px) {
-  .top-bar {
-    display: none;
-  }
-
   .section-header h2 {
     font-size: 2rem;
   }
@@ -2585,17 +1800,746 @@ img {
   .quick-access-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+}
 
-  .tabs-nav {
-    flex-direction: column;
-    gap: 10px;
+/* Enhanced Animations and Transitions */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
   }
-
-  .tab-btn {
-    width: 100%;
+  50% {
+    transform: translateY(-10px);
   }
 }
 
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
 
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Enhanced Quick Access Items */
+.quick-access-item {
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.quick-access-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(227, 30, 36, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.quick-access-item:hover::before {
+  left: 100%;
+}
+
+.quick-access-item:hover {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: white;
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(227, 30, 36, 0.3);
+}
+
+.quick-access-item:hover i {
+  color: white;
+  animation: bounceIn 0.6s ease;
+}
+
+/* Enhanced Portal Cards */
+.portal-card {
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.portal-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(227, 30, 36, 0.1), transparent);
+  animation: spin 3s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.portal-card:hover::before {
+  opacity: 1;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Enhanced Tool Cards */
+.tool-card {
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  position: relative;
+}
+
+.tool-card:hover {
+  background: linear-gradient(135deg, #fff 0%, #f0f8ff 100%);
+}
+
+.tool-icon {
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-icon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.tool-card:hover .tool-icon::before {
+  left: 100%;
+}
+
+/* Enhanced Link Categories */
+.link-category {
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  border-left: 4px solid var(--primary-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.link-category::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(227, 30, 36, 0.05) 0%, rgba(227, 30, 36, 0.1) 100%);
+  transition: width 0.3s ease;
+}
+
+.link-category:hover::before {
+  width: 100%;
+}
+
+.link-category h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.link-category h3 i {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+}
+
+.link-category ul li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.link-category ul li a i {
+  color: var(--primary-color);
+  width: 16px;
+  text-align: center;
+}
+
+.link-category ul li a:hover {
+  background: rgba(227, 30, 36, 0.1);
+  padding-left: 15px;
+  transform: translateX(5px);
+}
+
+/* Enhanced Header */
+.header {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.logo h1 {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Enhanced Buttons */
+.login-btn,
+.hero-btn,
+.portal-btn,
+.tool-btn,
+.submit-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.login-btn::before,
+.hero-btn::before,
+.portal-btn::before,
+.tool-btn::before,
+.submit-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.login-btn:hover::before,
+.hero-btn:hover::before,
+.portal-btn:hover::before,
+.tool-btn:hover::before,
+.submit-btn:hover::before {
+  left: 100%;
+}
+
+/* Enhanced Stats */
+.stat-item {
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  border: 1px solid rgba(227, 30, 36, 0.1);
+}
+
+.stat-item:hover {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: white;
+}
+
+.stat-item:hover .stat-number {
+  color: white;
+  animation: pulse 1s ease-in-out;
+}
+
+/* Enhanced Marquee */
+.updates-marquee {
+  background: linear-gradient(135deg, var(--light-color) 0%, #e8f4f8 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.updates-marquee::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(227, 30, 36, 0.05) 50%, transparent 100%);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Developer Credit Styling */
+.developer-credit {
+  color: var(--primary-color);
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--primary-color) 0%, #ff6b6b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heartbeat {
+  color: #ff6b6b;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+/* Enhanced Scroll Animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-on-scroll.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Enhanced Section Backgrounds */
+.portals {
+  background: linear-gradient(135deg, var(--light-color) 0%, #f0f8ff 100%);
+  position: relative;
+}
+
+.tools {
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+  position: relative;
+}
+
+.about-klu {
+  background: linear-gradient(135deg, var(--light-color) 0%, #fff5f5 100%);
+  position: relative;
+}
+
+/* Floating Elements */
+.portal-icon,
+.tool-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+.portal-card:nth-child(even) .portal-icon,
+.tool-card:nth-child(even) .tool-icon {
+  animation-delay: 1.5s;
+}
+
+/* Enhanced Form Elements */
+.form-group input,
+.form-group textarea {
+  border: 2px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(135deg, var(--border-color), var(--primary-color)) border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(135deg, var(--primary-color), var(--primary-dark)) border-box;
+  transform: translateY(-2px);
+}
+
+/* Enhanced Social Links */
+.social-links a {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
+  backdrop-filter: blur(10px);
+}
+
+.social-links a:hover {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  transform: translateY(-5px) scale(1.1);
+}
+
+  
 </style>
+<script>
+ document.addEventListener("DOMContentLoaded", () => {
+  // Mobile Menu Toggle
+  const menuToggle = document.querySelector(".mobile-menu-toggle")
+  const mobileMenu = document.querySelector(".mobile-menu")
 
+  menuToggle.addEventListener("click", () => {
+    mobileMenu.classList.toggle("active")
+
+    // Change icon based on menu state
+    const icon = menuToggle.querySelector("i")
+    if (mobileMenu.classList.contains("active")) {
+      icon.classList.remove("fa-bars")
+      icon.classList.add("fa-times")
+    } else {
+      icon.classList.remove("fa-times")
+      icon.classList.add("fa-bars")
+    }
+  })
+
+  // Mobile Dropdown Toggle
+  const mobileDropdownToggles = document.querySelectorAll(".mobile-dropdown-toggle")
+
+  mobileDropdownToggles.forEach((toggle) => {
+    toggle.addEventListener("click", function (e) {
+      e.preventDefault()
+      const dropdownMenu = this.nextElementSibling
+      dropdownMenu.classList.toggle("active")
+
+      // Change icon based on dropdown state
+      const icon = this.querySelector("i")
+      if (dropdownMenu.classList.contains("active")) {
+        icon.classList.remove("fa-chevron-down")
+        icon.classList.add("fa-chevron-up")
+      } else {
+        icon.classList.remove("fa-chevron-up")
+        icon.classList.add("fa-chevron-down")
+      }
+    })
+  })
+
+  // Toggle How to Use section
+  const howToUseToggle = document.querySelector(".how-to-use .toggle-btn")
+  const howToUseContent = document.querySelector(".how-to-use-content")
+
+  if (howToUseToggle && howToUseContent) {
+    howToUseToggle.addEventListener("click", () => {
+      howToUseContent.classList.toggle("active")
+
+      // Change icon based on content state
+      const icon = howToUseToggle.querySelector("i")
+      if (howToUseContent.classList.contains("active")) {
+        icon.classList.remove("fa-plus")
+        icon.classList.add("fa-minus")
+      } else {
+        icon.classList.remove("fa-minus")
+        icon.classList.add("fa-plus")
+      }
+    })
+  }
+
+  // Toggle Achievements section
+  const achievementsToggle = document.querySelector(".achievements .toggle-btn")
+  const achievementsContent = document.querySelector(".achievements-content")
+
+  if (achievementsToggle && achievementsContent) {
+    achievementsToggle.addEventListener("click", () => {
+      achievementsContent.classList.toggle("active")
+
+      // Change icon based on content state
+      const icon = achievementsToggle.querySelector("i")
+      if (achievementsContent.classList.contains("active")) {
+        icon.classList.remove("fa-plus")
+        icon.classList.add("fa-minus")
+      } else {
+        icon.classList.remove("fa-minus")
+        icon.classList.add("fa-plus")
+      }
+    })
+  }
+
+  // Animate on Scroll
+  const animateElements = document.querySelectorAll(".animate-on-scroll")
+
+  function checkIfInView() {
+    const windowHeight = window.innerHeight
+    const windowTopPosition = window.scrollY
+    const windowBottomPosition = windowTopPosition + windowHeight
+
+    animateElements.forEach((element) => {
+      const elementHeight = element.offsetHeight
+      const elementTopPosition = element.offsetTop
+      const elementBottomPosition = elementTopPosition + elementHeight
+
+      // Check if element is in view
+      if (elementBottomPosition >= windowTopPosition && elementTopPosition <= windowBottomPosition) {
+        const delay = element.getAttribute("data-delay") || 0
+        setTimeout(() => {
+          element.classList.add("animate")
+
+          // If element has a specific animation class
+          const animation = element.getAttribute("data-animation")
+          if (animation) {
+            element.classList.add(`animate__${animation}`)
+          }
+        }, delay)
+      }
+    })
+  }
+
+  // Check elements on load
+  window.addEventListener("load", checkIfInView)
+
+  // Check elements on scroll
+  window.addEventListener("scroll", checkIfInView)
+
+  // Counter Animation for Stats
+  const statNumbers = document.querySelectorAll(".stat-number")
+
+  function animateCounter(element) {
+    const target = Number.parseInt(element.getAttribute("data-count"))
+    const duration = 2000 // 2 seconds
+    const step = target / (duration / 16) // 16ms is approx. one frame at 60fps
+    let current = 0
+
+    const timer = setInterval(() => {
+      current += step
+      element.textContent = Math.floor(current)
+
+      if (current >= target) {
+        element.textContent = target
+        clearInterval(timer)
+      }
+    }, 16)
+  }
+
+  // Animate counters when they come into view
+  function checkCounters() {
+    statNumbers.forEach((counter) => {
+      const position = counter.getBoundingClientRect()
+
+      // If element is in viewport
+      if (position.top < window.innerHeight && position.bottom >= 0 && !counter.classList.contains("animated")) {
+        counter.classList.add("animated")
+        animateCounter(counter)
+      }
+    })
+  }
+
+  // Check counters on scroll
+  window.addEventListener("scroll", checkCounters)
+
+  // Check counters on load
+  window.addEventListener("load", checkCounters)
+
+  // Back to Top Button
+  const backToTopBtn = document.querySelector(".back-to-top")
+
+  if (backToTopBtn) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add("active")
+      } else {
+        backToTopBtn.classList.remove("active")
+      }
+    })
+  }
+
+  // Smooth scrolling for navigation links
+  const navLinks = document.querySelectorAll(".nav-links a, .mobile-nav-links a, .back-to-top a")
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      // Only if the link has a hash
+      if (this.getAttribute("href").startsWith("#")) {
+        e.preventDefault()
+
+        // Close mobile menu if open
+        if (mobileMenu.classList.contains("active")) {
+          mobileMenu.classList.remove("active")
+          const icon = menuToggle.querySelector("i")
+          icon.classList.remove("fa-times")
+          icon.classList.add("fa-bars")
+        }
+
+        // Get the target section
+        const targetId = this.getAttribute("href")
+        const targetSection = document.querySelector(targetId)
+
+        if (targetSection) {
+          // Scroll to target section
+          window.scrollTo({
+            top: targetSection.offsetTop - 70,
+            behavior: "smooth",
+          })
+
+          // Update active link
+          navLinks.forEach((navLink) => {
+            navLink.classList.remove("active")
+          })
+          this.classList.add("active")
+        }
+      }
+    })
+  })
+
+  // Highlight active nav link on scroll
+  window.addEventListener("scroll", () => {
+    const scrollPosition = window.scrollY
+
+    // Get all sections
+    const sections = document.querySelectorAll("section")
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop - 100
+      const sectionHeight = section.offsetHeight
+      const sectionId = section.getAttribute("id")
+
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        // Remove active class from all links
+        navLinks.forEach((link) => {
+          link.classList.remove("active")
+        })
+
+        // Add active class to corresponding link
+        const activeLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`)
+        if (activeLink) {
+          activeLink.classList.add("active")
+        }
+      }
+    })
+  })
+})
+
+// Enhanced Animation Effects
+function addParallaxEffect() {
+  window.addEventListener("scroll", () => {
+    const scrolled = window.pageYOffset
+    const parallaxElements = document.querySelectorAll(".portal-icon, .tool-icon")
+
+    parallaxElements.forEach((element, index) => {
+      const speed = 0.5 + index * 0.1
+      element.style.transform = `translateY(${scrolled * speed * 0.01}px) rotate(${scrolled * 0.05}deg)`
+    })
+  })
+}
+
+// Add hover effects to cards
+function addCardHoverEffects() {
+  const cards = document.querySelectorAll(".portal-card, .tool-card, .link-category")
+
+  cards.forEach((card) => {
+    card.addEventListener("mouseenter", function () {
+      this.style.transform = "translateY(-15px) scale(1.02)"
+      this.style.transition = "all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+    })
+
+    card.addEventListener("mouseleave", function () {
+      this.style.transform = "translateY(0) scale(1)"
+    })
+  })
+}
+
+// Add typing effect to hero text
+function addTypingEffect() {
+  const heroTitle = document.querySelector(".hero-caption h2")
+  if (heroTitle) {
+    const text = heroTitle.textContent
+    heroTitle.textContent = ""
+    heroTitle.style.opacity = "1"
+
+    let i = 0
+    const typeWriter = () => {
+      if (i < text.length) {
+        heroTitle.textContent += text.charAt(i)
+        i++
+        setTimeout(typeWriter, 100)
+      }
+    }
+
+    setTimeout(typeWriter, 1000)
+  }
+}
+
+// Add smooth reveal animations
+function addRevealAnimations() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1"
+        entry.target.style.transform = "translateY(0)"
+
+        // Add stagger effect for grid items
+        if (
+          entry.target.parentElement.classList.contains("portals-grid") ||
+          entry.target.parentElement.classList.contains("tools-grid")
+        ) {
+          const siblings = Array.from(entry.target.parentElement.children)
+          const index = siblings.indexOf(entry.target)
+          entry.target.style.transitionDelay = `${index * 0.1}s`
+        }
+      }
+    })
+  }, observerOptions)
+
+  document.querySelectorAll(".portal-card, .tool-card, .link-category").forEach((el) => {
+    el.style.opacity = "0"
+    el.style.transform = "translateY(30px)"
+    el.style.transition = "all 0.6s ease"
+    observer.observe(el)
+  })
+}
+
+// Initialize all enhanced effects
+addParallaxEffect()
+addCardHoverEffects()
+addTypingEffect()
+addRevealAnimations()
+
+// Add floating animation to quick access items
+const quickAccessItems = document.querySelectorAll(".quick-access-item")
+quickAccessItems.forEach((item, index) => {
+  item.style.animationDelay = `${index * 0.2}s`
+  item.style.animation = "float 3s ease-in-out infinite"
+})
+ 
+</script>
