@@ -11,16 +11,18 @@
   <style>
     /* ===== BASE STYLES ===== */
 :root {
-  /* Modern Color Palette */
-  --primary: #e60000;
+  /* Modern Color Palette - Dark Red Theme */
+  --primary: #c41e3a;
+  --primary-dark: #8b0000;
+  --primary-light: #dc143c;
   --primary-50: #fef2f2;
   --primary-100: #fee2e2;
   --primary-200: #fecaca;
   --primary-300: #fca5a5;
   --primary-400: #f87171;
-  --primary-500: #ef4444;
-  --primary-600: #dc2626;
-  --primary-700: #b91c1c;
+  --primary-500: #c41e3a;
+  --primary-600: #8b0000;
+  --primary-700: #7f1d1d;
   --primary-800: #991b1b;
   --primary-900: #7f1d1d;
   
@@ -46,16 +48,16 @@
   --gray-900: #111827;
   
   /* Modern Gradients */
-  --gradient-primary: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-700) 100%);
+  --gradient-primary: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
   --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
   --gradient-success: linear-gradient(135deg, var(--success) 0%, #059669 100%);
-  --gradient-background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
-  --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+  --gradient-background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
   
   /* Glass Morphism */
-  --glass-bg: rgba(255, 255, 255, 0.25);
-  --glass-bg-strong: rgba(255, 255, 255, 0.35);
-  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-bg-strong: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(196, 30, 58, 0.2);
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   --glass-shadow-strong: 0 20px 40px rgba(0, 0, 0, 0.15);
   
@@ -106,6 +108,219 @@
   --text-5xl: 3rem;
 }
 
+/* ===== DARK THEME VARIABLES ===== */
+body.dark-theme {
+  --bg-primary: #0a0e27;
+  --bg-secondary: #151b3d;
+  --bg-card: rgba(21, 27, 61, 0.98);
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --border-color: rgba(196, 30, 58, 0.4);
+  --shadow-color: rgba(0, 0, 0, 0.7);
+  --gradient-background: linear-gradient(135deg, #0a0e27 0%, #151b3d 100%);
+  --glass-bg: rgba(21, 27, 61, 0.85);
+  --glass-bg-strong: rgba(21, 27, 61, 0.95);
+}
+
+body.dark-theme {
+  background: var(--gradient-background);
+  color: var(--text-primary);
+}
+
+body.dark-theme #particles-js {
+  background: var(--gradient-background);
+}
+
+body.dark-theme #particles-js::before {
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(196, 30, 58, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+}
+
+body.dark-theme .glass-card {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+  box-shadow: 0 20px 60px var(--shadow-color), 0 0 0 1px rgba(196, 30, 58, 0.2) inset;
+}
+
+body.dark-theme .glass-card:hover {
+  border-color: rgba(196, 30, 58, 0.6);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(196, 30, 58, 0.4) inset;
+}
+
+body.dark-theme .card-header h2 {
+  color: #ff4757;
+  text-shadow: 0 0 20px rgba(255, 71, 87, 0.5);
+}
+
+body.dark-theme .card-description {
+  color: var(--text-secondary);
+}
+
+body.dark-theme .card-icon {
+  box-shadow: 0 15px 35px rgba(196, 30, 58, 0.5), 0 0 0 4px rgba(21, 27, 61, 0.8);
+  border-color: rgba(196, 30, 58, 0.3);
+}
+
+body.dark-theme .nav-tabs {
+  background: rgba(21, 27, 61, 0.95);
+  border-color: var(--border-color);
+}
+
+body.dark-theme .nav-tab {
+  background: #1e293b;
+  border-color: #475569;
+  border-width: 3px;
+  color: #ffffff;
+  font-weight: 900;
+}
+
+body.dark-theme .nav-tab:hover {
+  color: #ff4757;
+  border-color: rgba(196, 30, 58, 0.6);
+  background: rgba(196, 30, 58, 0.1);
+}
+
+body.dark-theme .nav-tab.active {
+  color: white;
+  background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+}
+
+body.dark-theme .form-group label {
+  color: #ffffff;
+  font-weight: 800;
+}
+
+body.dark-theme .form-group label i {
+  color: #ff4757;
+}
+
+body.dark-theme .input-wrapper input,
+body.dark-theme .input-wrapper textarea {
+  background: #1e293b;
+  color: #ffffff;
+  font-weight: 700;
+  border-color: #475569;
+  border-width: 3px;
+}
+
+body.dark-theme .input-wrapper input:focus,
+body.dark-theme .input-wrapper textarea:focus {
+  background: #1e293b;
+  border-color: #c41e3a;
+  box-shadow: 0 0 0 4px rgba(196, 30, 58, 0.2);
+}
+
+body.dark-theme .input-wrapper input::placeholder,
+body.dark-theme .input-wrapper textarea::placeholder {
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+body.dark-theme .btn-secondary {
+  background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+  color: #ffffff;
+  border-color: #64748b;
+  border-width: 3px;
+  font-weight: 900;
+}
+
+body.dark-theme .btn-secondary:hover {
+  background: linear-gradient(135deg, #475569 0%, #334155 100%);
+  border-color: #64748b;
+}
+
+body.dark-theme .results-section {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+body.dark-theme .result-card {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: var(--border-color);
+}
+
+body.dark-theme .title {
+  color: #ff4757;
+  text-shadow: 0 0 30px rgba(255, 71, 87, 0.4);
+}
+
+body.dark-theme .subtitle {
+  color: var(--text-secondary);
+}
+
+body.dark-theme .tagline {
+  color: #ff6b81;
+  text-shadow: 0 2px 8px rgba(255, 107, 129, 0.5), 0 0 20px rgba(255, 107, 129, 0.3);
+}
+
+body.dark-theme .subject-row {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid #334155;
+}
+
+body.dark-theme .subject-row:hover {
+  background: rgba(30, 41, 59, 0.9);
+}
+
+body.dark-theme .paste-result-card {
+  background: rgba(21, 27, 61, 0.9) !important;
+  border-color: rgba(196, 30, 58, 0.4) !important;
+}
+
+body.dark-theme .component-analysis {
+  background: rgba(15, 23, 42, 0.6) !important;
+  border-color: #334155 !important;
+}
+
+body.dark-theme .component-analysis li {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border-color: #334155 !important;
+}
+
+/* Theme Toggle Button */
+.theme-toggle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.theme-toggle-btn {
+  background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(196, 30, 58, 0.4);
+}
+
+.theme-toggle-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 36px rgba(196, 30, 58, 0.5);
+}
+
+.theme-toggle-btn:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+body.dark-theme .theme-toggle-btn {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  box-shadow: 0 8px 24px rgba(251, 191, 36, 0.4);
+}
+
+body.dark-theme .theme-toggle-btn:hover {
+  box-shadow: 0 12px 36px rgba(251, 191, 36, 0.5);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -117,7 +332,7 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  background: var(--gradient-background);
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
   color: var(--gray-800);
   line-height: 1.7;
   overflow-x: hidden;
@@ -151,7 +366,7 @@ body {
   top: 0;
   left: 0;
   z-index: -1;
-  background: var(--gradient-background);
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
 }
 
 #particles-js::before {
@@ -162,15 +377,25 @@ body {
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 80%, rgba(230, 0, 0, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.03) 0%, transparent 50%);
-  animation: backgroundShift 20s ease-in-out infinite;
+    radial-gradient(circle at 20% 80%, rgba(196, 30, 58, 0.18) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139, 0, 0, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(196, 30, 58, 0.10) 0%, transparent 50%);
+  animation: backgroundShift 25s ease-in-out infinite;
 }
 
 @keyframes backgroundShift {
-  0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
-  50% { opacity: 0.7; transform: scale(1.1) rotate(180deg); }
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1) rotate(0deg); 
+  }
+  33% { 
+    opacity: 0.8; 
+    transform: scale(1.1) rotate(120deg); 
+  }
+  66% { 
+    opacity: 0.9; 
+    transform: scale(1.05) rotate(240deg); 
+  }
 }
 
 /* ===== APP CONTAINER ===== */
@@ -204,25 +429,25 @@ body {
   top: var(--top);
   left: var(--left);
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(230, 0, 0, 0.05), transparent);
-  animation: float 15s infinite ease-in-out;
+  background: radial-gradient(circle at 30% 30%, rgba(196, 30, 58, 0.25), rgba(139, 0, 0, 0.1));
+  animation: float 20s infinite ease-in-out;
   animation-delay: var(--delay);
-  opacity: 0.6;
+  opacity: 0.8;
+  filter: blur(50px);
 }
 
 @keyframes float {
-  0%,
-  100% {
-    transform: translate(0, 0) rotate(0deg);
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
   }
   25% {
-    transform: translate(30px, -30px) rotate(90deg);
+    transform: translate(40px, -40px) rotate(90deg) scale(1.1);
   }
   50% {
-    transform: translate(0, -60px) rotate(180deg);
+    transform: translate(0, -80px) rotate(180deg) scale(0.9);
   }
   75% {
-    transform: translate(-30px, -30px) rotate(270deg);
+    transform: translate(-40px, -40px) rotate(270deg) scale(1.05);
   }
 }
 
@@ -232,18 +457,6 @@ body {
   padding: 40px 0;
   position: relative;
   margin-bottom: 30px;
-  animation: slideDown 0.6s ease-out;
-}
-
-@keyframes slideDown {
-  from {
-    transform: translateY(-30px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
 }
 
 .logo-container {
@@ -255,14 +468,13 @@ body {
 
 .logo {
   position: relative;
-  width: 120px;
-  height: 120px;
-  transform-style: preserve-3d;
-  transition: transform 0.8s ease;
+  width: 100px;
+  height: 100px;
+  transition: transform 0.3s ease;
 }
 
 .logo:hover {
-  transform: rotateY(180deg);
+  transform: scale(1.05);
 }
 
 .logo-text {
@@ -272,43 +484,28 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 900;
   color: var(--white);
-  background: var(--primary-gradient);
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(230, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(196, 30, 58, 0.6), 
+              0 5px 15px rgba(139, 0, 0, 0.4),
+              inset 0 2px 0 rgba(255, 255, 255, 0.3),
+              0 0 30px rgba(196, 30, 58, 0.4);
   backface-visibility: hidden;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 2px;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.3);
+  border: 3px solid rgba(255, 255, 255, 0.2);
 }
 
 .logo-text span {
   display: inline-block;
-  animation: gentle-float 4s infinite ease-in-out;
   transition: all 0.3s ease;
 }
 
-.logo-text span:nth-child(2) {
-  animation-delay: 0.3s;
-}
-
-.logo-text span:nth-child(3) {
-  animation-delay: 0.6s;
-}
-
 .logo-text:hover span {
-  animation-play-state: paused;
-  transform: translateY(-3px) scale(1.1);
-}
-
-@keyframes gentle-float {
-  0%, 100% {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-5px) scale(1.05);
-  }
+  transform: scale(1.05);
 }
 
 .logo-shine {
@@ -320,30 +517,20 @@ body {
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.3) 50%,
     rgba(255, 255, 255, 0) 100%
   );
-  border-radius: 15px;
-  animation: shine 3s infinite;
+  border-radius: 20px;
   backface-visibility: hidden;
-}
-
-@keyframes shine {
-  0% {
-    transform: translateX(-100%) translateY(-100%) rotate(45deg);
-  }
-  20%,
-  100% {
-    transform: translateX(100%) translateY(100%) rotate(45deg);
-  }
+  pointer-events: none;
 }
 
 .title {
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 800;
   margin-bottom: var(--space-3);
-  color: var(--primary-600);
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(230, 0, 0, 0.3);
+  color: #c41e3a;
+  text-shadow: 0 4px 12px rgba(196, 30, 58, 0.3), 0 2px 4px rgba(139, 0, 0, 0.4);
   letter-spacing: 2px;
   position: relative;
   line-height: 1.2;
@@ -383,14 +570,23 @@ body {
 
 .subtitle {
   font-size: clamp(1rem, 2.5vw, 1.3rem);
-  color: var(--gray-600);
+  color: #000000;
   opacity: 1;
   letter-spacing: 1.5px;
-  font-weight: 600;
+  font-weight: 800;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-top: var(--space-4);
   text-transform: uppercase;
   line-height: 1.4;
+}
+
+.tagline {
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  color: #c41e3a;
+  font-weight: 900;
+  margin-top: var(--space-3);
+  text-shadow: 0 2px 6px rgba(196, 30, 58, 0.3);
+  letter-spacing: 0.5px;
 }
 
 /* ===== NAVIGATION TABS ===== */
@@ -400,12 +596,12 @@ body {
   gap: var(--space-3);
   margin-bottom: var(--space-12);
   flex-wrap: wrap;
-  padding: var(--space-2);
-  background: var(--glass-bg);
+  padding: var(--space-3);
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(20px);
-  border-radius: var(--radius-full);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-2xl);
+  border: 2px solid rgba(196, 30, 58, 0.2);
+  box-shadow: 0 10px 40px rgba(196, 30, 58, 0.15);
   animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -424,20 +620,21 @@ body {
 
 .nav-tab {
   position: relative;
-  padding: var(--space-4) var(--space-6);
-  background: transparent;
-  border: none;
-  border-radius: var(--radius-full);
+  padding: 14px 24px;
+  background: white;
+  border: 3px solid #9ca3af;
+  border-radius: var(--radius-xl);
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  color: var(--gray-600);
-  font-weight: 600;
-  font-size: var(--text-sm);
+  color: #000000;
+  font-weight: 900;
+  font-size: 0.95rem;
   transition: all var(--transition-normal);
   overflow: hidden;
   white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .nav-tab::before {
@@ -449,23 +646,27 @@ body {
   height: 100%;
   background: var(--gradient-primary);
   opacity: 0;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-xl);
   transition: all var(--transition-normal);
   z-index: -1;
 }
 
 .nav-tab:hover {
-  color: var(--gray-800);
-  transform: translateY(-2px);
+  color: #c41e3a;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(196, 30, 58, 0.2);
+  border-color: rgba(196, 30, 58, 0.4);
 }
 
 .nav-tab:hover::before {
-  opacity: 0.1;
+  opacity: 0.05;
 }
 
 .nav-tab.active {
   color: var(--white);
-  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  border-color: transparent;
+  box-shadow: 0 8px 24px rgba(230, 0, 0, 0.4);
 }
 
 .nav-tab.active::before {
@@ -514,42 +715,24 @@ body {
 .content {
   flex: 1;
   position: relative;
-  animation: fadeIn 0.8s ease-out;
 }
 
 .calculator-section {
   display: none;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all var(--transition-normal);
 }
 
 .calculator-section.active {
   display: block;
-  opacity: 1;
-  transform: translateY(0);
-  animation: fade-slide-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes fade-slide-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* ===== GLASS CARD ===== */
 .glass-card {
-  background: var(--glass-bg-strong);
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid var(--glass-border);
+  border: 2px solid rgba(196, 30, 58, 0.25);
   border-radius: var(--radius-2xl);
-  box-shadow: var(--shadow-xl);
+  box-shadow: 0 20px 60px rgba(196, 30, 58, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
   padding: var(--space-8);
   margin-bottom: var(--space-8);
   position: relative;
@@ -563,12 +746,8 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(255,255,255,0.6) 50%, 
-    transparent 100%);
-  animation: shimmer 3s ease-in-out infinite;
+  height: 5px;
+  background: var(--gradient-primary);
 }
 
 .glass-card::after {
@@ -578,26 +757,20 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--gradient-card);
+  background: linear-gradient(145deg, rgba(196, 30, 58, 0.02) 0%, rgba(255, 255, 255, 0.05) 100%);
   opacity: 0;
   transition: opacity var(--transition-normal);
   pointer-events: none;
 }
 
 .glass-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--shadow-2xl);
-  border-color: rgba(255,255,255,0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 30px 80px rgba(196, 30, 58, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  border-color: rgba(196, 30, 58, 0.45);
 }
 
 .glass-card:hover::after {
-  opacity: 0.1;
-}
-
-@keyframes shimmer {
-  0% { transform: translateX(-100%); opacity: 0; }
-  50% { opacity: 1; }
-  100% { transform: translateX(100%); opacity: 0; }
+  opacity: 1;
 }
 
 .card-header {
@@ -613,26 +786,28 @@ body {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
+  width: 80px;
+  height: 4px;
   background: var(--gradient-primary);
   border-radius: var(--radius-full);
-  opacity: 0.7;
+  opacity: 1;
+  box-shadow: 0 2px 8px rgba(230, 0, 0, 0.3);
 }
 
 .card-icon {
-  width: 60px;
-  height: 60px;
-  background: var(--primary-gradient);
+  width: 80px;
+  height: 80px;
+  background: var(--gradient-primary);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 15px;
+  margin: 0 auto 20px;
   color: var(--white);
-  font-size: 1.5rem;
-  box-shadow: 0 10px 20px rgba(230, 0, 0, 0.2);
+  font-size: 2rem;
+  box-shadow: 0 15px 35px rgba(230, 0, 0, 0.35), 0 0 0 4px rgba(255, 255, 255, 0.5);
   animation: float-icon 3s infinite ease-in-out;
+  border: 3px solid white;
 }
 
 @keyframes float-icon {
@@ -646,20 +821,22 @@ body {
 }
 
 .card-header h2 {
-  font-size: 2rem;
-  color: var(--primary);
-  margin-bottom: 10px;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 2.2rem;
+  color: #c41e3a;
+  margin-bottom: 12px;
+  text-shadow: 0 3px 10px rgba(196, 30, 58, 0.25);
+  font-weight: 900;
+  letter-spacing: -0.5px;
 }
 
 .card-description {
-  color: var(--gray-600);
+  color: #000000;
   opacity: 1;
   font-size: var(--text-lg);
-  font-weight: 500;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  font-weight: 800;
+  text-shadow: none;
   line-height: 1.6;
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
@@ -675,31 +852,31 @@ body {
 
 .form-group label {
   display: block;
-  margin-bottom: var(--space-2);
-  font-weight: 600;
-  color: var(--gray-700);
+  margin-bottom: var(--space-3);
+  font-weight: 800;
+  color: #000000;
   display: flex;
   align-items: center;
   gap: var(--space-2);
   transition: all var(--transition-normal);
-  font-size: var(--text-sm);
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .form-group:focus-within label {
-  color: var(--primary-600);
+  color: #e60000;
 }
 
 .form-group label i {
-  color: var(--primary-500);
+  color: #c41e3a;
   transition: all var(--transition-normal);
-  font-size: var(--text-base);
+  font-size: 1.1rem;
 }
 
 .form-group:focus-within label i {
-  transform: scale(1.1);
-  color: var(--primary-600);
+  transform: scale(1.2);
+  color: #c41e3a;
 }
 
 .input-wrapper {
@@ -711,34 +888,38 @@ body {
 .input-wrapper input,
 .input-wrapper textarea {
   width: 100%;
-  padding: var(--space-4) var(--space-4);
-  border: 2px solid var(--gray-300);
+  padding: 16px 18px;
+  border: 3px solid #9ca3af;
   border-radius: var(--radius-lg);
-  font-size: var(--text-base);
-  background: var(--white);
+  font-size: 1.05rem;
+  background: #ffffff;
   transition: all var(--transition-normal);
   font-family: inherit;
-  color: var(--gray-800);
+  color: #000000;
+  font-weight: 700;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .input-wrapper input:hover,
 .input-wrapper textarea:hover {
-  border-color: var(--gray-400);
-  box-shadow: var(--shadow-sm);
+  border-color: #6b7280;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
 .input-wrapper input:focus,
 .input-wrapper textarea:focus {
   outline: none;
-  border-color: var(--primary-500);
-  box-shadow: 0 0 0 3px rgba(230, 0, 0, 0.1), var(--shadow-md);
-  transform: translateY(-1px);
+  border-color: #c41e3a;
+  box-shadow: 0 0 0 4px rgba(196, 30, 58, 0.15), 0 4px 12px rgba(196, 30, 58, 0.12);
+  transform: translateY(-2px);
+  background: #ffffff;
 }
 
 .input-wrapper input::placeholder,
 .input-wrapper textarea::placeholder {
-  color: var(--gray-400);
-  font-size: var(--text-sm);
+  color: #6b7280;
+  font-size: 0.95rem;
+  font-weight: 600;
 }
 
 .input-focus-effect {
@@ -757,22 +938,32 @@ body {
 
 .btn-inline {
   margin-left: 10px;
-  padding: 10px 15px;
-  background: var(--primary-gradient);
-  color: var(--white);
-  border: none;
-  border-radius: var(--border-radius-md);
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+  color: #ffffff !important;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
   cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
+  font-weight: 900;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(196, 30, 58, 0.4);
+  font-size: 1rem;
 }
 
 .btn-inline:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(230, 0, 0, 0.3);
+  background: linear-gradient(135deg, #dc143c 0%, #c41e3a 100%);
+  box-shadow: 0 6px 16px rgba(196, 30, 58, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-inline:focus,
+.btn-inline:active {
+  outline: none;
+  background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+  box-shadow: 0 2px 8px rgba(196, 30, 58, 0.4);
+  transform: scale(0.98);
 }
 
 .subjects-container {
@@ -809,37 +1000,40 @@ body {
 
 .btn {
   position: relative;
-  padding: var(--space-4) var(--space-6);
+  padding: 16px 32px;
   border: none;
   border-radius: var(--radius-xl);
-  font-weight: 600;
-  font-size: var(--text-base);
+  font-weight: 700;
+  font-size: 1.05rem;
   cursor: pointer;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
+  gap: var(--space-3);
   transition: all var(--transition-normal);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  min-height: 48px;
+  letter-spacing: 1px;
+  min-height: 56px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .btn-primary {
   background: var(--gradient-primary);
   color: var(--white);
   flex: 2;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 8px 24px rgba(230, 0, 0, 0.35);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  font-weight: 900;
 }
 
 .btn-secondary {
-  background: var(--gray-100);
-  color: var(--gray-700);
-  border: 1px solid var(--gray-300);
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  color: #000000;
+  border: 3px solid #9ca3af;
   flex: 1;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-weight: 900;
 }
 
 .btn-content {
@@ -872,21 +1066,36 @@ body {
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: var(--shadow-2xl);
-  filter: brightness(110%);
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 12px 36px rgba(230, 0, 0, 0.45);
+  filter: brightness(115%);
+}
+
+.btn-primary:focus,
+.btn-primary:active {
+  outline: none;
+  background: var(--gradient-primary);
+  transform: scale(0.98);
+  filter: brightness(100%);
 }
 
 .btn-secondary:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: var(--shadow-xl);
-  background: var(--gray-50);
-  border-color: var(--gray-400);
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+  border-color: #6b7280;
+}
+
+.btn-secondary:focus,
+.btn-secondary:active {
+  outline: none;
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  transform: scale(0.98);
 }
 
 .btn:active {
-  transform: translateY(-1px) scale(0.98);
-  transition: all 0.1s ease;
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
 }
 
 /* ===== ENHANCED RESULTS SECTION ===== */
@@ -1023,7 +1232,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 900;
   color: var(--primary);
 }
 
@@ -1034,34 +1243,38 @@ body {
 
 .result-details h4 {
   font-size: 1.5rem;
-  color: var(--dark-gray);
+  color: #000000;
   margin-bottom: 15px;
+  font-weight: 900;
 }
 
 .status-badge {
   display: inline-block;
   padding: 8px 15px;
   border-radius: var(--border-radius-md);
-  font-weight: 600;
+  font-weight: 900;
   margin-bottom: 15px;
   background: var(--light-gray);
-  color: var(--dark-gray);
+  color: #000000;
   transition: all 0.3s ease;
 }
 
 .status-badge.good {
   background-color: rgba(40, 167, 69, 0.2);
-  color: var(--success);
+  color: #1e7e34;
+  font-weight: 900;
 }
 
 .status-badge.warning {
   background-color: rgba(255, 193, 7, 0.2);
-  color: var(--warning);
+  color: #d39e00;
+  font-weight: 900;
 }
 
 .status-badge.danger {
   background-color: rgba(220, 53, 69, 0.2);
-  color: var(--danger);
+  color: #c82333;
+  font-weight: 900;
 }
 
 .component-analysis {
@@ -1070,8 +1283,9 @@ body {
 
 .component-analysis h5 {
   font-size: 1.1rem;
-  color: var(--dark-gray);
+  color: #000000;
   margin-bottom: 10px;
+  font-weight: 900;
 }
 
 .component-analysis ul {
@@ -1084,8 +1298,8 @@ body {
   border-radius: var(--border-radius-sm);
   margin-bottom: 8px;
   transition: all 0.3s ease;
-  animation: fade-in 0.5s ease forwards;
-  animation-delay: calc(var(--i) * 0.1s);
+  font-weight: 700;
+  color: #000000;
 }
 
 .component-analysis li:hover {
@@ -1213,27 +1427,36 @@ body {
 @media (max-width: 767px) and (min-width: 640px) {
   .app-container {
     padding: var(--space-4);
+    max-width: 100%;
   }
   
   .title {
-    font-size: var(--text-3xl);
+    font-size: 2rem;
   }
   
   .subtitle {
-    font-size: var(--text-lg);
+    font-size: 1rem;
     letter-spacing: 1px;
+  }
+  
+  .tagline {
+    font-size: 0.95rem;
   }
   
   .nav-tabs {
     flex-direction: column;
     gap: var(--space-2);
     padding: var(--space-3);
+    background: var(--white);
+    border: 2px solid var(--gray-300);
+    border-radius: var(--radius-lg);
   }
   
   .nav-tab {
     width: 100%;
     justify-content: center;
     padding: var(--space-3) var(--space-4);
+    font-size: 0.9rem;
   }
   
   .glass-card {
@@ -1251,18 +1474,29 @@ body {
     width: 120px !important;
     height: 120px !important;
   }
+  
+  .button-group {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  
+  .btn {
+    width: 100%;
+    min-height: 50px;
+  }
+  
+  .btn-inline {
+    margin-left: 0 !important;
+    margin-top: var(--space-2);
+    width: 100%;
+  }
 }
 
 /* Simplified Mobile Design (320px - 639px) */
 @media (max-width: 639px) {
-  /* Disable complex animations on mobile */
-  *, *::before, *::after {
-    animation-duration: 0.3s !important;
-    animation-delay: 0s !important;
-  }
-  
   .app-container {
     padding: var(--space-2);
+    max-width: 100%;
   }
   
   .header {
@@ -1271,77 +1505,80 @@ body {
   }
   
   .logo {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
   }
   
   .logo-text {
-    font-size: var(--text-lg);
+    font-size: 1.5rem;
+    border-radius: 16px;
   }
   
   .title {
-    font-size: var(--text-xl);
+    font-size: 1.5rem;
     letter-spacing: 0.5px;
     margin-bottom: var(--space-2);
   }
   
   .subtitle {
-    font-size: var(--text-sm);
-    letter-spacing: 0px;
-    margin-top: var(--space-1);
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    margin-top: var(--space-2);
+  }
+  
+  .tagline {
+    font-size: 0.85rem;
+    margin-top: var(--space-2);
   }
   
   /* Simple mobile navigation */
   .nav-tabs {
+    flex-direction: column;
     background: var(--white);
-    border: 1px solid var(--gray-300);
+    border: 2px solid var(--gray-300);
     border-radius: var(--radius-lg);
-    padding: var(--space-1);
+    padding: var(--space-2);
     margin-bottom: var(--space-4);
     box-shadow: var(--shadow-sm);
-    backdrop-filter: none;
+    gap: var(--space-2);
   }
   
   .nav-tab {
     width: 100%;
     justify-content: center;
-    padding: var(--space-2) var(--space-3);
-    font-size: var(--text-xs);
+    padding: var(--space-3) var(--space-4);
+    font-size: 0.85rem;
     border-radius: var(--radius-md);
-    margin-bottom: var(--space-1);
-    background: transparent;
-    border: none;
-    transition: all 0.2s ease;
-  }
-  
-  .nav-tab:last-child {
-    margin-bottom: 0;
+    background: var(--gray-50);
+    border: 2px solid var(--gray-300);
+    font-weight: 700;
   }
   
   .nav-tab.active {
-    background: var(--primary-500);
+    background: var(--gradient-primary);
     color: var(--white);
-    font-weight: 600;
+    font-weight: 900;
+    border-color: transparent;
   }
   
   .nav-tab:hover {
     transform: none;
     background: var(--gray-100);
+    border-color: var(--gray-400);
   }
   
   .nav-tab.active:hover {
-    background: var(--primary-600);
+    background: var(--gradient-primary);
   }
   
   /* Simplified glass cards */
   .glass-card {
     background: var(--white);
-    border: 1px solid var(--gray-200);
+    border: 2px solid var(--gray-200);
     border-radius: var(--radius-lg);
-    padding: var(--space-3);
-    margin-bottom: var(--space-3);
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
     box-shadow: var(--shadow-sm);
-    backdrop-filter: none;
   }
   
   .glass-card:hover {
@@ -1355,54 +1592,57 @@ body {
   }
   
   .card-header h2 {
-    font-size: var(--text-lg);
-    color: var(--gray-800);
+    font-size: 1.25rem;
   }
   
   .card-description {
-    font-size: var(--text-sm);
-    color: var(--gray-600);
+    font-size: 0.9rem;
   }
   
   /* Simplified forms */
   .form-group {
-    margin-bottom: var(--space-3);
+    margin-bottom: var(--space-4);
   }
   
   .form-group label {
-    font-size: var(--text-sm);
-    margin-bottom: var(--space-1);
-    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: var(--space-2);
   }
   
   .input-wrapper input,
-  textarea {
-    padding: var(--space-2) !important;
-    font-size: var(--text-sm) !important;
+  .input-wrapper textarea {
+    padding: 12px 14px !important;
+    font-size: 1rem !important;
     border-radius: var(--radius-md) !important;
-    border: 1px solid var(--gray-300) !important;
+    border-width: 2px !important;
   }
   
   .input-wrapper input:focus,
-  textarea:focus {
+  .input-wrapper textarea:focus {
     transform: none !important;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1) !important;
+  }
+  
+  .btn-inline {
+    margin-left: 0 !important;
+    margin-top: var(--space-2);
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
   }
   
   /* Simple buttons */
   .button-group {
     flex-direction: column;
-    gap: var(--space-2);
+    gap: var(--space-3);
     margin-top: var(--space-4);
   }
   
   .btn {
     width: 100%;
-    padding: var(--space-3) var(--space-4);
-    font-size: var(--text-sm);
-    min-height: 44px;
-    border-radius: var(--radius-md);
-    transition: all 0.2s ease;
+    padding: 14px var(--space-4);
+    font-size: 1rem;
+    min-height: 50px;
+    border-radius: var(--radius-lg);
   }
   
   .btn:hover {
@@ -1416,49 +1656,57 @@ body {
   /* Simple results */
   .results-section {
     background: var(--white);
-    border: 1px solid var(--gray-200);
+    border: 2px solid var(--gray-200);
     border-radius: var(--radius-lg);
-    padding: var(--space-3);
+    padding: var(--space-4);
     margin-top: var(--space-4);
     box-shadow: var(--shadow-sm);
-    backdrop-filter: none;
   }
   
   .result-card {
     background: var(--gray-50);
-    border: 1px solid var(--gray-200);
+    border: 2px solid var(--gray-200);
     border-radius: var(--radius-md);
-    padding: var(--space-3);
-    margin-bottom: var(--space-3);
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
     flex-direction: column;
     text-align: center;
-    gap: var(--space-3);
+    gap: var(--space-4);
   }
   
   .circular-progress {
-    width: 80px !important;
-    height: 80px !important;
+    width: 100px !important;
+    height: 100px !important;
+  }
+  
+  .progress-value {
+    font-size: 1.5rem !important;
+  }
+  
+  .result-details h4 {
+    font-size: 1.1rem;
   }
   
   .paste-result-card {
     background: var(--white) !important;
-    border: 1px solid var(--gray-200) !important;
+    border: 2px solid var(--gray-200) !important;
     border-radius: var(--radius-lg) !important;
-    padding: var(--space-3) !important;
-    margin-bottom: var(--space-3) !important;
+    padding: var(--space-4) !important;
+    margin-bottom: var(--space-4) !important;
     flex-direction: column !important;
     text-align: center !important;
-    gap: var(--space-3) !important;
-    backdrop-filter: none !important;
+    gap: var(--space-4) !important;
   }
   
   .subject-row {
     grid-template-columns: 1fr !important;
     gap: var(--space-2) !important;
+    padding: var(--space-3) !important;
   }
   
   .subjects-container {
-    max-height: 200px;
+    max-height: 250px;
+    padding-right: 0;
   }
   
   /* Disable floating elements on mobile */
@@ -1485,17 +1733,53 @@ body {
     padding: var(--space-2);
   }
   
+  .logo {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .logo-text {
+    font-size: 1.25rem;
+  }
+  
   .title {
-    font-size: var(--text-xl);
+    font-size: 1.25rem;
+  }
+  
+  .subtitle {
+    font-size: 0.75rem;
+  }
+  
+  .tagline {
+    font-size: 0.75rem;
+  }
+  
+  .nav-tab {
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.75rem;
   }
   
   .glass-card {
     padding: var(--space-3);
   }
   
+  .card-header h2 {
+    font-size: 1.1rem;
+  }
+  
+  .form-group label {
+    font-size: 0.85rem;
+  }
+  
+  .input-wrapper input,
+  .input-wrapper textarea {
+    padding: 10px 12px !important;
+    font-size: 0.9rem !important;
+  }
+  
   .btn {
-    padding: var(--space-3) var(--space-4);
-    font-size: var(--text-xs);
+    padding: 12px var(--space-3);
+    font-size: 0.85rem;
   }
 }
 
@@ -1722,28 +2006,47 @@ html {
       </div>
       <h1 class="title">ONE <span class="highlight">Calculators</span></h1>
       <p class="subtitle">Your Academic Companion</p>
+      <p class="tagline">📚 KLU ONE - All Calculators at One Place 🎓</p>
+      
+      <!-- Dark Mode Toggle -->
+      <div class="theme-toggle-container" style="margin-top: 20px;">
+        <button id="themeToggle" class="theme-toggle-btn">
+          <span style="font-size: 1.4rem;">🌙</span>
+          <span>Dark Mode</span>
+        </button>
+      </div>
     </header>
 
     <!-- Navigation -->
     <nav class="nav-tabs">
       <button class="nav-tab active" data-tab="attendance">
-        <span class="nav-icon"><i class="fas fa-calendar-check"></i></span>
-        <span class="nav-text">Attendance</span>
+        <span class="nav-icon"><i class="fas fa-calculator"></i></span>
+        <span class="nav-text">LTPS Attendance</span>
         <span class="nav-indicator"></span>
       </button>
       <button class="nav-tab" data-tab="sgpa">
         <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
-        <span class="nav-text">SGPA</span>
+        <span class="nav-text">Current Sem SGPA</span>
         <span class="nav-indicator"></span>
       </button>
       <button class="nav-tab" data-tab="cgpa">
         <span class="nav-icon"><i class="fas fa-graduation-cap"></i></span>
-        <span class="nav-text">CGPA</span>
+        <span class="nav-text">Overall CGPA</span>
+        <span class="nav-indicator"></span>
+      </button>
+      <button class="nav-tab" data-tab="cgpa-percentage">
+        <span class="nav-icon"><i class="fas fa-percent"></i></span>
+        <span class="nav-text">CGPA to Percent</span>
         <span class="nav-indicator"></span>
       </button>
       <button class="nav-tab" data-tab="paste-attendance">
         <span class="nav-icon"><i class="fas fa-paste"></i></span>
-        <span class="nav-text">Paste Attendance</span>
+        <span class="nav-text">Paste ERP Attendance</span>
+        <span class="nav-indicator"></span>
+      </button>
+      <button class="nav-tab" data-tab="attendance-tracker">
+        <span class="nav-icon"><i class="fas fa-chart-pie"></i></span>
+        <span class="nav-text">Attendance When Absent</span>
         <span class="nav-indicator"></span>
       </button>
     </nav>
@@ -1754,9 +2057,9 @@ html {
       <section class="calculator-section active" id="attendance">
         <div class="glass-card">
           <div class="card-header">
-            <div class="card-icon"><i class="fas fa-calendar-check"></i></div>
-            <h2>Attendance Calculator</h2>
-            <p class="card-description">Calculate your weighted attendance percentage</p>
+            <div class="card-icon"><i class="fas fa-calculator"></i></div>
+            <h2>LTPS Attendance Calculator</h2>
+            <p class="card-description">Calculate weighted attendance for Lecture, Tutorial, Practical, and Skilling classes</p>
           </div>
           
           <div class="card-body">
@@ -1792,41 +2095,41 @@ document.addEventListener("DOMContentLoaded", () => {
   particlesJS("particles-js", {
     particles: {
       number: {
-        value: 80,
+        value: 100,
         density: {
           enable: true,
           value_area: 800,
         },
       },
       color: {
-        value: "#e60000",
+        value: "#c41e3a",
       },
       shape: {
-        type: "circle",
+        type: ["circle", "triangle"],
         stroke: {
           width: 0,
           color: "#000000",
         },
         polygon: {
-          nb_sides: 5,
+          nb_sides: 6,
         },
       },
       opacity: {
-        value: 0.3,
+        value: 0.4,
         random: true,
         anim: {
           enable: true,
-          speed: 1,
+          speed: 1.5,
           opacity_min: 0.1,
           sync: false,
         },
       },
       size: {
-        value: 3,
+        value: 4,
         random: true,
         anim: {
           enable: true,
-          speed: 2,
+          speed: 3,
           size_min: 0.1,
           sync: false,
         },
@@ -1834,20 +2137,20 @@ document.addEventListener("DOMContentLoaded", () => {
       line_linked: {
         enable: true,
         distance: 150,
-        color: "#e60000",
-        opacity: 0.2,
-        width: 1,
+        color: "#c41e3a",
+        opacity: 0.3,
+        width: 1.5,
       },
       move: {
         enable: true,
-        speed: 1,
+        speed: 2,
         direction: "none",
         random: true,
         straight: false,
         out_mode: "out",
         bounce: false,
         attract: {
-          enable: false,
+          enable: true,
           rotateX: 600,
           rotateY: 1200,
         },
@@ -1868,13 +2171,13 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       modes: {
         grab: {
-          distance: 140,
+          distance: 160,
           line_linked: {
-            opacity: 0.5,
+            opacity: 0.6,
           },
         },
         push: {
-          particles_nb: 4,
+          particles_nb: 5,
         },
       },
     },
@@ -1883,6 +2186,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Set current year in footer
   document.getElementById("currentYear").textContent = new Date().getFullYear()
+
+  // Dark Theme Toggle
+  const themeToggle = document.getElementById("themeToggle")
+  const body = document.body
+  
+  // Check for saved theme preference or default to light mode
+  const currentTheme = localStorage.getItem("theme") || "light"
+  if (currentTheme === "dark") {
+    body.classList.add("dark-theme")
+    themeToggle.innerHTML = '<span style="font-size: 1.4rem;">☀️</span><span>Light Mode</span>'
+  }
+  
+  themeToggle.addEventListener("click", function() {
+    body.classList.toggle("dark-theme")
+    
+    if (body.classList.contains("dark-theme")) {
+      themeToggle.innerHTML = '<span style="font-size: 1.4rem;">☀️</span><span>Light Mode</span>'
+      localStorage.setItem("theme", "dark")
+    } else {
+      themeToggle.innerHTML = '<span style="font-size: 1.4rem;">🌙</span><span>Dark Mode</span>'
+      localStorage.setItem("theme", "light")
+    }
+  })
 
   // Animate elements on load
   animateElementsOnLoad()
@@ -1906,12 +2232,10 @@ document.addEventListener("DOMContentLoaded", () => {
       section.classList.remove("active")
     })
 
-    // Show target section
+    // Show target section immediately
     const targetSection = document.getElementById(targetTabId)
     if (targetSection) {
-      setTimeout(() => {
-        targetSection.classList.add("active")
-      }, 100)
+      targetSection.classList.add("active")
     }
   }
 
@@ -1943,17 +2267,6 @@ document.addEventListener("DOMContentLoaded", () => {
       firstSection.classList.add("active")
     }
   }
-
-  // Initialize all sections with proper styles
-  calculatorSections.forEach((section) => {
-    if (section.classList.contains("active")) {
-      section.style.opacity = "1"
-      section.style.transform = "translateY(0)"
-    } else {
-      section.style.opacity = "0"
-      section.style.transform = "translateY(20px)"
-    }
-  })
 
   // Ripple effect on buttons
   const buttons = document.querySelectorAll(".btn")
@@ -3075,6 +3388,266 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector('[data-tab="paste-attendance"]')?.addEventListener('click', () => {
     setTimeout(enforceTextareaStyle, 100)
   })
+
+  // Attendance Tracker Calculator
+  const calculateTrackerBtn = document.getElementById("calculateTracker")
+  const resetTrackerBtn = document.getElementById("resetTracker")
+  const trackerResults = document.getElementById("trackerResults")
+  const trackerAnalysisEl = document.getElementById("trackerAnalysis")
+  const trackerStatusEl = document.getElementById("trackerStatus")
+  const currentAttendanceValueEl = document.getElementById("currentAttendanceValue")
+
+  calculateTrackerBtn.addEventListener("click", function () {
+    // Add loading animation
+    this.disabled = true
+    this.querySelector(".btn-content").textContent = "Calculating..."
+    this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-spinner fa-spin"></i>'
+
+    setTimeout(() => {
+      calculateAttendanceTracker()
+
+      // Reset button
+      this.disabled = false
+      this.querySelector(".btn-content").textContent = "Calculate"
+      this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-calculator"></i>'
+    }, 800)
+  })
+
+  resetTrackerBtn.addEventListener("click", resetTrackerForm)
+
+  function calculateAttendanceTracker() {
+    const totalClasses = Number.parseInt(document.getElementById("totalClasses").value) || 0
+    const attendedClasses = Number.parseInt(document.getElementById("attendedClasses").value) || 0
+    const targetPercentage = Number.parseFloat(document.getElementById("targetPercentage").value) || 75
+
+    if (totalClasses === 0) {
+      showNotification("Please enter the total number of classes conducted.", "warning")
+      return
+    }
+
+    if (attendedClasses > totalClasses) {
+      showNotification("Attended classes cannot be more than total classes.", "warning")
+      return
+    }
+
+    // Calculate current attendance percentage
+    const currentPercentage = (attendedClasses / totalClasses) * 100
+
+    // Calculate classes needed to reach target
+    let classesNeeded = 0
+    let canReachTarget = true
+    let futureClasses = 0
+
+    if (currentPercentage < targetPercentage) {
+      // Need to attend more classes
+      // Formula: (attendedClasses + x) / (totalClasses + x) = targetPercentage / 100
+      // Solving for x: x = (targetPercentage * totalClasses - 100 * attendedClasses) / (100 - targetPercentage)
+      
+      classesNeeded = Math.ceil((targetPercentage * totalClasses - 100 * attendedClasses) / (100 - targetPercentage))
+      
+      if (classesNeeded < 0 || !isFinite(classesNeeded)) {
+        canReachTarget = false
+      } else {
+        futureClasses = classesNeeded
+      }
+    }
+
+    // Calculate how many classes can be missed
+    let canMiss = 0
+    if (currentPercentage >= targetPercentage) {
+      // Calculate maximum classes that can be missed while maintaining target
+      // Formula: (attendedClasses) / (totalClasses + x) = targetPercentage / 100
+      // Solving for x: x = (100 * attendedClasses) / targetPercentage - totalClasses
+      
+      canMiss = Math.floor((100 * attendedClasses) / targetPercentage - totalClasses)
+      if (canMiss < 0) canMiss = 0
+    }
+
+    // Build analysis
+    const analysis = []
+    
+    analysis.push(`<li style="--i:0"><strong>Total Classes:</strong> ${totalClasses}</li>`)
+    analysis.push(`<li style="--i:1"><strong>Classes Attended:</strong> ${attendedClasses}</li>`)
+    analysis.push(`<li style="--i:2"><strong>Classes Missed:</strong> ${totalClasses - attendedClasses}</li>`)
+    analysis.push(`<li style="--i:3"><strong>Current Attendance:</strong> ${currentPercentage.toFixed(2)}%</li>`)
+    
+    if (currentPercentage < targetPercentage) {
+      if (canReachTarget) {
+        analysis.push(`<li style="--i:4; color: #dc3545; font-weight: bold;"><i class="fas fa-exclamation-triangle"></i> <strong>Classes needed to reach ${targetPercentage}%:</strong> ${classesNeeded} consecutive classes</li>`)
+        const futurePercentage = ((attendedClasses + classesNeeded) / (totalClasses + classesNeeded)) * 100
+        analysis.push(`<li style="--i:5"><strong>Future attendance after attending ${classesNeeded} classes:</strong> ${futurePercentage.toFixed(2)}%</li>`)
+      } else {
+        analysis.push(`<li style="--i:4; color: #dc3545; font-weight: bold;"><i class="fas fa-times-circle"></i> <strong>Cannot reach ${targetPercentage}%</strong> - Target is too high!</li>`)
+      }
+    } else {
+      analysis.push(`<li style="--i:4; color: #28a745; font-weight: bold;"><i class="fas fa-check-circle"></i> <strong>Target achieved!</strong> You have ${currentPercentage.toFixed(2)}% attendance</li>`)
+      
+      if (canMiss > 0) {
+        analysis.push(`<li style="--i:5; color: #28a745;"><i class="fas fa-info-circle"></i> <strong>You can miss:</strong> ${canMiss} more ${canMiss === 1 ? 'class' : 'classes'} and still maintain ${targetPercentage}%</li>`)
+      } else {
+        analysis.push(`<li style="--i:5; color: #ffc107;"><i class="fas fa-exclamation-circle"></i> <strong>Warning:</strong> Cannot miss any more classes to maintain ${targetPercentage}%</li>`)
+      }
+    }
+
+    trackerAnalysisEl.innerHTML = analysis.join("")
+
+    // Update progress circle
+    const progressBar = document.querySelector("#trackerResults .progress-bar")
+    const circumference = 2 * Math.PI * 45
+    progressBar.style.strokeDasharray = circumference
+    const offset = circumference - (currentPercentage / 100) * circumference
+
+    // Animate the progress
+    progressBar.style.strokeDashoffset = circumference
+    setTimeout(() => {
+      progressBar.style.strokeDashoffset = offset
+    }, 100)
+
+    // Set color based on attendance
+    let statusText, statusClass, color
+    if (currentPercentage >= 75) {
+      color = "#28a745"
+      statusText = "Excellent Attendance!"
+      statusClass = "good"
+    } else if (currentPercentage >= 65) {
+      color = "#ffc107"
+      statusText = "Warning: Below 75%"
+      statusClass = "warning"
+    } else {
+      color = "#dc3545"
+      statusText = "Critical: Very Low Attendance"
+      statusClass = "danger"
+    }
+
+    progressBar.style.stroke = color
+    trackerStatusEl.textContent = statusText
+    trackerStatusEl.className = `status-badge ${statusClass}`
+
+    // Update value with animation
+    animateValue(currentAttendanceValueEl, 0, currentPercentage.toFixed(2), 1000)
+
+    // Show results with animation
+    trackerResults.classList.remove("hidden")
+    trackerResults.classList.add("show")
+  }
+
+  function resetTrackerForm() {
+    document.getElementById("totalClasses").value = ""
+    document.getElementById("attendedClasses").value = ""
+    document.getElementById("targetPercentage").value = "75"
+    trackerResults.classList.remove("show")
+
+    setTimeout(() => {
+      trackerResults.classList.add("hidden")
+    }, 500)
+  }
+
+  // CGPA to Percentage Calculator
+  const calculatePercentageBtn = document.getElementById("calculatePercentage")
+  const resetPercentageBtn = document.getElementById("resetPercentage")
+  const percentageResults = document.getElementById("percentageResults")
+  const percentageAnalysisEl = document.getElementById("percentageAnalysis")
+  const percentageStatusEl = document.getElementById("percentageStatus")
+  const percentageValueEl = document.getElementById("percentageValue")
+
+  calculatePercentageBtn.addEventListener("click", function () {
+    // Add loading animation
+    this.disabled = true
+    this.querySelector(".btn-content").textContent = "Converting..."
+    this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-spinner fa-spin"></i>'
+
+    setTimeout(() => {
+      calculateCGPAToPercentage()
+
+      // Reset button
+      this.disabled = false
+      this.querySelector(".btn-content").textContent = "Convert to Percentage"
+      this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-exchange-alt"></i>'
+    }, 800)
+  })
+
+  resetPercentageBtn.addEventListener("click", resetPercentageForm)
+
+  function calculateCGPAToPercentage() {
+    const cgpa = Number.parseFloat(document.getElementById("cgpaInput").value) || 0
+
+    if (cgpa === 0) {
+      showNotification("Please enter a valid CGPA.", "warning")
+      return
+    }
+
+    if (cgpa < 0 || cgpa > 10) {
+      showNotification("CGPA must be between 0 and 10.", "warning")
+      return
+    }
+
+    // KLU Formula: (CGPA - 0.75) × 10
+    const percentage = (cgpa - 0.75) * 10
+
+    // Ensure percentage is not negative
+    const finalPercentage = Math.max(0, percentage)
+
+    // Build analysis
+    const analysis = []
+    
+    analysis.push(`<li style="--i:0"><strong>Your CGPA:</strong> ${cgpa.toFixed(2)}</li>`)
+    analysis.push(`<li style="--i:1"><strong>Equivalent Percentage:</strong> <span style="color: #e60000; font-size: 1.3em; font-weight: bold;">${finalPercentage.toFixed(2)}%</span></li>`)
+    analysis.push(`<li style="--i:2"><strong>Conversion Method:</strong> As per university algorithm</li>`)
+
+    percentageAnalysisEl.innerHTML = analysis.join("")
+
+    // Update progress circle
+    const progressBar = document.querySelector("#percentageResults .progress-bar")
+    const circumference = 2 * Math.PI * 45
+    progressBar.style.strokeDasharray = circumference
+    const offset = circumference - (finalPercentage / 100) * circumference
+
+    // Animate the progress
+    progressBar.style.strokeDashoffset = circumference
+    setTimeout(() => {
+      progressBar.style.strokeDashoffset = offset
+    }, 100)
+
+    // Set color based on percentage
+    let statusText, statusClass, color
+    if (finalPercentage >= 75) {
+      color = "#28a745"
+      statusText = "Distinction Class!"
+      statusClass = "good"
+    } else if (finalPercentage >= 60) {
+      color = "#17a2b8"
+      statusText = "First Class"
+      statusClass = "good"
+    } else if (finalPercentage >= 50) {
+      color = "#ffc107"
+      statusText = "Second Class"
+      statusClass = "warning"
+    } else {
+      color = "#dc3545"
+      statusText = "Pass Class"
+      statusClass = "danger"
+    }
+
+    progressBar.style.stroke = color
+    percentageStatusEl.textContent = statusText
+    percentageStatusEl.className = `status-badge ${statusClass}`
+
+    // Update value with animation
+    animateValue(percentageValueEl, 0, finalPercentage.toFixed(2), 1000)
+
+    // Show results with animation
+    percentageResults.classList.remove("hidden")
+    percentageResults.classList.add("show")
+  }
+
+  function resetPercentageForm() {
+    document.getElementById("cgpaInput").value = ""
+    percentageResults.classList.remove("show")
+
+    setTimeout(() => {
+      percentageResults.classList.add("hidden")
+    }, 500)
+  }
 })
 
             </script>
@@ -3160,8 +3733,8 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="glass-card">
           <div class="card-header">
             <div class="card-icon"><i class="fas fa-chart-line"></i></div>
-            <h2>SGPA Calculator</h2>
-            <p class="card-description">Calculate your Semester Grade Point Average</p>
+            <h2>Current Sem SGPA Calculator</h2>
+            <p class="card-description">Calculate your current semester Grade Point Average</p>
           </div>
           
           <div class="card-body">
@@ -3232,8 +3805,8 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="glass-card">
           <div class="card-header">
             <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
-            <h2>CGPA Calculator</h2>
-            <p class="card-description">Calculate your Cumulative Grade Point Average</p>
+            <h2>Overall CGPA Calculator</h2>
+            <p class="card-description">Calculate your total Cumulative Grade Point Average across all semesters</p>
           </div>
           
           <div class="card-body">
@@ -3323,12 +3896,78 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </section>
 
+      <!-- CGPA to Percentage Calculator -->
+      <section class="calculator-section" id="cgpa-percentage">
+        <div class="glass-card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-percent"></i></div>
+            <h2>CGPA to Percent Converter</h2>
+            <p class="card-description">Convert your CGPA to percentage as per university guidelines</p>
+          </div>
+          
+          <div class="card-body">
+            <div class="form-group">
+              <label for="cgpaInput">
+                <i class="fas fa-graduation-cap"></i> Enter Your CGPA
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="cgpaInput" min="0" max="10" step="0.01" placeholder="Enter CGPA (e.g., 9.0)">
+                <span class="input-focus-effect"></span>
+              </div>
+            </div>
+            
+            <div class="button-group">
+              <button id="calculatePercentage" class="btn btn-primary">
+                <span class="btn-content">Convert to Percentage</span>
+                <span class="btn-icon"><i class="fas fa-exchange-alt"></i></span>
+                <span class="btn-effect"></span>
+              </button>
+              <button id="resetPercentage" class="btn btn-secondary">
+                <span class="btn-content">Reset</span>
+                <span class="btn-icon"><i class="fas fa-redo"></i></span>
+                <span class="btn-effect"></span>
+              </button>
+            </div>
+          </div>
+          
+          <div class="results-section hidden" id="percentageResults">
+            <div class="results-header">
+              <h3>Conversion Results</h3>
+              <div class="results-divider"></div>
+            </div>
+            
+            <div class="result-card">
+              <div class="result-visual">
+                <div class="circular-progress">
+                  <svg viewBox="0 0 100 100">
+                    <circle class="progress-bg" cx="50" cy="50" r="45"></circle>
+                    <circle class="progress-bar" cx="50" cy="50" r="45"></circle>
+                  </svg>
+                  <div class="progress-value">
+                    <span id="percentageValue">0</span>%
+                  </div>
+                </div>
+              </div>
+              
+              <div class="result-details">
+                <h4>Your Percentage</h4>
+                <div class="status-badge" id="percentageStatus">Calculating...</div>
+                <div class="component-analysis">
+                  <h5>Details:</h5>
+                  <ul id="percentageAnalysis"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Paste Attendance Calculator -->
       <section class="calculator-section" id="paste-attendance">
         <div class="glass-card">
           <div class="card-header">
             <div class="card-icon"><i class="fas fa-paste"></i></div>
-            <h2>ERP Attendance Calculator</h2>
+            <h2>Paste ERP Attendance Calculator</h2>
             <p class="card-description">Paste attendance data from college ERP and get instant results</p>
           </div>
           
@@ -3404,6 +4043,92 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="results-divider"></div>
             </div>
             <div id="pasteAttendanceOutput" class="parsed-results"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Attendance Tracker -->
+      <section class="calculator-section" id="attendance-tracker">
+        <div class="glass-card">
+          <div class="card-header">
+            <div class="card-icon"><i class="fas fa-chart-pie"></i></div>
+            <h2>Attendance When Absent</h2>
+            <p class="card-description">Calculate how many classes you need to attend or can miss to reach your target attendance</p>
+          </div>
+          
+          <div class="card-body">
+            <div class="form-group">
+              <label for="totalClasses">
+                <i class="fas fa-list-ol"></i> Total Classes Conducted
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="totalClasses" min="0" placeholder="Enter total classes conducted">
+                <span class="input-focus-effect"></span>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="attendedClasses">
+                <i class="fas fa-check-circle"></i> Classes Attended
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="attendedClasses" min="0" placeholder="Enter classes attended">
+                <span class="input-focus-effect"></span>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="targetPercentage">
+                <i class="fas fa-bullseye"></i> Target Attendance (%)
+              </label>
+              <div class="input-wrapper">
+                <input type="number" id="targetPercentage" min="0" max="100" value="75" placeholder="Enter target percentage">
+                <span class="input-focus-effect"></span>
+              </div>
+            </div>
+            
+            <div class="button-group">
+              <button id="calculateTracker" class="btn btn-primary">
+                <span class="btn-content">Calculate</span>
+                <span class="btn-icon"><i class="fas fa-calculator"></i></span>
+                <span class="btn-effect"></span>
+              </button>
+              <button id="resetTracker" class="btn btn-secondary">
+                <span class="btn-content">Reset</span>
+                <span class="btn-icon"><i class="fas fa-redo"></i></span>
+                <span class="btn-effect"></span>
+              </button>
+            </div>
+          </div>
+          
+          <div class="results-section hidden" id="trackerResults">
+            <div class="results-header">
+              <h3>Results</h3>
+              <div class="results-divider"></div>
+            </div>
+            
+            <div class="result-card">
+              <div class="result-visual">
+                <div class="circular-progress">
+                  <svg viewBox="0 0 100 100">
+                    <circle class="progress-bg" cx="50" cy="50" r="45"></circle>
+                    <circle class="progress-bar" cx="50" cy="50" r="45"></circle>
+                  </svg>
+                  <div class="progress-value">
+                    <span id="currentAttendanceValue">0</span>%
+                  </div>
+                </div>
+              </div>
+              
+              <div class="result-details">
+                <h4>Current Attendance Analysis</h4>
+                <div class="status-badge" id="trackerStatus">Calculating...</div>
+                <div class="component-analysis">
+                  <h5>Attendance Insights:</h5>
+                  <ul id="trackerAnalysis"></ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
