@@ -874,10 +874,10 @@
                     <h1>ONE MESS</h1>
                 </div>
                 <div class="nav-links">
-                    <a href="#" class="active"><i class="fas fa-home"></i> Home</a>
-                    <a href="#"><i class="fas fa-utensils"></i> Menu</a>
-                    <a href="#mess.html"><i class="fas fa-building"></i> Hostels</a>
-                    <a href="#"><i class="fas fa-phone"></i> Contact</a>
+                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                    <a href="#" class="active"><i class="fas fa-utensils"></i> Menu</a>
+                    <a href="cabin.html"><i class="fas fa-door-open"></i> Cabin</a>
+                    <a href="transport.html"><i class="fas fa-bus"></i> Transport</a>
                 </div>
             </div>
         </div>
@@ -899,7 +899,7 @@
             <div class="hostels-grid">
                 <div class="hostel-card" data-hostel="himalaya" data-type="Girls">
                     <div class="hostel-image-container">
-<img src="https://assets.onecompiler.app/42fq36qvd/42yrqetcx/Screenshot%202024-11-21%20105958.png" 
+<img src="https://uploads.onecompiler.io/42fq36qvd/42yrqetcx/Screenshot%202024-11-21%20105958.png"
      alt="Himalaya Girls Hostel" 
      class="hostel-image" 
      width="300" height="180">
@@ -917,7 +917,7 @@
                 </div>
                 <div class="hostel-card" data-hostel="tulip" data-type="Boys">
                     <div class="hostel-image-container">
-                        <img src="https://assets.onecompiler.app/42fq36qvd/42yrzfg8u/tulip.jpg" alt="Tulip Boys Hostel" class="hostel-image" height="180" width="300">
+                        <img src="https://uploads.onecompiler.io/42fq36qvd/42yrzfg8u/tulip.jpg" alt="Tulip Boys Hostel" class="hostel-image" height="180" width="300">
 
                         <div class="hostel-type-badge">Boys</div>
                     </div>
@@ -932,7 +932,7 @@
                 </div>
                 <div class="hostel-card" data-hostel="kanchanaganga" data-type="Girls">
                     <div class="hostel-image-container">
-                        <img src="https://assets.onecompiler.app/42fq36qvd/4325r2b7b/kanchana.jpg" alt="Kanchanaganga Girls Hostel" class="hostel-image" height="180" width="300">
+                        <img src="https://uploads.onecompiler.io/42fq36qvd/4325r2b7b/kanchana.jpg" alt="Kanchanaganga Girls Hostel" class="hostel-image" height="180" width="300">
 
                         <div class="hostel-type-badge">Girls</div>
                     </div>
@@ -947,7 +947,7 @@
                 </div>
                 <div class="hostel-card" data-hostel="aravali" data-type="Boys">
                     <div class="hostel-image-container">
-                       <img src="https://assets.onecompiler.app/42fq36qvd/4325r2b7b/aravali.jpg" alt="Aravali Vindhya Boys Hostel" class="hostel-image" height="180" width="300">
+                       <img src="https://uploads.onecompiler.io/42fq36qvd/4325r2b7b/aravali.jpg" alt="Aravali Vindhya Boys Hostel" class="hostel-image" height="180" width="300">
 
                         <div class="hostel-type-badge">Boys</div>
                     </div>
@@ -1081,8 +1081,53 @@
     </footer>
 
     <script>
+        // API Configuration
+        const API_URL = 'http://127.0.0.1:5000/api';
+        
+        // Fetch menu data from database
+        async function fetchMenuFromDatabase() {
+            try {
+                const response = await fetch(`${API_URL}/mess/menu`);
+                const data = await response.json();
+                
+                if (data.menus && data.menus.length > 0) {
+                    // Convert database format to the format expected by the page
+                    const convertedMenus = {
+                        himalaya: {},
+                        everest: {},
+                        nagaland: {}
+                    };
+                    
+                    // Group by day and meal type
+                    data.menus.forEach(menu => {
+                        const day = menu.day.toLowerCase();
+                        const mealType = menu.meal_type.toLowerCase();
+                        const items = menu.items.split(',').map(item => ({
+                            name: item.trim(),
+                            description: '',
+                            icon: '🍽️',
+                            rating: 4.0
+                        }));
+                        
+                        // Add to all hostels (you can customize this per hostel later)
+                        ['himalaya', 'everest', 'nagaland'].forEach(hostel => {
+                            if (!convertedMenus[hostel][day]) {
+                                convertedMenus[hostel][day] = {};
+                            }
+                            convertedMenus[hostel][day][mealType] = items;
+                        });
+                    });
+                    
+                    return convertedMenus;
+                }
+            } catch (error) {
+                console.error('Error fetching menu from database:', error);
+            }
+            return null;
+        }
+        
         // Menu data for each hostel organized by days of the week
-        const hostelMenus = {
+        let hostelMenus = {
             himalaya: {
                 monday: {
                     breakfast: [
@@ -2755,7 +2800,16 @@ dinner: [
         }
         
         // Initialize the application
-        function initApp() {
+        async function initApp() {
+            // Load menu from database first
+            const dbMenus = await fetchMenuFromDatabase();
+            if (dbMenus) {
+                hostelMenus = dbMenus;
+                console.log('✅ Menu loaded from database');
+            } else {
+                console.log('⚠️ Using default hardcoded menu');
+            }
+            
             const currentDay = getCurrentDay();
             const dayButtons = document.querySelectorAll('.day-button');
             
