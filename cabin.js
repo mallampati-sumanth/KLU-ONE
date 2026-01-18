@@ -3,11 +3,11 @@ const hodData = [
     {
         department: "Electronics and Communication Engineering",
         alias: ["ECE"],
-        name: "Dr. Suman Maloji",
+        name: "DR,I.Govardhani",
         cabin: "R-403",
         facultyList: [
            { sno: 1, name: "Dr.M.Venkata Narayana", designation: "Professor", room: "R102", cabin: "1B1" },
-  { sno: 2, name: "Dr.M.Suman", designation: "Professor", room: "R403", cabin: "R403" },
+  { sno: 2, name: "Dr.M.Suman", designation: "Professor", room: "L-4", cabin: "" },
   { sno: 3, name: "Dr.I.Govardhani", designation: "Professor", room: "L417", cabin: "" },
   { sno: 4, name: "Dr.K.Ch.Sri Kavya", designation: "Professor", room: "R611", cabin: "R611" },
   { sno: 5, name: "Dr.B.T.P.Madhav", designation: "Professor", room: "L709", cabin: "L709" },
