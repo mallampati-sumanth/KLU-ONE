@@ -4,12 +4,1227 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KLU ONE Faculty Cabin Finder</title>
-    <link rel="stylesheet" href="cabin.css">
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VARIABLES ===== */
+        :root {
+            /* KLU Colors - Red and White Theme */
+            --primary: #e31b23;
+            --primary-dark: #c41017;
+            --primary-light: #f05056;
+            --primary-lighter: #fad1d3;
+            
+            --secondary: #ffffff;
+            --secondary-dark: #f0f0f0;
+            --secondary-light: #ffffff;
+            
+            --success: #28a745;
+            --danger: #e31b23;
+            --warning: #ffc107;
+            --info: #17a2b8;
+            
+            --dark: #333333;
+            --dark-light: #555555;
+            --dark-lighter: #777777;
+            
+            --light: #ffffff;
+            --light-dark: #f8f9fa;
+            --light-darker: #e9ecef;
+            
+            /* Typography */
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Montserrat', sans-serif;
+            
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.25rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
+            --radius-full: 9999px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            --transition-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        /* Dark Theme Variables */
+        .dark-theme {
+            --primary: #ff3b43;
+            --primary-dark: #e31b23;
+            --primary-light: #ff6b70;
+            --primary-lighter: #ffd1d3;
+            
+            --dark: #f8f9fa;
+            --dark-light: #e9ecef;
+            --dark-lighter: #dee2e6;
+            
+            --light: #212529;
+            --light-dark: #343a40;
+            --light-darker: #495057;
+        }
+
+        /* ===== RESET & BASE STYLES ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: background-color var(--transition-normal), color var(--transition-normal);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* ===== ANIMATED BACKGROUND ===== */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            top: -100px;
+            right: -100px;
+        }
+
+        .blob-2 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--primary-lighter), var(--primary-light));
+            bottom: -50px;
+            left: -50px;
+            animation-delay: 5s;
+        }
+
+        .blob-3 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            top: 40%;
+            left: 30%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(20px, -20px) rotate(5deg);
+            }
+            50% {
+                transform: translate(0, 30px) rotate(10deg);
+            }
+            75% {
+                transform: translate(-20px, -10px) rotate(5deg);
+            }
+        }
+
+        .dark-theme .blob {
+            opacity: 0.2;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-lg) 0;
+            margin-bottom: var(--space-lg);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-normal);
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(15deg);
+        }
+
+        .logo-text h1 {
+            font-family: var(--font-secondary);
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+            transition: color var(--transition-normal);
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            color: var(--dark-lighter);
+            transition: color var(--transition-normal);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: var(--space-md);
+        }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            border: none;
+            background-color: var(--light-dark);
+            color: var(--dark);
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+
+        .btn-icon:hover {
+            background-color: var(--primary-lighter);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-icon:active {
+            transform: translateY(0);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xl);
+        }
+
+        .card {
+            background-color: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .main-card {
+            transform: translateY(0);
+        }
+
+        .main-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dark-theme .card {
+            background-color: var(--light-dark);
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            background-color: var(--light-dark);
+            position: relative;
+            transition: background-color var(--transition-normal);
+        }
+
+        .dark-theme .tabs {
+            background-color: var(--light-darker);
+        }
+
+        .tab {
+            flex: 1;
+            padding: var(--space-md);
+            background: transparent;
+            border: none;
+            color: var(--dark-lighter);
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            position: relative;
+            z-index: 1;
+            transition: color var(--transition-normal);
+        }
+
+        .tab.active {
+            color: var(--primary);
+        }
+
+        .tab i {
+            font-size: 1.2rem;
+        }
+
+        .tab-indicator {
+            position: absolute;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            width: 50%;
+            background-color: var(--primary);
+            transition: transform var(--transition-normal) var(--transition-bounce);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            padding: var(--space-xl);
+        }
+
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-secondary);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+            transition: color var(--transition-normal);
+        }
+
+        .section-desc {
+            color: var(--dark-lighter);
+            margin-bottom: var(--space-lg);
+            transition: color var(--transition-normal);
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: var(--space-sm);
+            color: var(--dark);
+            transition: color var(--transition-normal);
+        }
+
+        .search-box {
+            display: flex;
+            gap: var(--space-md);
+        }
+
+        .input-group {
+            flex: 1;
+            position: relative;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: var(--space-md);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--dark-lighter);
+            transition: color var(--transition-normal);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: var(--space-md) var(--space-md) var(--space-md) calc(var(--space-md) * 2 + 1rem);
+            border: 2px solid var(--light-darker);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            background-color: white;
+            color: var(--dark);
+            transition: all var(--transition-fast);
+        }
+
+        .dark-theme .input-group input {
+            background-color: var(--light-dark);
+            border-color: var(--light-darker);
+            color: var(--dark);
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-lighter);
+        }
+
+        .input-group input::placeholder {
+            color: var(--dark-lighter);
+        }
+
+        .input-group input:disabled {
+            background-color: var(--light-dark);
+            cursor: not-allowed;
+        }
+
+        .dark-theme .input-group input:disabled {
+            background-color: var(--light-darker);
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper select {
+            width: 100%;
+            padding: var(--space-md);
+            border: 2px solid var(--light-darker);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            background-color: white;
+            color: var(--dark);
+            appearance: none;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .dark-theme .select-wrapper select {
+            background-color: var(--light-dark);
+            border-color: var(--light-darker);
+            color: var(--dark);
+        }
+
+        .select-wrapper select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-lighter);
+        }
+
+        .select-wrapper i {
+            position: absolute;
+            right: var(--space-md);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--dark-lighter);
+            pointer-events: none;
+            transition: transform var(--transition-fast);
+        }
+
+        .select-wrapper select:focus + i {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .btn {
+            padding: var(--space-md) var(--space-lg);
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            transition: all var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 6px rgba(227, 27, 35, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(227, 27, 35, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            background: linear-gradient(135deg, var(--dark-lighter), var(--dark-light));
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .btn-primary:disabled:hover {
+            transform: none;
+        }
+
+        .btn i {
+            transition: transform var(--transition-fast);
+        }
+
+        .btn:hover i {
+            transform: translateX(4px);
+        }
+
+        /* Button Text Style */
+        .btn-text {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+        }
+
+        .btn-text:hover {
+            background-color: var(--primary-lighter);
+            transform: translateY(-2px);
+        }
+
+        .btn-text:active {
+            transform: translateY(0);
+        }
+
+        .btn-text i {
+            font-size: 0.9rem;
+        }
+
+        /* Results Container */
+        .results-container {
+            margin-top: var(--space-lg);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-slow);
+        }
+
+        .results-container.show {
+            max-height: 1000px;
+        }
+
+        .result-message {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-lg);
+            animation: slideInUp 0.5s ease forwards;
+        }
+
+        .result-message.success {
+            background-color: rgba(40, 167, 69, 0.1);
+            border-left: 4px solid var(--success);
+            color: var(--success);
+        }
+
+        .result-message.error {
+            background-color: rgba(227, 27, 35, 0.1);
+            border-left: 4px solid var(--danger);
+            color: var(--danger);
+        }
+
+        .result-card {
+            background-color: var(--light);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-xl);
+            margin-bottom: var(--space-md);
+            animation: slideInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: calc(var(--i) * 0.1s);
+            opacity: 0;
+            transform: translateY(20px);
+            border-top: 6px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, transparent 50%, rgba(227, 27, 35, 0.05) 50%);
+            pointer-events: none;
+        }
+
+        .dark-theme .result-card {
+            background-color: var(--light-darker);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-md);
+            border-bottom: 2px dashed var(--light-darker);
+        }
+
+        .result-title {
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .result-badge {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(227, 27, 35, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .result-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-lg);
+        }
+
+        .info-item {
+            background-color: var(--light-dark);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            transition: background-color var(--transition-fast);
+            border: 1px solid transparent;
+        }
+        
+        .dark-theme .info-item {
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        .info-item:hover {
+            border-color: var(--primary-lighter);
+            background-color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .dark-theme .info-item:hover {
+            background-color: rgba(255,255,255,0.1);
+            border-color: var(--primary-dark);
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            color: var(--dark-lighter);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: var(--space-sm);
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+
+        .cabin-highlight {
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(227, 27, 35, 0.1);
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Recent Searches */
+        .recent-searches-card {
+            padding: var(--space-lg);
+        }
+
+        .recent-searches-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-md);
+        }
+
+        .recent-searches-header h3 {
+            font-family: var(--font-secondary);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+            transition: color var(--transition-normal);
+        }
+
+        .recent-searches {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+
+        .search-tag {
+            background-color: var(--light-dark);
+            border-radius: var(--radius-full);
+            padding: var(--space-sm) var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .dark-theme .search-tag {
+            background-color: var(--light-darker);
+        }
+
+        .search-tag:hover {
+            background-color: var(--primary-lighter);
+            transform: translateY(-2px);
+        }
+
+        .search-tag i {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .search-tag span {
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        .empty-state {
+            color: var(--dark-lighter);
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto;
+            padding-top: var(--space-xl);
+            border-top: 1px solid var(--light-darker);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .footer-logo i {
+            color: var(--primary);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--space-lg);
+        }
+
+        .footer-links a {
+            color: var(--dark-lighter);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform var(--transition-normal);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: var(--space-md) 0;
+            color: var(--dark-lighter);
+            font-size: 0.9rem;
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity var(--transition-normal), visibility var(--transition-normal);
+        }
+
+        .loading-spinner.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            position: relative;
+            margin-bottom: var(--space-md);
+        }
+
+        .double-bounce1, .double-bounce2 {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: var(--primary);
+            opacity: 0.6;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        .double-bounce2 {
+            animation-delay: -1s;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1);
+            }
+        }
+
+        .loading-spinner p {
+            color: white;
+            font-weight: 500;
+        }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            bottom: var(--space-lg);
+            right: var(--space-lg);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            max-width: 100%;
+            pointer-events: none;
+        }
+
+        .toast {
+            background-color: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            padding: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            animation: slideInRight 0.3s ease forwards, fadeOut 0.3s ease forwards 3.7s;
+            transition: transform var(--transition-fast);
+            cursor: pointer;
+            pointer-events: auto;
+            width: 350px;
+            border-left: none;
+            border-bottom: 4px solid transparent;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .toast.success {
+            border-bottom-color: var(--success);
+        }
+
+        .toast.error {
+            border-bottom-color: var(--danger);
+        }
+
+        .toast.info {
+            border-bottom-color: var(--info);
+        }
+
+        .toast.warning {
+            border-bottom-color: var(--warning);
+        }
+
+        .dark-theme .toast {
+            background-color: var(--light-dark);
+        }
+
+        .toast:hover {
+            transform: translateY(3px);
+        }
+
+        .toast.success {
+            border-bottom-color: var(--success);
+        }
+
+        .toast.error {
+            border-bottom-color: var(--danger);
+        }
+
+        .toast.info {
+            border-bottom-color: var(--info);
+        }
+
+        .toast.warning {
+            border-bottom-color: var(--warning);
+        }
+
+        .toast-icon {
+            font-size: 1.5rem;
+        }
+
+        .toast.success .toast-icon {
+            color: var(--success);
+        }
+
+        .toast.error .toast-icon {
+            color: var(--danger);
+        }
+
+        .toast.info .toast-icon {
+            color: var(--info);
+        }
+
+        .toast.warning .toast-icon {
+            color: var(--warning);
+        }
+
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: var(--space-xs);
+        }
+
+        .toast-message {
+            font-size: 0.9rem;
+            color: var(--dark-lighter);
+        }
+
+        .toast-close {
+            color: var(--dark-lighter);
+            cursor: pointer;
+            transition: color var(--transition-fast);
+        }
+
+        .toast-close:hover {
+            color: var(--dark);
+        }
+
+        /* Changed animation for top notifications */
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        /* Text Animations */
+        .typing-animation {
+            overflow: hidden;
+            border-right: 3px solid var(--primary);
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary) }
+        }
+
+        /* Slide In Up Animation */
+        @keyframes slideInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--space-md);
+            }
+            
+            .search-box {
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-links {
+                margin-top: var(--space-md);
+            }
+            
+            .tab span {
+                display: none;
+            }
+            
+            .tab i {
+                font-size: 1.5rem;
+            }
+            
+            .toast-container {
+                left: var(--space-md);
+                right: var(--space-md);
+                bottom: var(--space-md);
+                top: auto;
+            }
+            
+            .toast {
+                width: 100%;
+                max-width: none;
+            }
+            
+            .header-actions {
+                position: fixed;
+                bottom: var(--space-lg);
+                right: var(--space-lg);
+                z-index: 10;
+                display: flex;
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+            
+            .btn-icon {
+                background-color: var(--primary);
+                color: white;
+                box-shadow: var(--shadow-lg);
+            }
+            
+            .btn-icon:hover {
+                background-color: var(--primary-dark);
+                color: white;
+            }
+            
+            .recent-searches-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-sm);
+            }
+            
+            .btn-text {
+                padding: var(--space-xs) 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --space-lg: 1rem;
+                --space-xl: 1.5rem;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.2rem;
+            }
+            
+            .logo-text p {
+                display: none;
+            }
+            
+            .tab-content {
+                padding: var(--space-md);
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .result-card {
+                padding: var(--space-md);
+            }
+            
+            .result-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Main Container -->
@@ -20,7 +1235,6 @@
             <div class="blob blob-2"></div>
             <div class="blob blob-3"></div>
         </div>
-
 
         <!-- Header -->
         <header>
@@ -125,7 +1339,7 @@
                 <div id="recentSearches" class="recent-searches">
                     <p class="empty-state">No recent searches</p>
                 </div>
-
+            </div>
         </main>
 
         <!-- Footer -->
@@ -154,8 +1368,1163 @@
             </div>
             <p>Searching...</p>
         </div>
+
+        <!-- Toast Container -->
+        <div id="toastContainer" class="toast-container"></div>
     </div>
 
-    <script src="cabin.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <script>
+        // Complete Faculty Data from PDF
+        const facultyData = {
+            "ECE": [
+                { sno: 1, empId: "N/A", name: "Dr.M.Venkata Narayana", dept: "ECE", designation: "Professor", room: "R102", cabin: "1B1" },
+                { sno: 2, empId: "N/A", name: "Dr.M.Suman", dept: "ECE", designation: "Professor", room: "L-4", cabin: "" },
+                { sno: 3, empId: "N/A", name: "Dr.I.Govardhani", dept: "ECE", designation: "Professor", room: "R403", cabin: "" },
+                { sno: 4, empId: "N/A", name: "Dr.K.Ch.Sri Kavya", dept: "ECE", designation: "Professor", room: "R611", cabin: "R611" },
+                { sno: 5, empId: "N/A", name: "Dr.B.T.P.Madhav", dept: "ECE", designation: "Professor", room: "L709", cabin: "L709" },
+                { sno: 6, empId: "N/A", name: "Dr.K.Sarat Kumar", dept: "ECE", designation: "Professor", room: "C222", cabin: "C222" },
+                { sno: 7, empId: "N/A", name: "Dr.K.Hari Kishore", dept: "ECE", designation: "Professor", room: "C115", cabin: "C115" },
+                { sno: 8, empId: "N/A", name: "Dr.M.Sridhar", dept: "ECE", designation: "Professor", room: "R102", cabin: "1A6" },
+                { sno: 9, empId: "N/A", name: "Dr.D.Venkata Ratnam", dept: "ECE", designation: "Professor", room: "L701", cabin: "L701" },
+                { sno: 10, empId: "N/A", name: "Dr.G.V.Subbarao", dept: "ECE", designation: "Professor", room: "L702", cabin: "L702" },
+                { sno: 11, empId: "N/A", name: "Dr.M.Venu Gopala Rao", dept: "ECE", designation: "Professor", room: "C215B", cabin: "C215B" },
+                { sno: 12, empId: "N/A", name: "Dr.V.Rajesh", dept: "ECE", designation: "Professor", room: "C302", cabin: "C302" },
+                { sno: 13, empId: "N/A", name: "Dr.A.S.C.S.Sastry", dept: "ECE", designation: "Professor", room: "L409", cabin: "L409" },
+                { sno: 14, empId: "N/A", name: "Dr. Md.Z Rahman", dept: "ECE", designation: "Professor", room: "R102", cabin: "1A10" },
+                { sno: 15, empId: "N/A", name: "Dr.P.Venkat Vijay Kishore", dept: "ECE", designation: "Professor", room: "L703", cabin: "L703" },
+                { sno: 16, empId: "N/A", name: "Dr.P.Pardhasaradhi", dept: "ECE", designation: "Professor", room: "R102", cabin: "1A11" },
+                { sno: 17, empId: "N/A", name: "Dr.S.Koteswararao", dept: "ECE", designation: "Professor", room: "L702", cabin: "L702" },
+                { sno: 18, empId: "N/A", name: "Dr.K.Srinivasarao", dept: "ECE", designation: "Professor", room: "L706", cabin: "L706" },
+                { sno: 19, empId: "N/A", name: "Dr.M.Sujatha", dept: "ECE", designation: "Professor", room: "R102", cabin: "1A3" },
+                { sno: 20, empId: "N/A", name: "Dr.P. Satya Srinivas Babu", dept: "ECE", designation: "Professor", room: "C611", cabin: "C611" },
+                { sno: 21, empId: "N/A", name: "Dr.Habibulla Khan", dept: "ECE", designation: "Professor", room: "C106A", cabin: "C106A" },
+                { sno: 22, empId: "N/A", name: "Dr.Santosh Kumar", dept: "ECE", designation: "Professor", room: "C610", cabin: "C610" },
+                { sno: 23, empId: "N/A", name: "Dr.M.Ravi Kumar", dept: "ECE", designation: "Associate Professor", room: "R401", cabin: "4A14" },
+                { sno: 24, empId: "N/A", name: "Dr.K.Ravi Kumar", dept: "ECE", designation: "Associate Professor", room: "L409", cabin: "L409" },
+                { sno: 25, empId: "N/A", name: "Dr.G.Venkata Ganesh", dept: "ECE", designation: "Associate Professor", room: "R102", cabin: "1A5" },
+                { sno: 26, empId: "N/A", name: "Dr.M.Siva Kumar", dept: "ECE", designation: "Associate Professor", room: "M001", cabin: "M001" },
+                { sno: 27, empId: "N/A", name: "Dr.Syed Inthiyaz", dept: "ECE", designation: "Associate Professor", room: "C316", cabin: "C316" },
+                { sno: 28, empId: "N/A", name: "Dr.Fazal Noorbasha", dept: "ECE", designation: "Associate Professor", room: "R102", cabin: "1A2" },
+                { sno: 29, empId: "N/A", name: "Dr.Syed Shameem", dept: "ECE", designation: "Associate Professor", room: "R102", cabin: "1A9" },
+                { sno: 30, empId: "N/A", name: "Dr.G.R.K.Prasad", dept: "ECE", designation: "Associate Professor", room: "C316", cabin: "C316" },
+                { sno: 31, empId: "N/A", name: "Dr.D.Bhavana", dept: "ECE", designation: "Associate Professor", room: "R401", cabin: "4A17" },
+                { sno: 32, empId: "N/A", name: "Dr.V.Subba Reddy", dept: "ECE", designation: "Associate Professor", room: "R401", cabin: "4A16" },
+                { sno: 33, empId: "N/A", name: "Dr.C.Sreevardhan", dept: "ECE", designation: "Associate Professor", room: "L409", cabin: "L409" },
+                { sno: 34, empId: "N/A", name: "Dr.B.Suresh", dept: "ECE", designation: "Associate Professor", room: "R501", cabin: "5A13" },
+                { sno: 35, empId: "N/A", name: "Dr.Ch.Raghava Prasad", dept: "ECE", designation: "Associate Professor", room: "L409", cabin: "L409" },
+                { sno: 36, empId: "N/A", name: "Dr.D.Sreenivasa Rao", dept: "ECE", designation: "Associate Professor", room: "R401", cabin: "4A1" },
+                { sno: 37, empId: "N/A", name: "Dr.P.Saleem Akram", dept: "ECE", designation: "Associate Professor", room: "R401", cabin: "4A22" },
+                { sno: 38, empId: "N/A", name: "Dr.China Satyanarayana", dept: "ECE", designation: "Associate Professor", room: "L701", cabin: "L701" },
+                { sno: 39, empId: "N/A", name: "Dr.K.Rajesh Babu", dept: "ECE", designation: "Associate Professor", room: "R305", cabin: "3A4" },
+                { sno: 40, empId: "N/A", name: "Dr.G.Sai Krishna Santosh", dept: "ECE", designation: "Associate Professor", room: "R305", cabin: "3A5" },
+                { sno: 41, empId: "N/A", name: "Dr.A.V.Prabhu", dept: "ECE", designation: "Associate Professor", room: "R401", cabin: "4A24" },
+                { sno: 42, empId: "N/A", name: "Dr.Sampad Kumar Panda", dept: "ECE", designation: "Associate Professor", room: "R501", cabin: "5A18" },
+                { sno: 43, empId: "N/A", name: "Dr.R.S.Ernest Ravindran", dept: "ECE", designation: "Associate Professor", room: "R305", cabin: "3A10" },
+                { sno: 44, empId: "N/A", name: "Dr.Y.Usha Devi", dept: "ECE", designation: "Associate Professor", room: "R305", cabin: "3A6" },
+                { sno: 45, empId: "N/A", name: "Dr.K.Girija Sravani", dept: "ECE", designation: "Associate Professor", room: "L706", cabin: "L706" },
+                { sno: 46, empId: "N/A", name: "Dr.M.Kasi Prasad", dept: "ECE", designation: "Associate Professor", room: "R501", cabin: "5A23" },
+                { sno: 47, empId: "N/A", name: "Dr.N.Prabakaran", dept: "ECE", designation: "Associate Professor", room: "R305", cabin: "3A8" },
+                { sno: 48, empId: "N/A", name: "Dr.Vipul Agarwal", dept: "ECE", designation: "Associate Professor", room: "R305", cabin: "3A12" },
+                { sno: 49, empId: "N/A", name: "Dr.C.S. Preetham Reddy", dept: "ECE", designation: "Associate Professor", room: "R102", cabin: "1A8" },
+                { sno: 50, empId: "N/A", name: "Dr.Bukya Balaji", dept: "ECE", designation: "Associate Professor", room: "R401", cabin: "4A18" },
+                { sno: 51, empId: "N/A", name: "Dr.M.Muzammil Parvez", dept: "ECE", designation: "Associate Professor", room: "R401", cabin: "4A10" },
+                { sno: 52, empId: "N/A", name: "Dr.P.Syam Sundar", dept: "ECE", designation: "Associate Professor", room: "R305", cabin: "3A1" },
+                { sno: 53, empId: "N/A", name: "Dr.SV.Aswin Kumer", dept: "ECE", designation: "Associate Professor", room: "R401", cabin: "4A20" },
+                { sno: 54, empId: "N/A", name: "Dr.R.Revathi", dept: "ECE", designation: "Associate Professor", room: "R401", cabin: "4A12" },
+                { sno: 55, empId: "N/A", name: "Dr.S.Rooban", dept: "ECE", designation: "Associate Professor", room: "R401", cabin: "4A13" },
+                { sno: 56, empId: "N/A", name: "Dr.Chella Santhosh", dept: "ECE", designation: "Associate Professor", room: "R401", cabin: "4A15" },
+                { sno: 57, empId: "N/A", name: "Dr.S.Arunmetha", dept: "ECE", designation: "Associate Professor", room: "R401", cabin: "4B2" },
+                { sno: 58, empId: "N/A", name: "Dr.E.Kiran Kumar", dept: "ECE", designation: "Associate Professor", room: "R305", cabin: "3A2" },
+                { sno: 59, empId: "N/A", name: "Dr.Aravind Kilaru", dept: "ECE", designation: "Associate Professor", room: "R305", cabin: "3A4" },
+                { sno: 60, empId: "N/A", name: "Dr.Aravindhan Alagarsamy", dept: "ECE", designation: "Associate Professor", room: "R401", cabin: "4A8" },
+                { sno: 61, empId: "N/A", name: "Dr.Abhishek Pahuja", dept: "ECE", designation: "Associate Professor", room: "R501", cabin: "5A21" },
+                { sno: 62, empId: "N/A", name: "Dr.Sumit Bhushan", dept: "ECE", designation: "Associate Professor", room: "R305", cabin: "3A9" },
+                { sno: 63, empId: "N/A", name: "Dr.Vivekananthan Venkateswaran", dept: "ECE", designation: "Associate Professor", room: "C611", cabin: "C611" },
+                { sno: 64, empId: "N/A", name: "Dr.SR Srither", dept: "ECE", designation: "Associate Professor", room: "R401", cabin: "4A11" },
+                { sno: 65, empId: "N/A", name: "Dr.Sandip Swarnakar", dept: "ECE", designation: "Associate Professor", room: "R501", cabin: "5A19" },
+                { sno: 66, empId: "N/A", name: "Dr.K.Sripath Roy", dept: "ECE", designation: "Assistant Professor", room: "C206", cabin: "C206" },
+                { sno: 67, empId: "N/A", name: "Dr.K.Sony", dept: "ECE", designation: "Assistant Professor", room: "R401", cabin: "4A9" },
+                { sno: 68, empId: "N/A", name: "Mr.P.Srikanth Reddy", dept: "ECE", designation: "Assistant Professor", room: "R106", cabin: "R106" },
+                { sno: 69, empId: "N/A", name: "Dr.K.Uday Kiran", dept: "ECE", designation: "Assistant Professor", room: "C114B", cabin: "C114B" },
+                { sno: 70, empId: "N/A", name: "Dr.K.Suresh Kumar", dept: "ECE", designation: "Assistant Professor", room: "R401", cabin: "4A21" },
+                { sno: 71, empId: "N/A", name: "Dr.K.V.Sowmya", dept: "ECE", designation: "Assistant Professor", room: "C413", cabin: "C413" },
+                { sno: 72, empId: "N/A", name: "Mr.M.Lakshmana Kumar", dept: "ECE", designation: "Assistant Professor", room: "C214B", cabin: "C214B" },
+                { sno: 73, empId: "N/A", name: "Dr.S.Vamsee Krishna", dept: "ECE", designation: "Assistant Professor", room: "R102", cabin: "1A1" },
+                { sno: 74, empId: "N/A", name: "Dr.Atul Kumar", dept: "ECE", designation: "Assistant Professor", room: "R102", cabin: "1A4" },
+                { sno: 75, empId: "N/A", name: "Dr.SK.Hasane Ahammad", dept: "ECE", designation: "Assistant Professor", room: "L704A", cabin: "L704A" },
+                { sno: 76, empId: "N/A", name: "Dr.Debajit Deb", dept: "ECE", designation: "Assistant Professor", room: "R305", cabin: "3A3" },
+                { sno: 77, empId: "N/A", name: "Dr.Vasimalla Yesudasu", dept: "ECE", designation: "Assistant Professor", room: "R608", cabin: "R608" },
+                { sno: 78, empId: "N/A", name: "Mr.M.Ajay Babu", dept: "ECE", designation: "Assistant Professor", room: "R005", cabin: "R005" },
+                { sno: 79, empId: "N/A", name: "Dr.Nishant Kumar", dept: "ECE", designation: "Assistant Professor", room: "R401", cabin: "4A19" },
+                { sno: 80, empId: "N/A", name: "Dr.Vyoma Singh", dept: "ECE", designation: "Assistant Professor", room: "R102", cabin: "1B4" },
+                { sno: 81, empId: "N/A", name: "Dr.Balaji Ramachandran", dept: "ECE", designation: "Assistant Professor", room: "R401", cabin: "4A23" },
+                { sno: 82, empId: "N/A", name: "Ms.P.Sivani", dept: "ECE", designation: "Assistant Professor", room: "R305", cabin: "3B4" },
+                { sno: 83, empId: "N/A", name: "Mr.Sripathi Siva Prasad", dept: "ECE", designation: "Assistant Professor", room: "R608", cabin: "R608" },
+                { sno: 84, empId: "N/A", name: "Dr.Sourabh Jain", dept: "ECE", designation: "Assistant Professor", room: "R401", cabin: "4B3" },
+            ],
+            "CSE-1": [
+                { sno: 1, empId: 1177, name: "Dr. Ch. Radhika Rani", dept: "CSE-1", room: "C215A", cabin: "CABIN" },
+                { sno: 2, empId: 1323, name: "Ms. M V B T Santhi", dept: "CSE-1", room: "C321A", cabin: "11" },
+                { sno: 3, empId: 3841, name: "Mrs. K. Swetha", dept: "CSE-1", room: "C305", cabin: "2" },
+                { sno: 4, empId: 3909, name: "Dr. CHM SAIBABA", dept: "CSE-1", room: "C305", cabin: "22" },
+                { sno: 5, empId: 3915, name: "Mr. S. SANDEEP KUMAR", dept: "CSE-1", room: "C305", cabin: "24" },
+                { sno: 6, empId: 3948, name: "Dr K Rajyalakshmi", dept: "CSE-1", room: "C305", cabin: "15" },
+                { sno: 7, empId: 4414, name: "Prof. V HARI KIRAN", dept: "CSE-1", room: "C101", cabin: "CABIN" },
+                { sno: 8, empId: 4707, name: "Dr M Kavitha", dept: "CSE-1", room: "C321A2", cabin: "CABIN" },
+                { sno: 9, empId: 4750, name: "Dr. R. Venu Babu", dept: "CSE-1", room: "C216", cabin: "CABIN" },
+                { sno: 10, empId: 4863, name: "Dr. S. Anjali Devi", dept: "CSE-1", room: "C321A2", cabin: "2" },
+                { sno: 11, empId: 4935, name: "Dr. K. SWARNA", dept: "CSE-1", room: "C221A2", cabin: "CABIN" },
+                { sno: 12, empId: 5046, name: "Dr. Moulana Mohammed", dept: "CSE-1", room: "C312", cabin: "CABIN" },
+                { sno: 13, empId: 5291, name: "Dr. K. Amarendra", dept: "CSE-1", room: "C316", cabin: "CABIN" },
+                { sno: 14, empId: 5394, name: "Dr. T SANTHI SRI", dept: "CSE-1", room: "C215A", cabin: "CABIN" },
+                { sno: 15, empId: 5420, name: "Dr. B Venkateswarlu", dept: "CSE-1", room: "C305B", cabin: "CABIN" },
+                { sno: 16, empId: 5427, name: "Dr. Maganti Syamala", dept: "CSE-1", room: "C305", cabin: "13" },
+                { sno: 17, empId: 6283, name: "Mr. ANDE PAVAN KUMAR", dept: "CSE-1", room: "C305", cabin: "21" },
+                { sno: 18, empId: 6617, name: "Mrs. Ch N Lakshmi Sowjanya", dept: "CSE-1", room: "C305", cabin: "11" },
+                { sno: 19, empId: 6620, name: "Arepalli Gopi", dept: "CSE-1", room: "C106", cabin: "CABIN" },
+                { sno: 20, empId: 6665, name: "Dr. G.Raja", dept: "CSE-1", room: "C321A", cabin: "9" },
+                { sno: 21, empId: 6686, name: "Dr. b Sreedhar", dept: "CSE-1", room: "C321A", cabin: "3" },
+                { sno: 22, empId: 6728, name: "Dr. T. Anuradha", dept: "CSE-1", room: "C305", cabin: "8" },
+                { sno: 23, empId: 6860, name: "Dr. Asesh Kumar Tripathy", dept: "CSE-1", room: "C321A", cabin: "8" },
+                { sno: 24, empId: 7273, name: "Dr. YOGESH KUMAR SHARMA", dept: "CSE-1", room: "M110", cabin: "1" },
+                { sno: 25, empId: 7347, name: "Dr. A. Veera Swamy", dept: "CSE-1", room: "C321A", cabin: "5" },
+                { sno: 26, empId: 7385, name: "K Sreekanth", dept: "CSE-1", room: "C305", cabin: "4" },
+                { sno: 27, empId: 7633, name: "Mr. G Dineshnath", dept: "CSE-1", room: "C305", cabin: "18" },
+                { sno: 28, empId: 7651, name: "Mr. THAMODHARAN ARUMUGAM", dept: "CSE-1", room: "R502", cabin: "1" },
+                { sno: 29, empId: 7809, name: "Dr P V Sivarambabu", dept: "CSE-1", room: "C321A", cabin: "4" },
+                { sno: 30, empId: 7958, name: "Dr. Smitha Chowdary Ch", dept: "CSE-1", room: "M309", cabin: "I" },
+                { sno: 31, empId: 7991, name: "Mrs. M. Uma Maheswari", dept: "CSE-1", room: "C305", cabin: "5" },
+                { sno: 32, empId: 8051, name: "Mr. R. Seetharam", dept: "CSE-1", room: "C305B", cabin: "CABIN" },
+                { sno: 33, empId: 8054, name: "Dr. T. Preethi Priyanka", dept: "CSE-1", room: "C305", cabin: "7" },
+                { sno: 34, empId: 8075, name: "Mr. Syed Mohammed Azmal", dept: "CSE-1", room: "C305", cabin: "3" },
+                { sno: 35, empId: 8076, name: "Mrs. A Thanuja", dept: "CSE-1", room: "C305", cabin: "12" },
+                { sno: 36, empId: 8077, name: "Mr. D Mani Mohan", dept: "CSE-1", room: "C305", cabin: "10" },
+                { sno: 37, empId: 8078, name: "Dr. Y. MadhaviLatha", dept: "CSE-1", room: "C321A", cabin: "10" },
+                { sno: 38, empId: 8087, name: "SETTI RAJESWARI", dept: "CSE-1", room: "C305", cabin: "14" },
+                { sno: 39, empId: 8097, name: "Dr. Munish Kumar", dept: "CSE-1", room: "C321A", cabin: "1" },
+                { sno: 40, empId: 8188, name: "Dr. S. PHANI KUMAR", dept: "CSE-1", room: "C305", cabin: "23" },
+                { sno: 41, empId: 8194, name: "Dr. B Lakshmi Ramani", dept: "CSE-1", room: "C321A", cabin: "12" },
+                { sno: 42, empId: 8195, name: "Mrs. B. Mery Sowjanya", dept: "CSE-1", room: "C306B", cabin: "1" },
+                { sno: 43, empId: 8226, name: "Dr. Balasubramani S", dept: "CSE-1", room: "C321A", cabin: "7" },
+                { sno: 44, empId: 8227, name: "Mr. G. Anjaneyulu", dept: "CSE-1", room: "C305", cabin: "20" },
+                { sno: 45, empId: 8232, name: "Dr K. Vijaya Kumar", dept: "CSE-1", room: "C321A", cabin: "6" },
+                { sno: 46, empId: 8369, name: "Mr. B. Elangovan", dept: "CSE-1", room: "C305", cabin: "9" },
+                { sno: 47, empId: 8607, name: "Dr P Anusha", dept: "CSE-1", room: "C305", cabin: "1" },
+                { sno: 48, empId: 8865, name: "Ms. B Kavya", dept: "CSE-1", room: "C305", cabin: "16" },
+                { sno: 49, empId: 8982, name: "Dr. L. Prasanna Kumar", dept: "CSE-1", room: "C305", cabin: "17" },
+                { sno: 50, empId: 9128, name: "Dr. M V Praveen Kumar", dept: "CSE-1", room: "C305", cabin: "19" },
+                { sno: 51, empId: 9152, name: "ALURI SANJEEV KUMAR", dept: "CSE-1", room: "R502", cabin: "2" },
+                { sno: 52, empId: 9582, name: "Dr. Bijay KSS Pattanaik", dept: "CSE-1", room: "C306B", cabin: "4" },
+                { sno: 53, empId: 9596, name: "Dr. Gurudatta Verma", dept: "CSE-1", room: "C306B", cabin: "3" },
+                { sno: 54, empId: 9602, name: "Dr. M. Rama Rajeswari", dept: "CSE-1", room: "C306B", cabin: "2" }
+            ],
+            "CSE-2": [
+                { sno: 1, empId: 1379, name: "Dr. K.V.DURGA KIRAN", dept: "CSE-2", room: "C215B", cabin: "CABIN" },
+                { sno: 2, empId: 1498, name: "Dr. P. V. VARA PRASAD", dept: "CSE-2", room: "M109", cabin: "1" },
+                { sno: 3, empId: 1834, name: "Mr. M.VISHNUVARDHAN", dept: "CSE-2", room: "M116", cabin: "2" },
+                { sno: 4, empId: 2496, name: "Dr. PEDDADA VENKATESWARA RAO", dept: "CSE-2", room: "M116", cabin: "1" },
+                { sno: 5, empId: 2843, name: "Dr. B.VIJAYA BABU", dept: "CSE-2", room: "C221A3", cabin: "CABIN" },
+                { sno: 6, empId: 3658, name: "Dr. G.PRADEEPINI", dept: "CSE-2", room: "C214", cabin: "CABIN" },
+                { sno: 7, empId: 3908, name: "Dr. NICHENAMETLA RAJESH", dept: "CSE-2", room: "C213", cabin: "CABIN" },
+                { sno: 8, empId: 4056, name: "Mr. M.CHANDAN", dept: "CSE-2", room: "M109", cabin: "2" },
+                { sno: 9, empId: 4821, name: "Dr. DASARI RAMESH", dept: "CSE-2", room: "C205", cabin: "1" },
+                { sno: 10, empId: 5372, name: "Mr. SHAIKSHAVALI SHAIK", dept: "CSE-2", room: "C105", cabin: "14" },
+                { sno: 11, empId: 5422, name: "Dr. MOTHUKURI RADHA", dept: "CSE-2", room: "M115", cabin: "1" },
+                { sno: 12, empId: 5495, name: "Dr. T. PRAVEEN", dept: "CSE-2", room: "M116", cabin: "3" },
+                { sno: 13, empId: 5659, name: "Dr. PVVS SRINIVAS", dept: "CSE-2", room: "C312", cabin: "CABIN" },
+                { sno: 14, empId: 5886, name: "Dr. KUNDA VENKATA PRASAD", dept: "CSE-2", room: "C205A", cabin: "CABIN" },
+                { sno: 15, empId: 5900, name: "Dr. VIJAY KUMAR BURUGARI", dept: "CSE-2", room: "C321A1", cabin: "CABIN" },
+                { sno: 16, empId: 5908, name: "Dr. N RAGHAVENDRA SAI", dept: "CSE-2", room: "M107", cabin: "3" },
+                { sno: 17, empId: 6040, name: "Dr. G P SARADHI VARMA", dept: "CSE-2", room: "C001", cabin: "CABIN" },
+                { sno: 18, empId: 6096, name: "Mr. J.V.N.RAMESH", dept: "CSE-2", room: "C205", cabin: "18" },
+                { sno: 19, empId: 6584, name: "Mr. GARIGIPATI RAMA KRISHNA", dept: "CSE-2", room: "C205", cabin: "15" },
+                { sno: 20, empId: 6616, name: "Mr. DODDI SURESH KUMAR", dept: "CSE-2", room: "C221A", cabin: "11" },
+                { sno: 21, empId: 6618, name: "Dr. B BIKRAM KUMAR", dept: "CSE-2", room: "C223", cabin: "1" },
+                { sno: 22, empId: 6619, name: "Dr. S ARAVINTH SESHADRI", dept: "CSE-2", room: "C206", cabin: "10" },
+                { sno: 23, empId: 6786, name: "Dr. K SWATHI", dept: "CSE-2", room: "C214", cabin: "CABIN" },
+                { sno: 24, empId: 6874, name: "Dr. YAMUNA DEVI", dept: "CSE-2", room: "M103", cabin: "1" },
+                { sno: 25, empId: 6922, name: "Dr. NESARANI", dept: "CSE-2", room: "M103", cabin: "2" },
+                { sno: 26, empId: 6931, name: "Dr. VEERA ANKALU", dept: "CSE-2", room: "C206", cabin: "11" },
+                { sno: 27, empId: 6932, name: "Dr. RENUKA KOLANDASAMY", dept: "CSE-2", room: "C221A", cabin: "8" },
+                { sno: 28, empId: 6934, name: "Ms. CH. SABITHA", dept: "CSE-2", room: "L606", cabin: "10" },
+                { sno: 29, empId: 7004, name: "Mr. CHITTIBABU RAVELA", dept: "CSE-2", room: "C205", cabin: "16" },
+                { sno: 30, empId: 7029, name: "Mr. P ANANTHA RAO", dept: "CSE-2", room: "M119", cabin: "1" },
+                { sno: 31, empId: 7152, name: "Mr. B NAMA SIVAYAM", dept: "CSE-2", room: "C105", cabin: "4" },
+                { sno: 32, empId: 7190, name: "Dr. ELANGOVAN GURUVA REDDY", dept: "CSE-2", room: "C205A", cabin: "CABIN" },
+                { sno: 33, empId: 7239, name: "Dr. KANDEPU BALA VENKATA BRAHMARAO", dept: "CSE-2", room: "L401", cabin: "CABIN" },
+                { sno: 34, empId: 7255, name: "Dr. T K RAMA KRISHNA RAO", dept: "CSE-2", room: "F009", cabin: "CABIN" },
+                { sno: 35, empId: 7366, name: "Mr. VUYYURU LAKSHMA REDDY", dept: "CSE-2", room: "C205", cabin: "17" },
+                { sno: 36, empId: 7391, name: "Dr. ARPIT JAIN", dept: "CSE-2", room: "M110", cabin: "2" },
+                { sno: 37, empId: 7401, name: "Mr. RAJESH TULASI", dept: "CSE-2", room: "C205", cabin: "2" },
+                { sno: 38, empId: 7414, name: "Dr. ADAPA GOPI", dept: "CSE-2", room: "M107", cabin: "1" },
+                { sno: 39, empId: 7419, name: "Dr. LEENA ARYA", dept: "CSE-2", room: "M104", cabin: "1" },
+                { sno: 40, empId: 7510, name: "Mr. DAYANIDHI MOHAPATRA", dept: "CSE-2", room: "C223", cabin: "10" },
+                { sno: 41, empId: 7792, name: "Dr. NAGAMANI CHIPPADA", dept: "CSE-2", room: "C206", cabin: "16" },
+                { sno: 42, empId: 7814, name: "Dr. K GURNADH GUPTA", dept: "CSE-2", room: "C205", cabin: "3" },
+                { sno: 43, empId: 7822, name: "Mr. RAJESH BINGU", dept: "CSE-2", room: "C221A", cabin: "3" },
+                { sno: 44, empId: 7936, name: "Ms. V PRASANTHI", dept: "CSE-2", room: "C221A", cabin: "4" },
+                { sno: 45, empId: 7960, name: "Dr. RAVEENDRA REDDY E", dept: "CSE-2", room: "C221A", cabin: "9" },
+                { sno: 46, empId: 7984, name: "Mr. PANDIANATHAN MURUGESAN", dept: "CSE-2", room: "C223", cabin: "16" },
+                { sno: 47, empId: 7985, name: "Dr. MURALI KRISHNA PUTTAGUNTA", dept: "CSE-2", room: "C205", cabin: "19" },
+                { sno: 48, empId: 7986, name: "Mr. DINESH CHANDRA PANCHARIA", dept: "CSE-2", room: "R305", cabin: "27" },
+                { sno: 49, empId: 7999, name: "Dr. V V JAYA RAMA KRISHNAIAH", dept: "CSE-2", room: "C321A1", cabin: "CABIN" },
+                { sno: 50, empId: 8000, name: "Dr. SNV Jyotshna Devi K", dept: "CSE-2", room: "C206", cabin: "20" },
+                { sno: 51, empId: 8020, name: "Ms. NATHA PRIYA", dept: "CSE-2", room: "C205", cabin: "4" },
+                { sno: 52, empId: 8021, name: "Ms. DEEPTHI NATHA", dept: "CSE-2", room: "C206", cabin: "4" },
+                { sno: 53, empId: 8055, name: "Mr. B ARUN KUMAR", dept: "CSE-2", room: "C205", cabin: "5" },
+                { sno: 54, empId: 8059, name: "Ms. PUNYALA RAMADEVI", dept: "CSE-2", room: "C205", cabin: "6" },
+                { sno: 55, empId: 8080, name: "Ms. KAVITHA SARIHADDU", dept: "CSE-2", room: "C223", cabin: "2" },
+                { sno: 56, empId: 8084, name: "Ms. ALUR PRANEETHA", dept: "CSE-2", room: "C205", cabin: "7" },
+                { sno: 57, empId: 8088, name: "Dr. MOHD SHAMSH TABAREJ", dept: "CSE-2", room: "C223", cabin: "3" },
+                { sno: 58, empId: 8104, name: "Dr. SATRUGHAN KUMAR", dept: "CSE-2", room: "C223", cabin: "4" },
+                { sno: 59, empId: 8110, name: "Ms. ANUMULA SRUTHI", dept: "CSE-2", room: "C205", cabin: "8" },
+                { sno: 60, empId: 8120, name: "Mr. S JAGAN MOHAN", dept: "CSE-2", room: "L606", cabin: "7" },
+                { sno: 61, empId: 8129, name: "Dr. PENUBAKA BALAJI", dept: "CSE-2", room: "C223", cabin: "5" },
+                { sno: 62, empId: 8130, name: "Mr. RUDRAMANI BHUTIA", dept: "CSE-2", room: "C223", cabin: "6" },
+                { sno: 63, empId: 8137, name: "Dr. P V ANUSHA", dept: "CSE-2", room: "C206", cabin: "18" },
+                { sno: 64, empId: 8146, name: "Ms. POTHUMARTHI SRIDEVI", dept: "CSE-2", room: "C223", cabin: "12" },
+                { sno: 65, empId: 8147, name: "Dr. KODALI SADHANA", dept: "CSE-2", room: "C223", cabin: "20" },
+                { sno: 66, empId: 8148, name: "Ms. KADIYAM NASARAMMA", dept: "CSE-2", room: "C223", cabin: "7" },
+                { sno: 67, empId: 8154, name: "Mr. BANGARU BALAKRISHNA", dept: "CSE-2", room: "C205", cabin: "9" },
+                { sno: 68, empId: 8163, name: "Mr. LAVUDIYA NARASIMHA SWAMY", dept: "CSE-2", room: "R305", cabin: "26" },
+                { sno: 69, empId: 8164, name: "Ms. GNANADEEPTHI BITRA", dept: "CSE-2", room: "C206", cabin: "1" },
+                { sno: 70, empId: 8168, name: "Ms. K ANJU ARAVIND", dept: "CSE-2", room: "C205", cabin: "10" },
+                { sno: 71, empId: 8171, name: "Dr. S V SURESH BABU MATLA", dept: "CSE-2", room: "C221A", cabin: "1" },
+                { sno: 72, empId: 8172, name: "Dr. B ANNAPURNA", dept: "CSE-2", room: "C205", cabin: "24" },
+                { sno: 73, empId: 8175, name: "Mr. MACHARLA SIVUDU", dept: "CSE-2", room: "C206", cabin: "9" },
+                { sno: 74, empId: 8176, name: "Mr. YENUGU SIVARAMAIAH", dept: "CSE-2", room: "C223", cabin: "8" },
+                { sno: 75, empId: 8177, name: "Dr. KATAKAM VENKATESWARA RAO", dept: "CSE-2", room: "C206", cabin: "2" },
+                { sno: 76, empId: 8190, name: "Ms. M TEJO LAKSHMI", dept: "CSE-2", room: "C221A", cabin: "5" },
+                { sno: 77, empId: 8193, name: "Ms. DASARI SAILAJA", dept: "CSE-2", room: "C105", cabin: "9" },
+                { sno: 78, empId: 8196, name: "Dr. VENKATA RAO MADDUMALA", dept: "CSE-2", room: "C105", cabin: "6" },
+                { sno: 79, empId: 8199, name: "Mr. RAMBABU KALATHOTI", dept: "CSE-2", room: "C223", cabin: "9" },
+                { sno: 80, empId: 8200, name: "Ms. KHADI LALITHA VANISREE", dept: "CSE-2", room: "C223", cabin: "11" },
+                { sno: 81, empId: 8282, name: "Dr. UPPULURI LAKSHMI SOUNDHARYA", dept: "CSE-2", room: "C206", cabin: "15" },
+                { sno: 82, empId: 8296, name: "Dr. VANDOTH SRINIVASA RAO", dept: "CSE-2", room: "C206", cabin: "12" },
+                { sno: 83, empId: 8297, name: "Dr. MALLADI RAVISANKAR", dept: "CSE-2", room: "M107", cabin: "2" },
+                { sno: 84, empId: 8323, name: "Dr. BADUGU SAMATHA", dept: "CSE-2", room: "M104", cabin: "2" },
+                { sno: 85, empId: 8335, name: "Mr. PINAPATI LAKSHMANA RAO", dept: "CSE-2", room: "L606", cabin: "8" },
+                { sno: 86, empId: 8339, name: "Dr. R S M LAKSHMI PATIBANDLA", dept: "CSE-2", room: "C221A", cabin: "10" },
+                { sno: 87, empId: 8353, name: "Ms. DRAKSHAYANI SIRIAMSETTI", dept: "CSE-2", room: "L606", cabin: "2" },
+                { sno: 88, empId: 8382, name: "Ms. BANDI PRAMEELARANI", dept: "CSE-2", room: "C321A", cabin: "15" },
+                { sno: 89, empId: 8416, name: "Dr. D PRAMODH KRISHNA", dept: "CSE-2", room: "C105", cabin: "10" },
+                { sno: 90, empId: 8428, name: "Dr. ADDANKI MOUNIKA", dept: "CSE-2", room: "C223", cabin: "13" },
+                { sno: 91, empId: 8435, name: "Dr. MADABATTULA P J SANTOSH KUMAR", dept: "CSE-2", room: "C206", cabin: "3" },
+                { sno: 92, empId: 8440, name: "Dr. CHALLAPALLI JHANSI RANI", dept: "CSE-2", room: "C206", cabin: "17" },
+                { sno: 93, empId: 8490, name: "Mr. JITU GOPAIH", dept: "CSE-2", room: "C105", cabin: "11" },
+                { sno: 94, empId: 8533, name: "Dr. P L KISHAN KUMAR REDDY", dept: "CSE-2", room: "C421A2", cabin: "3" },
+                { sno: 95, empId: 8565, name: "Dr. MOHAMMAD SHAHID", dept: "CSE-2", room: "C206", cabin: "13" },
+                { sno: 96, empId: 8592, name: "Dr. YELISELA RAJESH", dept: "CSE-2", room: "C205", cabin: "21" },
+                { sno: 97, empId: 8635, name: "Dr. P. PRAVEEN KUMAR", dept: "CSE-2", room: "C216", cabin: "CABIN" },
+                { sno: 98, empId: 8701, name: "Mr. MOHAMMAD ASHIQUE AZAD", dept: "CSE-2", room: "C105", cabin: "12" },
+                { sno: 99, empId: 8707, name: "Mr. ARAVIND NALAMOTHU", dept: "CSE-2", room: "C205", cabin: "23" },
+                { sno: 100, empId: 8800, name: "Mr. JONATHAN BATHULA", dept: "CSE-2", room: "C206", cabin: "14" },
+                { sno: 101, empId: 8806, name: "Dr. T CHITHRAKUMAR", dept: "CSE-2", room: "C205", cabin: "11" },
+                { sno: 102, empId: 8814, name: "Dr. P PRABAKARAN", dept: "CSE-2", room: "C205", cabin: "12" },
+                { sno: 103, empId: 8818, name: "Mr. FAIZAL NUJUMUDEEN", dept: "CSE-2", room: "R305", cabin: "25" },
+                { sno: 104, empId: 8820, name: "Mrs. BOBBA SAHITHI", dept: "CSE-2", room: "C105", cabin: "8" },
+                { sno: 105, empId: 8823, name: "Mr. MUPPIDI SOMA SUNDARA RAO", dept: "CSE-2", room: "L606", cabin: "9" },
+                { sno: 106, empId: 8836, name: "Ms. DUDIGAM RAMYA", dept: "CSE-2", room: "L606", cabin: "3" },
+                { sno: 107, empId: 8853, name: "Mr. KRISHNA KISHORE THOTA", dept: "CSE-2", room: "C105", cabin: "13" },
+                { sno: 108, empId: 8864, name: "Mr. VADDE SUJAN BABU", dept: "CSE-2", room: "C223", cabin: "14" },
+                { sno: 109, empId: 8873, name: "Ms. T. SAI LAKSHMI", dept: "CSE-2", room: "C205", cabin: "13" },
+                { sno: 110, empId: 8874, name: "Dr. TARAK HUSSAIN", dept: "CSE-2", room: "L606", cabin: "4" },
+                { sno: 111, empId: 8899, name: "Dr. V. KRISHNA REDDY", dept: "CSE-2", room: "F101", cabin: "CABIN" },
+                { sno: 112, empId: 8905, name: "Dr. K. ANU RADHA", dept: "CSE-2", room: "M103", cabin: "3" },
+                { sno: 113, empId: 8906, name: "Mr. SHAIK JILANI BASHA", dept: "CSE-2", room: "R305", cabin: "23" },
+                { sno: 114, empId: 8909, name: "Dr. MANIKYA PRASUNA", dept: "CSE-2", room: "C214", cabin: "CABIN" },
+                { sno: 115, empId: 8913, name: "Dr. G RAVIKANTH", dept: "CSE-2", room: "C221A2", cabin: "CABIN" },
+                { sno: 116, empId: 8916, name: "Dr. V SIVARAMARAJU VETUKURI", dept: "CSE-2", room: "C205", cabin: "22" },
+                { sno: 117, empId: 8922, name: "Ms. ELISABETH SUSAN DEVARAPALLI", dept: "CSE-2", room: "L606", cabin: "1" },
+                { sno: 118, empId: 8964, name: "Dr. B. TIRAPATHI REDDY (HOD)", dept: "CSE-2", room: "C203", cabin: "CABIN" },
+                { sno: 119, empId: 8969, name: "Ms. SATHYAVANI ADDANKI", dept: "CSE-2", room: "C221A", cabin: "6" },
+                { sno: 120, empId: 8978, name: "Dr. KURAGANTI SANTHI", dept: "CSE-2", room: "C206", cabin: "5" },
+                { sno: 121, empId: 8979, name: "Ms. BADIPATI SIVAGANGA", dept: "CSE-2", room: "C223", cabin: "15" },
+                { sno: 122, empId: 8981, name: "Ms. SAMPATHIRAO SUNEETHA", dept: "CSE-2", room: "C105", cabin: "1" },
+                { sno: 123, empId: 8995, name: "Dr. AMIT KUMAR KAR", dept: "CSE-2", room: "C221A", cabin: "7" },
+                { sno: 124, empId: 8996, name: "Mr. SHIYAM V", dept: "CSE-2", room: "L606", cabin: "5" },
+                { sno: 125, empId: 8997, name: "Ms. MAHESWARI BANDI", dept: "CSE-2", room: "C205", cabin: "20" },
+                { sno: 126, empId: 9020, name: "Ms. EDUPUGANTI MOUNIKA", dept: "CSE-2", room: "C105", cabin: "2" },
+                { sno: 127, empId: 9028, name: "Mr. VENKATA RAO JAVVAJI", dept: "CSE-2", room: "C105", cabin: "3" },
+                { sno: 128, empId: 9033, name: "Mr. VELCHURI BALAJI", dept: "CSE-2", room: "C206", cabin: "6" },
+                { sno: 129, empId: 9034, name: "Mr. SANDEEP NANDA", dept: "CSE-2", room: "C206", cabin: "7" },
+                { sno: 130, empId: 9035, name: "Mr. SINGARAJU SRINIVASULU", dept: "CSE-2", room: "C105", cabin: "5" },
+                { sno: 131, empId: 9037, name: "Ms. SHAIK SANHEERA", dept: "CSE-2", room: "C105", cabin: "15" },
+                { sno: 132, empId: 9038, name: "Ms. C V K SIRISHA", dept: "CSE-2", room: "C105", cabin: "16" },
+                { sno: 133, empId: 9101, name: "Dr. M GEETHA", dept: "CSE-2", room: "C205", cabin: "14" },
+                { sno: 134, empId: 9131, name: "Ms. SUROJU LEKHANA SRILAKSHMI", dept: "CSE-2", room: "C223", cabin: "17" },
+                { sno: 135, empId: 9255, name: "Ms. PRAVALLIKA K.", dept: "CSE-2", room: "L606", cabin: "6" },
+                { sno: 136, empId: 9377, name: "Mr. NIMMAGADDA YASWANTH SAI", dept: "CSE-2", room: "R305", cabin: "24" },
+                { sno: 137, empId: 9391, name: "Ms. T. SAILAJA", dept: "CSE-2", room: "C105", cabin: "7" },
+                { sno: 138, empId: 9413, name: "Dr. CHAPPALA RAMADEVI", dept: "CSE-2", room: "C321A", cabin: "14" },
+                { sno: 139, empId: 9427, name: "Mr. CHANDU DELHI POLICE", dept: "CSE-2", room: "C206", cabin: "8" },
+                { sno: 140, empId: 9452, name: "Dr. SUJITH ARIYAPADATH", dept: "CSE-2", room: "L606", cabin: "11" },
+                { sno: 141, empId: 9484, name: "NALLURI VENKATA MADHU BINDU", dept: "CSE-2", room: "C221A", cabin: "2" },
+                { sno: 142, empId: 9634, name: "Mr. N Vijay Gopal", dept: "CSE-2", room: "L606", cabin: "12" }
+            ],
+            "CSE-3": [
+                { sno: 1, empId: 2486, name: "Dr. B. CHAITANYA KRISHNA", dept: "CSE-3", room: "C104", cabin: "CABIN" },
+                { sno: 2, empId: 2499, name: "Dr. TATA RAVI KUMAR", dept: "CSE-3", room: "C221A3", cabin: "CABIN" },
+                { sno: 3, empId: 2934, name: "Dr. G. SIVANAGESWARA RAO", dept: "CSE-3", room: "C521A1", cabin: "CABIN" },
+                { sno: 4, empId: 2940, name: "Dr. K.V.V.SATYANARAYANA", dept: "CSE-3", room: "C221A4", cabin: "CABIN" },
+                { sno: 5, empId: 3173, name: "Dr. N. SRINIVASU", dept: "CSE-3", room: "C215B", cabin: "CABIN" },
+                { sno: 6, empId: 3849, name: "Dr. T. VAMSIDHAR", dept: "CSE-3", room: "C405", cabin: "21" },
+                { sno: 7, empId: 4242, name: "Dr. RAJARAJESWARI POTHURAJU", dept: "CSE-3", room: "C513", cabin: "CABIN" },
+                { sno: 8, empId: 4826, name: "Dr. P. NAGESH", dept: "CSE-3", room: "C521A1", cabin: "CABIN" },
+                { sno: 9, empId: 5237, name: "Dr. P. VIDYULLATHA", dept: "CSE-3", room: "C509A", cabin: "CABIN" },
+                { sno: 10, empId: 5887, name: "Dr. S. SRI HARSHA", dept: "CSE-3", room: "C515B", cabin: "CABIN" },
+                { sno: 11, empId: 6216, name: "Mr. TIRANDASU RAVI KUMAR", dept: "CSE-3", room: "C405", cabin: "20" },
+                { sno: 12, empId: 6280, name: "Dr. G. VEERRAJU", dept: "CSE-3", room: "C405", cabin: "19" },
+                { sno: 13, empId: 6799, name: "Dr. A SENTHIL (HOD)", dept: "CSE-3", room: "C503", cabin: "CABIN" },
+                { sno: 14, empId: 7026, name: "Mr. R RANJITH KUMAR", dept: "CSE-3", room: "C223", cabin: "18" },
+                { sno: 15, empId: 7097, name: "Ms. B. YAMINI SUPRIYA", dept: "CSE-3", room: "C405", cabin: "18" },
+                { sno: 16, empId: 7140, name: "Mr. P. CHANDRA MOHAN RAI", dept: "CSE-3", room: "R605", cabin: "1" },
+                { sno: 17, empId: 7145, name: "Ms. P. SUPRIYA", dept: "CSE-3", room: "C505", cabin: "3" },
+                { sno: 18, empId: 7265, name: "Dr. R. VIJAYA KUMAR REDDY", dept: "CSE-3", room: "R605", cabin: "2" },
+                { sno: 19, empId: 7957, name: "PBVN Prasad", dept: "CSE-3", room: "C505", cabin: "6" },
+                { sno: 20, empId: 8028, name: "Mr. S. MAHESH NAIDU", dept: "CSE-3", room: "C521A1", cabin: "CABIN" },
+                { sno: 21, empId: 8069, name: "Dr. MUKKAPATI NAVEEN", dept: "CSE-3", room: "C321A", cabin: "16" },
+                { sno: 22, empId: 8241, name: "Ms. THOTA LAKSHMI DEEPIKA ROY", dept: "CSE-3", room: "M119", cabin: "2" },
+                { sno: 23, empId: 8547, name: "Mr. M. SUBBA RAO", dept: "CSE-3", room: "C405", cabin: "22" },
+                { sno: 24, empId: 8560, name: "Mr. N. RAMARAO", dept: "CSE-3", room: "C221A", cabin: "13" },
+                { sno: 25, empId: 8563, name: "Dr. PANGULURI PADMAVATHI", dept: "CSE-3", room: "C505", cabin: "18" },
+                { sno: 26, empId: 8708, name: "Ms. T JYOTHI", dept: "CSE-3", room: "C601", cabin: "5" },
+                { sno: 27, empId: 8901, name: "Mr. N MALLIKHARJUNA RAO", dept: "CSE-3", room: "C206", cabin: "19" },
+                { sno: 28, empId: 8902, name: "Dr. SAIYED FAIAYAZ WARIS", dept: "CSE-3", room: "C405", cabin: "17" },
+                { sno: 29, empId: 9009, name: "Ms. SRILAKSHMI RAMAYA SAKAMUDI", dept: "CSE-3", room: "C405", cabin: "16" },
+                { sno: 30, empId: 9154, name: "Ms. MANDE SPANDANA", dept: "CSE-3", room: "M119", cabin: "3" },
+                { sno: 31, empId: 9171, name: "Ms. THUMMALA PURNIMA", dept: "CSE-3", room: "C405", cabin: "23" },
+                { sno: 32, empId: 9174, name: "Ms. T. ASWINI DEVI", dept: "CSE-3", room: "L508", cabin: "3" },
+                { sno: 33, empId: 9177, name: "Mr. KARI VENKATA SUMANTH", dept: "CSE-3", room: "L508", cabin: "4" },
+                { sno: 34, empId: 9194, name: "Dr. LOBSANG DARGE", dept: "CSE-3", room: "C405", cabin: "15" },
+                { sno: 35, empId: 9196, name: "Ms. VADDURI MANEESHA", dept: "CSE-3", room: "L508", cabin: "5" },
+                { sno: 36, empId: 9213, name: "Dr. A. SUDHIR BABU", dept: "CSE-3", room: "M309", cabin: "B" },
+                { sno: 37, empId: 9218, name: "Dr. CH. KIRAN KUMAR", dept: "CSE-3", room: "L508", cabin: "6" },
+                { sno: 38, empId: 9247, name: "Ms. A. SASI HIMA BINDU", dept: "CSE-3", room: "L508", cabin: "7" },
+                { sno: 39, empId: 9278, name: "Dr. K. MALLIKARJUNAMALLU", dept: "CSE-3", room: "L508", cabin: "8" },
+                { sno: 40, empId: 9281, name: "Ms. CHERUKUPALLI PRABHAVATHI", dept: "CSE-3", room: "L508", cabin: "9" },
+                { sno: 41, empId: 9295, name: "Ms. Y. SAROJA", dept: "CSE-3", room: "L508", cabin: "10" },
+                { sno: 42, empId: 9303, name: "Dr. PRERNA MOHIT", dept: "CSE-3", room: "C405", cabin: "12" },
+                { sno: 43, empId: 9312, name: "Dr. P. V. VENKATESWARA RAO", dept: "CSE-3", room: "L508", cabin: "11" },
+                { sno: 44, empId: 9323, name: "Mr. SEELAM VISWESWARA RAO", dept: "CSE-3", room: "C505", cabin: "NA" },
+                { sno: 45, empId: 9324, name: "Dr. K. SARANYA", dept: "CSE-3", room: "M119", cabin: "4" },
+                { sno: 46, empId: 9327, name: "Mr. J. YATEESH", dept: "CSE-3", room: "C405", cabin: "2k" },
+                { sno: 47, empId: 9342, name: "Mr. SANDEEP KUMAR SHARMA", dept: "CSE-3", room: "C221A", cabin: "12" },
+                { sno: 48, empId: 9347, name: "Mr. MOSHE DAYAN SIRAPANGI", dept: "CSE-3", room: "L508", cabin: "12" },
+                { sno: 49, empId: 9366, name: "Dr. SUSMITHA UDDARAJU", dept: "CSE-3", room: "L508", cabin: "13" },
+                { sno: 50, empId: 9395, name: "Mrs. K. JYOTHSNA DEVI", dept: "CSE-3", room: "C405", cabin: "11" },
+                { sno: 51, empId: 9523, name: "Mr. R. VIJAY", dept: "CSE-3", room: "C321A", cabin: "13" },
+                { sno: 52, empId: 9601, name: "Dr. Raynukaazhakarsamy", dept: "CSE-3", room: "L508", cabin: "15" },
+                { sno: 53, empId: 9269, name: "Dr. SAZIYA TABBASUM", dept: "CSE-3", room: "C405", cabin: "14" },
+                { sno: 54, empId: 9270, name: "Mr. STALIN BABU JALLI", dept: "CSE-3", room: "C405", cabin: "13" }
+            ],
+            "CSE-4": [
+                { sno: 1, empId: 10, name: "DR. V. CHANDRA PRAKASH", dept: "CSE-4", room: "C521A4", cabin: "CABIN" },
+                { sno: 2, empId: 439, name: "DR. V. SRIKANTH", dept: "CSE-4", room: "C403", cabin: "CABIN" },
+                { sno: 3, empId: 827, name: "DR. Y. PRASANTH", dept: "CSE-4", room: "C514B", cabin: "CABIN" },
+                { sno: 4, empId: 878, name: "DR. G. DINESH KUMAR", dept: "CSE-4", room: "C515B", cabin: "CABIN" },
+                { sno: 5, empId: 1277, name: "DR. T. PAVAN KUMAR", dept: "CSE-4", room: "C603A", cabin: "CABIN" },
+                { sno: 6, empId: 1479, name: "DR. S. SRINIVASA RAO", dept: "CSE-4", room: "C015B", cabin: "CABIN" },
+                { sno: 7, empId: 1553, name: "DR. B. SEKHAR BABU", dept: "CSE-4", room: "C018", cabin: "CABIN" },
+                { sno: 8, empId: 1901, name: "Dr. RUTH RAMYA", dept: "CSE-4", room: "C115A", cabin: "CABIN" },
+                { sno: 9, empId: 1920, name: "DR. P. LAKSHMI PRASANNA", dept: "CSE-4", room: "C213", cabin: "CABIN" },
+                { sno: 10, empId: 1974, name: "Dr. K. RAVINDRANATH", dept: "CSE-4", room: "C116", cabin: "CABIN" },
+                { sno: 11, empId: 2192, name: "Dr. K. SUBRAHMANYAM", dept: "CSE-4", room: "C521A2", cabin: "CABIN" },
+                { sno: 12, empId: 2649, name: "DR. NAGA MALLESWARI", dept: "CSE-4", room: "C509A", cabin: "CABIN" },
+                { sno: 13, empId: 2919, name: "DR. M. S. R. PRASAD", dept: "CSE-4", room: "M116", cabin: "4" },
+                { sno: 14, empId: 2937, name: "DR. K. V. RAJU", dept: "CSE-4", room: "L402", cabin: "CABIN" },
+                { sno: 15, empId: 3346, name: "DR. P. V. R. D. PRASADA RAO", dept: "CSE-4", room: "C421A2", cabin: "1" },
+                { sno: 16, empId: 3880, name: "MR. V. VIJAY KUMAR", dept: "CSE-4", room: "C505", cabin: "1" },
+                { sno: 17, empId: 3895, name: "DR. G. SWAIN", dept: "CSE-4", room: "M309", cabin: "F" },
+                { sno: 18, empId: 4092, name: "DR. P. S. V. S. SRIDHAR", dept: "CSE-4", room: "C112", cabin: "CABIN" },
+                { sno: 19, empId: 4277, name: "DR. M. LAKSHMANA PHANEENDRA", dept: "CSE-4", room: "C603D", cabin: "CABIN" },
+                { sno: 20, empId: 4788, name: "DR. RAJU ANITHA", dept: "CSE-4", room: "C513", cabin: "CABIN" },
+                { sno: 21, empId: 4795, name: "DR. P. YELLAMMA", dept: "CSE-4", room: "C509A", cabin: "CABIN" },
+                { sno: 22, empId: 4868, name: "DR. K. ASHESH", dept: "CSE-4", room: "C603C", cabin: "CABIN" },
+                { sno: 23, empId: 5254, name: "Mrs. V. MOUNICA", dept: "CSE-4", room: "C509A", cabin: "CABIN" },
+                { sno: 24, empId: 5257, name: "DR. K. BHANU PRAKASH", dept: "CSE-4", room: "L605", cabin: "CABIN" },
+                { sno: 25, empId: 5849, name: "DR. A. K. VELMURUGAN", dept: "CSE-4", room: "M108", cabin: "1" },
+                { sno: 26, empId: 5956, name: "DR. P. M. ASHOK KUMAR", dept: "CSE-4", room: "C505", cabin: "10" },
+                { sno: 27, empId: 6126, name: "DR. P. VIDYA SAGAR", dept: "CSE-4", room: "C114A", cabin: "CABIN" },
+                { sno: 28, empId: 6199, name: "DR. VITHYA GANESAN", dept: "CSE-4", room: "C521A3", cabin: "CABIN" },
+                { sno: 29, empId: 6229, name: "DR. A. ABDUL RAHMAN", dept: "CSE-4", room: "M309", cabin: "D" },
+                { sno: 30, empId: 6295, name: "MRS. SMRITILEKHA DAS", dept: "CSE-4", room: "M119", cabin: "5" },
+                { sno: 31, empId: 6307, name: "DR. S. HRUSHKESAVA RAJU", dept: "CSE-4", room: "C603", cabin: "A2" },
+                { sno: 32, empId: 6332, name: "DR. N. M. JYOTHI", dept: "CSE-4", room: "M119", cabin: "6" },
+                { sno: 33, empId: 6442, name: "DR. P. ITHAYA RANI", dept: "CSE-4", room: "M104", cabin: "3" },
+                { sno: 34, empId: 6482, name: "DR. B. UMAMAHESWARA RAO", dept: "CSE-4", room: "M309", cabin: "J" },
+                { sno: 35, empId: 6641, name: "DR. K. NAGARJUNA", dept: "CSE-4", room: "C405", cabin: "10" },
+                { sno: 36, empId: 6869, name: "DR. BASANT SAH", dept: "CSE-4", room: "M109", cabin: "3" },
+                { sno: 37, empId: 6911, name: "DR. KRISHNAN THIRUPPATHI", dept: "CSE-4", room: "C405", cabin: "9" },
+                { sno: 38, empId: 7060, name: "MR. TUSHAR KANTI DE", dept: "CSE-4", room: "M119", cabin: "7" },
+                { sno: 39, empId: 7122, name: "DR. SAJJA TULASI KRISHNA", dept: "CSE-4", room: "C405", cabin: "8" },
+                { sno: 40, empId: 7175, name: "DR. VISWANATHAN RAMASAMY REDDY", dept: "CSE-4", room: "C521A3", cabin: "CABIN" },
+                { sno: 41, empId: 7264, name: "Mr. R. Nagendra Babu", dept: "CSE-4", room: "M309", cabin: "C" },
+                { sno: 42, empId: 7300, name: "DR. R. D. SATHIYA", dept: "CSE-4", room: "M309", cabin: "K" },
+                { sno: 43, empId: 7346, name: "MRS. SUNEETHA BANDEELA", dept: "CSE-4", room: "R102", cabin: "7" },
+                { sno: 44, empId: 7398, name: "DR. JAGADISH GURRALA", dept: "CSE-4", room: "C223", cabin: "19" },
+                { sno: 45, empId: 7511, name: "DR. DARAVIKRAM", dept: "CSE-4", room: "M309", cabin: "G" },
+                { sno: 46, empId: 7602, name: "MR. M. MARKANDEYULU", dept: "CSE-4", room: "C601", cabin: "13" },
+                { sno: 47, empId: 7864, name: "MR. PALADUGU VENKATESWARA RAO", dept: "CSE-4", room: "C421A2", cabin: "2" },
+                { sno: 48, empId: 7949, name: "DR. G. KRISHNA MOHAN", dept: "CSE-4", room: "M309", cabin: "C" },
+                { sno: 49, empId: 7989, name: "MR. SUKHAM ROMEN SINGH", dept: "CSE-4", room: "C405", cabin: "7" },
+                { sno: 50, empId: 8016, name: "MR. L. V. SAMBASIVARAO", dept: "CSE-4", room: "C603", cabin: "2" },
+                { sno: 51, empId: 8063, name: "DR. B. VEERAMALLU", dept: "CSE-4", room: "M309", cabin: "H" },
+                { sno: 52, empId: 8068, name: "DR. JAYAVARAPU KARTHIK", dept: "CSE-4", room: "C603D", cabin: "CABIN" },
+                { sno: 53, empId: 8085, name: "DR. R. MAHENDRAN", dept: "CSE-4", room: "M119", cabin: "8" },
+                { sno: 54, empId: 8094, name: "DR. G. V. SAM KUMAR", dept: "CSE-4", room: "M119", cabin: "9" },
+                { sno: 55, empId: 8105, name: "DR. G. RAJENDRA KUMAR", dept: "CSE-4", room: "M309", cabin: "A" },
+                { sno: 56, empId: 8106, name: "MR. D. KISHORE", dept: "CSE-4", room: "C603", cabin: "1" },
+                { sno: 57, empId: 8118, name: "DR. K. SELVAM", dept: "CSE-4", room: "R102", cabin: "18" },
+                { sno: 58, empId: 8121, name: "DR. DHARMAIAH DEVARAPALLI", dept: "CSE-4", room: "M309", cabin: "E" },
+                { sno: 59, empId: 8138, name: "MR. YENGALA AMARAIAH", dept: "CSE-4", room: "C601", cabin: "2" },
+                { sno: 60, empId: 8145, name: "MS. RAJAMAHENDRAVARAPU LAKSHMI DURGA", dept: "CSE-4", room: "C405", cabin: "6" },
+                { sno: 61, empId: 8215, name: "DR. B. L. N. PHANEENDRA KUMAR", dept: "CSE-4", room: "C603C", cabin: "CABIN" },
+                { sno: 62, empId: 8242, name: "MS. GUDAPATI SUNEETHA", dept: "CSE-4", room: "R102", cabin: "11" },
+                { sno: 63, empId: 8244, name: "MS. LAVANYA KONGALA", dept: "CSE-4", room: "C601", cabin: "7" },
+                { sno: 64, empId: 8245, name: "MR. REGULAGADDA RAMAKRISHNA", dept: "CSE-4", room: "M307", cabin: "1" },
+                { sno: 65, empId: 8247, name: "MRS. N. SRAVANTHI", dept: "CSE-4", room: "C505", cabin: "5" },
+                { sno: 66, empId: 8248, name: "MS. YAMPATI BHAGYALAKSHMI", dept: "CSE-4", room: "C601", cabin: "6" },
+                { sno: 67, empId: 8270, name: "MS. ARUNA KOLUKULAPALLI", dept: "CSE-4", room: "R102", cabin: "13" },
+                { sno: 68, empId: 8299, name: "MR. YALLAMATI PRAKASA RAO", dept: "CSE-4", room: "C603", cabin: "4" },
+                { sno: 69, empId: 8310, name: "MR. G. V. RAMANA REDDY", dept: "CSE-4", room: "C601", cabin: "14" },
+                { sno: 70, empId: 8317, name: "MR. TALATOTI RATNA KUMAR", dept: "CSE-4", room: "R102", cabin: "8" },
+                { sno: 71, empId: 8329, name: "MS. NALLURI BHARGAVI", dept: "CSE-4", room: "C405", cabin: "5" },
+                { sno: 72, empId: 8334, name: "MS. DONEPUDI ROHINI", dept: "CSE-4", room: "R102", cabin: "14" },
+                { sno: 73, empId: 8337, name: "DR. KALAKOTI GOWRISANKAR", dept: "CSE-4", room: "C601", cabin: "15" },
+                { sno: 74, empId: 8377, name: "DR. MD. SHAMSUL HAQUE ANSARI", dept: "CSE-4", room: "C405", cabin: "4" },
+                { sno: 75, empId: 8400, name: "MR. MALLAMPATI MAHESH", dept: "CSE-4", room: "C505", cabin: "18" },
+                { sno: 76, empId: 8409, name: "DR. CH. NAGAMANI", dept: "CSE-4", room: "M119", cabin: "CABIN" },
+                { sno: 77, empId: 8410, name: "MS. G. ANUSHA", dept: "CSE-4", room: "M119", cabin: "CABIN" },
+                { sno: 78, empId: 8412, name: "DR. MOHSIN FAYAZ", dept: "CSE-4", room: "M119", cabin: "10" },
+                { sno: 79, empId: 8434, name: "MR. LAKSHMANARAO BATTULA", dept: "CSE-4", room: "C603", cabin: "3" },
+                { sno: 80, empId: 8492, name: "MS. BANDLA NIROSHA", dept: "CSE-4", room: "C405", cabin: "3" },
+                { sno: 81, empId: 8508, name: "MRS. R. SATHVIKI", dept: "CSE-4", room: "R102", cabin: "10" },
+                { sno: 82, empId: 8553, name: "MR. VENKATA SUBRAMANYAM KALAVALA", dept: "CSE-4", room: "R102", cabin: "12" },
+                { sno: 83, empId: 8740, name: "MRS. SHAIK THASEEN TAJ", dept: "CSE-4", room: "R102", cabin: "17" },
+                { sno: 84, empId: 8762, name: "MR. K. GOPALA KRISHNA", dept: "CSE-4", room: "M307", cabin: "2" },
+                { sno: 85, empId: 8789, name: "MR. K. HARI", dept: "CSE-4", room: "M307", cabin: "3" },
+                { sno: 86, empId: 8795, name: "DR. B. SURESH", dept: "CSE-4", room: "C601", cabin: "8" },
+                { sno: 87, empId: 8822, name: "DR. R. SHALINI", dept: "CSE-4", room: "C603", cabin: "A1" },
+                { sno: 88, empId: 8852, name: "MS. T. SRIVALLI", dept: "CSE-4", room: "R102", cabin: "9" },
+                { sno: 89, empId: 8882, name: "DR. K. RAJASEKHARA RAO", dept: "CSE-4", room: "C201", cabin: "CABIN" },
+                { sno: 90, empId: 9053, name: "MRS. KOTTURU PRASUNA", dept: "CSE-4", room: "C221A", cabin: "14" },
+                { sno: 91, empId: 9071, name: "DR. NIRUPMA PATHAK", dept: "CSE-4", room: "C603", cabin: "5" },
+                { sno: 92, empId: 9083, name: "MS. V. ASHA LATHA", dept: "CSE-4", room: "C405", cabin: "2" },
+                { sno: 93, empId: 9102, name: "DR. S. SARAVANAN", dept: "CSE-4", room: "C505", cabin: "17" },
+                { sno: 94, empId: 9138, name: "GAVINI NAGA PAVANI", dept: "CSE-4", room: "C603", cabin: "6" },
+                { sno: 95, empId: 9500, name: "MR. A. SUDHAKAR", dept: "CSE-4", room: "M307", cabin: "4" },
+                { sno: 96, empId: 9511, name: "MRS. AKULA AMRUTAVALLI", dept: "CSE-4", room: "C405", cabin: "1" },
+                { sno: 97, empId: 9517, name: "MS. C. LALITHA MANASA", dept: "CSE-4", room: "C603", cabin: "7" },
+                { sno: 98, empId: 9519, name: "DR. SURESH BABU J", dept: "CSE-4", room: "C601", cabin: "12" },
+                { sno: 99, empId: 9527, name: "MRS. A. SWATHI", dept: "CSE-4", room: "C601", cabin: "1" },
+                { sno: 100, empId: 9538, name: "Mr. P. VIJAYA BHASKAR", dept: "CSE-4", room: "C601", cabin: "9" },
+                { sno: 101, empId: 9561, name: "Mr. KOYYA AVINASH", dept: "CSE-4", room: "C601", cabin: "3" },
+                { sno: 102, empId: 9570, name: "Mr. BHUKYA JABBER", dept: "CSE-4", room: "C601", cabin: "4" },
+                { sno: 103, empId: 9574, name: "Mr. GUMPULA ARAVIND", dept: "CSE-4", room: "C603", cabin: "8" },
+                { sno: 104, empId: 9620, name: "Mr. G. MOHANA RAO", dept: "CSE-4", room: "C601", cabin: "10" },
+                { sno: 105, empId: 9624, name: "MR. AJAY KUMAR", dept: "CSE-4", room: "C601", cabin: "11" },
+                { sno: 106, empId: 9626, name: "Mr. RAJA YASODHAR", dept: "CSE-4", room: "C603", cabin: "9" }
+            ],
+            "ELGE": [
+                { sno: 1, empId: 2104, name: "MR. D. KALYAN", dept: "ELGE", room: "R305", cabin: "8" },
+                { sno: 2, empId: 2657, name: "DR. KOGANTI SRIPATH ROY", dept: "ELGE", room: "C424", cabin: "CABIN" },
+                { sno: 3, empId: 3167, name: "DR. MANCHIRAJU KAMESWARA RAO", dept: "ELGE", room: "C114", cabin: "CABIN" },
+                { sno: 4, empId: 3726, name: "DR. PATHAN SALEEM AKRAM", dept: "ELGE", room: "R305", cabin: "CABIN" },
+                { sno: 5, empId: 3786, name: "DR. SURYA NARAYANA PADHI", dept: "ELGE", room: "R305", cabin: "CABIN" },
+                { sno: 6, empId: 3914, name: "DR. PORURI GOPI KRISHNA", dept: "ELGE", room: "R305", cabin: "13" },
+                { sno: 7, empId: 4051, name: "MR. SRUNGARAM RAVI TEJA", dept: "ELGE", room: "R305", cabin: "9" },
+                { sno: 8, empId: 4093, name: "DR. VENKATA NARESH MANDHALA", dept: "ELGE", room: "C302", cabin: "CABIN" },
+                { sno: 9, empId: 4108, name: "DR. GOGINENI KRISHNA CHAITANYA", dept: "ELGE", room: "R305", cabin: "2" },
+                { sno: 10, empId: 4278, name: "MR. RAMAIAH CHALLA", dept: "ELGE", room: "R305", cabin: "10" },
+                { sno: 11, empId: 4400, name: "CH. MOHAN KUMAR", dept: "ELGE", room: "R305", cabin: "11" },
+                { sno: 12, empId: 4402, name: "DR. YELLA VENKATA RAJESH", dept: "ELGE", room: "R305", cabin: "12" },
+                { sno: 13, empId: 4654, name: "MR. JONNALAGADDA SURYA KIRAN", dept: "ELGE", room: "R305", cabin: "14" },
+                { sno: 14, empId: 4719, name: "DR. YALAVARTHI USHA DEVI", dept: "ELGE", room: "R305", cabin: "CABIN" },
+                { sno: 15, empId: 5269, name: "DR. V. DEEPAK", dept: "ELGE", room: "R305", cabin: "CABIN" },
+                { sno: 16, empId: 5395, name: "DR. ASWIN KUMER S. V.", dept: "ELGE", room: "R305", cabin: "CABIN" },
+                { sno: 17, empId: 5406, name: "DR. S. ROOBAN", dept: "ELGE", room: "R402", cabin: "CABIN" },
+                { sno: 18, empId: 5448, name: "DR. DINESH KUMAR A", dept: "ELGE", room: "M108", cabin: "1" },
+                { sno: 19, empId: 5616, name: "DR. S. ARUN METHA", dept: "ELGE", room: "R305", cabin: "CABIN" },
+                { sno: 20, empId: 5730, name: "MR. KANAKALA V. RAVI TEJA", dept: "ELGE", room: "R305", cabin: "15" },
+                { sno: 21, empId: 5848, name: "DR. PADMANABAN K", dept: "ELGE", room: "M108", cabin: "2" },
+                { sno: 22, empId: 6274, name: "DR. GANGA RAMA KOTESWARA RAO", dept: "ELGE", room: "R502", cabin: "CABIN" },
+                { sno: 23, empId: 6288, name: "MS. PUPPALA RAMYA", dept: "ELGE", room: "R305", cabin: "16" },
+                { sno: 24, empId: 6298, name: "MR. BALAJEE R. M.", dept: "ELGE", room: "R305", cabin: "17" },
+                { sno: 25, empId: 6306, name: "DR. SADAM KAVITHA", dept: "ELGE", room: "R305", cabin: "3" },
+                { sno: 26, empId: 6655, name: "DR. SUNEETHA BULLA", dept: "ELGE", room: "R305", cabin: "4" },
+                { sno: 27, empId: 6684, name: "DR. S. SRITHAR", dept: "ELGE", room: "R305", cabin: "5" },
+                { sno: 28, empId: 6921, name: "Ms. ANJANA DEVI AKURATHI", dept: "ELGE", room: "R305", cabin: "18" },
+                { sno: 29, empId: 6943, name: "Mr. BHAVANAM VENKATA SURESH REDDY", dept: "ELGE", room: "R305", cabin: "19" },
+                { sno: 30, empId: 7155, name: "Dr. N. B. ARUNE KUMAR", dept: "ELGE", room: "R305", cabin: "20" },
+                { sno: 31, empId: 7376, name: "Dr. V. L. MANGESH", dept: "ELGE", room: "R305", cabin: "CABIN" },
+                { sno: 32, empId: 8004, name: "Mr. BAKKALA SANTHA KUMAR", dept: "ELGE", room: "R305", cabin: "CABIN" },
+                { sno: 33, empId: 8135, name: "Dr. SURYA KIRAN CHEBROLU", dept: "ELGE", room: "R305", cabin: "6" },
+                { sno: 34, empId: 8510, name: "Dr. GANTA JACOB VICTOR", dept: "ELGE", room: "R305", cabin: "7" }
+            ],
+            "IRD": [
+                { sno: 1, empId: 1737, name: "DR. B. T. P. MADHAV", dept: "IRD", room: "L711", cabin: "CABIN" },
+                { sno: 2, empId: 1742, name: "Dr. DEVULAPALLI V. A. RAMA SASTRY", dept: "IRD", room: "M005", cabin: "CABIN" },
+                { sno: 3, empId: 2994, name: "DR. CHAKKA RAGHAVA PRASAD", dept: "IRD", room: "L409", cabin: "CABIN" },
+                { sno: 4, empId: 3068, name: "DR. BOGGARAPU NAGESWARA RAO", dept: "IRD", room: "M112", cabin: "1" },
+                { sno: 5, empId: 3155, name: "DR. GURRAMPATI VENKATA RAMANA REDDY", dept: "IRD", room: "F106A", cabin: "CABIN" },
+                { sno: 6, empId: 3621, name: "DR. POKKUNURI PARDHA SARADHI", dept: "IRD", room: "R102", cabin: "CABIN" },
+                { sno: 7, empId: 4452, name: "DR. KOLLURU VENKATA RATNAM", dept: "IRD", room: "R202", cabin: "1" },
+                { sno: 8, empId: 4914, name: "DR. SHAIK SAGAR IMAMBI", dept: "IRD", room: "C221A4", cabin: "CABIN" },
+                { sno: 9, empId: 5171, name: "DR. G. MURALI", dept: "IRD", room: "M105", cabin: "1" },
+                { sno: 10, empId: 5261, name: "DR. ENIREDDY VAMSIDHAR", dept: "IRD", room: "C104", cabin: "CABIN" },
+                { sno: 11, empId: 5715, name: "Dr. S. SHANMUGAN", dept: "IRD", room: "L601", cabin: "CABIN" },
+                { sno: 12, empId: 5927, name: "DR. ARAVIND KILARU", dept: "IRD", room: "R305", cabin: "CABIN" },
+                { sno: 13, empId: 6361, name: "DR. SURYAKANTH V. GANGASHETTY", dept: "IRD", room: "C014A", cabin: "CABIN" },
+                { sno: 14, empId: 6415, name: "Dr. Nilu Singh", dept: "IRD", room: "L605", cabin: "CABIN" },
+                { sno: 15, empId: 6567, name: "Dr. GOVIND DIVAKARAN", dept: "IRD", room: "C212", cabin: "CABIN" },
+                { sno: 16, empId: 6606, name: "DR. MANOHARMAYUM DOLPRIYA DEVI", dept: "IRD", room: "L606", cabin: "CABIN" },
+                { sno: 17, empId: 6727, name: "DR. AKHILESH KUMAR DUBEY", dept: "IRD", room: "C212", cabin: "CABIN" },
+                { sno: 18, empId: 7006, name: "Dr. SAMUDRAVIJAYA K", dept: "IRD", room: "C221A1", cabin: "CABIN" },
+                { sno: 19, empId: 7501, name: "Dr. VIVEKANANTHAN VENKATESWARAN", dept: "IRD", room: "C612", cabin: "CABIN" },
+                { sno: 20, empId: 7637, name: "Dr. MONOJ SUTRADHAR", dept: "IRD", room: "L606", cabin: "CABIN" },
+                { sno: 21, empId: 8099, name: "Dr. V. Viswanath Shenoi", dept: "IRD", room: "L605", cabin: "CABIN" },
+                { sno: 22, empId: 9365, name: "Mr. T. T. RAJESWAR RAO", dept: "IRD", room: "L606", cabin: "13" },
+                { sno: 23, empId: 9367, name: "Mr. VENKATASAICHANDRAKANTH", dept: "IRD", room: "L606", cabin: "14" }
+            ],
+            "MDIE": [
+                { sno: 1, empId: 2038, name: "DR. GRANDE SURESH KUMAR", dept: "MDIE", room: "L609", cabin: "5" },
+                { sno: 2, empId: 2126, name: "DR. KOMARAGIRI RAGHAVA RAO", dept: "MDIE", room: "L412", cabin: "CABIN" },
+                { sno: 3, empId: 2272, name: "Dr. K. Narasimha Raju", dept: "MDIE", room: "L610", cabin: "CABIN" },
+                { sno: 4, empId: 4568, name: "DR. SIREESHA KONERU", dept: "MDIE", room: "L609", cabin: "15" },
+                { sno: 5, empId: 4903, name: "DR. SANJEET KUMAR", dept: "MDIE", room: "L609", cabin: "10" },
+                { sno: 6, empId: 5747, name: "DR. BURRA VENKATA LAXMI SIVA PRASAD", dept: "MDIE", room: "L609", cabin: "11" },
+                { sno: 7, empId: 5757, name: "MR. NANDETI MAHAVEER SINGH", dept: "MDIE", room: "L609", cabin: "9" },
+                { sno: 8, empId: 6285, name: "DR. SHANKAR RAJENDRAN", dept: "MDIE", room: "L609", cabin: "16" },
+                { sno: 9, empId: 6296, name: "Dr. Ashwin Raut", dept: "MDIE", room: "L609", cabin: "3" },
+                { sno: 10, empId: 6446, name: "DR. RATNA KANTH NELAPATI", dept: "MDIE", room: "L609", cabin: "13" },
+                { sno: 11, empId: 7894, name: "Mr. LAKSHMINARAYANA KODAVALI", dept: "MDIE", room: "L609", cabin: "7" },
+                { sno: 12, empId: 8301, name: "Dr. K. VENKATA GURUNATHAM NAIDU", dept: "MDIE", room: "L609", cabin: "12" },
+                { sno: 13, empId: 8427, name: "Mr. T. NAGARAJU YADAV", dept: "MDIE", room: "L609", cabin: "6" },
+                { sno: 14, empId: 8438, name: "Mr. T. SELVAMUTHUKUMAR", dept: "MDIE", room: "L609", cabin: "8" }
+            ],
+
+        };
+
+        // Department HOD Data
+        const hodData = [
+            {
+                department: "Electronics and Communication Engineering",
+                alias: ["ECE"],
+                name: "Dr.I.Govardhani",
+                cabin: "R-403"
+            },
+            {
+                department: "Computer Science Engineering - 1",
+                alias: ["CSE-1"],
+                name: "Dr. V. Rajesh",
+                cabin: "C215A"
+            },
+            {
+                department: "Computer Science Engineering - 2",
+                alias: ["CSE-2"],
+                name: "Dr. B. Tirapathi Reddy",
+                cabin: "C203"
+            },
+            {
+                department: "Computer Science Engineering - 3",
+                alias: ["CSE-3"],
+                name: "Dr. A. Senthil",
+                cabin: "C503"
+            },
+            {
+                department: "Computer Science Engineering - 4",
+                alias: ["CSE-4"],
+                name: "Dr. T. Pavan Kumar",
+                cabin: "C603A"
+            },
+            {
+                department: "Experiential Learning & Global Engagement",
+                alias: ["ELGE", "HTE"],
+                name: "Dr. ASHWIN Kumar",
+                cabin: "R4 FLOOR"
+            },
+            {
+                department: "Interdisciplinary Research",
+                alias: ["IRD", "HTR"],
+                name: "Dr.VISWANATHAN Shenoi",
+                cabin: "L605"
+            },
+            {
+                department: "Multidisciplinary Engineering",
+                alias: ["MDIE", "HTI"],
+                name: "Dr. Sanjeet Kumar",
+                cabin: "L609"
+            }
+        ];
+
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // DOM Elements
+            const themeToggle = document.getElementById('themeToggle');
+            const resetBtns = document.querySelectorAll('.reset-btn');
+            const tabs = document.querySelectorAll('.tab');
+            const tabIndicator = document.querySelector('.tab-indicator');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            const deptSelect = document.getElementById('deptSelect');
+            const facultySearchInput = document.getElementById('facultySearchInput');
+            const facultySearchBtn = document.getElementById('facultySearchBtn');
+            const hodSearchInput = document.getElementById('hodSearchInput');
+            const hodSearchBtn = document.getElementById('hodSearchBtn');
+            const hodResults = document.getElementById('hodResults');
+            const facultyResults = document.getElementById('facultyResults');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const toastContainer = document.getElementById('toastContainer');
+            const recentSearches = document.getElementById('recentSearches');
+            const currentYear = document.getElementById('currentYear');
+
+            // Initialize the app
+            initApp();
+
+            // Initialize the application
+            function initApp() {
+                // Set current year in footer
+                currentYear.textContent = new Date().getFullYear();
+                
+                // Check for saved theme preference
+                checkThemePreference();
+                
+                // Populate department dropdown
+                populateDepartments();
+                
+                // Set up event listeners
+                setupEventListeners();
+                
+                // Load recent searches from localStorage
+                loadRecentSearches();
+                
+                // Show welcome toast after a short delay
+                // setTimeout(() => {
+                //     showToast('Welcome', 'Faculty Cabin Finder is ready to help you locate faculty members', 'info');
+                // }, 1000);
+            }
+
+            // Check for saved theme preference
+            function checkThemePreference() {
+                const darkMode = localStorage.getItem('darkMode') === 'true';
+                if (darkMode) {
+                    document.body.classList.add('dark-theme');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+            }
+
+            // Populate departments in the dropdown
+            function populateDepartments() {
+                const departments = Object.keys(facultyData);
+                departments.forEach(dept => {
+                    const option = document.createElement('option');
+                    option.value = dept;
+                    option.textContent = dept;
+                    deptSelect.appendChild(option);
+                });
+            }
+
+            // Set up event listeners
+            function setupEventListeners() {
+                // Theme toggle
+                themeToggle.addEventListener('click', toggleTheme);
+                
+                // Reset buttons
+                resetBtns.forEach(btn => {
+                    btn.addEventListener('click', resetApp);
+                });
+                
+                // Tab switching
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        const tabId = tab.getAttribute('data-tab');
+                        switchTab(tabId);
+                    });
+                });
+                
+                // Department selection
+                deptSelect.addEventListener('change', handleDepartmentChange);
+                
+                // HOD search
+                hodSearchBtn.addEventListener('click', searchHOD);
+                hodSearchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        searchHOD();
+                    }
+                });
+                
+                // Faculty search
+                facultySearchBtn.addEventListener('click', searchFaculty);
+                facultySearchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && !facultySearchInput.disabled) {
+                        searchFaculty();
+                    }
+                });
+            }
+
+            // Toggle theme
+            function toggleTheme() {
+                const isDarkMode = document.body.classList.toggle('dark-theme');
+                localStorage.setItem('darkMode', isDarkMode);
+                
+                if (isDarkMode) {
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    // showToast('Dark Mode', 'Dark theme activated', 'info');
+                } else {
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    // showToast('Light Mode', 'Light theme activated', 'info');
+                }
+            }
+
+            // Switch between tabs
+            function switchTab(tabId) {
+                // Update active tab
+                tabs.forEach(tab => {
+                    if (tab.getAttribute('data-tab') === tabId) {
+                        tab.classList.add('active');
+                    } else {
+                        tab.classList.remove('active');
+                    }
+                });
+                
+                // Move tab indicator
+                const activeTab = document.querySelector(`.tab[data-tab="${tabId}"]`);
+                const tabIndex = Array.from(tabs).indexOf(activeTab);
+                tabIndicator.style.transform = `translateX(${tabIndex * 100}%)`;
+                
+                // Show active tab content
+                tabPanes.forEach(pane => {
+                    if (pane.id === `${tabId}-tab`) {
+                        pane.classList.add('active');
+                    } else {
+                        pane.classList.remove('active');
+                    }
+                });
+                
+                // Reset results
+                hodResults.innerHTML = '';
+                hodResults.classList.remove('show');
+                facultyResults.innerHTML = '';
+                facultyResults.classList.remove('show');
+            }
+
+            // Handle department change
+            function handleDepartmentChange() {
+                const selectedDept = deptSelect.value;
+                
+                if (selectedDept) {
+                    facultySearchInput.disabled = false;
+                    facultySearchBtn.disabled = false;
+                    facultySearchInput.value = '';
+                    facultyResults.innerHTML = '';
+                    facultyResults.classList.remove('show');
+                    
+                    // showToast('Department Selected', `${selectedDept} department selected`, 'info');
+                } else {
+                    facultySearchInput.disabled = true;
+                    facultySearchBtn.disabled = true;
+                }
+            }
+
+            // Search for HOD
+            function searchHOD() {
+                const searchValue = hodSearchInput.value.trim();
+                
+                if (!searchValue) {
+                    showToast('Search Error', 'Please enter a department or HOD name', 'error');
+                    return;
+                }
+                
+                // Show loading spinner
+                loadingSpinner.classList.add('show');
+                
+                // Simulate API call delay
+                setTimeout(() => {
+                    const searchTerm = searchValue.toLowerCase();
+                    
+                    const found = hodData.find((hod) => {
+                        const searchIn = [
+                            hod.department.toLowerCase(),
+                            ...(hod.alias?.map(a => a.toLowerCase()) || []),
+                            hod.name.toLowerCase(),
+                        ];
+                        
+                        return searchIn.some(value => value.includes(searchTerm));
+                    });
+                    
+                    // Hide loading spinner
+                    loadingSpinner.classList.remove('show');
+                    
+                    if (found) {
+                        showHODResult(found);
+                        addToRecentSearches(searchValue, 'hod');
+                        showToast('Search Successful', 'HOD information found', 'success');
+                    } else {
+                        showError(hodResults, 'No results found. Try searching with a different department or HOD name.');
+                        showToast('No Results', 'No matching HOD found', 'warning');
+                    }
+                }, 800);
+            }
+
+            // Search for Faculty
+            function searchFaculty() {
+                const departmentValue = deptSelect.value;
+                const searchValue = facultySearchInput.value.trim();
+                
+                if (!departmentValue) {
+                    showToast('Search Error', 'Please select a department', 'error');
+                    return;
+                }
+                
+                if (!searchValue) {
+                    showToast('Search Error', 'Please enter a faculty name', 'error');
+                    return;
+                }
+                
+                // Show loading spinner
+                loadingSpinner.classList.add('show');
+                
+                // Simulate API call delay
+                setTimeout(() => {
+                    const searchTerm = searchValue.toLowerCase();
+                    
+                    const departmentFaculty = facultyData[departmentValue];
+                    
+                    if (!departmentFaculty) {
+                        loadingSpinner.classList.remove('show');
+                        showError(facultyResults, 'Department not found or has no faculty listed.');
+                        showToast('Department Error', 'No faculty data available for this department', 'error');
+                        return;
+                    }
+                    
+                    const foundFaculty = departmentFaculty.find(faculty => 
+                        faculty.name.toLowerCase().includes(searchTerm)
+                    );
+                    
+                    // Hide loading spinner
+                    loadingSpinner.classList.remove('show');
+                    
+                    if (foundFaculty) {
+                        showFacultyResult(departmentValue, foundFaculty);
+                        addToRecentSearches(`${searchValue} (${departmentValue})`, 'faculty');
+                        showToast('Search Successful', 'Faculty information found', 'success');
+                    } else {
+                        showError(facultyResults, 'No faculty found with that name in the selected department.');
+                        showToast('No Results', 'No matching faculty found', 'warning');
+                    }
+                }, 800);
+            }
+
+            // Show HOD search result
+            function showHODResult(hod) {
+                hodResults.innerHTML = '';
+                
+                // Create result message
+                const resultMessage = document.createElement('div');
+                resultMessage.className = 'result-message success';
+                resultMessage.innerHTML = `
+                    <div class="toast-icon"><i class="fas fa-check-circle"></i></div>
+                    <div>HOD information found</div>
+                `;
+                hodResults.appendChild(resultMessage);
+                
+                // Create result card
+                const resultCard = document.createElement('div');
+                resultCard.className = 'result-card';
+                resultCard.style.setProperty('--i', '1');
+                
+                // Card header
+                const cardHeader = document.createElement('div');
+                cardHeader.className = 'result-header';
+                cardHeader.innerHTML = `
+                    <div class="result-title">${hod.name}</div>
+                    <div class="result-badge">HOD</div>
+                `;
+                
+                // Card info
+                const cardInfo = document.createElement('div');
+                cardInfo.className = 'result-info';
+                
+                // Department info
+                const deptInfo = document.createElement('div');
+                deptInfo.className = 'info-item';
+                deptInfo.innerHTML = `
+                    <div class="info-label">Department</div>
+                    <div class="info-value">${hod.department}</div>
+                `;
+                
+                // Alias info if available
+                let aliasInfo = '';
+                if (hod.alias && hod.alias.length > 0) {
+                    aliasInfo = `
+                        <div class="info-item">
+                            <div class="info-label">Department Code</div>
+                            <div class="info-value">${hod.alias.join(', ')}</div>
+                        </div>
+                    `;
+                }
+                
+                // Cabin info
+                const cabinInfo = document.createElement('div');
+                cabinInfo.className = 'info-item';
+                cabinInfo.innerHTML = `
+                    <div class="info-label">Cabin Number</div>
+                    <div class="info-value cabin-highlight">${hod.cabin || "Not Available"}</div>
+                `;
+                
+                // Append all elements
+                cardInfo.appendChild(deptInfo);
+                if (aliasInfo) {
+                    cardInfo.innerHTML += aliasInfo;
+                }
+                cardInfo.appendChild(cabinInfo);
+                
+                resultCard.appendChild(cardHeader);
+                resultCard.appendChild(cardInfo);
+                
+                hodResults.appendChild(resultCard);
+                hodResults.classList.add('show');
+            }
+
+            // Show Faculty search result
+            function showFacultyResult(department, faculty) {
+                facultyResults.innerHTML = '';
+                
+                // Create result message
+                const resultMessage = document.createElement('div');
+                resultMessage.className = 'result-message success';
+                resultMessage.innerHTML = `
+                    <div class="toast-icon"><i class="fas fa-check-circle"></i></div>
+                    <div>Faculty member found</div>
+                `;
+                facultyResults.appendChild(resultMessage);
+                
+                // Create result card
+                const resultCard = document.createElement('div');
+                resultCard.className = 'result-card';
+                resultCard.style.setProperty('--i', '1');
+                
+                // Card header
+                const cardHeader = document.createElement('div');
+                cardHeader.className = 'result-header';
+                cardHeader.innerHTML = `
+                    <div class="result-title">${faculty.name}</div>
+                    <div class="result-badge">Faculty</div>
+                `;
+                
+                // Card info
+                const cardInfo = document.createElement('div');
+                cardInfo.className = 'result-info';
+                
+                // Department info
+                const deptInfo = document.createElement('div');
+                deptInfo.className = 'info-item';
+                deptInfo.innerHTML = `
+                    <div class="info-label">Department</div>
+                    <div class="info-value">${faculty.dept}</div>
+                `;
+                
+                // Employee ID info
+                const empIdInfo = document.createElement('div');
+                empIdInfo.className = 'info-item';
+                empIdInfo.innerHTML = `
+                    <div class="info-label">Employee ID</div>
+                    <div class="info-value">${faculty.empId}</div>
+                `;
+                
+                // Room info
+                const roomInfo = document.createElement('div');
+                roomInfo.className = 'info-item';
+                roomInfo.innerHTML = `
+                    <div class="info-label">Room Number</div>
+                    <div class="info-value">${faculty.room}</div>
+                `;
+                
+                // Cabin info
+                const cabinInfo = document.createElement('div');
+                cabinInfo.className = 'info-item';
+                cabinInfo.innerHTML = `
+                    <div class="info-label">Cabin/Seq Number</div>
+                    <div class="info-value cabin-highlight">${faculty.cabin}</div>
+                `;
+                
+                // Append all elements
+                cardInfo.appendChild(deptInfo);
+                cardInfo.appendChild(empIdInfo);
+                cardInfo.appendChild(roomInfo);
+                cardInfo.appendChild(cabinInfo);
+                
+                resultCard.appendChild(cardHeader);
+                resultCard.appendChild(cardInfo);
+                
+                facultyResults.appendChild(resultCard);
+                facultyResults.classList.add('show');
+            }
+
+            // Show error message
+            function showError(container, message) {
+                container.innerHTML = '';
+                
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'result-message error';
+                errorMessage.innerHTML = `
+                    <div class="toast-icon"><i class="fas fa-exclamation-circle"></i></div>
+                    <div>${message}</div>
+                `;
+                
+                container.appendChild(errorMessage);
+                container.classList.add('show');
+            }
+
+            // Show toast notification
+            function showToast(title, message, type = 'info') {
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                
+                let icon;
+                switch(type) {
+                    case 'success':
+                        icon = 'check-circle';
+                        break;
+                    case 'error':
+                        icon = 'exclamation-circle';
+                        break;
+                    case 'warning':
+                        icon = 'exclamation-triangle';
+                        break;
+                    default:
+                        icon = 'info-circle';
+                }
+                
+                toast.innerHTML = `
+                    <div class="toast-icon">
+                        <i class="fas fa-${icon}"></i>
+                    </div>
+                    <div class="toast-content">
+                        <div class="toast-title">${title}</div>
+                        <div class="toast-message">${message}</div>
+                    </div>
+                    <div class="toast-close">
+                        <i class="fas fa-times"></i>
+                    </div>
+                `;
+                
+                toastContainer.appendChild(toast);
+                
+                // Add click event to close toast
+                toast.querySelector('.toast-close').addEventListener('click', () => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 300);
+                });
+                
+                // Auto remove toast after 4 seconds
+                setTimeout(() => {
+                    if (toast.parentNode === toastContainer) {
+                        toast.style.opacity = '0';
+                        setTimeout(() => {
+                            if (toast.parentNode === toastContainer) {
+                                toast.remove();
+                            }
+                        }, 300);
+                    }
+                }, 4000);
+            }
+
+            // Add to recent searches
+            function addToRecentSearches(searchTerm, type) {
+                // Get existing searches or initialize empty array
+                let searches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+                
+                // Add new search at the beginning
+                searches.unshift({
+                    term: searchTerm,
+                    type: type,
+                    timestamp: new Date().getTime()
+                });
+                
+                // Keep only the last 5 searches
+                searches = searches.slice(0, 5);
+                
+                // Save to localStorage
+                localStorage.setItem('recentSearches', JSON.stringify(searches));
+                
+                // Update UI
+                loadRecentSearches();
+            }
+
+            // Load recent searches
+            function loadRecentSearches() {
+                const searches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+                
+                if (searches.length === 0) {
+                    recentSearches.innerHTML = '<p class="empty-state">No recent searches</p>';
+                    return;
+                }
+                
+                recentSearches.innerHTML = '';
+                
+                searches.forEach((search, index) => {
+                    const searchTag = document.createElement('div');
+                    searchTag.className = 'search-tag';
+                    searchTag.style.setProperty('--i', index);
+                    
+                    let icon = search.type === 'hod' ? 'user-tie' : 'users';
+                    
+                    searchTag.innerHTML = `
+                        <i class="fas fa-${icon}"></i>
+                        <span>${search.term}</span>
+                    `;
+                    
+                    // Add click event to re-run the search
+                    searchTag.addEventListener('click', () => {
+                        if (search.type === 'hod') {
+                            switchTab('hod');
+                            hodSearchInput.value = search.term;
+                            searchHOD();
+                        } else {
+                            // For faculty searches, parse the term
+                            const match = search.term.match(/(.*) \((.*)\)/);
+                            if (match) {
+                                const name = match[1].trim();
+                                const dept = match[2].trim();
+                                
+                                switchTab('faculty');
+                                deptSelect.value = dept;
+                                handleDepartmentChange();
+                                facultySearchInput.value = name;
+                                searchFaculty();
+                            }
+                        }
+                    });
+                    
+                    recentSearches.appendChild(searchTag);
+                });
+            }
+
+            // Reset the app
+            function resetApp() {
+                // Reset HOD search
+                hodSearchInput.value = '';
+                hodResults.innerHTML = '';
+                hodResults.classList.remove('show');
+                
+                // Reset Faculty search
+                deptSelect.selectedIndex = 0;
+                facultySearchInput.value = '';
+                facultySearchInput.disabled = true;
+                facultySearchBtn.disabled = true;
+                facultyResults.innerHTML = '';
+                facultyResults.classList.remove('show');
+                
+                // Switch to HOD tab
+                switchTab('hod');
+                
+                // showToast('Reset Complete', 'All search fields have been reset', 'info');
+            }
+        });
+    </script>
 </body>
 </html>
