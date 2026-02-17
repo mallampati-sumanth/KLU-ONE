@@ -186,6 +186,34 @@
             align-items: center;
             padding: var(--space-lg) 0;
             margin-bottom: var(--space-lg);
+            position: relative;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+        }
+
+        .home-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-dark);
+            color: var(--primary);
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .home-btn:hover {
+            transform: translateY(-2px);
+            background-color: var(--primary);
+            color: white;
+            box-shadow: var(--shadow-md);
         }
 
         .logo {
@@ -614,96 +642,103 @@
         }
 
         .result-card {
-            background-color: var(--light);
+            background-color: white;
             border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            box-shadow: var(--shadow-xl);
-            margin-bottom: var(--space-md);
+            padding: var(--space-lg);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            margin-bottom: var(--space-lg);
             animation: slideInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             animation-delay: calc(var(--i) * 0.1s);
             opacity: 0;
             transform: translateY(20px);
-            border-top: 6px solid var(--primary);
+            border: 1px solid var(--light-darker);
+            border-left: 5px solid var(--primary);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
         }
-
-        .result-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 150px;
-            height: 150px;
-            background: linear-gradient(135deg, transparent 50%, rgba(227, 27, 35, 0.05) 50%);
-            pointer-events: none;
-        }
-
+        
         .dark-theme .result-card {
-            background-color: var(--light-darker);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            background-color: var(--light-dark);
+            border-color: var(--light-darker);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
         }
 
         .result-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-color: var(--primary-lighter);
         }
 
         .result-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--space-lg);
-            padding-bottom: var(--space-md);
-            border-bottom: 2px dashed var(--light-darker);
+            align-items: flex-start;
+            margin-bottom: var(--space-sm);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--light-darker); 
+            gap: var(--space-md);
         }
 
         .result-title {
             font-family: var(--font-secondary);
             font-weight: 700;
             color: var(--dark);
-            font-size: 1.5rem;
-            letter-spacing: -0.5px;
+            font-size: 1.4rem;
+            line-height: 1.3;
+        }
+        
+        .dark-theme .result-title {
+            color: var(--light);
         }
 
         .result-badge {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: var(--space-xs) var(--space-md);
+            background-color: var(--primary-lighter);
+            color: var(--primary-dark);
+            padding: 4px 10px;
             border-radius: var(--radius-full);
-            font-size: 0.85rem;
-            font-weight: 600;
-            box-shadow: 0 4px 6px rgba(227, 27, 35, 0.3);
+            font-size: 0.75rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+        
+        .dark-theme .result-badge {
+            background-color: rgba(227, 27, 35, 0.2);
+            color: var(--primary);
         }
 
         .result-info {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: var(--space-lg);
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
         }
 
         .info-item {
-            background-color: var(--light-dark);
+            background-color: var(--light);
             padding: var(--space-md);
             border-radius: var(--radius-md);
-            transition: background-color var(--transition-fast);
             border: 1px solid transparent;
+            transition: all var(--transition-fast);
+            display: flex;
+            flex-direction: column;
         }
         
         .dark-theme .info-item {
-            background-color: rgba(255,255,255,0.05);
+            background-color: rgba(0, 0, 0, 0.2);
         }
 
         .info-item:hover {
             border-color: var(--primary-lighter);
             background-color: white;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         .dark-theme .info-item:hover {
-            background-color: rgba(255,255,255,0.1);
+            background-color: rgba(255, 255, 255, 0.05);
             border-color: var(--primary-dark);
         }
 
@@ -711,22 +746,64 @@
             font-size: 0.75rem;
             color: var(--dark-lighter);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: var(--space-sm);
-            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            font-weight: 700;
         }
 
         .info-value {
             font-weight: 600;
             color: var(--dark);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
+            word-break: break-word; /* Ensure long values wrap */
+        }
+        
+        .dark-theme .info-value {
+            color: var(--light);
         }
 
         .cabin-highlight {
             color: var(--primary);
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: 800;
-            text-shadow: 0 2px 4px rgba(227, 27, 35, 0.1);
+        }
+
+        @media (max-width: 600px) {
+           .result-card {
+                padding: var(--space-md);
+                border-left-width: 4px;
+           }
+           
+           .result-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-xs);
+           }
+           
+           .result-title {
+                font-size: 1.2rem;
+           }
+           
+           .result-info {
+                grid-template-columns: 1fr; /* Stack on mobile */
+                gap: var(--space-sm);
+           }
+           
+           .info-item {
+                padding: var(--space-sm) var(--space-md);
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+           }
+           
+           .info-label {
+                margin-bottom: 0;
+           }
+           
+           .info-value {
+                text-align: right;
+                font-size: 1rem;
+           }
         }
 
         @keyframes pulse {
@@ -1238,13 +1315,18 @@
 
         <!-- Header -->
         <header>
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-university"></i>
-                </div>
-                <div class="logo-text">
-                    <h1 class="typing-animation">KLU ONE Cabin Finder</h1>
-                    <p>Find faculty locations instantly(deviations may occur)</p>
+            <div class="header-left">
+                <a href="index.html" class="home-btn" aria-label="Back to Home" title="Back to Home">
+                    <i class="fas fa-home"></i>
+                </a>
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1 class="typing-animation">KLU ONE Cabin Finder</h1>
+                        <p>Find faculty locations instantly(deviations may occur)</p>
+                    </div>
                 </div>
             </div>
             <div class="header-actions">
