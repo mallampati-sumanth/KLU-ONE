@@ -82,6 +82,9 @@ function trackDownload() {
     </div>
   </div>
 
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
   <!-- Simple Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-content">
@@ -2946,38 +2949,34 @@ img {
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   const mobileMenuClose = document.getElementById('mobileMenuClose');
-  
-  console.log("🔍 Finding mobile menu elements...");
-  console.log("Mobile menu button:", mobileMenuBtn);
-  console.log("Mobile menu:", mobileMenu);
-  console.log("Close button:", mobileMenuClose);
+  const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
   
   if (mobileMenuBtn && mobileMenu) {
-    console.log("✅ Mobile menu elements found!");
-    
     // Open menu
     mobileMenuBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      console.log("🔥 MOBILE MENU BUTTON CLICKED!");
-      
       mobileMenu.classList.add('active');
       mobileMenuBtn.classList.add('active');
+      mobileMenuOverlay && mobileMenuOverlay.classList.add('active');
       document.body.style.overflow = 'hidden';
-      
-      console.log("✅ Menu opened!");
     });
     
     // Close menu
     function closeMobileMenu() {
       mobileMenu.classList.remove('active');
       mobileMenuBtn.classList.remove('active');
+      mobileMenuOverlay && mobileMenuOverlay.classList.remove('active');
       document.body.style.overflow = '';
-      console.log("❌ Menu closed!");
     }
     
     // Close button
     if (mobileMenuClose) {
       mobileMenuClose.addEventListener('click', closeMobileMenu);
+    }
+    
+    // Close on overlay click
+    if (mobileMenuOverlay) {
+      mobileMenuOverlay.addEventListener('click', closeMobileMenu);
     }
     
     // Close on nav link click
@@ -2995,11 +2994,7 @@ img {
       }
     });
     
-    console.log("🎉 Mobile menu setup complete!");
-    
   } else {
-    console.error("❌ Mobile menu elements not found!");
-  }
 
   // Mobile Dropdown Toggle
   const mobileDropdownToggles = document.querySelectorAll(".mobile-dropdown-toggle")
@@ -3147,6 +3142,14 @@ img {
         backToTopBtn.classList.remove("active")
       }
     })
+  }
+
+  // Header scroll shadow
+  const header = document.querySelector('.header');
+  if (header) {
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    });
   }
 
   // Smooth scrolling for navigation links
