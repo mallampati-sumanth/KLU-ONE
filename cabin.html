@@ -315,6 +315,7 @@
 
         .main-card {
             transform: translateY(0);
+            overflow: visible;
         }
 
         .main-card:hover {
@@ -380,7 +381,7 @@
             height: 3px;
             bottom: 0;
             left: 0;
-            width: 50%;
+            width: 33.333%;
             background-color: var(--primary);
             transition: transform var(--transition-normal) var(--transition-bounce);
         }
@@ -388,6 +389,7 @@
         /* Tab Content */
         .tab-content {
             padding: var(--space-xl);
+            overflow: visible;
         }
 
         .tab-pane {
@@ -397,6 +399,10 @@
 
         .tab-pane.active {
             display: block;
+        }
+
+        #quick-tab {
+            overflow: visible;
         }
 
         .section-title {
@@ -701,7 +707,7 @@
         }
         
         .dark-theme .result-title {
-            color: var(--light);
+            color: #f8f9fa;
         }
 
         .result-badge {
@@ -738,7 +744,7 @@
         }
         
         .dark-theme .info-item {
-            background-color: rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 0.08);
         }
 
         .info-item:hover {
@@ -748,7 +754,7 @@
         }
 
         .dark-theme .info-item:hover {
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: rgba(255, 255, 255, 0.12);
             border-color: var(--primary-dark);
         }
 
@@ -761,6 +767,10 @@
             font-weight: 700;
         }
 
+        .dark-theme .info-label {
+            color: #adb5bd;
+        }
+
         .info-value {
             font-weight: 600;
             color: var(--dark);
@@ -769,13 +779,17 @@
         }
         
         .dark-theme .info-value {
-            color: var(--light);
+            color: #f8f9fa;
         }
 
         .cabin-highlight {
             color: var(--primary);
             font-size: 1.4rem;
             font-weight: 800;
+        }
+
+        .dark-theme .cabin-highlight {
+            color: var(--primary-light);
         }
 
         @media (max-width: 600px) {
@@ -1311,6 +1325,241 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* ===== QUICK FACULTY SEARCH STYLES ===== */
+        .quick-search-input-wrapper {
+            position: relative;
+        }
+
+        /* Autocomplete Suggestions */
+        .quick-search-suggestions {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-height: 350px;
+            overflow-y: auto;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all var(--transition-fast);
+        }
+
+        .quick-search-suggestions.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dark-theme .quick-search-suggestions {
+            background: var(--light-dark);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .suggestion-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-md) var(--space-lg);
+            cursor: pointer;
+            transition: background var(--transition-fast);
+            border-bottom: 1px solid var(--light-darker);
+        }
+
+        .dark-theme .suggestion-item {
+            border-bottom-color: var(--light-darker);
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .suggestion-item:hover,
+        .suggestion-item.active {
+            background: linear-gradient(90deg, rgba(227, 27, 35, 0.08), rgba(196, 16, 23, 0.08));
+        }
+
+        .dark-theme .suggestion-item:hover,
+        .dark-theme .suggestion-item.active {
+            background: rgba(227, 27, 35, 0.15);
+        }
+
+        .suggestion-avatar {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .suggestion-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .suggestion-name {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1rem;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .suggestion-name mark {
+            background: rgba(227, 27, 35, 0.15);
+            color: var(--primary-dark);
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        .dark-theme .suggestion-name mark {
+            background: rgba(227, 27, 35, 0.3);
+            color: var(--primary-light);
+        }
+
+        .suggestion-dept {
+            font-size: 0.85rem;
+            color: var(--dark-lighter);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .suggestion-dept i {
+            color: var(--primary);
+            font-size: 0.75rem;
+        }
+
+        .dark-theme .suggestion-name {
+            color: var(--dark);
+        }
+
+        .dark-theme .suggestion-dept {
+            color: var(--dark-lighter);
+        }
+
+        .suggestion-cabin {
+            background: var(--primary-lighter);
+            color: var(--primary-dark);
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .dark-theme .suggestion-cabin {
+            background: rgba(227, 27, 35, 0.2);
+            color: var(--primary);
+        }
+
+        .suggestions-header {
+            padding: var(--space-sm) var(--space-lg);
+            background: var(--light-dark);
+            color: var(--dark-lighter);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .suggestions-header i {
+            color: var(--primary);
+        }
+
+        .dark-theme .suggestions-header {
+            background: var(--light-darker);
+            color: var(--dark-lighter);
+        }
+
+        .no-results {
+            padding: var(--space-xl);
+            text-align: center;
+            color: var(--dark-lighter);
+        }
+
+        .no-results i {
+            font-size: 2.5rem;
+            color: #ddd;
+            margin-bottom: var(--space-md);
+            display: block;
+        }
+
+        .dark-theme .no-results i {
+            color: var(--light-darker);
+        }
+
+        .no-results p {
+            font-size: 0.95rem;
+        }
+
+        /* Quick Search Results (for selected faculty) */
+        .quick-search-results {
+            margin-top: var(--space-lg);
+        }
+
+        .quick-search-results:empty {
+            display: none;
+        }
+
+        /* Scrollbar for suggestions */
+        .quick-search-suggestions::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .quick-search-suggestions::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .quick-search-suggestions::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .quick-search-suggestions::-webkit-scrollbar-thumb {
+            background: rgba(227, 27, 35, 0.3);
+            border-radius: 3px;
+        }
+
+        .quick-search-suggestions::-webkit-scrollbar-thumb:hover {
+            background: rgba(227, 27, 35, 0.5);
+        }
+
+        /* Mobile Responsive for Quick Search */
+        @media (max-width: 768px) {
+            .suggestion-item {
+                padding: var(--space-sm) var(--space-md);
+            }
+
+            .suggestion-avatar {
+                width: 38px;
+                height: 38px;
+                font-size: 0.9rem;
+            }
+
+            .suggestion-name {
+                font-size: 0.95rem;
+            }
+
+            .suggestion-cabin {
+                padding: 3px 8px;
+                font-size: 0.75rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1361,6 +1610,10 @@
                     <button class="tab" data-tab="faculty">
                         <i class="fas fa-users"></i>
                         <span>Faculty Search</span>
+                    </button>
+                    <button class="tab" data-tab="quick">
+                        <i class="fas fa-bolt"></i>
+                        <span>Quick Search</span>
                     </button>
                     <div class="tab-indicator"></div>
                 </div>
@@ -1417,6 +1670,24 @@
                         </div>
                         
                         <div id="facultyResults" class="results-container"></div>
+                    </div>
+                    
+                    <!-- Quick Search Tab -->
+                    <div id="quick-tab" class="tab-pane">
+                        <h2 class="section-title">Quick Faculty Search</h2>
+                        <p class="section-desc">Instantly find any faculty member across all departments</p>
+                        
+                        <div class="quick-search-input-wrapper">
+                            <div class="search-box">
+                                <div class="input-group">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" id="quickSearchInput" placeholder="Start typing faculty name..." autocomplete="off">
+                                </div>
+                            </div>
+                            <!-- Autocomplete Suggestions Dropdown -->
+                            <div id="quickSearchSuggestions" class="quick-search-suggestions"></div>
+                        </div>
+                        <div id="quickSearchResults" class="results-container"></div>
                     </div>
                 </div>
             </div>
@@ -2211,6 +2482,14 @@
                 hodResults.classList.remove('show');
                 facultyResults.innerHTML = '';
                 facultyResults.classList.remove('show');
+                
+                // Reset quick search
+                const quickSearchResults = document.getElementById('quickSearchResults');
+                const quickSearchSuggestions = document.getElementById('quickSearchSuggestions');
+                const quickSearchInput = document.getElementById('quickSearchInput');
+                if (quickSearchResults) quickSearchResults.innerHTML = '';
+                if (quickSearchSuggestions) quickSearchSuggestions.classList.remove('show');
+                if (quickSearchInput) quickSearchInput.value = '';
             }
 
             // Handle department change
@@ -2622,12 +2901,268 @@
                 facultySearchBtn.disabled = true;
                 facultyResults.innerHTML = '';
                 facultyResults.classList.remove('show');
+
+                // Reset Quick Search
+                quickSearchInput.value = '';
+                quickSearchSuggestions.classList.remove('show');
+                quickSearchSuggestions.innerHTML = '';
+                quickSearchResults.innerHTML = '';
                 
                 // Switch to HOD tab
                 switchTab('hod');
                 
                 // showToast('Reset Complete', 'All search fields have been reset', 'info');
             }
+
+            // ===== QUICK FACULTY SEARCH FUNCTIONALITY =====
+            const quickSearchInput = document.getElementById('quickSearchInput');
+            const quickSearchSuggestions = document.getElementById('quickSearchSuggestions');
+            const quickSearchResults = document.getElementById('quickSearchResults');
+            let allFacultyList = [];
+            let selectedSuggestionIndex = -1;
+
+            // Build a flat list of all faculty members from all departments
+            function buildAllFacultyList() {
+                allFacultyList = [];
+                for (const dept in facultyData) {
+                    facultyData[dept].forEach(faculty => {
+                        allFacultyList.push({
+                            ...faculty,
+                            dept: dept
+                        });
+                    });
+                }
+            }
+
+            // Initialize the faculty list
+            buildAllFacultyList();
+
+            // Get initials for avatar
+            function getInitials(name) {
+                const parts = name.replace(/Dr\.|Mr\.|Ms\.|Mrs\.|Prof\./gi, '').trim().split(' ');
+                if (parts.length >= 2) {
+                    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+                }
+                return parts[0].substring(0, 2).toUpperCase();
+            }
+
+            // Highlight matching text
+            function highlightMatch(text, query) {
+                if (!query) return text;
+                const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                return text.replace(regex, '<mark>$1</mark>');
+            }
+
+            // Search faculty in the list
+            function searchAllFaculty(query) {
+                if (!query || query.length < 1) return [];
+                
+                const lowerQuery = query.toLowerCase();
+                const results = allFacultyList.filter(faculty => 
+                    faculty.name.toLowerCase().includes(lowerQuery)
+                );
+                
+                // Sort by relevance (exact match first, then starts with, then contains)
+                results.sort((a, b) => {
+                    const aName = a.name.toLowerCase();
+                    const bName = b.name.toLowerCase();
+                    
+                    // Exact match
+                    if (aName === lowerQuery) return -1;
+                    if (bName === lowerQuery) return 1;
+                    
+                    // Starts with
+                    if (aName.startsWith(lowerQuery) && !bName.startsWith(lowerQuery)) return -1;
+                    if (bName.startsWith(lowerQuery) && !aName.startsWith(lowerQuery)) return 1;
+                    
+                    return 0;
+                });
+                
+                return results.slice(0, 10); // Limit to 10 results
+            }
+
+            // Render suggestions dropdown
+            function renderSuggestions(results, query) {
+                quickSearchSuggestions.innerHTML = '';
+                selectedSuggestionIndex = -1;
+                
+                if (results.length === 0) {
+                    quickSearchSuggestions.innerHTML = `
+                        <div class="no-results">
+                            <i class="fas fa-search"></i>
+                            <p>No faculty found matching "<strong>${query}</strong>"</p>
+                        </div>
+                    `;
+                    quickSearchSuggestions.classList.add('show');
+                    return;
+                }
+                
+                // Add header
+                const header = document.createElement('div');
+                header.className = 'suggestions-header';
+                header.innerHTML = `<i class="fas fa-users"></i> Found ${results.length} faculty member${results.length > 1 ? 's' : ''}`;
+                quickSearchSuggestions.appendChild(header);
+                
+                // Add suggestion items
+                results.forEach((faculty, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'suggestion-item';
+                    item.dataset.index = index;
+                    
+                    const initials = getInitials(faculty.name);
+                    const highlightedName = highlightMatch(faculty.name, query);
+                    const cabinDisplay = faculty.cabin || faculty.room || 'N/A';
+                    
+                    item.innerHTML = `
+                        <div class="suggestion-avatar">${initials}</div>
+                        <div class="suggestion-info">
+                            <div class="suggestion-name">${highlightedName}</div>
+                            <div class="suggestion-dept">
+                                <i class="fas fa-building"></i>
+                                ${faculty.dept} • ${faculty.designation || 'Faculty'}
+                            </div>
+                        </div>
+                        <div class="suggestion-cabin">${cabinDisplay}</div>
+                    `;
+                    
+                    // Click to select this faculty
+                    item.addEventListener('click', () => selectFaculty(faculty));
+                    
+                    // Hover highlight
+                    item.addEventListener('mouseenter', () => {
+                        document.querySelectorAll('.suggestion-item').forEach(el => el.classList.remove('active'));
+                        item.classList.add('active');
+                        selectedSuggestionIndex = index;
+                    });
+                    
+                    quickSearchSuggestions.appendChild(item);
+                });
+                
+                quickSearchSuggestions.classList.add('show');
+            }
+
+            // Select and display faculty result
+            function selectFaculty(faculty) {
+                quickSearchSuggestions.classList.remove('show');
+                quickSearchInput.value = faculty.name;
+                
+                // Display the selected faculty card
+                quickSearchResults.innerHTML = '';
+                
+                const resultCard = document.createElement('div');
+                resultCard.className = 'result-card';
+                resultCard.style.setProperty('--i', '1');
+                
+                const cabinDisplay = faculty.cabin || faculty.room || 'N/A';
+                
+                resultCard.innerHTML = `
+                    <div class="result-header">
+                        <div class="result-title">${faculty.name}</div>
+                        <div class="result-badge">${faculty.designation || 'Faculty'}</div>
+                    </div>
+                    <div class="result-info">
+                        <div class="info-item">
+                            <div class="info-label">Department</div>
+                            <div class="info-value">${faculty.dept}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Employee ID</div>
+                            <div class="info-value">${faculty.empId || 'N/A'}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Room Number</div>
+                            <div class="info-value">${faculty.room || 'N/A'}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Cabin/Seq Number</div>
+                            <div class="info-value cabin-highlight">${cabinDisplay}</div>
+                        </div>
+                    </div>
+                `;
+                
+                quickSearchResults.appendChild(resultCard);
+                
+                // Add to recent searches
+                addToRecentSearches(faculty.name + ' (' + faculty.dept + ')', 'faculty');
+                
+                showToast('Faculty Found', `${faculty.name} - Cabin: ${cabinDisplay}`, 'success');
+            }
+
+            // Input event handler for live search
+            let searchTimeout;
+            quickSearchInput.addEventListener('input', function() {
+                const query = this.value.trim();
+                
+                // Clear previous timeout
+                clearTimeout(searchTimeout);
+                
+                if (query.length === 0) {
+                    quickSearchSuggestions.classList.remove('show');
+                    quickSearchSuggestions.innerHTML = '';
+                    return;
+                }
+                
+                // Debounce search for better performance
+                searchTimeout = setTimeout(() => {
+                    const results = searchAllFaculty(query);
+                    renderSuggestions(results, query);
+                }, 150);
+            });
+
+            // Keyboard navigation for suggestions
+            quickSearchInput.addEventListener('keydown', function(e) {
+                const items = quickSearchSuggestions.querySelectorAll('.suggestion-item');
+                
+                if (!quickSearchSuggestions.classList.contains('show') || items.length === 0) {
+                    return;
+                }
+                
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    selectedSuggestionIndex = Math.min(selectedSuggestionIndex + 1, items.length - 1);
+                    updateSelectedSuggestion(items);
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    selectedSuggestionIndex = Math.max(selectedSuggestionIndex - 1, 0);
+                    updateSelectedSuggestion(items);
+                } else if (e.key === 'Enter' && selectedSuggestionIndex >= 0) {
+                    e.preventDefault();
+                    const results = searchAllFaculty(this.value.trim());
+                    if (results[selectedSuggestionIndex]) {
+                        selectFaculty(results[selectedSuggestionIndex]);
+                    }
+                } else if (e.key === 'Escape') {
+                    quickSearchSuggestions.classList.remove('show');
+                }
+            });
+
+            // Update visual selection
+            function updateSelectedSuggestion(items) {
+                items.forEach((item, index) => {
+                    if (index === selectedSuggestionIndex) {
+                        item.classList.add('active');
+                        item.scrollIntoView({ block: 'nearest' });
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+            }
+
+            // Close suggestions when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!quickSearchInput.contains(e.target) && !quickSearchSuggestions.contains(e.target)) {
+                    quickSearchSuggestions.classList.remove('show');
+                }
+            });
+
+            // Focus event to show suggestions if there's text
+            quickSearchInput.addEventListener('focus', function() {
+                const query = this.value.trim();
+                if (query.length > 0) {
+                    const results = searchAllFaculty(query);
+                    renderSuggestions(results, query);
+                }
+            });
         });
     </script>
 </body>
