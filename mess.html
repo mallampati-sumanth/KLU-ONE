@@ -35,6 +35,11 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        html, body {
+            min-height: 100vh;
+            min-height: 100dvh;
+        }
+
         body {
             background-color: var(--light-gray);
             overflow-x: hidden;
@@ -141,25 +146,31 @@
 
         /* Page System */
         .page {
-            min-height: 80vh;
+            min-height: calc(100vh - 80px);
+            min-height: calc(100dvh - 80px);
             width: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            padding-top: 80px; /* Account for header */
-            transition: transform var(--page-transition) ease-in-out, opacity var(--page-transition) ease-in-out;
+            background-color: var(--light-gray);
+            display: none;
         }
 
         .page.active {
-            transform: translateX(0);
-            opacity: 1;
-            z-index: 1;
+            display: block;
+            animation: pageFadeIn 0.4s ease-out;
+        }
+
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .page.inactive {
-            transform: translateX(100%);
-            opacity: 0;
-            z-index: 0;
+            display: none;
         }
 
         /* Hostel Selection Page */
@@ -497,14 +508,17 @@
             font-size: 20px;
         }
 
-        /* Menu Styles */
+        /* ============================================
+           MENU SECTION - Modern Container
+           ============================================ */
         .menu-section {
-            background-color: var(--white);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
             margin-bottom: 40px;
             animation: slideUp 0.6s ease-out;
+            border: 1px solid rgba(0, 0, 0, 0.04);
         }
 
         @keyframes slideUp {
@@ -512,152 +526,255 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Daily Rating */
+        /* ============================================
+           DAILY RATING - Premium Badge Style
+           ============================================ */
         .daily-rating {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 25px;
+            background: linear-gradient(135deg, #fff9e6 0%, #fff5d6 100%);
+            border-radius: 16px;
+            padding: 18px 22px;
+            margin-bottom: 28px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border: 1px solid rgba(255, 204, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.15);
         }
 
         .rating-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #b8860b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rating-title::before {
+            content: '⭐';
             font-size: 18px;
-            font-weight: 600;
-            color: var(--dark-gray);
+        }
+
+        .rating-display {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .rating-stars {
             display: flex;
             align-items: center;
+            gap: 3px;
         }
 
         .rating-stars i {
             color: var(--accent-color);
-            font-size: 20px;
-            margin-right: 3px;
+            font-size: 18px;
+            filter: drop-shadow(0 2px 4px rgba(255, 204, 0, 0.4));
         }
 
         .rating-value {
-            margin-left: 10px;
-            font-weight: 600;
-            color: var(--dark-gray);
+            font-size: 20px;
+            font-weight: 800;
+            color: #b8860b;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 4px 12px;
+            border-radius: 20px;
         }
 
-        /* Enhanced Meal Tabs */
+        /* ============================================
+           MODERN MEAL TABS - App-like Design
+           ============================================ */
         .meal-tabs {
             display: flex;
             margin-bottom: 25px;
-            background-color: #f1f3f5;
-            border-radius: 50px;
-            padding: 5px;
+            background: linear-gradient(145deg, #f0f2f5, #e8eaed);
+            border-radius: 20px;
+            padding: 6px;
             position: relative;
             overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
         }
 
         .meal-tab {
-            padding: 12px 25px;
+            padding: 14px 20px;
             cursor: pointer;
-            font-weight: 500;
-            color: var(--dark-gray);
-            border-radius: 50px;
-            transition: all var(--transition-speed);
+            font-weight: 600;
+            color: #666;
+            border-radius: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1;
             flex: 1;
             text-align: center;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .meal-tab i {
+            font-size: 18px;
+            transition: transform 0.3s ease;
         }
 
         .meal-tab:hover {
             color: var(--klu-red);
+            background: rgba(210, 38, 48, 0.08);
+        }
+
+        .meal-tab:hover i {
+            transform: scale(1.1);
         }
 
         .meal-tab.active {
             color: white;
+            background: linear-gradient(135deg, var(--klu-red) 0%, var(--klu-dark-red) 100%);
+            box-shadow: 0 4px 15px rgba(210, 38, 48, 0.4);
+        }
+
+        .meal-tab.active i {
+            transform: scale(1.15);
         }
 
         .tab-indicator {
-            position: absolute;
-            height: 80%;
-            top: 10%;
-            left: 0.5%;
-            width: 24.5%;
-            background: linear-gradient(135deg, var(--klu-red), var(--klu-dark-red));
-            border-radius: 50px;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-            z-index: 0;
+            display: none; /* Using CSS background instead */
         }
 
-        /* Enhanced Meal Content */
+        /* ============================================
+           MEAL CONTENT WITH ANIMATIONS
+           ============================================ */
         .meal-content {
             display: none;
-            transform: translateX(20px);
             opacity: 0;
-            transition: all 0.4s;
+            transform: translateY(10px);
         }
 
         .meal-content.active {
             display: block;
-            animation: fadeIn 0.5s forwards;
+            animation: mealFadeIn 0.4s ease forwards;
+        }
+
+        @keyframes mealFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================
+           STUNNING FOOD ITEM CARDS
+           ============================================ */
+        .food-items-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .food-item {
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
+            padding: 18px 20px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
-            background-color: #f8f9fa;
-            transition: all var(--transition-speed);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .food-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--klu-red), var(--accent-color));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .food-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
+            transform: translateX(4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.08);
+            background: #ffffff;
+        }
+
+        .food-item:hover::before {
+            opacity: 1;
         }
 
         .food-icon {
-            margin-right: 15px;
-            font-size: 24px;
-            background-color: #fff;
-            width: 50px;
-            height: 50px;
+            margin-right: 16px;
+            font-size: 32px;
+            background: linear-gradient(145deg, #fff8f8, #fff5f0);
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(210, 38, 48, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .food-item:hover .food-icon {
+            transform: scale(1.05) rotate(3deg);
         }
 
         .food-details {
             flex: 1;
+            min-width: 0;
         }
 
         .food-name {
-            font-size: 18px;
+            font-size: 17px;
             color: var(--dark-gray);
-            font-weight: 500;
-            margin-bottom: 5px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            letter-spacing: -0.2px;
         }
 
         .food-description {
-            font-size: 14px;
-            color: #666;
+            font-size: 13px;
+            color: #888;
+            line-height: 1.4;
         }
 
         .food-rating {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            margin-left: 15px;
+            margin-left: 16px;
+            padding: 8px 12px;
+            background: linear-gradient(145deg, #fff9e6, #fff5d6);
+            border-radius: 12px;
+            min-width: 55px;
         }
 
         .food-rating i {
             color: var(--accent-color);
-            margin-right: 2px;
+            font-size: 14px;
+        }
+
+        .food-rating .rating-value {
+            font-size: 13px;
+            font-weight: 700;
+            color: #b8860b;
+            margin-top: 2px;
+        }
+
+        .food-rating .stars-row {
+            display: flex;
+            gap: 1px;
         }
 
         /* Footer Styles with Animation */
@@ -666,7 +783,7 @@
             color: var(--white);
             padding: 50px 0 30px;
             position: relative;
-            margin-top: 100px;
+            margin-top: 40px;
         }
 
         footer::before {
@@ -774,104 +891,896 @@
             font-weight: 500;
         }
 
-        /* Responsive Styles */
-        @media (max-width: 768px) {
+        /* ============================================
+           MOBILE HAMBURGER MENU
+           ============================================ */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            z-index: 1001;
+            background: transparent;
+            border: none;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .hamburger-menu:hover {
+            background: rgba(210, 38, 48, 0.1);
+        }
+
+        .hamburger-menu span {
+            display: block;
+            width: 24px;
+            height: 3px;
+            background-color: var(--klu-red);
+            border-radius: 3px;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        .hamburger-menu span:nth-child(1) { margin-bottom: 5px; }
+        .hamburger-menu span:nth-child(3) { margin-top: 5px; }
+
+        .hamburger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger-menu.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        .hamburger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Mobile Navigation Overlay */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        /* Mobile Side Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: -280px;
+            width: 280px;
+            height: 100vh;
+            height: 100dvh;
+            background: var(--white);
+            z-index: 1000;
+            padding: 80px 0 30px;
+            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.15);
+            transition: left 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            overflow-y: auto;
+            visibility: hidden;
+        }
+
+        .mobile-nav.active {
+            left: 0;
+            visibility: visible;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            padding: 0 20px;
+        }
+
+        .mobile-nav-links a {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-size: 17px;
+            font-weight: 500;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-links a i {
+            width: 24px;
+            margin-right: 15px;
+            color: var(--klu-red);
+            font-size: 20px;
+        }
+
+        .mobile-nav-links a:hover,
+        .mobile-nav-links a.active {
+            background: linear-gradient(135deg, var(--klu-red), var(--klu-dark-red));
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .mobile-nav-links a:hover i,
+        .mobile-nav-links a.active i {
+            color: var(--white);
+        }
+
+        /* ============================================
+           BOTTOM NAVIGATION BAR (Mobile)
+           ============================================ */
+        .bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 998;
+            padding: 8px 0;
+            padding-bottom: calc(8px + env(safe-area-inset-bottom));
+        }
+
+        .bottom-nav-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #666;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            min-width: 60px;
+        }
+
+        .bottom-nav-item i {
+            font-size: 22px;
+            margin-bottom: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .bottom-nav-item.active,
+        .bottom-nav-item:hover {
+            color: var(--klu-red);
+        }
+
+        .bottom-nav-item.active i {
+            transform: scale(1.15);
+        }
+
+        .bottom-nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            width: 20px;
+            height: 3px;
+            background: var(--klu-red);
+            border-radius: 3px;
+        }
+
+        /* ============================================
+           PROFESSIONAL RESPONSIVE STYLES
+           ============================================ */
+        
+        /* Tablet Styles (768px - 992px) */
+        @media (max-width: 992px) {
             .hostels-grid {
-                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
             }
 
-            .meal-tabs {
-                overflow-x: auto;
-                white-space: nowrap;
+            .welcome-message h2 {
+                font-size: 28px;
+            }
+
+            .footer-section {
+                flex: 1 1 45%;
+            }
+        }
+
+        /* Mobile Styles (max-width: 768px) */
+        @media (max-width: 768px) {
+            /* Show hamburger menu */
+            .hamburger-menu {
+                display: flex;
+                order: -1;
+            }
+
+            .header-content {
                 justify-content: flex-start;
-                padding: 5px;
+                gap: 12px;
             }
 
-            .meal-tab {
-                padding: 10px 15px;
-                flex: none;
-                width: auto;
+            .logo {
+                order: 0;
+                flex: 1;
+                justify-content: flex-start;
             }
 
-            .tab-indicator {
+            /* Hide desktop nav */
+            .nav-links {
                 display: none;
             }
 
+            /* Show bottom navigation */
+            .bottom-nav {
+                display: block;
+            }
+
+            /* Add padding for bottom nav */
+            body {
+                padding-bottom: 80px;
+            }
+
+            footer {
+                margin-bottom: 70px;
+            }
+
+            /* Header adjustments */
+            .header-content {
+                padding: 12px 0;
+            }
+
+            .logo h1 {
+                font-size: 20px;
+            }
+
+            .logo img {
+                height: 40px;
+                margin-right: 10px;
+            }
+
+            /* Container spacing */
+            .container {
+                padding: 0 16px;
+            }
+
+            /* Main content */
+            .main-content {
+                padding: 20px 0;
+            }
+
+            /* Welcome message */
+            .welcome-message {
+                margin: 20px 0 35px;
+            }
+
+            .welcome-message h2 {
+                font-size: 22px;
+                line-height: 1.3;
+            }
+
+            .welcome-message p {
+                font-size: 15px;
+                padding: 0 10px;
+            }
+
+            /* Date display */
+            .date-display {
+                padding: 10px 20px;
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+
+            /* Section title */
+            .section-title {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+
+            /* ========== HOSTEL CARDS - Mobile Optimized ========== */
+            .hostels-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                padding: 0;
+            }
+
+            .hostel-card {
+                border-radius: 16px;
+                overflow: hidden;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            }
+
+            .hostel-image-container {
+                height: 160px;
+            }
+
+            .hostel-type-badge {
+                top: 12px;
+                right: 12px;
+                padding: 6px 14px;
+                font-size: 12px;
+                font-weight: 600;
+            }
+
+            .hostel-info {
+                padding: 16px;
+            }
+
+            .hostel-name {
+                font-size: 18px;
+                margin-bottom: 6px;
+            }
+
+            .hostel-description {
+                font-size: 13px;
+                line-height: 1.4;
+                margin-bottom: 12px;
+            }
+
+            .hostel-capacity {
+                font-size: 13px;
+                margin-bottom: 12px;
+            }
+
+            .select-hostel-btn {
+                padding: 12px 20px;
+                font-size: 15px;
+                border-radius: 25px;
+            }
+
+            /* ========== SELECTED HOSTEL HEADER ========== */
+            .selected-hostel-header {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 16px;
+                border-radius: 16px;
+                margin-bottom: 20px;
+            }
+
+            .selected-hostel-image {
+                width: 80px;
+                height: 80px;
+                margin-right: 0;
+                margin-bottom: 15px;
+                border-width: 3px;
+            }
+
+            .selected-hostel-info h2 {
+                font-size: 22px;
+            }
+
+            .selected-hostel-info p {
+                font-size: 14px;
+            }
+
+            .selected-hostel-badge {
+                margin-top: 8px;
+                font-size: 12px;
+                padding: 4px 12px;
+            }
+
+            /* ========== DAY SELECTOR - Horizontal Scroll ========== */
+            .day-selector {
+                display: flex;
+                gap: 8px;
+                padding: 12px;
+                margin-bottom: 20px;
+                border-radius: 16px;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+
+            .day-selector::-webkit-scrollbar {
+                display: none;
+            }
+
+            .day-button {
+                flex: 0 0 auto;
+                padding: 10px 18px;
+                font-size: 13px;
+                font-weight: 600;
+                border-radius: 25px;
+                white-space: nowrap;
+                scroll-snap-align: center;
+                margin: 0;
+                min-width: auto;
+            }
+
+            .day-button.today::before {
+                top: -2px;
+                right: 8px;
+                font-size: 16px;
+            }
+
+            .day-button.active {
+                box-shadow: 0 4px 12px rgba(210, 38, 48, 0.35);
+            }
+
+            /* ========== MENU SECTION ========== */
+            .menu-section {
+                padding: 20px 16px;
+                border-radius: 24px;
+                margin-bottom: 30px;
+            }
+
+            /* Daily Rating - Mobile */
+            .daily-rating {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 16px;
+                border-radius: 16px;
+                margin-bottom: 20px;
+                gap: 10px;
+            }
+
+            .rating-title {
+                font-size: 14px;
+                margin-bottom: 0;
+            }
+
+            .rating-title::before {
+                font-size: 16px;
+            }
+
+            .rating-display {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .rating-stars i {
+                font-size: 16px;
+            }
+
+            .rating-value {
+                font-size: 18px;
+                padding: 4px 10px;
+            }
+
+            /* ========== MEAL TABS - Modern Mobile Grid ========== */
+            .meal-tabs {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+                padding: 10px;
+                border-radius: 20px;
+                margin-bottom: 24px;
+                background: linear-gradient(145deg, #f5f7fa, #e8ebef);
+                box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+            }
+
+            .meal-tab {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 14px 8px;
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 0.3px;
+                border-radius: 14px;
+                gap: 8px;
+                text-align: center;
+                min-height: 72px;
+                background: var(--white);
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+                transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .meal-tab i {
+                font-size: 24px;
+                display: block;
+                transition: transform 0.3s ease;
+            }
+
+            .meal-tab:active {
+                transform: scale(0.95);
+            }
+
             .meal-tab.active {
-                background: linear-gradient(135deg, var(--klu-red), var(--klu-dark-red));
+                background: linear-gradient(135deg, var(--klu-red) 0%, #ff4757 100%);
+                color: var(--white);
+                box-shadow: 0 6px 20px rgba(210, 38, 48, 0.4);
+                transform: translateY(-2px);
+            }
+
+            .meal-tab.active i {
+                transform: scale(1.1);
+            }
+
+            /* ========== FOOD ITEMS - Premium Card Design ========== */
+            .food-item {
+                padding: 16px;
+                border-radius: 18px;
+                margin-bottom: 14px;
+                display: flex;
+                align-items: center;
+                background: var(--white);
+                border: none;
+                box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+                position: relative;
+            }
+
+            .food-item::before {
+                left: 0;
+                width: 5px;
+                border-radius: 0 4px 4px 0;
+            }
+
+            .food-item:active {
+                transform: scale(0.98);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            }
+
+            .food-icon {
+                width: 52px;
+                height: 52px;
+                min-width: 52px;
+                font-size: 26px;
+                margin-right: 14px;
+                border-radius: 14px;
+                background: linear-gradient(145deg, #fff8f8, #ffefef);
+                box-shadow: 0 3px 10px rgba(210, 38, 48, 0.12);
+            }
+
+            .food-details {
+                flex: 1;
+                min-width: 0;
+            }
+
+            .food-name {
+                font-size: 15px;
+                font-weight: 700;
+                margin-bottom: 4px;
+                color: #2d3436;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .food-description {
+                font-size: 12px;
+                color: #a0a0a0;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                line-height: 1.3;
+            }
+
+            .food-rating {
+                margin-left: 12px;
+                flex-shrink: 0;
+                padding: 6px 10px;
+                min-width: 48px;
+            }
+
+            .food-rating i {
+                font-size: 11px;
+            }
+
+            .food-rating .rating-value {
+                font-size: 12px;
+            }
+
+            /* ========== BACK BUTTON ========== */
+            .back-button {
+                padding: 10px 18px;
+                font-size: 14px;
+                border-radius: 25px;
+                margin-bottom: 16px;
+            }
+
+            /* ========== FOOTER ========== */
+            footer {
+                padding: 40px 0 25px;
+                margin-top: 60px;
             }
 
             .footer-section {
                 flex: 100%;
+                margin-bottom: 25px;
+                padding: 0 10px;
             }
 
-            .selected-hostel-header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .selected-hostel-image {
-                margin-right: 0;
+            .footer-title {
+                font-size: 18px;
                 margin-bottom: 15px;
             }
 
-            .day-selector {
-                padding: 10px;
-            }
-
-            .day-button {
-                padding: 8px 15px;
+            .footer-section p {
                 font-size: 14px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
+                line-height: 1.6;
             }
 
-            .logo {
-                margin-bottom: 15px;
-            }
-
-            .nav-links {
-                justify-content: center;
-            }
-
-            .nav-links a {
-                margin: 0 10px;
-                font-size: 16px;
-            }
-
-            .hostels-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .date-display {
-                width: 100%;
-                text-align: center;
-            }
-
-            .daily-rating {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .rating-stars {
-                margin-top: 10px;
-            }
-
-            .day-selector {
-                overflow-x: auto;
+            .social-links {
                 justify-content: flex-start;
             }
 
-            .day-button {
-                padding: 8px 12px;
-                margin: 0 3px;
+            .social-links a {
+                width: 38px;
+                height: 38px;
+            }
+
+            .copyright {
                 font-size: 13px;
-                white-space: nowrap;
+                padding-top: 20px;
+            }
+        }
+
+        /* Small Mobile Styles (max-width: 480px) */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 12px;
+            }
+
+            .header-content {
+                padding: 10px 0;
+            }
+
+            .logo h1 {
+                font-size: 17px;
+            }
+
+            .logo img {
+                height: 36px;
+                margin-right: 8px;
+            }
+
+            .welcome-message h2 {
+                font-size: 19px;
+            }
+
+            .welcome-message p {
+                font-size: 14px;
+            }
+
+            .date-display {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .section-title {
+                font-size: 18px;
+            }
+
+            /* Hostel Cards */
+            .hostel-image-container {
+                height: 140px;
+            }
+
+            .hostel-info {
+                padding: 14px;
+            }
+
+            .hostel-name {
+                font-size: 16px;
+            }
+
+            .hostel-description {
+                font-size: 12px;
+            }
+
+            .select-hostel-btn {
+                padding: 11px 18px;
+                font-size: 14px;
+            }
+
+            /* Selected hostel */
+            .selected-hostel-header {
+                padding: 16px 14px;
+            }
+
+            .selected-hostel-image {
+                width: 70px;
+                height: 70px;
+            }
+
+            .selected-hostel-info h2 {
+                font-size: 19px;
+            }
+
+            /* Day selector */
+            .day-selector {
+                padding: 10px;
+                gap: 6px;
+            }
+
+            .day-button {
+                padding: 8px 14px;
+                font-size: 12px;
+            }
+
+            /* Menu section */
+            .menu-section {
+                padding: 16px 14px;
+            }
+
+            .meal-tabs {
+                gap: 8px;
+                padding: 8px;
+            }
+
+            .meal-tab {
+                padding: 12px 6px;
+                font-size: 10px;
+                min-height: 64px;
+                font-weight: 700;
+            }
+
+            .meal-tab i {
+                font-size: 20px;
+            }
+
+            /* Food items */
+            .food-item {
+                padding: 14px;
+                margin-bottom: 12px;
+                border-radius: 16px;
+            }
+
+            .food-icon {
+                width: 46px;
+                height: 46px;
+                min-width: 46px;
+                font-size: 22px;
+                margin-right: 12px;
+                border-radius: 12px;
+            }
+
+            .food-name {
+                font-size: 14px;
+            }
+
+            .food-description {
+                font-size: 11px;
+            }
+
+            /* Back button */
+            .back-button {
+                padding: 9px 16px;
+                font-size: 13px;
+            }
+
+            /* Bottom nav adjustments */
+            .bottom-nav-item {
+                font-size: 10px;
+                padding: 6px 12px;
+            }
+
+            .bottom-nav-item i {
+                font-size: 20px;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 360px) {
+            .logo h1 {
+                font-size: 15px;
+            }
+
+            .logo img {
+                height: 32px;
+            }
+
+            .welcome-message h2 {
+                font-size: 17px;
+            }
+
+            .meal-tabs {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .meal-tab {
+                min-height: 55px;
+            }
+
+            .day-button {
+                padding: 7px 12px;
+                font-size: 11px;
+            }
+        }
+
+        /* Landscape mode adjustments */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hostels-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .welcome-message {
+                margin: 15px 0 25px;
+            }
+
+            .meal-tabs {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .bottom-nav {
+                padding: 6px 0;
+            }
+        }
+
+        /* Touch-friendly hover states */
+        @media (hover: none) and (pointer: coarse) {
+            .hostel-card:hover {
+                transform: none;
+            }
+
+            .food-item:hover {
+                transform: none;
+                background-color: #f8f9fa;
+            }
+
+            .select-hostel-btn:hover {
+                transform: none;
+            }
+
+            .day-button:hover::after {
+                width: 0;
+            }
+        }
+
+        /* Safe area padding for notched devices */
+        @supports (padding: max(0px)) {
+            @media (max-width: 768px) {
+                .bottom-nav {
+                    padding-bottom: max(8px, env(safe-area-inset-bottom));
+                }
+
+                body {
+                    padding-bottom: max(80px, calc(80px + env(safe-area-inset-bottom)));
+                }
+            }
+        }
+
+        /* Smooth scrolling for mobile */
+        @media (max-width: 768px) {
+            html {
+                scroll-behavior: smooth;
+            }
+
+            .page {
+                scroll-behavior: smooth;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .food-item {
+                border: 2px solid var(--dark-gray);
+            }
+
+            .hostel-card {
+                border: 2px solid var(--dark-gray);
+            }
+        }
+
+        /* Reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
@@ -890,9 +1799,51 @@
                     <a href="cabin.html"><i class="fas fa-door-open"></i> Cabin</a>
                     <a href="transport.html"><i class="fas fa-bus"></i> Transport</a>
                 </div>
+                <!-- Hamburger Menu Button -->
+                <button class="hamburger-menu" id="hamburger-btn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+
+    <!-- Mobile Side Navigation -->
+    <nav class="mobile-nav" id="mobile-nav">
+        <div class="mobile-nav-links">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="#" class="active"><i class="fas fa-utensils"></i> Mess Menu</a>
+            <a href="cabin.html"><i class="fas fa-door-open"></i> Study Cabin</a>
+            <a href="transport.html"><i class="fas fa-bus"></i> Transport</a>
+            <a href="map.html"><i class="fas fa-map-marker-alt"></i> Campus Map</a>
+        </div>
+    </nav>
+
+    <!-- Bottom Navigation Bar (Mobile) -->
+    <nav class="bottom-nav" id="bottom-nav">
+        <div class="bottom-nav-container">
+            <a href="index.html" class="bottom-nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="bottom-nav-item active">
+                <i class="fas fa-utensils"></i>
+                <span>Menu</span>
+            </a>
+            <a href="cabin.html" class="bottom-nav-item">
+                <i class="fas fa-door-open"></i>
+                <span>Cabin</span>
+            </a>
+            <a href="transport.html" class="bottom-nav-item">
+                <i class="fas fa-bus"></i>
+                <span>Transport</span>
+            </a>
+        </div>
+    </nav>
 
     <!-- Hostel Selection Page -->
     <div id="hostel-selection-page" class="page active">
@@ -1092,6 +2043,77 @@
     </footer>
 
     <script>
+        // ============================================
+        // MOBILE NAVIGATION FUNCTIONALITY
+        // ============================================
+        (function() {
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileNav = document.getElementById('mobile-nav');
+            const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+            const body = document.body;
+
+            function toggleMobileNav() {
+                hamburgerBtn.classList.toggle('active');
+                mobileNav.classList.toggle('active');
+                mobileNavOverlay.classList.toggle('active');
+                body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+            }
+
+            function closeMobileNav() {
+                hamburgerBtn.classList.remove('active');
+                mobileNav.classList.remove('active');
+                mobileNavOverlay.classList.remove('active');
+                body.style.overflow = '';
+            }
+
+            if (hamburgerBtn) {
+                hamburgerBtn.addEventListener('click', toggleMobileNav);
+            }
+
+            if (mobileNavOverlay) {
+                mobileNavOverlay.addEventListener('click', closeMobileNav);
+            }
+
+            // Close menu on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+                    closeMobileNav();
+                }
+            });
+
+            // Close menu when clicking nav links
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    closeMobileNav();
+                });
+            });
+
+            // Hide/show bottom nav on scroll
+            let lastScrollTop = 0;
+            const bottomNav = document.getElementById('bottom-nav');
+            
+            window.addEventListener('scroll', function() {
+                if (window.innerWidth <= 768) {
+                    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    
+                    if (scrollTop > lastScrollTop && scrollTop > 100) {
+                        // Scrolling down
+                        bottomNav.style.transform = 'translateY(100%)';
+                    } else {
+                        // Scrolling up
+                        bottomNav.style.transform = 'translateY(0)';
+                    }
+                    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+                }
+            }, { passive: true });
+
+            // Add transition for bottom nav
+            if (bottomNav) {
+                bottomNav.style.transition = 'transform 0.3s ease';
+            }
+        })();
+
         // API Configuration
         const API_URL = 'http://127.0.0.1:5000/api';
         
@@ -1105,8 +2127,9 @@
                     // Convert database format to the format expected by the page
                     const convertedMenus = {
                         himalaya: {},
-                        everest: {},
-                        nagaland: {}
+                        tulip: {},
+                        kanchanaganga: {},
+                        aravali: {}
                     };
                     
                     // Group by day and meal type
@@ -1121,7 +2144,7 @@
                         }));
                         
                         // Add to all hostels (you can customize this per hostel later)
-                        ['himalaya', 'everest', 'nagaland'].forEach(hostel => {
+                        ['himalaya', 'tulip', 'kanchanaganga', 'aravali'].forEach(hostel => {
                             if (!convertedMenus[hostel][day]) {
                                 convertedMenus[hostel][day] = {};
                             }
@@ -2706,10 +3729,10 @@ dinner: [
             const mealContent = document.getElementById(mealType);
             mealContent.innerHTML = '';
             
-            // Check if menu data exists for this day
-            if (!hostelMenus[hostelId][day] || !hostelMenus[hostelId][day][mealType] || hostelMenus[hostelId][day][mealType].length === 0) {
+            // Check if hostel exists and menu data exists for this day
+            if (!hostelMenus[hostelId] || !hostelMenus[hostelId][day] || !hostelMenus[hostelId][day][mealType] || hostelMenus[hostelId][day][mealType].length === 0) {
                 // If no data for this day, show Monday's menu as fallback
-                if (day !== 'monday' && hostelMenus[hostelId]['monday'][mealType]) {
+                if (day !== 'monday' && hostelMenus[hostelId] && hostelMenus[hostelId]['monday'] && hostelMenus[hostelId]['monday'][mealType]) {
                     const fallbackMessage = document.createElement('div');
                     fallbackMessage.className = 'food-item';
                     fallbackMessage.innerHTML = `
@@ -2757,10 +3780,10 @@ dinner: [
                 <div class="food-icon">${meal.icon}</div>
                 <div class="food-details">
                     <div class="food-name">${meal.name}</div>
-                    <div class="food-description">${meal.description}</div>
+                    <div class="food-description">${meal.description || 'Freshly prepared'}</div>
                 </div>
                 <div class="food-rating">
-                    ${generateStarRating(meal.rating)}
+                    <div class="stars-row">${generateStarRating(meal.rating)}</div>
                     <span class="rating-value">${meal.rating}</span>
                 </div>
             `;
@@ -2834,36 +3857,51 @@ dinner: [
             // Hostel selection functionality
             const hostelCards = document.querySelectorAll('.hostel-card');
             
+            // Helper function to handle hostel selection
+            function selectHostel(card) {
+                // Get hostel data
+                const hostelId = card.getAttribute('data-hostel');
+                const hostelName = card.querySelector('.hostel-name').textContent;
+                const hostelDescription = card.querySelector('.hostel-description').textContent;
+                const hostelType = card.getAttribute('data-type');
+                const hostelImage = card.querySelector('.hostel-image').src;
+                
+                // Update selected hostel info
+                document.getElementById('selected-hostel-title').textContent = hostelName;
+                document.getElementById('selected-hostel-description').textContent = hostelDescription;
+                document.getElementById('selected-hostel-type').textContent = hostelType;
+                document.getElementById('selected-hostel-img').src = hostelImage;
+                
+                // Populate meal content for the selected hostel and current day
+                populateMealContent(hostelId, currentDay, 'breakfast');
+                populateMealContent(hostelId, currentDay, 'lunch');
+                populateMealContent(hostelId, currentDay, 'snacks');
+                populateMealContent(hostelId, currentDay, 'dinner');
+                
+                // Update overall rating
+                updateOverallRating(hostelId, currentDay);
+                
+                // Show menu page
+                showPage('menu-page');
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            }
+
             hostelCards.forEach(card => {
-                card.addEventListener('click', () => {
-                    // Get hostel data
-                    const hostelId = card.getAttribute('data-hostel');
-                    const hostelName = card.querySelector('.hostel-name').textContent;
-                    const hostelDescription = card.querySelector('.hostel-description').textContent;
-                    const hostelType = card.getAttribute('data-type');
-                    const hostelImage = card.querySelector('.hostel-image').src;
-                    
-                    // Update selected hostel info
-                    document.getElementById('selected-hostel-title').textContent = hostelName;
-                    document.getElementById('selected-hostel-description').textContent = hostelDescription;
-                    document.getElementById('selected-hostel-type').textContent = hostelType;
-                    document.getElementById('selected-hostel-img').src = hostelImage;
-                    
-                    // Populate meal content for the selected hostel and current day
-                    populateMealContent(hostelId, currentDay, 'breakfast');
-                    populateMealContent(hostelId, currentDay, 'lunch');
-                    populateMealContent(hostelId, currentDay, 'snacks');
-                    populateMealContent(hostelId, currentDay, 'dinner');
-                    
-                    // Update overall rating
-                    updateOverallRating(hostelId, currentDay);
-                    
-                    // Show menu page
-                    showPage('menu-page');
-                    
-                    // Scroll to top
-                    window.scrollTo(0, 0);
+                // Click on entire card
+                card.addEventListener('click', (e) => {
+                    selectHostel(card);
                 });
+                
+                // Also handle button click explicitly
+                const btn = card.querySelector('.select-hostel-btn');
+                if (btn) {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation(); // Prevent double trigger
+                        selectHostel(card);
+                    });
+                }
             });
             
             // Back button functionality

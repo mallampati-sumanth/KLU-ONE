@@ -707,7 +707,7 @@
         }
         
         .dark-theme .result-title {
-            color: #f8f9fa;
+            color: #ffffff;
         }
 
         .result-badge {
@@ -744,7 +744,7 @@
         }
         
         .dark-theme .info-item {
-            background-color: rgba(255, 255, 255, 0.08);
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         .info-item:hover {
@@ -754,7 +754,7 @@
         }
 
         .dark-theme .info-item:hover {
-            background-color: rgba(255, 255, 255, 0.12);
+            background-color: rgba(255, 255, 255, 0.15);
             border-color: var(--primary-dark);
         }
 
@@ -768,18 +768,18 @@
         }
 
         .dark-theme .info-label {
-            color: #adb5bd;
+            color: #b0b8c1;
         }
 
         .info-value {
             font-weight: 600;
             color: var(--dark);
             font-size: 1.05rem;
-            word-break: break-word; /* Ensure long values wrap */
+            word-break: break-word;
         }
         
         .dark-theme .info-value {
-            color: #f8f9fa;
+            color: #ffffff;
         }
 
         .cabin-highlight {
@@ -789,7 +789,7 @@
         }
 
         .dark-theme .cabin-highlight {
-            color: var(--primary-light);
+            color: #ff6b70;
         }
 
         @media (max-width: 600px) {
@@ -971,6 +971,41 @@
             padding: var(--space-md) 0;
             color: var(--dark-lighter);
             font-size: 0.9rem;
+        }
+
+        .credits {
+            text-align: center;
+            padding: var(--space-lg) 0;
+            margin-top: var(--space-md);
+            border-top: 1px solid var(--light-darker);
+        }
+
+        .credits-label {
+            font-size: 0.8rem;
+            color: var(--dark-lighter);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: var(--space-sm);
+        }
+
+        .credits-name {
+            font-family: var(--font-secondary);
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .credits-name:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        .dark-theme .credits-label {
+            color: #b0b8c1;
         }
 
         /* Loading Spinner */
@@ -1238,11 +1273,11 @@
             }
             
             .tab span {
-                display: none;
+                font-size: 0.7rem;
             }
             
             .tab i {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
             }
             
             .toast-container {
@@ -1255,27 +1290,6 @@
             .toast {
                 width: 100%;
                 max-width: none;
-            }
-            
-            .header-actions {
-                position: fixed;
-                bottom: var(--space-lg);
-                right: var(--space-lg);
-                z-index: 10;
-                display: flex;
-                flex-direction: column;
-                gap: var(--space-sm);
-            }
-            
-            .btn-icon {
-                background-color: var(--primary);
-                color: white;
-                box-shadow: var(--shadow-lg);
-            }
-            
-            .btn-icon:hover {
-                background-color: var(--primary-dark);
-                color: white;
             }
             
             .recent-searches-header {
@@ -1560,6 +1574,799 @@
                 font-size: 0.75rem;
             }
         }
+
+        /* Faculty Modal Popup Styles */
+        .faculty-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faculty-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .faculty-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .faculty-modal-content {
+            position: relative;
+            background: white;
+            border-radius: 20px;
+            padding: var(--space-xl);
+            max-width: 420px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+            transform: scale(0.8) translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .faculty-modal.active .faculty-modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .dark-theme .faculty-modal-content {
+            background: var(--light-dark);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: rgba(227, 27, 35, 0.1);
+            color: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .modal-close-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            text-align: center;
+        }
+
+        .modal-faculty-avatar {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-lg);
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 10px 30px rgba(227, 27, 35, 0.3);
+        }
+
+        .modal-faculty-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: var(--space-xs);
+        }
+
+        .dark-theme .modal-faculty-name {
+            color: #ffffff;
+        }
+
+        .modal-faculty-dept {
+            font-size: 0.95rem;
+            color: var(--dark-lighter);
+            margin-bottom: var(--space-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .modal-faculty-dept i {
+            color: var(--primary);
+        }
+
+        .modal-info-grid {
+            display: grid;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+
+        .modal-info-item {
+            background: var(--light);
+            border-radius: 12px;
+            padding: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            text-align: left;
+        }
+
+        .dark-theme .modal-info-item {
+            background: var(--light-darker);
+        }
+
+        .modal-info-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(227, 27, 35, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .modal-info-icon i {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .modal-info-details {
+            flex: 1;
+        }
+
+        .modal-info-label {
+            font-size: 0.75rem;
+            color: var(--dark-lighter);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .dark-theme .modal-info-label {
+            color: #b0b8c1;
+        }
+
+        .modal-info-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .dark-theme .modal-info-value {
+            color: #ffffff;
+        }
+
+        .modal-info-value.cabin-value {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        /* Mobile responsive for modal */
+        @media (max-width: 480px) {
+            .faculty-modal-content {
+                padding: var(--space-lg);
+                max-width: 95%;
+                margin: var(--space-md);
+                border-radius: 16px;
+            }
+
+            .modal-faculty-avatar {
+                width: 70px;
+                height: 70px;
+                font-size: 1.6rem;
+            }
+
+            .modal-faculty-name {
+                font-size: 1.2rem;
+            }
+
+            .modal-info-item {
+                padding: var(--space-sm) var(--space-md);
+            }
+
+            .modal-info-icon {
+                width: 38px;
+                height: 38px;
+            }
+
+            .modal-info-value {
+                font-size: 0.9rem;
+            }
+
+            .modal-close-btn {
+                width: 32px;
+                height: 32px;
+                top: 10px;
+                right: 10px;
+            }
+        }
+
+        /* ===== COMPREHENSIVE MOBILE RESPONSIVE STYLES ===== */
+        
+        /* Large tablets and small desktops */
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 var(--space-lg);
+            }
+            
+            .main-card {
+                margin: var(--space-md) 0;
+            }
+        }
+
+        /* Tablets */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: var(--space-md);
+                padding: var(--space-md) 0;
+            }
+
+            .header-left {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .logo {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo-text h1 {
+                font-size: 1.4rem;
+                text-align: center;
+            }
+
+            .logo-text p {
+                text-align: center;
+                font-size: 0.85rem;
+            }
+
+            .home-btn {
+                position: absolute;
+                left: var(--space-md);
+                top: var(--space-md);
+            }
+
+            .tabs {
+                border-radius: var(--radius-lg);
+            }
+
+            .tab {
+                padding: var(--space-sm) var(--space-xs);
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .tab span {
+                font-size: 0.7rem;
+                display: block;
+            }
+
+            .tab i {
+                font-size: 1.2rem;
+            }
+
+            .tab-content {
+                padding: var(--space-lg);
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .section-desc {
+                font-size: 0.9rem;
+            }
+
+            /* Dropdown select improvements */
+            .select-wrapper select {
+                font-size: 0.95rem;
+                padding: var(--space-md);
+                padding-left: 40px;
+            }
+
+            /* Quick search suggestions */
+            .quick-search-suggestions {
+                max-height: 50vh;
+            }
+
+            .suggestion-item {
+                padding: var(--space-md);
+            }
+
+            .suggestion-info {
+                gap: 2px;
+            }
+
+            .suggestion-avatar {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        /* Mobile phones */
+        @media (max-width: 576px) {
+            :root {
+                --space-lg: 1rem;
+                --space-xl: 1.25rem;
+            }
+
+            .container {
+                padding: 0 var(--space-sm);
+            }
+
+            header {
+                padding: var(--space-sm) 0;
+            }
+
+            .logo-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 1.3rem;
+            }
+
+            .logo-text h1 {
+                font-size: 1.2rem;
+                line-height: 1.3;
+            }
+
+            .logo-text p {
+                font-size: 0.8rem;
+                display: none;
+            }
+
+            .home-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+
+            .main-card {
+                border-radius: var(--radius-lg);
+            }
+
+            .tabs {
+                border-radius: var(--radius-md);
+                padding: 4px;
+            }
+
+            .tab {
+                padding: var(--space-sm) var(--space-xs);
+            }
+
+            .tab span {
+                font-size: 0.65rem;
+            }
+
+            .tab i {
+                font-size: 1.1rem;
+            }
+
+            .tab-indicator {
+                height: 2px;
+            }
+
+            .tab-content {
+                padding: var(--space-md);
+            }
+
+            .section-title {
+                font-size: 1.15rem;
+                margin-bottom: 4px;
+            }
+
+            .section-desc {
+                font-size: 0.85rem;
+                margin-bottom: var(--space-md);
+            }
+
+            /* Form elements */
+            .form-group {
+                margin-bottom: var(--space-md);
+            }
+
+            .form-group label {
+                font-size: 0.9rem;
+                margin-bottom: 6px;
+            }
+
+            .input-group input,
+            .select-wrapper select {
+                font-size: 0.9rem;
+                padding: 12px 12px 12px 38px;
+            }
+
+            .input-group i,
+            .select-wrapper > i:first-child {
+                left: 12px;
+                font-size: 0.9rem;
+            }
+
+            .btn {
+                padding: 12px var(--space-md);
+                font-size: 0.9rem;
+            }
+
+            /* Quick search improvements */
+            .quick-search-input-wrapper {
+                width: 100%;
+            }
+
+            #quickSearchInput {
+                font-size: 1rem;
+                padding: 14px 14px 14px 42px;
+            }
+
+            .quick-search-suggestions {
+                max-height: 60vh;
+                border-radius: var(--radius-md);
+            }
+
+            .suggestions-header {
+                padding: 10px var(--space-md);
+                font-size: 0.75rem;
+            }
+
+            .suggestion-item {
+                padding: var(--space-sm) var(--space-md);
+            }
+
+            .suggestion-avatar {
+                width: 36px;
+                height: 36px;
+                font-size: 0.85rem;
+            }
+
+            .suggestion-name {
+                font-size: 0.9rem;
+            }
+
+            .suggestion-dept {
+                font-size: 0.75rem;
+            }
+
+            .suggestion-cabin {
+                padding: 3px 8px;
+                font-size: 0.7rem;
+            }
+
+            /* Result cards */
+            .result-card {
+                padding: var(--space-md);
+                border-radius: var(--radius-md);
+            }
+
+            .result-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+
+            .result-title {
+                font-size: 1.1rem;
+            }
+
+            .result-badge {
+                font-size: 0.75rem;
+                padding: 4px 10px;
+            }
+
+            .result-info {
+                grid-template-columns: 1fr;
+                gap: var(--space-sm);
+            }
+
+            .info-item {
+                padding: var(--space-sm) var(--space-md);
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .info-label {
+                font-size: 0.7rem;
+                margin-bottom: 0;
+            }
+
+            .info-value {
+                font-size: 0.95rem;
+                text-align: right;
+            }
+
+            /* Toast notifications */
+            .toast-container {
+                left: var(--space-sm);
+                right: var(--space-sm);
+                bottom: var(--space-sm);
+            }
+
+            .toast {
+                padding: var(--space-sm) var(--space-md);
+                border-radius: var(--radius-md);
+            }
+
+            .toast-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+            }
+
+            .toast-title {
+                font-size: 0.85rem;
+            }
+
+            .toast-message {
+                font-size: 0.8rem;
+            }
+
+            /* Footer */
+            footer {
+                padding: var(--space-md) 0;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: var(--space-md);
+                text-align: center;
+            }
+
+            .footer-content p {
+                font-size: 0.8rem;
+            }
+
+            .footer-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .footer-links a {
+                font-size: 0.8rem;
+            }
+
+            /* Modal improvements */
+            .faculty-modal-content {
+                padding: var(--space-md);
+                max-width: 92%;
+                margin: var(--space-sm);
+                border-radius: 14px;
+            }
+
+            .modal-faculty-avatar {
+                width: 60px;
+                height: 60px;
+                font-size: 1.4rem;
+                margin-bottom: var(--space-md);
+            }
+
+            .modal-faculty-name {
+                font-size: 1.1rem;
+            }
+
+            .modal-faculty-dept {
+                font-size: 0.85rem;
+                margin-bottom: var(--space-md);
+            }
+
+            .modal-info-grid {
+                gap: var(--space-sm);
+            }
+
+            .modal-info-item {
+                padding: 10px 12px;
+                border-radius: 10px;
+            }
+
+            .modal-info-icon {
+                width: 36px;
+                height: 36px;
+                border-radius: 8px;
+            }
+
+            .modal-info-icon i {
+                font-size: 0.95rem;
+            }
+
+            .modal-info-label {
+                font-size: 0.7rem;
+            }
+
+            .modal-info-value {
+                font-size: 0.9rem;
+            }
+
+            .modal-close-btn {
+                width: 30px;
+                height: 30px;
+                top: 8px;
+                right: 8px;
+                font-size: 0.9rem;
+            }
+
+            /* Header actions - floating buttons */
+            .header-actions {
+                position: fixed;
+                bottom: var(--space-md);
+                right: var(--space-md);
+                z-index: 100;
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+
+            .btn-icon {
+                width: 44px;
+                height: 44px;
+                background: var(--primary);
+                color: white;
+                box-shadow: 0 4px 15px rgba(227, 27, 35, 0.4);
+            }
+
+            .btn-icon:hover {
+                background: var(--primary-dark);
+                color: white;
+            }
+        }
+
+        /* Very small phones (320px and below) */
+        @media (max-width: 360px) {
+            :root {
+                --space-md: 0.75rem;
+                --space-lg: 0.875rem;
+            }
+
+            .container {
+                padding: 0 8px;
+            }
+
+            .logo-text h1 {
+                font-size: 1rem;
+            }
+
+            .logo-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 1.1rem;
+            }
+
+            .tabs {
+                padding: 3px;
+            }
+
+            .tab {
+                padding: 8px 4px;
+            }
+
+            .tab span {
+                font-size: 0.6rem;
+            }
+
+            .tab i {
+                font-size: 1rem;
+            }
+
+            .tab-content {
+                padding: var(--space-sm);
+            }
+
+            .section-title {
+                font-size: 1.05rem;
+            }
+
+            .section-desc {
+                font-size: 0.8rem;
+            }
+
+            .suggestion-item {
+                padding: 8px 10px;
+                gap: 8px;
+            }
+
+            .suggestion-avatar {
+                width: 32px;
+                height: 32px;
+                font-size: 0.75rem;
+            }
+
+            .suggestion-name {
+                font-size: 0.85rem;
+            }
+
+            .suggestion-cabin {
+                padding: 2px 6px;
+                font-size: 0.65rem;
+            }
+
+            .result-card {
+                padding: var(--space-sm);
+            }
+
+            .result-title {
+                font-size: 1rem;
+            }
+
+            .modal-faculty-avatar {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .modal-faculty-name {
+                font-size: 1rem;
+            }
+
+            .modal-info-item {
+                padding: 8px 10px;
+            }
+
+            .modal-info-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .modal-info-label {
+                font-size: 0.65rem;
+            }
+
+            .modal-info-value {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Landscape mode on phones */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .faculty-modal-content {
+                max-height: 95vh;
+                padding: var(--space-md);
+            }
+
+            .modal-faculty-avatar {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                margin-bottom: var(--space-sm);
+            }
+
+            .modal-faculty-name {
+                font-size: 1rem;
+            }
+
+            .modal-faculty-dept {
+                margin-bottom: var(--space-sm);
+            }
+
+            .modal-info-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-sm);
+            }
+
+            .quick-search-suggestions {
+                max-height: 40vh;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1681,7 +2488,7 @@
                             <div class="search-box">
                                 <div class="input-group">
                                     <i class="fas fa-search"></i>
-                                    <input type="text" id="quickSearchInput" placeholder="Start typing faculty name..." autocomplete="off">
+                                    <input type="text" id="quickSearchInput" placeholder="Search by name or employee ID..." autocomplete="off">
                                 </div>
                             </div>
                             <!-- Autocomplete Suggestions Dropdown -->
@@ -1691,19 +2498,18 @@
                     </div>
                 </div>
             </div>
-            <!-- Recent Searches -->
-            <div class="card recent-searches-card">
-                <div class="recent-searches-header">
-                    <h3>Recent Searches</h3>
-                    <button id="clearSearchesBtn" class="btn-text">
-                        <i class="fas fa-trash-alt"></i> Clear All
-                    </button>
-                </div>
-                <div id="recentSearches" class="recent-searches">
-                    <p class="empty-state">No recent searches</p>
-                </div>
-            </div>
         </main>
+
+        <!-- Faculty Details Popup Modal -->
+        <div id="facultyModal" class="faculty-modal">
+            <div class="faculty-modal-overlay"></div>
+            <div class="faculty-modal-content">
+                <button class="modal-close-btn" id="modalCloseBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div id="modalBody" class="modal-body"></div>
+            </div>
+        </div>
 
         <!-- Footer -->
         <footer>
@@ -1719,7 +2525,11 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; <span id="currentYear"></span> KLU Faculty Cabin Finder. Developed By Sumanth</p>
+                <p>&copy; <span id="currentYear"></span> KLU Faculty Cabin Finder</p>
+            </div>
+            <div class="credits">
+                <p class="credits-label">Developed & Designed By</p>
+                <p class="credits-name">Mallampati Sumanth</p>
             </div>
         </footer>
 
@@ -2206,7 +3016,7 @@
                 { sno: 13, empId: 4654, name: "MR. JONNALAGADDA SURYA KIRAN", dept: "ELGE", room: "R305", cabin: "14" },
                 { sno: 14, empId: 4719, name: "DR. YALAVARTHI USHA DEVI", dept: "ELGE", room: "R305", cabin: "CABIN" },
                 { sno: 15, empId: 5269, name: "DR. V. DEEPAK", dept: "ELGE", room: "R305", cabin: "CABIN" },
-                { sno: 16, empId: 5395, name: "DR. ASWIN KUMER S. V.", dept: "ELGE", room: "R305", cabin: "CABIN" },
+                { sno: 16, empId: 5395, name: "DR. ASWIN KUMER S. V.", dept: "ELGE", room: "R4floor corner", cabin: "CABIN" },
                 { sno: 17, empId: 5406, name: "DR. S. ROOBAN", dept: "ELGE", room: "R402", cabin: "CABIN" },
                 { sno: 18, empId: 5448, name: "DR. DINESH KUMAR A", dept: "ELGE", room: "M108", cabin: "1" },
                 { sno: 19, empId: 5616, name: "DR. S. ARUN METHA", dept: "ELGE", room: "R305", cabin: "CABIN" },
@@ -2303,13 +3113,14 @@
                 cabin: "R202 CORNER"
             },
             {
-                department: "Computer Science Engineering - 4",
+                department: "Artificial Intelligence and Data Science",
                 alias: ["aids"],
                 name: "Dr. Prabhakar",
                 cabin: "R4 FLOOR"
             },
+
             {
-                department: "Artitificial Intelligence and Data Science",
+                department: "Computer Science Engineering - 4",
                 alias: ["CSE-4"],
                 name: "Dr. T. Pavan Kumar",
                 cabin: "C603A"
@@ -2317,7 +3128,7 @@
             {
                 department: "Experiential Learning & Global Engagement",
                 alias: ["ELGE", "HTE"],
-                name: "Dr. ASHWIN Kumar",
+                name: "Dr. Aswin Kumar S. V.",
                 cabin: "R4 FLOOR"
             },
             {
@@ -2840,6 +3651,8 @@
 
             // Load recent searches
             function loadRecentSearches() {
+                if (!recentSearches) return; // Element removed from UI
+                
                 const searches = JSON.parse(localStorage.getItem('recentSearches')) || [];
                 
                 if (searches.length === 0) {
@@ -2959,7 +3772,8 @@
                 
                 const lowerQuery = query.toLowerCase();
                 const results = allFacultyList.filter(faculty => 
-                    faculty.name.toLowerCase().includes(lowerQuery)
+                    faculty.name.toLowerCase().includes(lowerQuery) ||
+                    (faculty.empId && faculty.empId.toLowerCase().includes(lowerQuery))
                 );
                 
                 // Sort by relevance (exact match first, then starts with, then contains)
@@ -3041,52 +3855,87 @@
                 quickSearchSuggestions.classList.add('show');
             }
 
-            // Select and display faculty result
+            // Select and display faculty result in modal
             function selectFaculty(faculty) {
                 quickSearchSuggestions.classList.remove('show');
-                quickSearchInput.value = faculty.name;
-                
-                // Display the selected faculty card
+                quickSearchInput.value = '';
                 quickSearchResults.innerHTML = '';
                 
-                const resultCard = document.createElement('div');
-                resultCard.className = 'result-card';
-                resultCard.style.setProperty('--i', '1');
-                
                 const cabinDisplay = faculty.cabin || faculty.room || 'N/A';
+                const initials = getInitials(faculty.name);
                 
-                resultCard.innerHTML = `
-                    <div class="result-header">
-                        <div class="result-title">${faculty.name}</div>
-                        <div class="result-badge">${faculty.designation || 'Faculty'}</div>
+                // Populate modal content
+                const modalBody = document.getElementById('modalBody');
+                modalBody.innerHTML = `
+                    <div class="modal-faculty-avatar">${initials}</div>
+                    <div class="modal-faculty-name">${faculty.name}</div>
+                    <div class="modal-faculty-dept">
+                        <i class="fas fa-building"></i>
+                        ${faculty.dept}
                     </div>
-                    <div class="result-info">
-                        <div class="info-item">
-                            <div class="info-label">Department</div>
-                            <div class="info-value">${faculty.dept}</div>
+                    <div class="modal-info-grid">
+                        <div class="modal-info-item">
+                            <div class="modal-info-icon">
+                                <i class="fas fa-id-badge"></i>
+                            </div>
+                            <div class="modal-info-details">
+                                <div class="modal-info-label">Employee ID</div>
+                                <div class="modal-info-value">${faculty.empId || 'N/A'}</div>
+                            </div>
                         </div>
-                        <div class="info-item">
-                            <div class="info-label">Employee ID</div>
-                            <div class="info-value">${faculty.empId || 'N/A'}</div>
+                        <div class="modal-info-item">
+                            <div class="modal-info-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="modal-info-details">
+                                <div class="modal-info-label">Designation</div>
+                                <div class="modal-info-value">${faculty.designation || 'Faculty'}</div>
+                            </div>
                         </div>
-                        <div class="info-item">
-                            <div class="info-label">Room Number</div>
-                            <div class="info-value">${faculty.room || 'N/A'}</div>
+                        <div class="modal-info-item">
+                            <div class="modal-info-icon">
+                                <i class="fas fa-door-open"></i>
+                            </div>
+                            <div class="modal-info-details">
+                                <div class="modal-info-label">Room Number</div>
+                                <div class="modal-info-value">${faculty.room || 'N/A'}</div>
+                            </div>
                         </div>
-                        <div class="info-item">
-                            <div class="info-label">Cabin/Seq Number</div>
-                            <div class="info-value cabin-highlight">${cabinDisplay}</div>
+                        <div class="modal-info-item">
+                            <div class="modal-info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="modal-info-details">
+                                <div class="modal-info-label">Cabin Number</div>
+                                <div class="modal-info-value cabin-value">${cabinDisplay}</div>
+                            </div>
                         </div>
                     </div>
                 `;
                 
-                quickSearchResults.appendChild(resultCard);
-                
-                // Add to recent searches
-                addToRecentSearches(faculty.name + ' (' + faculty.dept + ')', 'faculty');
+                // Show modal
+                const modal = document.getElementById('facultyModal');
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
                 
                 showToast('Faculty Found', `${faculty.name} - Cabin: ${cabinDisplay}`, 'success');
             }
+
+            // Close modal function
+            function closeFacultyModal() {
+                const modal = document.getElementById('facultyModal');
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // Modal close event listeners
+            document.getElementById('modalCloseBtn').addEventListener('click', closeFacultyModal);
+            document.querySelector('.faculty-modal-overlay').addEventListener('click', closeFacultyModal);
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeFacultyModal();
+                }
+            });
 
             // Input event handler for live search
             let searchTimeout;

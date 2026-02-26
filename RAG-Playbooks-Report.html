@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG Playbooks Report - MALLAMPATI SUMANTH</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --accent: #0ea5e9;
+            --accent-dark: #0284c7;
+            --success: #10b981;
+            --text-dark: #1a1a2e;
+            --text-secondary: #4a4a68;
+            --bg-light: #f8f9fc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 30px rgba(99, 102, 241, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            font-size: 11pt;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 18mm 22mm;
+            margin: 0 auto 20px;
+            background: var(--bg-card);
+            box-shadow: var(--shadow);
+            page-break-after: always;
+            position: relative;
+        }
+
+        .page:last-child {
+            page-break-after: auto;
+        }
+
+        /* Header Section */
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .author-info h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20pt;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .author-info .subtitle {
+            font-size: 11pt;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .date-box {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .date-box .day {
+            font-size: 22pt;
+            font-weight: 700;
+            display: block;
+        }
+
+        .date-box .month-year {
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 13pt;
+            color: var(--text-dark);
+            margin: 18px 0 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 22px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: linear-gradient(145deg, #ffffff, #f8f9fc);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 12px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .info-box.accent {
+            border-left-color: var(--accent);
+            background: linear-gradient(145deg, #f0f9ff, #ffffff);
+        }
+
+        .info-box.highlight {
+            background: linear-gradient(145deg, #faf5ff, #ffffff);
+            border-left-color: var(--primary-dark);
+        }
+
+        .info-box.success {
+            background: linear-gradient(145deg, #ecfdf5, #ffffff);
+            border-left-color: var(--success);
+        }
+
+        .info-box h3 {
+            font-size: 10.5pt;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .info-box.accent h3 {
+            color: var(--accent-dark);
+        }
+
+        .info-box.success h3 {
+            color: var(--success);
+        }
+
+        .info-box p, .info-box li {
+            font-size: 10pt;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .info-box ul {
+            margin-left: 18px;
+            margin-top: 6px;
+        }
+
+        .info-box li {
+            margin-bottom: 4px;
+        }
+
+        /* Concept Cards Grid */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        .concept-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px;
+            box-shadow: var(--shadow);
+        }
+
+        .concept-card .icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            color: white;
+            font-size: 16px;
+        }
+
+        .concept-card.blue .icon {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+        }
+
+        .concept-card h4 {
+            font-size: 10pt;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .concept-card p {
+            font-size: 9pt;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Phase Box */
+        .phase-box {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            margin: 12px 0;
+        }
+
+        .phase-box .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .phase-box .phase-number {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12pt;
+        }
+
+        .phase-box.blue .phase-number {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+        }
+
+        .phase-box h4 {
+            font-size: 11pt;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .phase-box p {
+            font-size: 10pt;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-left: 44px;
+        }
+
+        /* Key Insight */
+        .key-insight {
+            background: linear-gradient(145deg, #fef3c7, #fffbeb);
+            border: 2px dashed #f59e0b;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin: 14px 0;
+            position: relative;
+        }
+
+        .key-insight::before {
+            content: '💡';
+            font-size: 18pt;
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: white;
+            padding: 0 5px;
+        }
+
+        .key-insight p {
+            font-size: 10pt;
+            color: var(--text-dark);
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .page-footer {
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 9pt;
+            color: var(--text-secondary);
+            position: absolute;
+            bottom: 15mm;
+            left: 22mm;
+            right: 22mm;
+        }
+
+        .page-number {
+            background: var(--primary);
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 10pt;
+        }
+
+        /* Paragraph styling */
+        p {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        /* Tech Tags */
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, var(--bg-light), #e8ecf4);
+            border: 1px solid var(--border);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 8.5pt;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1 -->
+    <div class="page">
+        <header class="report-header">
+            <div class="author-info">
+                <h1>MALLAMPATI SUMANTH</h1>
+                <div class="subtitle">RAG Playbooks Report</div>
+            </div>
+            <div class="date-box">
+                <span class="day">25</span>
+                <span class="month-year">February 2026</span>
+            </div>
+        </header>
+
+        <section>
+            <h2 class="section-title">What I Learned from Today's RAG Playbooks</h2>
+            <div class="info-box highlight">
+                <h3>Overview</h3>
+                <p>Today's session helped me clearly understand how a RAG (Retrieval Augmented Generation) system actually works internally instead of just using it like a black box. I gained deep insights into both the architecture and the design decisions that make or break a RAG system.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">From the Normal Playbook</h2>
+            
+            <div class="info-box accent">
+                <h3>The Two Phases of RAG</h3>
+                <p>The most important concept I learned is that RAG works in two different phases, and they should not be confused. Understanding this separation is crucial for building efficient systems.</p>
+            </div>
+
+            <div class="phase-box">
+                <div class="phase-header">
+                    <div class="phase-number">1</div>
+                    <h4>Offline Indexing Phase</h4>
+                </div>
+                <p>In this stage, documents are loaded, split into chunks, converted into embeddings, and stored in a vector database. This process runs only once or whenever new data is added. It does not run every time a question is asked.</p>
+            </div>
+
+            <div class="phase-box blue">
+                <div class="phase-header">
+                    <div class="phase-number">2</div>
+                    <h4>Online Retrieval Phase</h4>
+                </div>
+                <p>This runs every time a user asks a question. The system converts the question into an embedding, searches for similar chunks in the database, attaches that context to a prompt, and sends it to the LLM to generate the answer. This part needs to be fast and efficient.</p>
+            </div>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="icon">📦</div>
+                    <h4>Chunking Strategy</h4>
+                    <p>If chunk size is too small, important context gets broken. If too large, unrelated information gets mixed in. Overlap helps preserve meaning between chunks, but overlap must always be smaller than chunk size.</p>
+                </div>
+                <div class="concept-card blue">
+                    <div class="icon">🌡️</div>
+                    <h4>Temperature = 0</h4>
+                    <p>We use temperature = 0 in RAG systems because it reduces randomness and makes the model more factual. RAG systems should focus on correctness, not creativity.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">From the Advanced Playbook</h2>
+            
+            <div class="info-box">
+                <h3>Thinking Like a System Designer</h3>
+                <p>The advanced part helped me think more like a system designer, considering scalability, model selection, and production-readiness of RAG pipelines.</p>
+            </div>
+
+            <div class="info-box accent">
+                <h3>Embedding Model Selection</h3>
+                <p>Different models perform better for different domains:</p>
+                <ul>
+                    <li><strong>General models</strong> are good for normal English documents</li>
+                    <li><strong>Domain-specific models</strong> are needed for medical or legal documents</li>
+                    <li><strong>Critical rule:</strong> If we change the embedding model, we must re-embed all documents and recreate the vector database</li>
+                    <li><strong>Warning:</strong> Mixing different embedding dimensions will break retrieval</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="page-footer">
+            <span>RAG Playbooks Report - MALLAMPATI SUMANTH</span>
+            <div class="page-number">1</div>
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page">
+        <header class="report-header">
+            <div class="author-info">
+                <h1>MALLAMPATI SUMANTH</h1>
+                <div class="subtitle">RAG Playbooks Report</div>
+            </div>
+            <div class="date-box">
+                <span class="day">25</span>
+                <span class="month-year">February 2026</span>
+            </div>
+        </header>
+
+        <section>
+            <h2 class="section-title">Advanced Concepts (Continued)</h2>
+            
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="icon">📊</div>
+                    <h4>Similarity Metrics</h4>
+                    <p>A high cosine similarity score does not always mean the chunk answers the question correctly. Sometimes it just shares similar words but does not contain the required information.</p>
+                </div>
+                <div class="concept-card blue">
+                    <div class="icon">🗄️</div>
+                    <h4>Vector Database Selection</h4>
+                    <p>Small projects can use simple local databases, but large-scale production systems need managed cloud databases for scaling and reliability.</p>
+                </div>
+            </div>
+
+            <div class="info-box highlight">
+                <h3>Database Choice Factors</h3>
+                <p>The choice of vector database depends on multiple factors:</p>
+                <ul>
+                    <li><strong>Size of data:</strong> How many documents and chunks need to be stored</li>
+                    <li><strong>Number of users:</strong> Concurrent query load and response time requirements</li>
+                    <li><strong>Team capability:</strong> Self-hosted vs managed services based on expertise</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Overall Understanding</h2>
+            
+            <div class="info-box success">
+                <h3>Key Takeaway</h3>
+                <p>From today's playbooks, I understood that building a RAG system is not just about connecting documents to an LLM. Every step — chunking, embeddings, similarity search, and database choice — directly affects performance and answer quality.</p>
+            </div>
+
+            <div class="key-insight">
+                <p><strong>Most RAG failures happen because of poor design decisions in early stages, not because the LLM is bad.</strong> A well-designed pipeline is more important than just writing good prompts.</p>
+            </div>
+
+            <div class="info-box accent">
+                <h3>Critical Components I Now Understand</h3>
+                <div class="tech-list">
+                    <span class="tech-tag">Document Loading</span>
+                    <span class="tech-tag">Text Chunking</span>
+                    <span class="tech-tag">Chunk Overlap</span>
+                    <span class="tech-tag">Embedding Models</span>
+                    <span class="tech-tag">Vector Databases</span>
+                    <span class="tech-tag">Cosine Similarity</span>
+                    <span class="tech-tag">Context Injection</span>
+                    <span class="tech-tag">LLM Prompting</span>
+                    <span class="tech-tag">Temperature Settings</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Conclusion</h2>
+            
+            <div class="info-box highlight">
+                <h3>Session Impact</h3>
+                <p>This session significantly improved my understanding of how to design, analyze, and improve a RAG system properly. I moved from treating RAG as a black box to understanding its internal architecture and the trade-offs involved in each design decision.</p>
+            </div>
+
+            <div class="key-insight">
+                <p>I now have the knowledge to not just build RAG systems, but to <strong>debug them when things go wrong</strong> and <strong>optimize them for better performance</strong>. The distinction between offline indexing and online retrieval will guide how I architect future AI applications.</p>
+            </div>
+        </section>
+
+        <div class="page-footer">
+            <span>RAG Playbooks Report - MALLAMPATI SUMANTH</span>
+            <div class="page-number">2</div>
+        </div>
+    </div>
+
+</body>
+</html>
