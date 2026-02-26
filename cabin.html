@@ -2546,7 +2546,7 @@
         <div id="toastContainer" class="toast-container"></div>
     </div>
 
-    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <!-- FontAwesome already loaded via CSS in head -->
     <script>
         // Complete Faculty Data from PDF
         const facultyData = {
@@ -3771,10 +3771,11 @@
                 if (!query || query.length < 1) return [];
                 
                 const lowerQuery = query.toLowerCase();
-                const results = allFacultyList.filter(faculty => 
-                    faculty.name.toLowerCase().includes(lowerQuery) ||
-                    (faculty.empId && faculty.empId.toLowerCase().includes(lowerQuery))
-                );
+                const results = allFacultyList.filter(faculty => {
+                    const nameMatch = faculty.name.toLowerCase().includes(lowerQuery);
+                    const empIdMatch = faculty.empId && String(faculty.empId).toLowerCase().includes(lowerQuery);
+                    return nameMatch || empIdMatch;
+                });
                 
                 // Sort by relevance (exact match first, then starts with, then contains)
                 results.sort((a, b) => {
@@ -3797,6 +3798,8 @@
 
             // Render suggestions dropdown
             function renderSuggestions(results, query) {
+                if (!quickSearchSuggestions) return;
+                
                 quickSearchSuggestions.innerHTML = '';
                 selectedSuggestionIndex = -1;
                 
@@ -3857,15 +3860,17 @@
 
             // Select and display faculty result in modal
             function selectFaculty(faculty) {
-                quickSearchSuggestions.classList.remove('show');
-                quickSearchInput.value = '';
-                quickSearchResults.innerHTML = '';
+                if (quickSearchSuggestions) quickSearchSuggestions.classList.remove('show');
+                if (quickSearchInput) quickSearchInput.value = '';
+                if (quickSearchResults) quickSearchResults.innerHTML = '';
                 
                 const cabinDisplay = faculty.cabin || faculty.room || 'N/A';
                 const initials = getInitials(faculty.name);
                 
                 // Populate modal content
                 const modalBody = document.getElementById('modalBody');
+                if (!modalBody) return;
+                
                 modalBody.innerHTML = `
                     <div class="modal-faculty-avatar">${initials}</div>
                     <div class="modal-faculty-name">${faculty.name}</div>
@@ -3915,8 +3920,10 @@
                 
                 // Show modal
                 const modal = document.getElementById('facultyModal');
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
                 
                 showToast('Faculty Found', `${faculty.name} - Cabin: ${cabinDisplay}`, 'success');
             }
@@ -3924,13 +3931,22 @@
             // Close modal function
             function closeFacultyModal() {
                 const modal = document.getElementById('facultyModal');
-                modal.classList.remove('active');
+                if (modal) {
+                    modal.classList.remove('active');
+                }
                 document.body.style.overflow = '';
             }
 
             // Modal close event listeners
-            document.getElementById('modalCloseBtn').addEventListener('click', closeFacultyModal);
-            document.querySelector('.faculty-modal-overlay').addEventListener('click', closeFacultyModal);
+            const modalCloseBtn = document.getElementById('modalCloseBtn');
+            const modalOverlay = document.querySelector('.faculty-modal-overlay');
+            
+            if (modalCloseBtn) {
+                modalCloseBtn.addEventListener('click', closeFacultyModal);
+            }
+            if (modalOverlay) {
+                modalOverlay.addEventListener('click', closeFacultyModal);
+            }
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     closeFacultyModal();
@@ -3939,51 +3955,55 @@
 
             // Input event handler for live search
             let searchTimeout;
-            quickSearchInput.addEventListener('input', function() {
-                const query = this.value.trim();
-                
-                // Clear previous timeout
-                clearTimeout(searchTimeout);
-                
-                if (query.length === 0) {
-                    quickSearchSuggestions.classList.remove('show');
-                    quickSearchSuggestions.innerHTML = '';
-                    return;
-                }
-                
-                // Debounce search for better performance
-                searchTimeout = setTimeout(() => {
-                    const results = searchAllFaculty(query);
-                    renderSuggestions(results, query);
-                }, 150);
-            });
+            if (quickSearchInput) {
+                quickSearchInput.addEventListener('input', function() {
+                    const query = this.value.trim();
+                    
+                    // Clear previous timeout
+                    clearTimeout(searchTimeout);
+                    
+                    if (query.length === 0) {
+                        quickSearchSuggestions.classList.remove('show');
+                        quickSearchSuggestions.innerHTML = '';
+                        return;
+                    }
+                    
+                    // Debounce search for better performance
+                    searchTimeout = setTimeout(() => {
+                        const results = searchAllFaculty(query);
+                        renderSuggestions(results, query);
+                    }, 150);
+                });
+            }
 
             // Keyboard navigation for suggestions
-            quickSearchInput.addEventListener('keydown', function(e) {
-                const items = quickSearchSuggestions.querySelectorAll('.suggestion-item');
-                
-                if (!quickSearchSuggestions.classList.contains('show') || items.length === 0) {
-                    return;
-                }
-                
-                if (e.key === 'ArrowDown') {
-                    e.preventDefault();
-                    selectedSuggestionIndex = Math.min(selectedSuggestionIndex + 1, items.length - 1);
-                    updateSelectedSuggestion(items);
-                } else if (e.key === 'ArrowUp') {
-                    e.preventDefault();
-                    selectedSuggestionIndex = Math.max(selectedSuggestionIndex - 1, 0);
-                    updateSelectedSuggestion(items);
-                } else if (e.key === 'Enter' && selectedSuggestionIndex >= 0) {
-                    e.preventDefault();
-                    const results = searchAllFaculty(this.value.trim());
-                    if (results[selectedSuggestionIndex]) {
-                        selectFaculty(results[selectedSuggestionIndex]);
+            if (quickSearchInput) {
+                quickSearchInput.addEventListener('keydown', function(e) {
+                    const items = quickSearchSuggestions.querySelectorAll('.suggestion-item');
+                    
+                    if (!quickSearchSuggestions.classList.contains('show') || items.length === 0) {
+                        return;
                     }
-                } else if (e.key === 'Escape') {
-                    quickSearchSuggestions.classList.remove('show');
-                }
-            });
+                    
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        selectedSuggestionIndex = Math.min(selectedSuggestionIndex + 1, items.length - 1);
+                        updateSelectedSuggestion(items);
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        selectedSuggestionIndex = Math.max(selectedSuggestionIndex - 1, 0);
+                        updateSelectedSuggestion(items);
+                    } else if (e.key === 'Enter' && selectedSuggestionIndex >= 0) {
+                        e.preventDefault();
+                        const results = searchAllFaculty(this.value.trim());
+                        if (results[selectedSuggestionIndex]) {
+                            selectFaculty(results[selectedSuggestionIndex]);
+                        }
+                    } else if (e.key === 'Escape') {
+                        quickSearchSuggestions.classList.remove('show');
+                    }
+                });
+            }
 
             // Update visual selection
             function updateSelectedSuggestion(items) {
@@ -3999,19 +4019,23 @@
 
             // Close suggestions when clicking outside
             document.addEventListener('click', function(e) {
-                if (!quickSearchInput.contains(e.target) && !quickSearchSuggestions.contains(e.target)) {
-                    quickSearchSuggestions.classList.remove('show');
+                if (quickSearchInput && quickSearchSuggestions) {
+                    if (!quickSearchInput.contains(e.target) && !quickSearchSuggestions.contains(e.target)) {
+                        quickSearchSuggestions.classList.remove('show');
+                    }
                 }
             });
 
             // Focus event to show suggestions if there's text
-            quickSearchInput.addEventListener('focus', function() {
-                const query = this.value.trim();
-                if (query.length > 0) {
-                    const results = searchAllFaculty(query);
-                    renderSuggestions(results, query);
-                }
-            });
+            if (quickSearchInput) {
+                quickSearchInput.addEventListener('focus', function() {
+                    const query = this.value.trim();
+                    if (query.length > 0) {
+                        const results = searchAllFaculty(query);
+                        renderSuggestions(results, query);
+                    }
+                });
+            }
         });
     </script>
 </body>
