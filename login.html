@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KLU ONE Login | Student Access</title>
     <meta name="description" content="Login to KLU ONE to access your personalized student dashboard and features.">
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="google2ba0c9b2d74a181f" />
+    <meta name="google-site-verification" content="googleb4738ddb2ebfef64" />
     <link rel="canonical" href="https://mallampati-sumanth.github.io/KLU-ONE/login.html" />
     <!-- Google Analytics 4 (GA4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EWZZDXDWVW"></script>
@@ -12,7 +15,13 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-EWZZDXDWVW');
+      gtag('config', 'G-EWZZDXDWVW', {
+        'send_page_view': true,
+        'cookie_flags': 'SameSite=None;Secure',
+        'linker': {
+          'domains': ['mallampati-sumanth.github.io', 'kluone.netlify.app']
+        }
+      });
     </script>
     <link rel="stylesheet" href="login.css">
 </head>

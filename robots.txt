@@ -1,3 +1,6 @@
 User-agent: *
 Allow: /
+
+# Sitemaps for both deployments
 Sitemap: https://mallampati-sumanth.github.io/KLU-ONE/sitemap.xml
+Sitemap: https://kluone.netlify.app/sitemap.xml
