@@ -59,11 +59,12 @@ function trackDownload() {
         <div class="header-buttons">
           <a href="https://github.com/mallampati-sumanth/KLU-ONE/raw/main/KLU%20ONE%20APP.apk"
    class="download-btn"
-   download
-   onclick="trackDownload()">
-   <i class="fas fa-download"></i> Download App
+   download="KLU_ONE_APP.apk"
+   target="_blank"
+   rel="noopener">
+   <i class="fas fa-download"></i> <span class="btn-text">Download App</span>
 </a>
-          <a href="#" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <a href="#" class="login-btn"><i class="fas fa-sign-in-alt"></i> <span class="login-text">Login</span></a>
           <button class="mobile-menu-btn" id="mobileMenuBtn">
             <span></span>
             <span></span>
@@ -2916,37 +2917,20 @@ img {
   
   if (downloadBtn) {
     downloadBtn.addEventListener('click', function(e) {
-      e.preventDefault(); // Prevent navigation
-      
-      // Get the download URL
-      const downloadUrl = this.getAttribute('href');
-      
-      // Add downloading animation
+      // Track analytics
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'apk_download', {
+          event_category: 'engagement',
+          event_label: 'KLU ONE APK'
+        });
+      }
+      // Show brief feedback without blocking navigation
       const originalHTML = this.innerHTML;
-      this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Downloading...';
-      this.style.pointerEvents = 'none';
-      
-      // Create a hidden link to trigger download without opening pages
-      const link = document.createElement('a');
-      link.href = downloadUrl;
-      link.download = 'KLU_ONE_APP.apk';
-      link.style.display = 'none';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      
-      // After 2 seconds, show "Downloaded" message
+      this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Starting...';
       setTimeout(() => {
-        this.innerHTML = '<i class="fas fa-check-circle"></i> Downloaded!';
-        this.classList.add('downloaded');
-        
-        // Reset after 3 seconds
-        setTimeout(() => {
-          this.innerHTML = originalHTML;
-          this.classList.remove('downloaded');
-          this.style.pointerEvents = 'auto';
-        }, 3000);
+        this.innerHTML = originalHTML;
       }, 2000);
+      // Allow default link behavior (opens/downloads the APK)
     });
   }
   
