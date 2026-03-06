@@ -24,8 +24,59 @@
       });
     </script>
     <link rel="stylesheet" href="login.css">
+        <link rel="stylesheet" href="navbar.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <script src="navbar.js" defer></script>
 </head>
 <body>
+
+<header class="klu-navbar">
+    <div class="klu-container">
+        <div class="header-inner">
+            <a class="navbar-brand" href="index.html" aria-label="KLU ONE Home">
+                <img src="kluonelogo" alt="KLU ONE" />
+                <span class="brand-name">KLU <strong>ONE</strong></span>
+            </a>
+
+            <nav class="desktop-nav" aria-label="Primary">
+                <a class="nav-pill" href="https://newerp.kluniversity.in/" target="_blank" rel="noopener noreferrer">ERP</a>
+                <a class="nav-pill" href="https://lms.kluniversity.in/login/index.php" target="_blank" rel="noopener noreferrer">LMS</a>
+                <a class="nav-pill" href="https://academics.klef.in/klef" target="_blank" rel="noopener noreferrer">Academics</a>
+                <a class="nav-pill" href="mess.html">Mess</a>
+                <a class="nav-pill" href="cabin.html">Cabin</a>
+                <a class="nav-pill" href="calculator.html">Calculator</a>
+            </nav>
+
+            <div class="navbar-actions">
+                <a class="nav-download-btn" href="https://github.com/TheOneDeveloper/KLU-ONE/releases/download/Release/KLU-ONE.apk" download>
+                    <i class="fas fa-download" aria-hidden="true"></i>
+                    <span class="btn-label">Download</span>
+                </a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open menu">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-menu-content">
+        <div class="mobile-menu-header">
+            <h3>Menu</h3>
+            <button class="mobile-menu-close" id="mobileMenuClose" type="button" aria-label="Close menu">&times;</button>
+        </div>
+        <nav class="mobile-nav" aria-label="Mobile">
+            <a href="https://newerp.kluniversity.in/" target="_blank" rel="noopener noreferrer">ERP</a>
+            <a href="https://lms.kluniversity.in/login/index.php" target="_blank" rel="noopener noreferrer">LMS</a>
+            <a href="https://academics.klef.in/klef" target="_blank" rel="noopener noreferrer">Academics</a>
+            <a href="mess.html">Mess</a>
+            <a href="cabin.html">Cabin</a>
+            <a href="calculator.html">Calculator</a>
+        </nav>
+    </div>
+</div>
+<div class="mobile-menu-overlay" id="mobileMenuOverlay" aria-hidden="true"></div>
 
 <div class="container" id="container">
     <div class="form-container sign-up-container">

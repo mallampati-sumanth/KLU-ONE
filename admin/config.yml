@@ -1,0 +1,28 @@
+# Decap CMS configuration
+# NOTE: A "hidden" static password is NOT secure on GitHub Pages.
+# This uses GitHub login via an OAuth provider.
+
+backend:
+  name: github
+  repo: mallampati-sumanth/KLU-ONE
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "site"
+    label: "Site"
+    files:
+      - name: "updates"
+        label: "Marquee Updates"
+        file: "data/updates.json"
+        format: "json"
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            field:
+              label: "Text"
+              name: "text"
+              widget: "string"

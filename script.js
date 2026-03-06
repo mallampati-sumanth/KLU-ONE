@@ -3,19 +3,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.querySelector(".mobile-menu-toggle")
   const mobileMenu = document.querySelector(".mobile-menu")
 
-  menuToggle.addEventListener("click", () => {
-    mobileMenu.classList.toggle("active")
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("active")
 
-    // Change icon based on menu state
-    const icon = menuToggle.querySelector("i")
-    if (mobileMenu.classList.contains("active")) {
-      icon.classList.remove("fa-bars")
-      icon.classList.add("fa-times")
-    } else {
-      icon.classList.remove("fa-times")
-      icon.classList.add("fa-bars")
-    }
-  })
+      // Change icon based on menu state
+      const icon = menuToggle.querySelector("i")
+      if (icon) {
+        if (mobileMenu.classList.contains("active")) {
+          icon.classList.remove("fa-bars")
+          icon.classList.add("fa-times")
+        } else {
+          icon.classList.remove("fa-times")
+          icon.classList.add("fa-bars")
+        }
+      }
+    })
+  }
 
   // Mobile Dropdown Toggle
   const mobileDropdownToggles = document.querySelectorAll(".mobile-dropdown-toggle")
@@ -45,6 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextBtn = document.querySelector(".next-btn")
   let currentSlide = 0
   let slideInterval
+
+  const hasCarousel = slides.length > 0 && indicators.length > 0
 
   // Initialize carousel
   function initCarousel() {
@@ -95,67 +101,83 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Event listeners for carousel controls
-  nextBtn.addEventListener("click", () => {
-    stopSlideshow()
-    nextSlide()
-    startSlideshow()
-  })
-
-  prevBtn.addEventListener("click", () => {
-    stopSlideshow()
-    prevSlide()
-    startSlideshow()
-  })
-
-  // Event listeners for indicators
-  indicators.forEach((indicator, index) => {
-    indicator.addEventListener("click", () => {
+  if (hasCarousel && nextBtn) {
+    nextBtn.addEventListener("click", () => {
       stopSlideshow()
-      currentSlide = index
-      initCarousel()
+      nextSlide()
       startSlideshow()
     })
-  })
+  }
+
+  if (hasCarousel && prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      stopSlideshow()
+      prevSlide()
+      startSlideshow()
+    })
+  }
+
+  // Event listeners for indicators
+  if (hasCarousel) {
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener("click", () => {
+        stopSlideshow()
+        currentSlide = index
+        initCarousel()
+        startSlideshow()
+      })
+    })
+  }
 
   // Initialize carousel and start slideshow
-  initCarousel()
-  startSlideshow()
+  if (hasCarousel) {
+    initCarousel()
+    startSlideshow()
+  }
 
   // Toggle How to Use section
   const howToUseToggle = document.querySelector(".how-to-use .toggle-btn")
   const howToUseContent = document.querySelector(".how-to-use-content")
 
-  howToUseToggle.addEventListener("click", () => {
-    howToUseContent.classList.toggle("active")
+  if (howToUseToggle && howToUseContent) {
+    howToUseToggle.addEventListener("click", () => {
+      howToUseContent.classList.toggle("active")
 
-    // Change icon based on content state
-    const icon = howToUseToggle.querySelector("i")
-    if (howToUseContent.classList.contains("active")) {
-      icon.classList.remove("fa-plus")
-      icon.classList.add("fa-minus")
-    } else {
-      icon.classList.remove("fa-minus")
-      icon.classList.add("fa-plus")
-    }
-  })
+      // Change icon based on content state
+      const icon = howToUseToggle.querySelector("i")
+      if (icon) {
+        if (howToUseContent.classList.contains("active")) {
+          icon.classList.remove("fa-plus")
+          icon.classList.add("fa-minus")
+        } else {
+          icon.classList.remove("fa-minus")
+          icon.classList.add("fa-plus")
+        }
+      }
+    })
+  }
 
   // Toggle Achievements section
   const achievementsToggle = document.querySelector(".achievements .toggle-btn")
   const achievementsContent = document.querySelector(".achievements-content")
 
-  achievementsToggle.addEventListener("click", () => {
-    achievementsContent.classList.toggle("active")
+  if (achievementsToggle && achievementsContent) {
+    achievementsToggle.addEventListener("click", () => {
+      achievementsContent.classList.toggle("active")
 
-    // Change icon based on content state
-    const icon = achievementsToggle.querySelector("i")
-    if (achievementsContent.classList.contains("active")) {
-      icon.classList.remove("fa-plus")
-      icon.classList.add("fa-minus")
-    } else {
-      icon.classList.remove("fa-minus")
-      icon.classList.add("fa-plus")
-    }
-  })
+      // Change icon based on content state
+      const icon = achievementsToggle.querySelector("i")
+      if (icon) {
+        if (achievementsContent.classList.contains("active")) {
+          icon.classList.remove("fa-plus")
+          icon.classList.add("fa-minus")
+        } else {
+          icon.classList.remove("fa-minus")
+          icon.classList.add("fa-plus")
+        }
+      }
+    })
+  }
 
   // Animate on Scroll
   const animateElements = document.querySelectorAll(".animate-on-scroll")
@@ -234,13 +256,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // Back to Top Button
   const backToTopBtn = document.querySelector(".back-to-top")
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-      backToTopBtn.classList.add("active")
-    } else {
-      backToTopBtn.classList.remove("active")
-    }
-  })
+  if (backToTopBtn) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add("active")
+      } else {
+        backToTopBtn.classList.remove("active")
+      }
+    })
+  }
 
   // Smooth scrolling for navigation links
   const navLinks = document.querySelectorAll(".nav-links a, .mobile-nav-links a, .back-to-top a")
@@ -248,19 +272,22 @@ document.addEventListener("DOMContentLoaded", () => {
   navLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
       // Only if the link has a hash
-      if (this.getAttribute("href").startsWith("#")) {
+      const href = this.getAttribute("href")
+      if (href && href.startsWith("#")) {
         e.preventDefault()
 
         // Close mobile menu if open
-        if (mobileMenu.classList.contains("active")) {
+        if (mobileMenu && mobileMenu.classList.contains("active")) {
           mobileMenu.classList.remove("active")
-          const icon = menuToggle.querySelector("i")
-          icon.classList.remove("fa-times")
-          icon.classList.add("fa-bars")
+          const icon = menuToggle?.querySelector("i")
+          if (icon) {
+            icon.classList.remove("fa-times")
+            icon.classList.add("fa-bars")
+          }
         }
 
         // Get the target section
-        const targetId = this.getAttribute("href")
+        const targetId = href
         const targetSection = document.querySelector(targetId)
 
         if (targetSection) {

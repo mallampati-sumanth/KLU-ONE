@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KLU Calculator: Check Attendance, SGPA & CGPA Instantly</title>
+  <title>KLU Calculator | Check Attendance, SGPA & CGPA Instantly</title>
   <meta name="description" content="Easily calculate your KLU attendance percentage, semester marks (SGPA), and cumulative grades (CGPA) in one place. Our accurate KL University marks calculator helps you track your academic performance.">
+  <meta name="keywords" content="KLU calculator, KL University attendance calculator, KLU SGPA calculator, KLU CGPA calculator, KL University marks, KLU ONE">
   <!-- Google Search Console Verification -->
   <meta name="google-site-verification" content="google2ba0c9b2d74a181f" />
   <meta name="google-site-verification" content="googleb4738ddb2ebfef64" />
@@ -24,10 +25,60 @@
     });
   </script>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="navbar.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
   
 <body>
+  <header class="klu-navbar">
+    <div class="klu-container">
+      <div class="header-inner">
+        <a class="navbar-brand" href="index.html" aria-label="KLU ONE Home">
+          <img src="kluonelogo" alt="KLU ONE" />
+          <span class="brand-name">KLU <strong>ONE</strong></span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Primary">
+          <a class="nav-pill" href="https://newerp.kluniversity.in/" target="_blank" rel="noopener noreferrer">ERP</a>
+          <a class="nav-pill" href="https://lms.kluniversity.in/login/index.php" target="_blank" rel="noopener noreferrer">LMS</a>
+          <a class="nav-pill" href="https://academics.klef.in/klef" target="_blank" rel="noopener noreferrer">Academics</a>
+          <a class="nav-pill" href="mess.html">Mess</a>
+          <a class="nav-pill" href="cabin.html">Cabin</a>
+          <a class="nav-pill active" href="calculator.html" aria-current="page">Calculator</a>
+        </nav>
+
+        <div class="navbar-actions">
+          <a class="nav-download-btn" href="https://github.com/TheOneDeveloper/KLU-ONE/releases/download/Release/KLU-ONE.apk" download>
+            <i class="fas fa-download" aria-hidden="true"></i>
+            <span class="btn-label">Download</span>
+          </a>
+          <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open menu">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-menu-content">
+      <div class="mobile-menu-header">
+        <h3>Menu</h3>
+        <button class="mobile-menu-close" id="mobileMenuClose" type="button" aria-label="Close menu">&times;</button>
+      </div>
+      <nav class="mobile-nav" aria-label="Mobile">
+        <a href="https://newerp.kluniversity.in/" target="_blank" rel="noopener noreferrer">ERP</a>
+        <a href="https://lms.kluniversity.in/login/index.php" target="_blank" rel="noopener noreferrer">LMS</a>
+        <a href="https://academics.klef.in/klef" target="_blank" rel="noopener noreferrer">Academics</a>
+        <a href="mess.html">Mess</a>
+        <a href="cabin.html">Cabin</a>
+        <a href="calculator.html" aria-current="page">Calculator</a>
+      </nav>
+    </div>
+  </div>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" aria-hidden="true"></div>
+
   <style>
     /* ===== BASE STYLES ===== */
 :root {
@@ -345,7 +396,7 @@ body.dark-theme .theme-toggle-btn:hover {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: inherit;
 }
 
 html {
@@ -364,7 +415,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Roboto", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
 }
 
 @keyframes fadeIn {
@@ -2000,42 +2051,213 @@ html {
 }
 
   </style>
-  <!-- Particle Background -->
-  <div id="particles-js"></div>
-  
-  <div class="app-container">
-    <!-- Floating Elements -->
-    <div class="floating-elements">
-      <div class="floating-element" style="--delay: 0s; --size: 80px; --top: 15%; --left: 10%;"></div>
-      <div class="floating-element" style="--delay: 5s; --size: 120px; --top: 70%; --left: 85%;"></div>
-      <div class="floating-element" style="--delay: 2s; --size: 60px; --top: 25%; --left: 80%;"></div>
-      <div class="floating-element" style="--delay: 7s; --size: 100px; --top: 80%; --left: 20%;"></div>
-    </div>
 
-    <!-- Header -->
-    <header class="header">
-      <div class="logo-container">
-        <div class="logo">
-          <div class="logo-text">
-            <span>K</span>
-            <span>L</span>
-            <span>U</span>
-          </div>
-          <div class="logo-shine"></div>
-        </div>
-      </div>
-      <h1 class="title">ONE <span class="highlight">Calculators</span></h1>
-      <p class="subtitle">Your Academic Companion</p>
-      <p class="tagline">📚 KLU ONE - All Calculators at One Place 🎓</p>
-      
-      <!-- Dark Mode Toggle -->
-      <div class="theme-toggle-container" style="margin-top: 20px;">
-        <button id="themeToggle" class="theme-toggle-btn">
-          <span style="font-size: 1.4rem;">🌙</span>
-          <span>Dark Mode</span>
-        </button>
-      </div>
-    </header>
+  <!-- Lightweight, site-consistent overrides (keeps functionality; removes expensive visual effects) -->
+  <style id="calculator-lite">
+    /* Keep the calculator page consistent with the rest of the site */
+    body {
+      background: var(--light-color, #f6f7f9) !important;
+      color: var(--secondary-color, #222) !important;
+    }
+
+    /* Remove expensive effects that cause lag */
+    .app-container *,
+    .app-container *::before,
+    .app-container *::after {
+      animation: none !important;
+      transition: none !important;
+      filter: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    #particles-js,
+    .floating-elements,
+    .floating-element {
+      display: none !important;
+    }
+
+    .app-container {
+      width: min(1100px, calc(100% - 32px));
+      margin: 18px auto 60px;
+      padding: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .header {
+      padding: 18px 0 8px !important;
+      text-align: center;
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .logo-container,
+    .logo-shine {
+      display: none !important;
+    }
+
+    .title {
+      margin: 0;
+      font-size: clamp(1.6rem, 4vw, 2.2rem) !important;
+      color: var(--secondary-color, #222) !important;
+      letter-spacing: -0.3px;
+    }
+
+    .highlight {
+      color: var(--primary-color, #e31e24) !important;
+    }
+
+    .subtitle,
+    .tagline {
+      color: #555 !important;
+    }
+
+    .theme-toggle-container {
+      margin-top: 12px !important;
+    }
+
+    .theme-toggle-btn {
+      border: 1px solid var(--border-color, #e6e6e6) !important;
+      background: #fff !important;
+      color: var(--secondary-color, #222) !important;
+      padding: 10px 14px !important;
+      border-radius: 999px !important;
+      font-weight: 800 !important;
+      cursor: pointer;
+      box-shadow: none !important;
+    }
+
+    .nav-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px;
+      margin: 14px 0 20px;
+      background: var(--light-color, #f6f7f9) !important;
+      border: 1px solid var(--border-color, #e6e6e6) !important;
+      border-radius: 16px !important;
+      box-shadow: none !important;
+      overflow: visible;
+    }
+
+    .nav-tab {
+      flex: 1 1 calc(30% - 10px);
+      text-align: center;
+      border: 2px solid transparent !important;
+      background: transparent !important;
+      padding: 10px 16px !important;
+      border-radius: 12px !important;
+      color: #555 !important;
+      font-weight: 700 !important;
+      font-size: 14px !important;
+      cursor: pointer;
+      box-shadow: none !important;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 600px) {
+      .nav-tab {
+        flex: 1 1 calc(45% - 10px);
+        padding: 8px 10px !important;
+        font-size: 13px !important;
+      }
+    }
+
+    .nav-tab.active {
+      background: #fff !important;
+      border-color: var(--primary-color, #e31e24) !important;
+      color: var(--primary-color, #e31e24) !important;
+    }
+
+    .nav-indicator {
+      display: none !important;
+    }
+
+    .content {
+      padding: 0 !important;
+    }
+
+    .glass-card {
+      background: #fff !important;
+      border: 1px solid var(--border-color, #e6e6e6) !important;
+      border-radius: 16px !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
+    }
+
+    .card-header {
+      background: #fff !important;
+      color: var(--secondary-color, #222) !important;
+      border-bottom: 2px solid var(--primary-color, #e31e24) !important;
+      box-shadow: none !important;
+    }
+
+    .input-focus-effect,
+    .btn-effect {
+      display: none !important;
+    }
+
+    input,
+    select,
+    textarea,
+    .input-wrapper input {
+      border: 1px solid var(--border-color, #e6e6e6) !important;
+      border-radius: 12px !important;
+      background: #fff !important;
+      color: #333 !important;
+      box-shadow: none !important;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #888 !important;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 16px !important;
+      border-radius: 12px !important;
+      border: 1px solid var(--border-color, #e6e6e6) !important;
+      background: #fff !important;
+      color: var(--secondary-color, #222) !important;
+      font-weight: 900 !important;
+      cursor: pointer;
+      box-shadow: none !important;
+    }
+
+    .btn-primary {
+      background: var(--primary-color, #e31e24) !important;
+      border-color: var(--primary-color, #e31e24) !important;
+      color: #fff !important;
+    }
+
+    .btn-secondary {
+      background: #fff !important;
+    }
+
+    /* Keep results blocks readable (no neon/glow) */
+    .result-card,
+    .result-section,
+    .result {
+      background: var(--light-color, #f6f7f9) !important;
+      border: 1px solid var(--border-color, #e6e6e6) !important;
+      box-shadow: none !important;
+    }
+  </style>
+
+  <div class="app-container">
+
+    <!-- SEO Title / Clean Header -->
+    <div style="text-align: center; margin-bottom: 20px;">
+      <h1 style="margin: 0; font-size: clamp(1.4rem, 4vw, 2rem); color: var(--secondary-color, #222); letter-spacing: -0.5px;">KLU <span style="color: var(--primary-color, #e31e24); font-weight: 900;">ONE</span> Calculators</h1>
+      <p style="margin: 6px 0 0; color: #555; font-size: 0.95rem;">Track your Attendance, SGPA & CGPA easily</p>
+    </div>
 
     <!-- Navigation -->
     <nav class="nav-tabs">
@@ -2073,14 +2295,6 @@ html {
 
     <!-- Content Area -->
     <main class="content">
-      
-      <!-- SEO Header -->
-      <div class="seo-header" style="text-align: center; margin-bottom: 2rem; color: var(--text-primary);">
-        <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--primary);">KLU Student Toolkit: Attendance, SGPA & CGPA Calculator</h1>
-        <p style="font-size: 1.1rem; max-width: 800px; margin: 0 auto; color: var(--text-secondary);">
-            The all-in-one calculator for KLU students. Track your daily attendance to avoid detention, estimate your SGPA before results, and plan your CGPA goals.
-        </p>
-      </div>
 
       <!-- Attendance Calculator -->
       <section class="calculator-section active" id="attendance">
@@ -2112,132 +2326,35 @@ html {
               </div>
             </div>
             <script>
-              // Initialize particles.js
 document.addEventListener("DOMContentLoaded", () => {
-  // Check if particlesJS is already defined
-  if (typeof particlesJS === "undefined") {
-    console.error("particlesJS is not defined. Make sure particles.js library is included.")
-    return // Exit if particlesJS is not available
-  }
+  // Set current year in footer (if present)
+  const currentYearEl = document.getElementById("currentYear")
+  if (currentYearEl) currentYearEl.textContent = new Date().getFullYear()
 
-  // Particles.js configuration
-  particlesJS("particles-js", {
-    particles: {
-      number: {
-        value: 100,
-        density: {
-          enable: true,
-          value_area: 800,
-        },
-      },
-      color: {
-        value: "#c41e3a",
-      },
-      shape: {
-        type: ["circle", "triangle"],
-        stroke: {
-          width: 0,
-          color: "#000000",
-        },
-        polygon: {
-          nb_sides: 6,
-        },
-      },
-      opacity: {
-        value: 0.4,
-        random: true,
-        anim: {
-          enable: true,
-          speed: 1.5,
-          opacity_min: 0.1,
-          sync: false,
-        },
-      },
-      size: {
-        value: 4,
-        random: true,
-        anim: {
-          enable: true,
-          speed: 3,
-          size_min: 0.1,
-          sync: false,
-        },
-      },
-      line_linked: {
-        enable: true,
-        distance: 150,
-        color: "#c41e3a",
-        opacity: 0.3,
-        width: 1.5,
-      },
-      move: {
-        enable: true,
-        speed: 2,
-        direction: "none",
-        random: true,
-        straight: false,
-        out_mode: "out",
-        bounce: false,
-        attract: {
-          enable: true,
-          rotateX: 600,
-          rotateY: 1200,
-        },
-      },
-    },
-    interactivity: {
-      detect_on: "canvas",
-      events: {
-        onhover: {
-          enable: true,
-          mode: "grab",
-        },
-        onclick: {
-          enable: true,
-          mode: "push",
-        },
-        resize: true,
-      },
-      modes: {
-        grab: {
-          distance: 160,
-          line_linked: {
-            opacity: 0.6,
-          },
-        },
-        push: {
-          particles_nb: 5,
-        },
-      },
-    },
-    retina_detect: true,
-  })
-
-  // Set current year in footer
-  document.getElementById("currentYear").textContent = new Date().getFullYear()
-
-  // Dark Theme Toggle
+  // Dark Theme Toggle (optional)
   const themeToggle = document.getElementById("themeToggle")
   const body = document.body
   
   // Check for saved theme preference or default to light mode
-  const currentTheme = localStorage.getItem("theme") || "light"
-  if (currentTheme === "dark") {
-    body.classList.add("dark-theme")
-    themeToggle.innerHTML = '<span style="font-size: 1.4rem;">☀️</span><span>Light Mode</span>'
-  }
-  
-  themeToggle.addEventListener("click", function() {
-    body.classList.toggle("dark-theme")
-    
-    if (body.classList.contains("dark-theme")) {
-      themeToggle.innerHTML = '<span style="font-size: 1.4rem;">☀️</span><span>Light Mode</span>'
-      localStorage.setItem("theme", "dark")
-    } else {
-      themeToggle.innerHTML = '<span style="font-size: 1.4rem;">🌙</span><span>Dark Mode</span>'
-      localStorage.setItem("theme", "light")
+  if (themeToggle) {
+    const currentTheme = localStorage.getItem("theme") || "light"
+    if (currentTheme === "dark") {
+      body.classList.add("dark-theme")
+      themeToggle.innerHTML = '<span style="font-size: 1.1rem;">☀️</span><span>Light Mode</span>'
     }
-  })
+
+    themeToggle.addEventListener("click", function() {
+      body.classList.toggle("dark-theme")
+
+      if (body.classList.contains("dark-theme")) {
+        themeToggle.innerHTML = '<span style="font-size: 1.1rem;">☀️</span><span>Light Mode</span>'
+        localStorage.setItem("theme", "dark")
+      } else {
+        themeToggle.innerHTML = '<span style="font-size: 1.1rem;">🌙</span><span>Dark Mode</span>'
+        localStorage.setItem("theme", "light")
+      }
+    })
+  }
 
   // Animate elements on load
   animateElementsOnLoad()
@@ -4162,26 +4279,6 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </section>
 
-    <!-- SEO Content Section -->
-    <section class="faq-section" style="margin-top: 3rem; padding: 2rem; background: var(--bg-card); border-radius: var(--radius-lg); border: 1px solid var(--border-color);">
-      <h2 style="color: var(--primary); text-align: center; margin-bottom: 2rem;">Frequently Asked Questions (GPA & Grading)</h2>
-      
-      <div class="faq-item" style="margin-bottom: 1.5rem;">
-        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-primary);">How to calculate SGPA in KLU?</h3>
-        <p style="color: var(--text-secondary);">KLU follows a credit-based grading system. Multiply your grade points by the course credits, sum them up, and divide by total credits. Our <strong>KLU SGPA Calculator</strong> does this automatically for you.</p>
-      </div>
-
-      <div class="faq-item" style="margin-bottom: 1.5rem;">
-        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-primary);">How to convert KLU CGPA to percentage?</h3>
-        <p style="color: var(--text-secondary);">To convert your CGPA to percentage, multiply your CGPA by 10 (e.g., 9.0 CGPA * 10 = 90%). Use our built-in <strong>CGPA to Percentage Converter</strong> tab for precise values.</p>
-      </div>
-
-      <div class="faq-item" style="margin-bottom: 1.5rem;">
-        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-primary);">What is the KLU grading system?</h3>
-        <p style="color: var(--text-secondary);">KL University uses a 10-point relative grading scale (O, A+, A, B+, B, C, P, F). Your internal marks and semester end exams both contribute to your final grade.</p>
-      </div>
-    </section>
-
     </main>
 
     <!-- Footer -->
@@ -4194,7 +4291,7 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 
   <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="navbar.js" defer></script>
   <script src="script.js"></script>
 </body>
 </html>

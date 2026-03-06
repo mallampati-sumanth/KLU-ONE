@@ -1,0 +1,283 @@
+:root {
+  --klu-primary: var(--primary-color, #e31e24);
+  --klu-primary-dark: var(--primary-dark, #c7181d);
+  --klu-secondary: var(--secondary-color, #222);
+  --klu-light: var(--light-color, #f6f7f9);
+  --klu-border: var(--border-color, #e6e6e6);
+}
+
+/* Scoped navbar styles so other pages aren't affected */
+.klu-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  width: 100%;
+  background: #fff;
+  border-bottom: 3px solid var(--klu-primary);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+  font-family: "Roboto", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  line-height: 1.2;
+}
+
+.klu-navbar *,
+.klu-navbar ~ .mobile-menu * {
+  box-sizing: border-box;
+}
+
+.klu-navbar .header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+}
+
+.klu-navbar .klu-container {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.klu-navbar .navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.klu-navbar .navbar-brand img {
+  height: 42px;
+  width: 42px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.klu-navbar .brand-name {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--klu-secondary);
+  letter-spacing: -0.3px;
+}
+
+.klu-navbar .brand-name strong {
+  color: var(--klu-primary);
+  font-weight: 900;
+}
+
+.klu-navbar .desktop-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  background: var(--klu-light);
+  border: 1px solid var(--klu-border);
+  border-radius: 999px;
+  padding: 4px;
+  flex: 1;
+  max-width: 520px;
+}
+
+.klu-navbar .nav-pill {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #555;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.klu-navbar .nav-pill:hover {
+  background: #fff;
+  color: var(--klu-primary);
+  border-color: var(--klu-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.klu-navbar .nav-pill.active {
+  background: #fff;
+  color: var(--klu-primary);
+  border-color: var(--klu-primary);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.10);
+}
+
+.klu-navbar .navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.klu-navbar .nav-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  background: var(--klu-primary);
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-decoration: none;
+  box-shadow: 0 3px 10px rgba(227, 30, 36, 0.25);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.klu-navbar .nav-download-btn:hover {
+  background: var(--klu-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 16px rgba(227, 30, 36, 0.35);
+}
+
+.klu-navbar .btn-label {
+  display: inline;
+}
+
+/* Hamburger button (icon) */
+.klu-navbar .mobile-menu-btn {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--klu-light);
+  border: 2px solid var(--klu-primary);
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
+}
+
+.klu-navbar .mobile-menu-btn i {
+  font-size: 18px;
+  color: var(--klu-primary);
+  line-height: 1;
+}
+
+/* Mobile drawer (scoped to the shared navbar to avoid page-level CSS conflicts) */
+.klu-navbar ~ .mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100vh;
+  background: #fff;
+  transform: translateX(-105%);
+  transition: transform 0.28s ease;
+  z-index: 2100;
+  box-shadow: 2px 0 22px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+  font-family: "Roboto", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  line-height: 1.2;
+}
+
+.klu-navbar ~ .mobile-menu.active {
+  transform: translateX(0);
+}
+
+.klu-navbar ~ .mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 2090;
+}
+
+.klu-navbar ~ .mobile-menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.klu-navbar ~ .mobile-menu .mobile-menu-content {
+  padding: 18px 18px 24px;
+}
+
+.klu-navbar ~ .mobile-menu .mobile-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  color: var(--klu-secondary);
+  padding: 10px 0 14px;
+  border-bottom: 2px solid var(--klu-primary);
+  margin-bottom: 14px;
+}
+
+.klu-navbar ~ .mobile-menu .mobile-menu-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--klu-secondary);
+}
+
+.klu-navbar ~ .mobile-menu .mobile-menu-close {
+  border: 0;
+  background: transparent;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--klu-secondary);
+}
+
+.klu-navbar ~ .mobile-menu .mobile-menu-close:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.klu-navbar ~ .mobile-menu .mobile-nav {
+  position: static;
+  left: auto;
+  top: auto;
+  width: auto;
+  height: auto;
+  padding: 0;
+  box-shadow: none;
+  visibility: visible;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.klu-navbar ~ .mobile-menu .mobile-nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--klu-secondary);
+  font-weight: 700;
+  background: #fff;
+  border: 1px solid var(--klu-border);
+}
+
+.klu-navbar ~ .mobile-menu .mobile-nav a:hover {
+  border-color: var(--klu-primary);
+  color: var(--klu-primary);
+}
+
+@media (max-width: 768px) {
+  .klu-navbar .desktop-nav {
+    display: none;
+  }
+
+  .klu-navbar .btn-label {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .klu-navbar .mobile-menu-btn {
+    display: none;
+  }
+}
