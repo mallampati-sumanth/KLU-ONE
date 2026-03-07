@@ -495,6 +495,20 @@
   flex-wrap: wrap;
 }
 
+.klu-theme-footer .footer-brand-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.klu-theme-footer .footer-tagline {
+  font-size: 0.70rem;
+  color: #777;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
 .klu-theme-footer .footer-brand {
   display: flex;
   align-items: center;
@@ -591,5 +605,6 @@
     text-align: center;
   }
 }
+
 
 
