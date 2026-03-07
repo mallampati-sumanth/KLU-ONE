@@ -59,11 +59,13 @@ function trackDownload() {
           <a href="mess.html" class="nav-pill">Mess</a>
           <a href="cabin.html" class="nav-pill">Cabin</a>
           <a href="calculator.html" class="nav-pill">Calculator</a>
+          
+          <a href="holidays.html" class="nav-pill">Holidays</a>
         </nav>
 
         <!-- Right Actions -->
         <div class="navbar-actions">
-          <a href="https://github.com/TheOneDeveloper/KLU-ONE/releases/download/Release/KLU-ONE.apk"
+          <a href="KLU-ONE.apk"
              class="nav-download-btn"
              download>
             <i class="fas fa-download"></i>
@@ -107,7 +109,9 @@ function trackDownload() {
         <a href="mess.html"><i class="fas fa-utensils"></i> Mess</a>
         <a href="cabin.html"><i class="fas fa-door-open"></i> Cabin</a>
         <a href="calculator.html"><i class="fas fa-calculator"></i> Calculator</a>
-      </nav>
+          
+          <a href="holidays.html"><i class="fas fa-calendar-alt"></i> Holidays</a>
+        </nav>
     </div>
   </div>
 
@@ -465,20 +469,56 @@ function trackDownload() {
   </section>
 
   <!-- Footer -->
-  <footer class="unified-footer">
-    <div class="footer-container">
-      <div class="footer-brand">
-        <i class="fas fa-university"></i> KLU <strong>ONE</strong>
+    <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-about">
+            <div class="footer-logo">
+              <img src="kluonelogo" alt="KLU ONE Logo">
+              <h2>KLU <span>ONE</span></h2>
+            </div>
+            <p>Your ultimate tech companion and resource hub for everything at KL University. Smart, simple, and always up-to-date.</p>
+            <div class="social-links">
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          
+          <div class="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="calculator.html">GPA Calculator</a></li>
+              <li><a href="cabin.html">Faculty Cabins</a></li>
+              <li><a href="mess.html">Mess Menu</a></li>
+              <li><a href="holidays.html">Holidays 2026</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-contact">
+            <h3>Contact Us</h3>
+            <ul>
+              <li>
+                <i class="fas fa-map-marker-alt"></i>
+                <span>KL University, Green Fields, Vaddeswaram, Andhra Pradesh 522302</span>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <span>support@kluone.com</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="mess.html">Mess</a>
-        <a href="cabin.html">Cabin</a>
-        <a href="calculator.html">Calculator</a>
-      </div>
-      <div class="footer-bottom">
+    </div>
+    <div class="footer-bottom">
+      <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
         <p>&copy; 2026 KLU ONE. All Rights Reserved.</p>
-        <p>Developed & Designed by <span class="credits-name">Mallampati Sumanth</span></p>
+        <p style="color: #ccc;">Developed & Designed by <span style="color: var(--primary-color); font-weight: bold;">Mallampati Sumanth</span></p>
       </div>
     </div>
   </footer>
@@ -2902,13 +2942,7 @@ img {
           event_label: 'KLU ONE APK',
         });
       }
-
-      // Show brief feedback without blocking navigation
-      const originalHTML = this.innerHTML;
-      this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Starting...';
-      setTimeout(() => {
-        this.innerHTML = originalHTML;
-      }, 2000);
+      // Removed the HTML override so the button style isn't broken
     });
   }
 
@@ -3306,3 +3340,8 @@ quickAccessItems.forEach((item, index) => {
 </script>
 </body>
 </html>
+
+
+
+
+

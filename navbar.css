@@ -350,3 +350,274 @@
   font-weight: 700;
   color: #333;
 }
+
+/* Realistic Download Button Effect */
+.nav-download-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.nav-download-btn.downloading {
+  background: var(--klu-primary, #e31e24);
+  color: white;
+  pointer-events: none;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2) !important;
+}
+
+.nav-download-btn.downloading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 1;
+  animation: fillProgress 1.8s ease-out forwards;
+}
+
+.nav-download-btn.downloading i {
+  animation: bounceBounce 1s infinite alternate;
+}
+
+.nav-download-btn i, .nav-download-btn .btn-label {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes fillProgress {
+  0% { width: 0%; }
+  35% { width: 45%; }
+  70% { width: 85%; }
+  100% { width: 100%; }
+}
+
+@keyframes bounceBounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-3px); }
+}
+
+.nav-download-btn.download-done {
+  background: #28a745 !important;
+  color: white !important;
+}
+
+/* Realistic Download Button Effect */
+.nav-download-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.nav-download-btn.downloading {
+  background: var(--klu-primary, #e31e24);
+  color: white;
+  pointer-events: none;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2) !important;
+}
+
+.nav-download-btn.downloading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 1;
+  animation: fillProgress 1.8s ease-out forwards;
+}
+
+.nav-download-btn.downloading i {
+  animation: bounceBounce 1s infinite alternate;
+}
+
+.nav-download-btn i, .nav-download-btn .btn-label {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes fillProgress {
+  0% { width: 0%; }
+  35% { width: 45%; }
+  70% { width: 85%; }
+  100% { width: 100%; }
+}
+
+@keyframes bounceBounce {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-3px); }
+}
+
+.nav-download-btn.download-done {
+  background: #28a745 !important;
+  color: white !important;
+}
+
+/* =========================================
+   GLOBAL FOOTER STYLES
+   ========================================= */
+.footer {
+  background-color: var(--secondary-color, #333);
+  color: #fff;
+  position: relative;
+  font-family: "Roboto", "Segoe UI", system-ui, -apple-system, sans-serif;
+  margin-top: auto;
+}
+
+.footer-top {
+  padding: 60px 0 30px;
+}
+
+.footer .container {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.footer-about {
+  margin-bottom: 20px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.footer-logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.footer-logo h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: #fff;
+}
+
+.footer-logo span {
+  color: var(--klu-primary, #e31e24);
+}
+
+.footer-about p {
+  color: #ccc;
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  background-color: var(--klu-primary, #e31e24);
+  transform: translateY(-5px);
+}
+
+.footer-links h3,
+.footer-contact h3 {
+  font-size: 1.3rem;
+  margin-top: 0;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+  color: #fff;
+}
+
+.footer-links h3:after,
+.footer-contact h3:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background-color: var(--klu-primary, #e31e24);
+}
+
+.footer-links ul,
+.footer-contact ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+  color: #fff;
+  padding-left: 5px;
+}
+
+.footer-contact ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 15px;
+  color: #ccc;
+}
+
+.footer-contact ul li i {
+  color: var(--klu-primary, #e31e24);
+  margin-top: 5px;
+}
+
+.footer-bottom {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 20px 0;
+}
+
+.footer-bottom p {
+  color: #ccc;
+  margin: 0;
+}
+
+.footer-links-inline a {
+  color: #ccc;
+  margin-left: 20px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-links-inline a:hover {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .footer-bottom .container {
+    flex-direction: column !important;
+    gap: 10px;
+    text-align: center;
+  }
+}

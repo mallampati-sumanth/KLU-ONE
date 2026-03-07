@@ -48,3 +48,78 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', () => setTimeout(closeMenu, 150));
   });
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Global Realistic Download Button Animation
+  document.querySelectorAll('.nav-download-btn, .download-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      if (this.classList.contains('downloading') || this.classList.contains('download-done')) {
+        return;
+      }
+      
+      const originalText = this.querySelector('.btn-label') ? this.querySelector('.btn-label').innerText : 'Download';
+      const icon = this.querySelector('i');
+      const label = this.querySelector('.btn-label');
+      
+      this.classList.add('downloading');
+      if (label) label.innerText = 'Downloading...';
+      if (icon) {
+        icon.className = 'fas fa-arrow-down';
+      }
+
+      // Restore and show completion after animation time
+      setTimeout(() => {
+        this.classList.remove('downloading');
+        this.classList.add('download-done');
+        if (label) label.innerText = 'Downloaded!';
+        if (icon) icon.className = 'fas fa-check';
+        
+        // Reset after a while
+        setTimeout(() => {
+          this.classList.remove('download-done');
+          if (label) label.innerText = originalText;
+          if (icon) icon.className = 'fas fa-download';
+        }, 3000);
+      }, 1800);
+      
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Global Realistic Download Button Animation
+  document.querySelectorAll('.nav-download-btn, .download-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      if (this.classList.contains('downloading') || this.classList.contains('download-done')) {
+        return;
+      }
+      
+      const originalText = this.querySelector('.btn-label') ? this.querySelector('.btn-label').innerText : 'Download';
+      const icon = this.querySelector('i');
+      const label = this.querySelector('.btn-label');
+      
+      this.classList.add('downloading');
+      if (label) label.innerText = 'Downloading...';
+      if (icon) {
+        icon.className = 'fas fa-arrow-down';
+      }
+
+      // Restore and show completion after animation time
+      setTimeout(() => {
+        this.classList.remove('downloading');
+        this.classList.add('download-done');
+        if (label) label.innerText = 'Downloaded!';
+        if (icon) icon.className = 'fas fa-check';
+        
+        // Reset after a while
+        setTimeout(() => {
+          this.classList.remove('download-done');
+          if (label) label.innerText = originalText;
+          if (icon) icon.className = 'fas fa-download';
+        }, 3000);
+      }, 1800);
+      
+    });
+  });
+});
