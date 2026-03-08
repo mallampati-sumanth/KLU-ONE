@@ -861,7 +861,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize the application
     function initApp() {
         // Set current year in footer
-        currentYear.textContent = new Date().getFullYear();
+        if (currentYear) currentYear.textContent = new Date().getFullYear();
         
         // Check for saved theme preference
         checkThemePreference();
