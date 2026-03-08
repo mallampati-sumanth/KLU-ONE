@@ -3903,7 +3903,7 @@
                     `;
                     
                     // Click to select this faculty
-                    item.addEventListener('click', () => selectFaculty(faculty));
+                    item.addEventListener('mousedown', (e) => { e.preventDefault(); selectFaculty(faculty); }); item.addEventListener('click', (e) => { e.preventDefault(); selectFaculty(faculty); }); item.addEventListener('touchstart', (e) => { e.preventDefault(); selectFaculty(faculty); }, {passive: false});
                     
                     // Hover highlight
                     item.addEventListener('mouseenter', () => {
@@ -4100,6 +4100,7 @@
     </script>
 </body>
 </html>
+
 
 
 
