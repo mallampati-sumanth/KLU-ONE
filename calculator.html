@@ -2811,6 +2811,1480 @@ html {
   <script src="navbar.js" defer></script>
   <script src="script.js"></script>
 
+<!-- RESCUED ORIGINAL SCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Set current year in footer (if present)
+  const currentYearEl = document.getElementById("currentYear")
+  if (currentYearEl) currentYearEl.textContent = new Date().getFullYear()
+
+  // Dark Theme Toggle (optional)
+  const themeToggle = document.getElementById("themeToggle")
+  const body = document.body
+  
+  // Check for saved theme preference or default to light mode
+  if (themeToggle) {
+    const currentTheme = localStorage.getItem("theme") || "light"
+    if (currentTheme === "dark") {
+      body.classList.add("dark-theme")
+      themeToggle.innerHTML = '<span style="font-size: 1.1rem;">☀️</span><span>Light Mode</span>'
+    }
+
+    themeToggle.addEventListener("click", function() {
+      body.classList.toggle("dark-theme")
+
+      if (body.classList.contains("dark-theme")) {
+        themeToggle.innerHTML = '<span style="font-size: 1.1rem;">☀️</span><span>Light Mode</span>'
+        localStorage.setItem("theme", "dark")
+      } else {
+        themeToggle.innerHTML = '<span style="font-size: 1.1rem;">🌙</span><span>Dark Mode</span>'
+        localStorage.setItem("theme", "light")
+      }
+    })
+  }
+
+  // Animate elements on load
+  animateElementsOnLoad()
+
+  // Enhanced Tab Navigation with smooth transitions
+  const navTabs = document.querySelectorAll(".nav-tab")
+  const calculatorSections = document.querySelectorAll(".calculator-section")
+
+  function switchTab(targetTabId) {
+    // Remove active class from all tabs
+    navTabs.forEach((t) => t.classList.remove("active"))
+    
+    // Add active class to target tab
+    const targetTab = document.querySelector(`[data-tab="${targetTabId}"]`)
+    if (targetTab) {
+      targetTab.classList.add("active")
+    }
+
+    // Hide all sections first
+    calculatorSections.forEach((section) => {
+      section.classList.remove("active")
+    })
+
+    // Show target section immediately
+    const targetSection = document.getElementById(targetTabId)
+    if (targetSection) {
+      targetSection.classList.add("active")
+    }
+  }
+
+  navTabs.forEach((tab) => {
+    tab.addEventListener("click", function (e) {
+      e.preventDefault()
+      
+      // If already active, do nothing
+      if (this.classList.contains("active")) return
+
+      const tabId = this.getAttribute("data-tab")
+      switchTab(tabId)
+    })
+  })
+
+  // Initialize first tab as active
+  if (navTabs.length > 0) {
+    const firstTab = navTabs[0]
+    const firstTabId = firstTab.getAttribute("data-tab")
+    
+    // Remove all active classes
+    calculatorSections.forEach((section) => {
+      section.classList.remove("active")
+    })
+    
+    // Show first section
+    const firstSection = document.getElementById(firstTabId)
+    if (firstSection) {
+      firstSection.classList.add("active")
+    }
+  }
+
+  // Ripple effect on buttons
+  const buttons = document.querySelectorAll(".btn")
+  buttons.forEach((button) => {
+    button.addEventListener("click", function (e) {
+      const x = e.clientX - this.getBoundingClientRect().left
+      const y = e.clientY - this.getBoundingClientRect().top
+
+      const ripple = document.createElement("span")
+      ripple.classList.add("ripple")
+      ripple.style.left = `${x}px`
+      ripple.style.top = `${y}px`
+
+      this.appendChild(ripple)
+
+      setTimeout(() => {
+        ripple.remove()
+      }, 600)
+    })
+  })
+
+  // Animate elements on load
+  function animateElementsOnLoad() {
+    const elements = document.querySelectorAll(".header, .nav-tabs, .content")
+    elements.forEach((el, index) => {
+      el.style.opacity = "1"
+      el.style.transform = "translateY(0)"
+    })
+  }
+
+  // Helper function to animate number values
+  function animateValue(element, start, end, duration) {
+    let startTimestamp = null
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1)
+      const value = progress * (end - start) + start
+      element.textContent = Number.parseFloat(value).toFixed(2)
+      if (progress < 1) {
+        window.requestAnimationFrame(step)
+      }
+    }
+    window.requestAnimationFrame(step)
+  }
+
+  // Helper function to show notifications
+  function showNotification(message, type = "info") {
+    const notification = document.createElement("div")
+    notification.className = `notification ${type}`
+    notification.textContent = message
+
+    document.body.appendChild(notification)
+
+    setTimeout(() => {
+      notification.classList.add("show")
+    }, 10)
+
+    setTimeout(() => {
+      notification.classList.remove("show")
+      setTimeout(() => {
+        notification.remove()
+      }, 300)
+    }, 3000)
+  }
+
+  // Attendance Calculator
+  const calculateAttendanceBtn = document.getElementById("calculateAttendance")
+  const resetAttendanceBtn = document.getElementById("resetAttendance")
+  const attendanceResults = document.getElementById("attendanceResults")
+  const subjectResultEl = document.getElementById("subjectResult")
+  const overallAttendanceEl = document.getElementById("overallAttendance")
+  const componentAnalysisEl = document.getElementById("componentAnalysis")
+  const attendanceStatusEl = document.getElementById("attendanceStatus")
+  const attendanceValueEl = document.getElementById("attendanceValue")
+
+  if(calculateAttendanceBtn) calculateAttendanceBtn.addEventListener("click", function () {
+    // Add loading animation
+    this.disabled = true
+    this.querySelector(".btn-content").textContent = "Calculating..."
+    this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-spinner fa-spin"></i>'
+
+    setTimeout(() => {
+      calculateAttendance()
+
+      // Reset button
+      this.disabled = false
+      this.querySelector(".btn-content").textContent = "Calculate"
+      this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-calculator"></i>'
+    }, 800)
+  })
+
+  if(resetAttendanceBtn) resetAttendanceBtn.addEventListener("click", resetAttendanceForm)
+
+  const calculateAttendance = () => {
+    const subjectName = document.getElementById("subjectName").value || "N/A"
+    const lecturePercentage = Number.parseFloat(document.getElementById("lecturePercentage").value) || null
+    const tutorialPercentage = Number.parseFloat(document.getElementById("tutorialPercentage").value) || null
+    const practicalPercentage = Number.parseFloat(document.getElementById("practicalPercentage").value) || null
+    const skillingPercentage = Number.parseFloat(document.getElementById("skillingPercentage").value) || null
+    const weights = { lecture: 1.0, tutorial: 0.25, practical: 0.5, skilling: 0.25 }
+    let totalWeight = 0
+    let weightedSum = 0
+    const components = [
+      { percentage: lecturePercentage, weight: weights.lecture, name: "Lecture" },
+      { percentage: tutorialPercentage, weight: weights.tutorial, name: "Tutorial" },
+      { percentage: practicalPercentage, weight: weights.practical, name: "Practical" },
+      { percentage: skillingPercentage, weight: weights.skilling, name: "Skilling" },
+    ]
+
+    const analysis = components
+      .map((component, index) => {
+        if (component.percentage !== null) {
+          totalWeight += component.weight
+          weightedSum += component.percentage * component.weight
+          return `<li style="--i:${index}"><strong>${component.name}:</strong> ${component.percentage}%</li>`
+        }
+        return ""
+      })
+      .filter(Boolean)
+
+    if (totalWeight === 0) {
+      showNotification("Please provide percentages for at least one component.", "warning")
+      return
+    }
+
+    const overallAttendance = weightedSum / totalWeight
+
+    // Update result elements
+    subjectResultEl.textContent = `Subject: ${subjectName}`
+    overallAttendanceEl.textContent = `Overall Attendance: ${overallAttendance.toFixed(2)}%`
+    componentAnalysisEl.innerHTML = analysis.join("")
+
+    // Update progress circle
+    const progressBar = document.querySelector("#attendanceResults .progress-bar")
+    const circumference = 2 * Math.PI * 45 // 45 is the radius
+    progressBar.style.strokeDasharray = circumference
+    const offset = circumference - (overallAttendance / 100) * circumference
+
+    // Animate the progress
+    progressBar.style.strokeDashoffset = circumference
+    setTimeout(() => {
+      progressBar.style.strokeDashoffset = offset
+    }, 100)
+
+    // Set color based on attendance
+    if (overallAttendance >= 75) {
+      progressBar.style.stroke = "#28a745" // Green
+      attendanceStatusEl.textContent = "Good Standing"
+      attendanceStatusEl.className = "status-badge good"
+    } else if (overallAttendance >= 65) {
+      progressBar.style.stroke = "#ffc107" // Yellow
+      attendanceStatusEl.textContent = "Warning: Attendance Below 75%"
+      attendanceStatusEl.className = "status-badge warning"
+    } else {
+      progressBar.style.stroke = "#dc3545" // Red
+      attendanceStatusEl.textContent = "Danger: Very Low Attendance"
+      attendanceStatusEl.className = "status-badge danger"
+    }
+
+    // Update value with animation
+    animateValue(attendanceValueEl, 0, overallAttendance.toFixed(2), 1000)
+
+    // Show results with animation
+    attendanceResults.classList.remove("hidden")
+    attendanceResults.classList.add("show")
+  }
+
+  function resetAttendanceForm() {
+    document.getElementById("subjectName").value = ""
+    document.getElementById("lecturePercentage").value = ""
+    document.getElementById("tutorialPercentage").value = ""
+    document.getElementById("practicalPercentage").value = ""
+    document.getElementById("skillingPercentage").value = ""
+    attendanceResults.classList.remove("show")
+
+    // Add a small delay before hiding completely
+    setTimeout(() => {
+      attendanceResults.classList.add("hidden")
+    }, 500)
+  }
+
+  // SGPA Calculator
+  const generateSubjectsBtn = document.getElementById("generateSubjects")
+  const calculateSGPABtn = document.getElementById("calculateSGPA")
+  const resetSGPABtn = document.getElementById("resetSGPA")
+  const subjectsContainer = document.getElementById("subjectsContainer")
+  const sgpaResults = document.getElementById("sgpaResults")
+  const sgpaValueEl = document.getElementById("sgpaValue")
+  const sgpaStatusEl = document.getElementById("sgpaStatus")
+  const creditDistributionEl = document.getElementById("creditDistribution")
+
+  generateSubjectsBtn.addEventListener("click", generateSubjectInputs)
+  calculateSGPABtn.addEventListener("click", function () {
+    // Add loading animation
+    this.disabled = true
+    this.querySelector(".btn-content").textContent = "Calculating..."
+    this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-spinner fa-spin"></i>'
+
+    setTimeout(() => {
+      calculateSGPA()
+
+      // Reset button
+      this.disabled = false
+      this.querySelector(".btn-content").textContent = "Calculate SGPA"
+      this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-calculator"></i>'
+    }, 800)
+  })
+  resetSGPABtn.addEventListener("click", resetSGPAForm)
+
+  function generateSubjectInputs() {
+    const numSubjects = Number.parseInt(document.getElementById("numSubjects").value) || 0
+
+    if (numSubjects <= 0 || numSubjects > 12) {
+      showNotification("Please enter a valid number of subjects (1-12).", "warning")
+      return
+    }
+
+    // Clear previous inputs with animation
+    if (subjectsContainer.children.length > 0) {
+      Array.from(subjectsContainer.children).forEach((child, index) => {
+        setTimeout(() => {
+          child.style.opacity = "0"
+          child.style.transform = "translateX(20px)"
+        }, index * 50)
+      })
+
+      setTimeout(
+        () => {
+          subjectsContainer.innerHTML = ""
+          createSubjectRows()
+        },
+        subjectsContainer.children.length * 50 + 100,
+      )
+    } else {
+      createSubjectRows()
+    }
+
+    function createSubjectRows() {
+      for (let i = 1; i <= numSubjects; i++) {
+        const subjectRow = document.createElement("div")
+        subjectRow.className = "subject-row"
+        subjectRow.style.opacity = "0"
+        subjectRow.style.transform = "translateX(-20px)"
+
+        subjectRow.innerHTML = `
+          <div class="input-wrapper">
+            <input type="text" id="subject${i}" placeholder="Subject ${i} Name">
+            <span class="input-focus-effect"></span>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="credit${i}" min="1" max="4" step="0.5" placeholder="Credits">
+            <span class="input-focus-effect"></span>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="grade${i}" min="0" max="10" step="0.1" placeholder="Grade Points">
+            <span class="input-focus-effect"></span>
+          </div>
+        `
+
+        subjectsContainer.appendChild(subjectRow)
+
+        // Animate each row
+        setTimeout(() => {
+          subjectRow.style.transition = "all 0.3s ease"
+          subjectRow.style.opacity = "1"
+          subjectRow.style.transform = "translateX(0)"
+        }, i * 100)
+      }
+    }
+  }
+
+  function calculateSGPA() {
+    const numSubjects = Number.parseInt(document.getElementById("numSubjects").value) || 0
+    let totalPoints = 0
+    let totalCredits = 0
+    const subjectData = []
+
+    // Loop through all subjects
+    for (let i = 1; i <= numSubjects; i++) {
+      const subjectName = document.getElementById(`subject${i}`)?.value || `Subject ${i}`
+      const credit = Number.parseFloat(document.getElementById(`credit${i}`)?.value || 0)
+      const grade = Number.parseFloat(document.getElementById(`grade${i}`)?.value || 0)
+
+      if (credit > 0 && grade >= 0) {
+        totalPoints += grade * credit
+        totalCredits += credit
+        subjectData.push({ name: subjectName, credit, grade })
+      }
+    }
+
+    if (totalCredits === 0) {
+      showNotification("Please enter valid credits and grades for at least one subject.", "warning")
+      return
+    }
+
+    // Calculate SGPA
+    const sgpa = totalPoints / totalCredits
+
+    // Generate credit distribution HTML
+    let distributionHTML = '<div class="credit-chart">'
+    subjectData.forEach((subject, index) => {
+      const percentage = (subject.credit / totalCredits) * 100
+      distributionHTML += `
+        <div class="credit-item" style="--i:${index}">
+          <div class="credit-bar" style="width: ${percentage}%"></div>
+          <div class="credit-label">${subject.name}: ${subject.credit} credits (${percentage.toFixed(1)}%)</div>
+        </div>
+      `
+    })
+    distributionHTML += "</div>"
+
+    creditDistributionEl.innerHTML = distributionHTML
+
+    // Update progress circle
+    const progressBar = document.querySelector("#sgpaResults .progress-bar")
+    const circumference = 2 * Math.PI * 45 // 45 is the radius
+    progressBar.style.strokeDasharray = circumference
+    const offset = circumference - (sgpa / 10) * circumference
+
+    // Animate the progress
+    progressBar.style.strokeDashoffset = circumference
+    setTimeout(() => {
+      progressBar.style.strokeDashoffset = offset
+    }, 100)
+
+    // Set color and status based on SGPA
+    let statusText, statusClass, color
+    if (sgpa >= 9) {
+      color = "#28a745" // Green
+      statusText = "Outstanding Performance!"
+      statusClass = "good"
+    } else if (sgpa >= 8) {
+      color = "#28a745" // Green
+      statusText = "Excellent Performance!"
+      statusClass = "good"
+    } else if (sgpa >= 7) {
+      color = "#17a2b8" // Blue
+      statusText = "Very Good Performance!"
+      statusClass = "good"
+    } else if (sgpa >= 6) {
+      color = "#ffc107" // Yellow
+      statusText = "Good Performance!"
+      statusClass = "warning"
+    } else {
+      color = "#dc3545" // Red
+      statusText = "Need Improvement"
+      statusClass = "danger"
+    }
+
+    progressBar.style.stroke = color
+    sgpaStatusEl.textContent = statusText
+    sgpaStatusEl.className = `status-badge ${statusClass}`
+
+    // Update value with animation
+    animateValue(sgpaValueEl, 0, sgpa.toFixed(2), 1000)
+
+    // Show results with animation
+    sgpaResults.classList.remove("hidden")
+    sgpaResults.classList.add("show")
+  }
+
+  function resetSGPAForm() {
+    document.getElementById("numSubjects").value = "6"
+    subjectsContainer.innerHTML = ""
+    sgpaResults.classList.remove("show")
+
+    // Add a small delay before hiding completely
+    setTimeout(() => {
+      sgpaResults.classList.add("hidden")
+    }, 500)
+  }
+
+  // CGPA Calculator
+  const calculateCGPABtn = document.getElementById("calculateCGPA")
+  const resetCGPABtn = document.getElementById("resetCGPA")
+  const cgpaResults = document.getElementById("cgpaResults")
+  const cgpaValueEl = document.getElementById("cgpaValue")
+  const cgpaStatusEl = document.getElementById("cgpaStatus")
+  const creditSummaryEl = document.getElementById("creditSummary")
+
+  calculateCGPABtn.addEventListener("click", function () {
+    // Add loading animation
+    this.disabled = true
+    this.querySelector(".btn-content").textContent = "Calculating..."
+    this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-spinner fa-spin"></i>'
+
+    setTimeout(() => {
+      calculateCGPA()
+
+      // Reset button
+      this.disabled = false
+      this.querySelector(".btn-content").textContent = "Calculate CGPA"
+      this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-calculator"></i>'
+    }, 800)
+  })
+  resetCGPABtn.addEventListener("click", resetCGPAForm)
+
+  function calculateCGPA() {
+    const previousCGPA = Number.parseFloat(document.getElementById("previousCGPA").value) || 0
+    const previousCredits = Number.parseFloat(document.getElementById("previousCredits").value) || 0
+    const currentSGPA = Number.parseFloat(document.getElementById("currentSGPA").value) || 0
+    const currentCredits = Number.parseFloat(document.getElementById("currentCredits").value) || 0
+
+    if (previousCGPA === 0 && previousCredits === 0 && (currentSGPA === 0 || currentCredits === 0)) {
+      showNotification("Please enter valid CGPA and credits information.", "warning")
+      return
+    }
+
+    // Calculate total credits
+    const totalCredits = previousCredits + currentCredits
+
+    // Calculate CGPA using weighted average
+    const cgpa = totalCredits > 0 ? (previousCGPA * previousCredits + currentSGPA * currentCredits) / totalCredits : 0
+
+    // Generate credit summary HTML
+    const summaryHTML = `
+      <div class="credit-summary">
+        <div class="summary-item">
+          <div class="summary-label">Previous Credits:</div>
+          <div class="summary-value">${previousCredits}</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-label">Current Credits:</div>
+          <div class="summary-value">${currentCredits}</div>
+        </div>
+        <div class="summary-item total">
+          <div class="summary-label">Total Credits:</div>
+          <div class="summary-value">${totalCredits}</div>
+        </div>
+      </div>
+    `
+
+    creditSummaryEl.innerHTML = summaryHTML
+
+    // Update progress circle
+    const progressBar = document.querySelector("#cgpaResults .progress-bar")
+    const circumference = 2 * Math.PI * 45 // 45 is the radius
+    progressBar.style.strokeDasharray = circumference
+    const offset = circumference - (cgpa / 10) * circumference
+
+    // Animate the progress
+    progressBar.style.strokeDashoffset = circumference
+    setTimeout(() => {
+      progressBar.style.strokeDashoffset = offset
+    }, 100)
+
+    // Set color and status based on CGPA
+    let statusText, statusClass, color
+    if (cgpa >= 9) {
+      color = "#28a745" // Green
+      statusText = "Outstanding Academic Performance!"
+      statusClass = "good"
+    } else if (cgpa >= 8) {
+      color = "#28a745" // Green
+      statusText = "Excellent Academic Standing!"
+      statusClass = "good"
+    } else if (cgpa >= 7) {
+      color = "#17a2b8" // Blue
+      statusText = "Very Good Academic Progress!"
+      statusClass = "good"
+    } else if (cgpa >= 6) {
+      color = "#ffc107" // Yellow
+      statusText = "Good Academic Standing!"
+      statusClass = "warning"
+    } else {
+      color = "#dc3545" // Red
+      statusText = "Need Academic Improvement"
+      statusClass = "danger"
+    }
+
+    progressBar.style.stroke = color
+    cgpaStatusEl.textContent = statusText
+    cgpaStatusEl.className = `status-badge ${statusClass}`
+
+    // Update value with animation
+    animateValue(cgpaValueEl, 0, cgpa.toFixed(2), 1000)
+
+    // Show results with animation
+    cgpaResults.classList.remove("hidden")
+    cgpaResults.classList.add("show")
+  }
+
+  function resetCGPAForm() {
+    document.getElementById("previousCGPA").value = ""
+    document.getElementById("previousCredits").value = ""
+    document.getElementById("currentSGPA").value = ""
+    document.getElementById("currentCredits").value = ""
+    cgpaResults.classList.remove("show")
+
+    // Add a small delay before hiding completely
+    setTimeout(() => {
+      cgpaResults.classList.add("hidden")
+    }, 500)
+  }
+
+  // Add CSS for notifications
+  const style = document.createElement("style")
+  style.textContent = `
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 15px 20px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      transform: translateX(120%);
+      transition: transform 0.3s ease;
+    }
+    
+    .notification.show {
+      transform: translateX(0);
+    }
+    
+    .notification.info {
+      border-left: 4px solid #17a2b8;
+    }
+    
+    .notification.success {
+      border-left: 4px solid #28a745;
+    }
+    
+    .notification.warning {
+      border-left: 4px solid #ffc107;
+    }
+    
+    .notification.error {
+      border-left: 4px solid #dc3545;
+    }
+    
+    .credit-chart {
+      margin-top: 10px;
+    }
+    
+    .credit-item {
+      margin-bottom: 8px;
+      animation: fade-in 0.5s ease forwards;
+      animation-delay: calc(var(--i) * 0.1s);
+    }
+    
+    .credit-bar {
+      height: 8px;
+      background: var(--primary-gradient);
+      border-radius: 4px;
+      margin-bottom: 4px;
+      transition: width 1s ease;
+    }
+    
+    .credit-label {
+      font-size: 0.9rem;
+    }
+    
+    .credit-summary {
+      margin-top: 10px;
+    }
+    
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--gray);
+    }
+    
+    .summary-item.total {
+      font-weight: bold;
+      border-top: 2px solid var(--primary);
+      border-bottom: none;
+      margin-top: 5px;
+      padding-top: 10px;
+    }
+  `
+  document.head.appendChild(style)
+
+  // Paste Attendance Calculator
+  const calculatePasteAttendanceBtn = document.getElementById("calculatePasteAttendance")
+  const resetPasteAttendanceBtn = document.getElementById("resetPasteAttendance")
+  const pasteAttendanceResults = document.getElementById("pasteAttendanceResults")
+  const pasteAttendanceOutput = document.getElementById("pasteAttendanceOutput")
+
+  calculatePasteAttendanceBtn.addEventListener("click", function () {
+    this.style.transform = "scale(0.95)"
+    setTimeout(() => {
+      this.style.transform = "scale(1)"
+    }, 100)
+
+    const originalText = this.querySelector(".btn-content").textContent
+    this.querySelector(".btn-content").textContent = "Calculating..."
+    this.disabled = true
+
+    setTimeout(() => {
+      calculatePasteAttendance()
+      this.querySelector(".btn-content").textContent = originalText
+      this.disabled = false
+    }, 1000)
+  })
+
+  resetPasteAttendanceBtn.addEventListener("click", resetPasteAttendanceForm)
+
+  function calculatePasteAttendance() {
+    const attendanceData = document.getElementById("attendanceData").value.trim()
+    
+    if (!attendanceData) {
+      showNotification("Please paste your attendance data", "warning")
+      return
+    }
+
+    try {
+      const parsedData = parseAttendanceData(attendanceData)
+      displayParsedResults(parsedData)
+      pasteAttendanceResults.classList.remove("hidden")
+      setTimeout(() => {
+        pasteAttendanceResults.classList.add("show")
+      }, 100)
+    } catch (error) {
+      showNotification("Error parsing attendance data: " + error.message, "error")
+    }
+  }
+
+  function parseAttendanceData(data) {
+    const lines = data.split('\n').filter(line => line.trim() && !line.startsWith('#'))
+    const subjects = {}
+    
+    lines.forEach((line, index) => {
+      // Simple extraction: just get course code, course name, component type, and final percentage
+      let parts = []
+      
+      // Try different splitting methods
+      if (line.includes('\t')) {
+        parts = line.split('\t').filter(part => part.trim())
+      } else {
+        parts = line.split(/\s{2,}/).filter(part => part.trim())
+      }
+      
+      // If still not enough parts, try single space split
+      if (parts.length < 6) {
+        parts = line.split(/\s+/).filter(part => part.trim())
+      }
+
+      if (parts.length >= 6) {
+        // Extract only what we need: course code, course name, component type, and percentage
+        const slNo = parts[0]?.trim()
+        const courseCode = parts[1]?.trim()
+        const courseDesc = parts[2]?.trim()
+        const ltps = parts[3]?.trim()
+        
+        // Find the percentage in the line (look for % symbol)
+        let finalPercentage = 0
+        for (let i = 0; i < parts.length; i++) {
+          if (parts[i].includes('%')) {
+            finalPercentage = parseFloat(parts[i].replace('%', '')) || 0
+            break
+          }
+        }
+
+        if (!courseCode || !ltps || !finalPercentage) {
+          console.log(`Skipping invalid line: ${line}`)
+          return // Skip invalid rows
+        }
+
+        // Clean and normalize the subject key
+        const subjectKey = courseCode.trim().toUpperCase()
+        const componentType = ltps.trim().toUpperCase()
+        
+        console.log(`Extracted: ${courseCode} - ${componentType} - ${finalPercentage}%`)
+
+        // Create subject entry if it doesn't exist
+        if (!subjects[subjectKey]) {
+          subjects[subjectKey] = {
+            courseCode: courseCode.trim(),
+            courseName: courseDesc.trim(),
+            components: {}
+          }
+        } else {
+          // Update course name if it's more descriptive
+          if (courseDesc.trim().length > subjects[subjectKey].courseName.length) {
+            subjects[subjectKey].courseName = courseDesc.trim()
+          }
+        }
+
+        // Store component with its final percentage (no need for individual counts)
+        subjects[subjectKey].components[componentType] = {
+          type: componentType,
+          percentage: finalPercentage
+        }
+
+        console.log(`Stored: ${subjectKey} - ${componentType} - ${finalPercentage}%`)
+      }
+    })
+
+    // Calculate overall attendance using the EXACT same algorithm as the original attendance calculator
+    Object.keys(subjects).forEach(key => {
+      const subject = subjects[key]
+      const components = Object.values(subject.components)
+      
+      if (components.length > 0) {
+        // Extract component percentages (same as original calculator)
+        let lecturePercentage = null, tutorialPercentage = null, practicalPercentage = null, skillingPercentage = null
+        
+        components.forEach(comp => {
+          switch(comp.type) {
+            case 'L':
+              lecturePercentage = comp.percentage
+              break
+            case 'T':
+              tutorialPercentage = comp.percentage
+              break
+            case 'P':
+              practicalPercentage = comp.percentage
+              break
+            case 'S':
+              skillingPercentage = comp.percentage
+              break
+          }
+        })
+
+        // Use the EXACT same weights and algorithm as the original attendance calculator
+        const weights = { lecture: 1.0, tutorial: 0.25, practical: 0.5, skilling: 0.25 }
+        let totalWeight = 0
+        let weightedSum = 0
+        
+        const componentsList = [
+          { percentage: lecturePercentage, weight: weights.lecture, name: "Lecture" },
+          { percentage: tutorialPercentage, weight: weights.tutorial, name: "Tutorial" },
+          { percentage: practicalPercentage, weight: weights.practical, name: "Practical" },
+          { percentage: skillingPercentage, weight: weights.skilling, name: "Skilling" },
+        ]
+
+        componentsList.forEach(component => {
+          if (component.percentage !== null && component.percentage > 0) {
+            totalWeight += component.weight
+            weightedSum += component.percentage * component.weight
+          }
+        })
+
+        if (totalWeight > 0) {
+          subject.overallPercentage = weightedSum / totalWeight
+        } else {
+          subject.overallPercentage = 0
+        }
+
+        console.log(`Subject ${key}: L=${lecturePercentage}% T=${tutorialPercentage}% P=${practicalPercentage}% S=${skillingPercentage}% -> Weighted=${subject.overallPercentage.toFixed(2)}%`)
+      }
+    })
+
+    return subjects
+  }
+
+  function displayParsedResults(subjects) {
+    let html = '<div class="parsed-subjects" style="animation: fadeInUp 0.6s ease-out;">'
+    
+    Object.keys(subjects).forEach(key => {
+      const subject = subjects[key]
+      const statusClass = subject.overallPercentage >= 75 ? 'safe' : 'warning'
+      const statusText = subject.overallPercentage >= 75 ? 'Good Standing' : 'Need Improvement'
+      
+      // Create component analysis list (same format as original calculator)
+      const componentOrder = ['L', 'T', 'P', 'S']
+      const componentNames = { 'L': 'Lecture', 'T': 'Tutorial', 'P': 'Practical', 'S': 'Skilling' }
+      const componentAnalysis = componentOrder
+        .filter(type => subject.components[type])
+        .map(type => {
+          const comp = subject.components[type]
+          const compStatusColor = comp.percentage >= 75 ? '#28a745' : '#dc3545'
+          return `<li style="
+            padding: var(--space-3); 
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-md); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            transition: all var(--transition-normal);
+          ">
+            <span style="color: var(--gray-700); font-weight: 600; font-size: var(--text-sm);">
+              <i class="fas fa-circle" style="color: ${compStatusColor}; font-size: 8px; margin-right: var(--space-2);"></i>
+              ${componentNames[type]}
+            </span>
+            <span style="
+              color: ${compStatusColor}; 
+              font-weight: 700; 
+              font-size: var(--text-base);
+              padding: var(--space-1) var(--space-2);
+              background: ${comp.percentage >= 75 ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)'};
+              border-radius: var(--radius-sm);
+            ">${comp.percentage.toFixed(0)}%</span>
+          </li>`
+        })
+        .join('')
+      
+      html += `
+        <div class="paste-result-card" style="
+          background: var(--glass-bg-strong);
+          backdrop-filter: blur(24px);
+          border: 1px solid var(--glass-border);
+          border-radius: var(--radius-2xl);
+          padding: var(--space-8);
+          margin-bottom: var(--space-6);
+          box-shadow: var(--shadow-xl);
+          display: flex;
+          align-items: center;
+          gap: var(--space-8);
+          animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+          position: relative;
+          overflow: hidden;
+          ${statusClass === 'safe' ? 'border-left: 4px solid var(--success);' : 'border-left: 4px solid var(--primary-500);'}
+        ">
+          <div class="result-visual" style="flex-shrink: 0;">
+            <div class="circular-progress" style="position: relative; width: 120px; height: 120px;">
+              <svg viewBox="0 0 100 100" style="width: 100%; height: 100%; transform: rotate(-90deg);">
+                <circle cx="50" cy="50" r="40" 
+                  style="fill: none; stroke: var(--gray-200); stroke-width: 6;"></circle>
+                <circle cx="50" cy="50" r="40" 
+                  style="fill: none; stroke: ${statusClass === 'safe' ? 'var(--success)' : 'var(--primary-500)'}; stroke-width: 6; stroke-linecap: round; stroke-dasharray: ${2 * Math.PI * 40}; stroke-dashoffset: ${2 * Math.PI * 40 - (subject.overallPercentage / 100) * 2 * Math.PI * 40}; transition: stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1); filter: drop-shadow(0 0 8px ${statusClass === 'safe' ? 'rgba(16, 185, 129, 0.4)' : 'rgba(239, 68, 68, 0.4)'});">
+                </circle>
+              </svg>
+              <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                <div style="font-size: var(--text-xl); font-weight: 800; color: ${statusClass === 'safe' ? 'var(--success)' : 'var(--primary-500)'}; line-height: 1;">${subject.overallPercentage.toFixed(1)}%</div>
+                <div style="font-size: var(--text-xs); color: var(--gray-500); margin-top: 2px; font-weight: 500;">OVERALL</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="result-details" style="flex: 1; min-width: 0;">
+            <div style="margin-bottom: var(--space-4);">
+              <h3 style="font-size: var(--text-xl); font-weight: 700; color: var(--gray-800); margin-bottom: var(--space-1); display: flex; align-items: center; gap: var(--space-2);">
+                <i class="fas fa-graduation-cap" style="color: var(--primary-500); font-size: var(--text-lg);"></i>
+                ${subject.courseCode}
+              </h3>
+              <p style="color: var(--gray-600); font-size: var(--text-sm); margin: 0; font-weight: 500;">${subject.courseName}</p>
+            </div>
+            
+            <div style="margin-bottom: var(--space-5);">
+              <div style="
+                display: inline-flex; 
+                align-items: center; 
+                gap: var(--space-2); 
+                padding: var(--space-2) var(--space-4); 
+                border-radius: var(--radius-full); 
+                font-weight: 600; 
+                font-size: var(--text-sm); 
+                text-transform: uppercase; 
+                letter-spacing: 0.5px;
+                ${statusClass === 'safe' ? 
+                  'background: var(--gradient-success); color: white; box-shadow: var(--shadow-md);' : 
+                  'background: var(--gradient-primary); color: white; box-shadow: var(--shadow-md);'
+                }
+              ">
+                <i class="fas ${statusClass === 'safe' ? 'fa-check-circle' : 'fa-exclamation-triangle'}"></i>
+                ${statusText}
+              </div>
+            </div>
+            
+            <div class="component-analysis" style="
+              background: var(--gray-50); 
+              border: 1px solid var(--gray-200);
+              padding: var(--space-4); 
+              border-radius: var(--radius-lg);
+            ">
+              <h4 style="
+                margin-bottom: var(--space-3); 
+                color: var(--gray-700); 
+                font-weight: 600; 
+                font-size: var(--text-sm);
+                display: flex; 
+                align-items: center; 
+                gap: var(--space-2);
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+              ">
+                <i class="fas fa-chart-bar" style="color: var(--primary-500);"></i>
+                Component Breakdown
+              </h4>
+              <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2);">
+                ${componentAnalysis}
+              </ul>
+            </div>
+          </div>
+        </div>
+      `
+    })
+    
+    html += '</div>'
+    
+    // Add CSS for the parsed results
+    html += `
+      <style>
+        .parsed-subjects {
+          display: grid;
+          gap: 20px;
+          margin-top: 20px;
+        }
+        
+        .subject-card {
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 12px;
+          padding: 20px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .subject-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 10px;
+        }
+        
+        .subject-header h4 {
+          margin: 0;
+          color: var(--primary);
+          font-size: 1.2em;
+        }
+        
+        .attendance-badge {
+          padding: 5px 12px;
+          border-radius: 20px;
+          font-weight: bold;
+          font-size: 0.9em;
+        }
+        
+        .attendance-badge.safe {
+          background: rgba(40, 167, 69, 0.2);
+          color: #28a745;
+          border: 1px solid #28a745;
+        }
+        
+        .attendance-badge.warning {
+          background: rgba(220, 53, 69, 0.2);
+          color: #dc3545;
+          border: 1px solid #dc3545;
+        }
+        
+        .subject-name {
+          color: #666;
+          margin-bottom: 15px;
+          font-style: italic;
+        }
+        
+        .components-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 10px;
+          margin-bottom: 15px;
+        }
+        
+        .component-item {
+          background: rgba(255, 255, 255, 0.05);
+          padding: 12px;
+          border-radius: 8px;
+          border-left: 4px solid;
+        }
+        
+        .component-item.safe {
+          border-left-color: #28a745;
+        }
+        
+        .component-item.warning {
+          border-left-color: #dc3545;
+        }
+        
+        .component-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 5px;
+        }
+        
+        .component-type {
+          font-weight: bold;
+          font-size: 0.9em;
+        }
+        
+        .component-percentage {
+          font-weight: bold;
+        }
+        
+        .component-details {
+          font-size: 0.8em;
+          color: #888;
+        }
+        
+        .subject-summary {
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          padding-top: 15px;
+        }
+        
+        .summary-row {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 5px;
+        }
+        
+        .status-text.safe {
+          color: #28a745;
+          font-weight: bold;
+        }
+        
+        .status-text.warning {
+          color: #dc3545;
+          font-weight: bold;
+        }
+        
+        /* Enhanced textarea styling - Force visibility */
+        #attendanceData {
+          background-color: white !important;
+          color: black !important;
+          font-weight: bold !important;
+          border: 3px solid #e60000 !important;
+          font-family: 'Courier New', Courier, monospace !important;
+          font-size: 15px !important;
+          padding: 15px !important;
+          line-height: 1.5 !important;
+          transition: all 0.3s ease !important;
+          box-shadow: inset 0 2px 4px rgba(0,0,0,0.1) !important;
+        }
+        
+        #attendanceData:focus {
+          background-color: white !important;
+          color: black !important;
+          border-color: #e60000 !important;
+          box-shadow: 0 0 0 4px rgba(230, 0, 0, 0.2), inset 0 2px 4px rgba(0,0,0,0.1) !important;
+          outline: none !important;
+        }
+        
+        #attendanceData:hover {
+          background-color: white !important;
+          color: black !important;
+          border-color: #e60000 !important;
+        }
+        
+        #attendanceData::placeholder {
+          color: #666 !important;
+          opacity: 0.8 !important;
+          font-weight: normal !important;
+        }
+        
+        #attendanceData::selection {
+          background: rgba(230, 0, 0, 0.2) !important;
+          color: black !important;
+        }
+        
+        /* Override any conflicting styles */
+        textarea#attendanceData {
+          background: white !important;
+          color: black !important;
+        }
+        
+        .instructions-section {
+          animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      </style>
+    `
+    
+    pasteAttendanceOutput.innerHTML = html
+  }
+
+  function resetPasteAttendanceForm() {
+    document.getElementById("attendanceData").value = ""
+    pasteAttendanceResults.classList.remove("show")
+    
+    setTimeout(() => {
+      pasteAttendanceResults.classList.add("hidden")
+    }, 500)
+  }
+
+  // Force textarea styling aggressively
+  function enforceTextareaStyle() {
+    const textarea = document.getElementById("attendanceData")
+    if (textarea) {
+      // Force styling with maximum priority
+      textarea.style.cssText = `
+        width: 100% !important;
+        height: 350px !important;
+        background: white !important;
+        background-color: white !important;
+        color: black !important;
+        border: 5px solid #e60000 !important;
+        border-radius: 12px !important;
+        padding: 25px !important;
+        font-family: 'Courier New', Courier, monospace !important;
+        font-size: 18px !important;
+        font-weight: 700 !important;
+        line-height: 1.8 !important;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.15) !important;
+        outline: none !important;
+        resize: vertical !important;
+      `
+      
+      // Additional event listeners to maintain styling
+      textarea.addEventListener('focus', () => {
+        textarea.style.backgroundColor = 'white'
+        textarea.style.color = 'black'
+      })
+      
+      textarea.addEventListener('input', () => {
+        textarea.style.backgroundColor = 'white'
+        textarea.style.color = 'black'
+      })
+    }
+  }
+  
+  // Run multiple times to ensure it works
+  setTimeout(enforceTextareaStyle, 50)
+  setTimeout(enforceTextareaStyle, 200)
+  setTimeout(enforceTextareaStyle, 500)
+  
+  // Run when tab is clicked
+  document.querySelector('[data-tab="paste-attendance"]')?.addEventListener('click', () => {
+    setTimeout(enforceTextareaStyle, 100)
+  })
+
+  // Attendance Tracker Calculator
+  const calculateTrackerBtn = document.getElementById("calculateTracker")
+  const resetTrackerBtn = document.getElementById("resetTracker")
+  const trackerResults = document.getElementById("trackerResults")
+  const trackerAnalysisEl = document.getElementById("trackerAnalysis")
+  const trackerStatusEl = document.getElementById("trackerStatus")
+  const currentAttendanceValueEl = document.getElementById("currentAttendanceValue")
+
+  calculateTrackerBtn.addEventListener("click", function () {
+    // Add loading animation
+    this.disabled = true
+    this.querySelector(".btn-content").textContent = "Calculating..."
+    this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-spinner fa-spin"></i>'
+
+    setTimeout(() => {
+      calculateAttendanceTracker()
+
+      // Reset button
+      this.disabled = false
+      this.querySelector(".btn-content").textContent = "Calculate"
+      this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-calculator"></i>'
+    }, 800)
+  })
+
+  resetTrackerBtn.addEventListener("click", resetTrackerForm)
+
+  function calculateAttendanceTracker() {
+    const totalClasses = Number.parseInt(document.getElementById("totalClasses").value) || 0
+    const attendedClasses = Number.parseInt(document.getElementById("attendedClasses").value) || 0
+    const targetPercentage = Number.parseFloat(document.getElementById("targetPercentage").value) || 75
+
+    if (totalClasses === 0) {
+      showNotification("Please enter the total number of classes conducted.", "warning")
+      return
+    }
+
+    if (attendedClasses > totalClasses) {
+      showNotification("Attended classes cannot be more than total classes.", "warning")
+      return
+    }
+
+    // Calculate current attendance percentage
+    const currentPercentage = (attendedClasses / totalClasses) * 100
+
+    // Calculate classes needed to reach target
+    let classesNeeded = 0
+    let canReachTarget = true
+    let futureClasses = 0
+
+    if (currentPercentage < targetPercentage) {
+      // Need to attend more classes
+      // Formula: (attendedClasses + x) / (totalClasses + x) = targetPercentage / 100
+      // Solving for x: x = (targetPercentage * totalClasses - 100 * attendedClasses) / (100 - targetPercentage)
+      
+      classesNeeded = Math.ceil((targetPercentage * totalClasses - 100 * attendedClasses) / (100 - targetPercentage))
+      
+      if (classesNeeded < 0 || !isFinite(classesNeeded)) {
+        canReachTarget = false
+      } else {
+        futureClasses = classesNeeded
+      }
+    }
+
+    // Calculate how many classes can be missed
+    let canMiss = 0
+    if (currentPercentage >= targetPercentage) {
+      // Calculate maximum classes that can be missed while maintaining target
+      // Formula: (attendedClasses) / (totalClasses + x) = targetPercentage / 100
+      // Solving for x: x = (100 * attendedClasses) / targetPercentage - totalClasses
+      
+      canMiss = Math.floor((100 * attendedClasses) / targetPercentage - totalClasses)
+      if (canMiss < 0) canMiss = 0
+    }
+
+    // Build analysis
+    const analysis = []
+    
+    analysis.push(`<li style="--i:0"><strong>Total Classes:</strong> ${totalClasses}</li>`)
+    analysis.push(`<li style="--i:1"><strong>Classes Attended:</strong> ${attendedClasses}</li>`)
+    analysis.push(`<li style="--i:2"><strong>Classes Missed:</strong> ${totalClasses - attendedClasses}</li>`)
+    analysis.push(`<li style="--i:3"><strong>Current Attendance:</strong> ${currentPercentage.toFixed(2)}%</li>`)
+    
+    if (currentPercentage < targetPercentage) {
+      if (canReachTarget) {
+        analysis.push(`<li style="--i:4; color: #dc3545; font-weight: bold;"><i class="fas fa-exclamation-triangle"></i> <strong>Classes needed to reach ${targetPercentage}%:</strong> ${classesNeeded} consecutive classes</li>`)
+        const futurePercentage = ((attendedClasses + classesNeeded) / (totalClasses + classesNeeded)) * 100
+        analysis.push(`<li style="--i:5"><strong>Future attendance after attending ${classesNeeded} classes:</strong> ${futurePercentage.toFixed(2)}%</li>`)
+      } else {
+        analysis.push(`<li style="--i:4; color: #dc3545; font-weight: bold;"><i class="fas fa-times-circle"></i> <strong>Cannot reach ${targetPercentage}%</strong> - Target is too high!</li>`)
+      }
+    } else {
+      analysis.push(`<li style="--i:4; color: #28a745; font-weight: bold;"><i class="fas fa-check-circle"></i> <strong>Target achieved!</strong> You have ${currentPercentage.toFixed(2)}% attendance</li>`)
+      
+      if (canMiss > 0) {
+        analysis.push(`<li style="--i:5; color: #28a745;"><i class="fas fa-info-circle"></i> <strong>You can miss:</strong> ${canMiss} more ${canMiss === 1 ? 'class' : 'classes'} and still maintain ${targetPercentage}%</li>`)
+      } else {
+        analysis.push(`<li style="--i:5; color: #ffc107;"><i class="fas fa-exclamation-circle"></i> <strong>Warning:</strong> Cannot miss any more classes to maintain ${targetPercentage}%</li>`)
+      }
+    }
+
+    trackerAnalysisEl.innerHTML = analysis.join("")
+
+    // Update progress circle
+    const progressBar = document.querySelector("#trackerResults .progress-bar")
+    const circumference = 2 * Math.PI * 45
+    progressBar.style.strokeDasharray = circumference
+    const offset = circumference - (currentPercentage / 100) * circumference
+
+    // Animate the progress
+    progressBar.style.strokeDashoffset = circumference
+    setTimeout(() => {
+      progressBar.style.strokeDashoffset = offset
+    }, 100)
+
+    // Set color based on attendance
+    let statusText, statusClass, color
+    if (currentPercentage >= 75) {
+      color = "#28a745"
+      statusText = "Excellent Attendance!"
+      statusClass = "good"
+    } else if (currentPercentage >= 65) {
+      color = "#ffc107"
+      statusText = "Warning: Below 75%"
+      statusClass = "warning"
+    } else {
+      color = "#dc3545"
+      statusText = "Critical: Very Low Attendance"
+      statusClass = "danger"
+    }
+
+    progressBar.style.stroke = color
+    trackerStatusEl.textContent = statusText
+    trackerStatusEl.className = `status-badge ${statusClass}`
+
+    // Update value with animation
+    animateValue(currentAttendanceValueEl, 0, currentPercentage.toFixed(2), 1000)
+
+    // Show results with animation
+    trackerResults.classList.remove("hidden")
+    trackerResults.classList.add("show")
+  }
+
+  function resetTrackerForm() {
+    document.getElementById("totalClasses").value = ""
+    document.getElementById("attendedClasses").value = ""
+    document.getElementById("targetPercentage").value = "75"
+    trackerResults.classList.remove("show")
+
+    setTimeout(() => {
+      trackerResults.classList.add("hidden")
+    }, 500)
+  }
+
+  // CGPA to Percentage Calculator
+  const calculatePercentageBtn = document.getElementById("calculatePercentage")
+  const resetPercentageBtn = document.getElementById("resetPercentage")
+  const percentageResults = document.getElementById("percentageResults")
+  const percentageAnalysisEl = document.getElementById("percentageAnalysis")
+  const percentageStatusEl = document.getElementById("percentageStatus")
+  const percentageValueEl = document.getElementById("percentageValue")
+
+  calculatePercentageBtn.addEventListener("click", function () {
+    // Add loading animation
+    this.disabled = true
+    this.querySelector(".btn-content").textContent = "Converting..."
+    this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-spinner fa-spin"></i>'
+
+    setTimeout(() => {
+      calculateCGPAToPercentage()
+
+      // Reset button
+      this.disabled = false
+      this.querySelector(".btn-content").textContent = "Convert to Percentage"
+      this.querySelector(".btn-icon").innerHTML = '<i class="fas fa-exchange-alt"></i>'
+    }, 800)
+  })
+
+  resetPercentageBtn.addEventListener("click", resetPercentageForm)
+
+  function calculateCGPAToPercentage() {
+    const cgpa = Number.parseFloat(document.getElementById("cgpaInput").value) || 0
+
+    if (cgpa === 0) {
+      showNotification("Please enter a valid CGPA.", "warning")
+      return
+    }
+
+    if (cgpa < 0 || cgpa > 10) {
+      showNotification("CGPA must be between 0 and 10.", "warning")
+      return
+    }
+
+    // KLU Formula: (CGPA - 0.75) × 10
+    const percentage = (cgpa - 0.75) * 10
+
+    // Ensure percentage is not negative
+    const finalPercentage = Math.max(0, percentage)
+
+    // Build analysis
+    const analysis = []
+    
+    analysis.push(`<li style="--i:0"><strong>Your CGPA:</strong> ${cgpa.toFixed(2)}</li>`)
+    analysis.push(`<li style="--i:1"><strong>Equivalent Percentage:</strong> <span style="color: #e60000; font-size: 1.3em; font-weight: bold;">${finalPercentage.toFixed(2)}%</span></li>`)
+    analysis.push(`<li style="--i:2"><strong>Conversion Method:</strong> As per university algorithm</li>`)
+
+    percentageAnalysisEl.innerHTML = analysis.join("")
+
+    // Update progress circle
+    const progressBar = document.querySelector("#percentageResults .progress-bar")
+    const circumference = 2 * Math.PI * 45
+    progressBar.style.strokeDasharray = circumference
+    const offset = circumference - (finalPercentage / 100) * circumference
+
+    // Animate the progress
+    progressBar.style.strokeDashoffset = circumference
+    setTimeout(() => {
+      progressBar.style.strokeDashoffset = offset
+    }, 100)
+
+    // Set color based on percentage
+    let statusText, statusClass, color
+    if (finalPercentage >= 75) {
+      color = "#28a745"
+      statusText = "Distinction Class!"
+      statusClass = "good"
+    } else if (finalPercentage >= 60) {
+      color = "#17a2b8"
+      statusText = "First Class"
+      statusClass = "good"
+    } else if (finalPercentage >= 50) {
+      color = "#ffc107"
+      statusText = "Second Class"
+      statusClass = "warning"
+    } else {
+      color = "#dc3545"
+      statusText = "Pass Class"
+      statusClass = "danger"
+    }
+
+    progressBar.style.stroke = color
+    percentageStatusEl.textContent = statusText
+    percentageStatusEl.className = `status-badge ${statusClass}`
+
+    // Update value with animation
+    animateValue(percentageValueEl, 0, finalPercentage.toFixed(2), 1000)
+
+    // Show results with animation
+    percentageResults.classList.remove("hidden")
+    percentageResults.classList.add("show")
+  }
+
+  function resetPercentageForm() {
+    document.getElementById("cgpaInput").value = ""
+    percentageResults.classList.remove("show")
+
+    setTimeout(() => {
+      percentageResults.classList.add("hidden")
+    }, 500)
+  }
+})
+
+            </script>
+
 <!-- NEW USER LOGIC INJECTED -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -3192,9 +4666,6 @@ form.addEventListener("submit", function(event) {
 });
 </script>
 <!-- END NEW USER LOGIC -->
-
-
-
 </body>
 </html>
 
