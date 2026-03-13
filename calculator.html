@@ -2371,9 +2371,42 @@ html {
             <span class="btn-content">Calculate</span>
         </button>
     </form>
-    <div style="margin-top:20px; text-align:center; font-size:24px; font-weight:bold;">Result: <span id="result"></span></div>
-</div>
 
+<span id="result" style="display:none;"></span>
+
+<div class="results-section hidden" id="attendanceResults">
+            <div class="results-header">
+              <h3>Results</h3>
+              <div class="results-divider"></div>
+            </div>
+            
+            <div class="result-card">
+              <div class="result-visual">
+                <div class="circular-progress">
+                  <svg viewBox="0 0 100 100">
+                    <circle class="progress-bg" cx="50" cy="50" r="45"></circle>
+                    <circle class="progress-bar" cx="50" cy="50" r="45"></circle>
+                  </svg>
+                  <div class="progress-value">
+                    <span id="attendanceValue">0</span>%
+                  </div>
+                </div>
+              </div>
+              
+              <div class="result-details">
+                <h4 id="subjectResult">Subject: N/A</h4>
+                <h4 id="overallAttendance">Overall Attendance: 0%</h4>
+                <div class="status-badge" id="attendanceStatus">Calculating...</div>
+                <div class="component-analysis">
+                  <h5>Component Analysis:</h5>
+                  <ul id="componentAnalysis"></ul>
+                </div>
+              </div>
+            </div>
+
+        </div>
+      </div>
+      
 </div>
 </section>
 
@@ -4321,6 +4354,8 @@ let errorNote = document.getElementById("errorNote");
 let form = document.getElementById("form");
 // Attendance Result
 let result = document.getElementById("result");
+let attendanceStatusEl = document.getElementById("attendanceStatus");
+let attendanceStatusEl = document.getElementById("attendanceStatus");
 
 // lecture input correction code which corrects the error inputs.
 lectureConducted.addEventListener("keyup", function(event) {
