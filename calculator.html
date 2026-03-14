@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="navbar.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src='security.js'></script>
 </head>
   
 <body>
@@ -3560,74 +3561,111 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function parseAttendanceData(data) {
-    const lines = data.split('\n').filter(line => line.trim() && !line.startsWith('#'))
+    function parseAttendanceData(data) {
     const subjects = {}
-    
+    const lines = data.split('\n').filter(line => line.trim() && !line.startsWith('#'))
+
     lines.forEach((line, index) => {
-      // Simple extraction: just get course code, course name, component type, and final percentage
       let parts = []
-      
+
       // Try different splitting methods
       if (line.includes('\t')) {
-        parts = line.split('\t').filter(part => part.trim())
+        parts = line.split('\t').map(p => p.trim()).filter(p => p !== '')
       } else {
-        parts = line.split(/\s{2,}/).filter(part => part.trim())
+        parts = line.split(/\s{2,}/).map(p => p.trim()).filter(p => p !== '')
       }
-      
+
       // If still not enough parts, try single space split
-      if (parts.length < 6) {
-        parts = line.split(/\s+/).filter(part => part.trim())
+      if (parts.length < 5) {
+        parts = line.split(/\s+/).map(p => p.trim()).filter(p => p !== '')
       }
 
-      if (parts.length >= 6) {
-        // Extract only what we need: course code, course name, component type, and percentage
-        const slNo = parts[0]?.trim()
-        const courseCode = parts[1]?.trim()
-        const courseDesc = parts[2]?.trim()
-        const ltps = parts[3]?.trim()
-        
-        // Find the percentage in the line (look for % symbol)
-        let finalPercentage = 0
-        for (let i = 0; i < parts.length; i++) {
-          if (parts[i].includes('%')) {
-            finalPercentage = parseFloat(parts[i].replace('%', '')) || 0
-            break
-          }
-        }
+      if (parts.length >= 5) {
+        // Check if this looks like the new format (17 parts or at least enough numbers at the end)
+        let isNewFormat = parts.length >= 13 && !isNaN(parseInt(parts[5])) && !isNaN(parseInt(parts[9]));
 
-        if (!courseCode || !ltps || !finalPercentage) {
-          console.log(`Skipping invalid line: ${line}`)
-          return // Skip invalid rows
-        }
+        if (isNewFormat) {
+            const courseCode = parts[2]
+            const courseNameLocal = parts[3]
+           
+            let finalPercentage = 0;
+            if (parts[4].includes('%')) {
+                 finalPercentage = parseFloat(parts[4]);
+            } else {
+                 finalPercentage = parseFloat(parts[4]) || 0; // The plain number
+            }
 
-        // Clean and normalize the subject key
-        const subjectKey = courseCode.trim().toUpperCase()
-        const componentType = ltps.trim().toUpperCase()
-        
-        console.log(`Extracted: ${courseCode} - ${componentType} - ${finalPercentage}%`)
+            const lConducted = parseInt(parts[5]) || 0;
+            const tConducted = parseInt(parts[6]) || 0;
+            const pConducted = parseInt(parts[7]) || 0;
+            const sConducted = parseInt(parts[8]) || 0;
+           
+            const lAttended = parseInt(parts[9]) || 0;
+            const tAttended = parseInt(parts[10]) || 0;
+            const pAttended = parseInt(parts[11]) || 0;
+            const sAttended = parseInt(parts[12]) || 0;
 
-        // Create subject entry if it doesn't exist
-        if (!subjects[subjectKey]) {
-          subjects[subjectKey] = {
-            courseCode: courseCode.trim(),
-            courseName: courseDesc.trim(),
-            components: {}
-          }
+            const subjectKey = courseCode.toUpperCase()
+
+            if (!subjects[subjectKey]) {
+                subjects[subjectKey] = {
+                  courseCode: courseCode,
+                  courseName: courseNameLocal,
+                  components: {}
+                }
+            }
+
+            if (lConducted > 0) subjects[subjectKey].components['L'] = { type: 'L', percentage: Math.ceil((lAttended / lConducted) * 100) };
+            if (tConducted > 0) subjects[subjectKey].components['T'] = { type: 'T', percentage: Math.ceil((tAttended / tConducted) * 100) };
+            if (pConducted > 0) subjects[subjectKey].components['P'] = { type: 'P', percentage: Math.ceil((pAttended / pConducted) * 100) };
+            if (sConducted > 0) subjects[subjectKey].components['S'] = { type: 'S', percentage: Math.ceil((sAttended / sConducted) * 100) };
+
+            // We don't need to do the weight math here because the rest of the function handles it
+            
         } else {
-          // Update course name if it's more descriptive
-          if (courseDesc.trim().length > subjects[subjectKey].courseName.length) {
-            subjects[subjectKey].courseName = courseDesc.trim()
-          }
-        }
+            // Original logic for the old format
+            const slNo = parts[0]?.trim()
+            const courseCode = parts[1]?.trim()
+            const courseDesc = parts[2]?.trim()
+            const ltps = parts[3]?.trim()
 
-        // Store component with its final percentage (no need for individual counts)
-        subjects[subjectKey].components[componentType] = {
-          type: componentType,
-          percentage: finalPercentage
-        }
+            // Find the percentage in the line (look for % symbol)
+            let finalPercentage = 0
+            for (let i = 0; i < parts.length; i++) {
+              if (parts[i].includes('%')) {
+                finalPercentage = parseFloat(parts[i].replace('%', '')) || 0
+                break
+              }
+            }
 
-        console.log(`Stored: ${subjectKey} - ${componentType} - ${finalPercentage}%`)
+            if (!courseCode || !ltps || !finalPercentage) {
+              return // Skip invalid rows
+            }
+
+            // Clean and normalize the subject key
+            const subjectKey = courseCode.trim().toUpperCase()
+            const componentType = ltps.trim().toUpperCase()
+
+            // Create subject entry if it doesn't exist
+            if (!subjects[subjectKey]) {
+              subjects[subjectKey] = {
+                courseCode: courseCode.trim(),
+                courseName: courseDesc.trim(),
+                components: {}
+              }
+            } else {
+              // Update course name if it's more descriptive
+              if (courseDesc.trim().length > subjects[subjectKey].courseName.length) {
+                subjects[subjectKey].courseName = courseDesc.trim()
+              }
+            }
+
+            // Store component with its final percentage (no need for individual counts)
+            subjects[subjectKey].components[componentType] = {
+              type: componentType,
+              percentage: finalPercentage
+            }
+        }
       }
     })
 
@@ -3635,11 +3673,10 @@ document.addEventListener("DOMContentLoaded", () => {
     Object.keys(subjects).forEach(key => {
       const subject = subjects[key]
       const components = Object.values(subject.components)
-      
+
       if (components.length > 0) {
         // Extract component percentages (same as original calculator)
         let lecturePercentage = null, tutorialPercentage = null, practicalPercentage = null, skillingPercentage = null
-        
         components.forEach(comp => {
           switch(comp.type) {
             case 'L':
@@ -3661,7 +3698,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const weights = { lecture: 1.0, tutorial: 1.0, practical: 0.5, skilling: 0.25 }
         let totalWeight = 0
         let weightedSum = 0
-        
+
         const componentsList = [
           { percentage: lecturePercentage, weight: weights.lecture, name: "Lecture" },
           { percentage: tutorialPercentage, weight: weights.tutorial, name: "Tutorial" },
@@ -3681,8 +3718,6 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           subject.overallPercentage = 0
         }
-
-        console.log(`Subject ${key}: L=${lecturePercentage}% T=${tutorialPercentage}% P=${practicalPercentage}% S=${skillingPercentage}% -> Weighted=${subject.overallPercentage}%`)
       }
     })
 
