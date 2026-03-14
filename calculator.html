@@ -2307,6 +2307,14 @@ html {
 </div>
 <div class="card-body">
     <form id="form">
+        <!-- Subject Name Input -->
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label><i class="fas fa-book"></i> Subject Name</label>
+            <div class="input-wrapper">
+                <input type="text" id="subjectNameInput" placeholder="e.g., Data Structures (Optional)" style="width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; color: #fff;">
+            </div>
+        </div>
+
         <!-- Error Note -->
         <div id="errorNote" class="finalError" style="margin-bottom: 10px; color: red;">Please ensure inputs are valid.</div>
 
@@ -4684,7 +4692,12 @@ form.addEventListener("submit", function(event) {
             }
             result.textContent = finalResult + "%";
 
+            // get subject name
+            let subjName = document.getElementById("subjectNameInput") ? document.getElementById("subjectNameInput").value : "";
+            if (!subjName || subjName.trim() === "") subjName = "N/A";
+
             // update UI elements for KLU ONE
+            document.getElementById("subjectResult").textContent = "Subject: " + subjName;
             document.getElementById("overallAttendance").textContent = "Overall Attendance: " + finalResult + "%";
             document.getElementById("attendanceValue").textContent = finalResult;
 
