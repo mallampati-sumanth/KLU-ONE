@@ -4355,7 +4355,6 @@ let form = document.getElementById("form");
 // Attendance Result
 let result = document.getElementById("result");
 let attendanceStatusEl = document.getElementById("attendanceStatus");
-let attendanceStatusEl = document.getElementById("attendanceStatus");
 
 // lecture input correction code which corrects the error inputs.
 lectureConducted.addEventListener("keyup", function(event) {
@@ -4686,7 +4685,7 @@ form.addEventListener("submit", function(event) {
             result.textContent = finalResult + "%";
             
             // update UI elements for KLU ONE
-            document.getElementById("overallAttendance").textContent = "Overall Attendance: " + finalResult + "%";
+            document.getElementById("overallAttendance").textContent = finalResult + "%";
             document.getElementById("attendanceValue").textContent = finalResult + "%";
             
             // Show results section
