@@ -4683,10 +4683,45 @@ form.addEventListener("submit", function(event) {
                 attendanceStatusEl.className = "status-badge danger";
             }
             result.textContent = finalResult + "%";
-            
+
             // update UI elements for KLU ONE
-            document.getElementById("overallAttendance").textContent = finalResult + "%";
-            document.getElementById("attendanceValue").textContent = finalResult + "%";
+            document.getElementById("overallAttendance").textContent = "Overall Attendance: " + finalResult + "%";
+            document.getElementById("attendanceValue").textContent = finalResult;
+
+            // Update progress circle
+            const progressBar = document.querySelector("#attendanceResults .progress-bar");
+            if (progressBar) {
+                const circumference = 2 * Math.PI * 45; // 45 is the radius
+                progressBar.style.strokeDasharray = circumference;
+                const offset = circumference - (finalResult / 100) * circumference;
+
+                // Animate the progress
+                progressBar.style.strokeDashoffset = circumference;
+                setTimeout(() => {
+                    progressBar.style.strokeDashoffset = offset;
+                }, 100);
+
+                // Set color based on attendance
+                if (finalResult >= 85) {
+                    progressBar.style.stroke = "#28a745"; // Green
+                    attendanceStatusEl.textContent = "Safe: Good Standing";
+                    attendanceStatusEl.className = "status-badge safe";
+                    attendanceStatusEl.style.backgroundColor = "rgba(40, 167, 69, 0.1)";
+                    attendanceStatusEl.style.color = "#28a745";
+                } else if (finalResult >= 75) {
+                    progressBar.style.stroke = "#ffc107"; // Yellow
+                    attendanceStatusEl.textContent = "Warning: Approaching 75%";
+                    attendanceStatusEl.className = "status-badge warning";
+                    attendanceStatusEl.style.backgroundColor = "rgba(255, 193, 7, 0.1)";
+                    attendanceStatusEl.style.color = "#ffc107";
+                } else {
+                    progressBar.style.stroke = "#dc3545"; // Red
+                    attendanceStatusEl.textContent = "Danger: Below 75%";
+                    attendanceStatusEl.className = "status-badge danger";
+                    attendanceStatusEl.style.backgroundColor = "rgba(220, 53, 69, 0.1)";
+                    attendanceStatusEl.style.color = "#dc3545";
+                }
+            }
             
             // Show results section
             document.getElementById("attendanceResults").classList.remove("hidden");
