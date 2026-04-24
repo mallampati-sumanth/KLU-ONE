@@ -1,4 +1,4 @@
-# 🎓 KLU ONE  -- 11
+# 🎓 KLU ONE  --
 
 > 🚀 *One Platform. Everything KLU Students Need.*
 
