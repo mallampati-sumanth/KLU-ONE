@@ -1,4 +1,4 @@
-# 🎓 KLU ONE  -- Appliaction
+# 🎓 KLU ONE  -- Appliaction for students
 
 > 🚀 *One Platform. Everything KLU Students Need.*
 
