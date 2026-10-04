@@ -1,9 +1,17 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" type="image/x-icon" href="kluonelogo">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+  </script>
   <title>KLU ONE | Student Toolkit: GPA Calculator, Cabins , Mess Menu & Bus Map</title>
   <meta name="description" content="The essential toolkit for KL University students. Access the SGPA calculator, faculty cabin finder, daily mess menu, and bus timings instantly.">
   <!-- Google Search Console Verification -->
@@ -81,6 +89,7 @@ function trackDownload() {
       </div>
     </div>
   </header>
+  <div class="navbar-spacer" aria-hidden="true"></div>
 
   <!-- Updates Marquee -->
   <div class="updates-marquee">
@@ -3740,19 +3749,109 @@ img, svg, video, iframe { max-width: 100%; height: auto; }
     transform: none;
   }
 }
+
+/* ===== MOBILE: keep header visible, no auto-scroll / auto-fit ===== */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-anchor: none;
+  scroll-behavior: auto;
+}
+html, body {
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+}
+body {
+  overflow-anchor: none;
+}
+
+.navbar-spacer {
+  display: none;
+  width: 100%;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .klu-navbar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 1100;
+    padding-top: env(safe-area-inset-top, 0px);
+    background: #fff !important;
+    transform: none !important;
+  }
+
+  .navbar-spacer {
+    display: block;
+    height: 58px;
+    height: calc(58px + env(safe-area-inset-top, 0px));
+    flex-shrink: 0;
+  }
+
+  .klu-home,
+  .hero-slideshow,
+  .service-section,
+  .quick-section {
+    scroll-margin-top: calc(58px + env(safe-area-inset-top, 0px));
+  }
+
+  .mobile-menu:not(.active) {
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-spacer {
+    height: 50px;
+    height: calc(50px + env(safe-area-inset-top, 0px));
+  }
+}
 </style>
+<script>
+(function () {
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+  var allowAutoTop = true;
+  function stopAutoTop() { allowAutoTop = false; }
+  window.addEventListener('touchstart', stopAutoTop, { once: true, passive: true });
+  window.addEventListener('wheel', stopAutoTop, { once: true, passive: true });
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 8) stopAutoTop();
+  }, { passive: true });
+
+  function lockPageToTop() {
+    if (!allowAutoTop) return;
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }
+
+  function syncNavbarSpacer() {
+    var nav = document.querySelector('.klu-navbar');
+    var spacer = document.querySelector('.navbar-spacer');
+    if (!nav || !spacer) return;
+    spacer.style.height = nav.offsetHeight + 'px';
+  }
+
+  lockPageToTop();
+  document.addEventListener('DOMContentLoaded', function () {
+    syncNavbarSpacer();
+    lockPageToTop();
+  });
+  window.addEventListener('load', function () {
+    syncNavbarSpacer();
+    lockPageToTop();
+  });
+  window.addEventListener('pageshow', function () {
+    lockPageToTop();
+    syncNavbarSpacer();
+  });
+  window.addEventListener('resize', syncNavbarSpacer);
+})();
+</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
