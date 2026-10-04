@@ -18,6 +18,7 @@
   <meta name="google-site-verification" content="google2ba0c9b2d74a181f" />
   <meta name="google-site-verification" content="googleb4738ddb2ebfef64" />
   <link rel="canonical" href="https://mallampati-sumanth.github.io/KLU-ONE/" />
+  <link rel="preload" as="image" href="https://uploads.onecompiler.io/42fq36qvd/1791119877028/kluimage.png">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -2860,9 +2861,11 @@ img {
   inset: 0;
   background-size: cover;
   background-position: center;
-  opacity: 0;
-  transition: opacity 1s ease;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
+
+.hero-slide:not(.active) { opacity: 0; }
 
 .hero-slide.active {
   opacity: 1;
@@ -3193,8 +3196,12 @@ img {
     })
   }
 
-  // Check elements on load
-  window.addEventListener("load", checkIfInView)
+  // Check elements as soon as the DOM is ready.
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", checkIfInView)
+  } else {
+    checkIfInView()
+  }
 
   // Check elements on scroll
   window.addEventListener("scroll", checkIfInView)
@@ -3395,9 +3402,6 @@ function addRevealAnimations() {
   }, observerOptions)
 
   document.querySelectorAll(".portal-card, .tool-card, .link-category").forEach((el) => {
-    el.style.opacity = "0"
-    el.style.transform = "translateY(30px)"
-    el.style.transition = "all 0.6s ease"
     observer.observe(el)
   })
 }
@@ -3813,6 +3817,14 @@ body {
 </style>
 <script>
 (function () {
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(function () {
+        // The page remains fully usable when service workers are unavailable.
+      });
+    });
+  }
+
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
   var allowAutoTop = true;
