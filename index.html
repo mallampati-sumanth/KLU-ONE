@@ -40,6 +40,16 @@ function trackDownload() {
 </script>
 
   <script src='security.js'></script>
+  <script>
+    (function () {
+      const isMobileViewport = window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
+      const hasHash = Boolean(window.location.hash);
+      if (!isMobileViewport || hasHash || !("scrollRestoration" in history)) return;
+
+      history.scrollRestoration = "manual";
+      window.__kluForceTopOnFirstLoad = true;
+    })();
+  </script>
 </head>
 <body>
   <!-- Header -->
@@ -3044,6 +3054,12 @@ img {
   const mobileMenu = document.getElementById('mobileMenu');
   const mobileMenuClose = document.getElementById('mobileMenuClose');
   const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+  const resetMobileMenuState = () => {
+    if (mobileMenu) mobileMenu.classList.remove('active');
+    if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('active');
+    if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+    document.body.style.overflow = '';
+  };
 
   // Make close handler available to other navigation code below
   let closeMobileMenu = () => {};
@@ -3060,10 +3076,7 @@ img {
     
     // Close menu
     closeMobileMenu = () => {
-      mobileMenu.classList.remove('active');
-      if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('active');
-      mobileMenuBtn.classList.remove('active');
-      document.body.style.overflow = '';
+      resetMobileMenuState();
     };
     
     // Close button
@@ -3092,6 +3105,30 @@ img {
     });
   } else {
     // Mobile menu is optional; avoid breaking other page JS.
+  }
+
+  if (window.__kluForceTopOnFirstLoad) {
+    const navEntry = performance.getEntriesByType ? performance.getEntriesByType('navigation')[0] : null;
+    const isBackForward = navEntry && navEntry.type === 'back_forward';
+
+    if (!isBackForward) {
+      const ensureTopOnLoad = () => {
+        resetMobileMenuState();
+        window.scrollTo(0, 0);
+        requestAnimationFrame(() => window.scrollTo(0, 0));
+        if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
+      };
+
+      if (document.readyState === 'complete') {
+        ensureTopOnLoad();
+      } else {
+        window.addEventListener('load', ensureTopOnLoad, { once: true });
+      }
+    } else if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'auto';
+    }
+
+    delete window.__kluForceTopOnFirstLoad;
   }
 
   // Mobile Dropdown Toggle
@@ -3743,7 +3780,6 @@ img, svg, video, iframe { max-width: 100%; height: auto; }
 </style>
 </body>
 </html>
-
 
 
 
